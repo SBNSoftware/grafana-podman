@@ -1,0 +1,16 @@
+{
+  "uid": "1eBmbewMk",
+  "name": "ICARUS Test Slack Channel",
+  "type": "slack",
+  "settings": {
+    "autoResolve": true,
+    "httpMethod": "POST",
+    "icon_emoji": ":robot_face:",
+    "mentionGroups": "S02943QRVEY",
+    "severity": "critical",
+    "token": "[REDACTED]",
+    "uploadImage": false,
+    "url": "[REDACTED]"
+  },
+  "disableResolveMessage": false
+}

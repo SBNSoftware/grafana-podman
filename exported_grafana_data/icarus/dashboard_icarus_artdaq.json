@@ -1,0 +1,595 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "canDelete": true,
+    "slug": "icarus_artdaq",
+    "url": "/d/kwdyOD1Wk/icarus_artdaq",
+    "expires": "0001-01-01T00:00:00Z",
+    "created": "2019-11-08T16:34:26-06:00",
+    "updated": "2020-11-15T22:59:17-06:00",
+    "updatedBy": "admin",
+    "createdBy": "admin",
+    "version": 47,
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 0,
+    "folderUid": "",
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": "",
+    "annotationsPermissions": {
+      "dashboard": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      },
+      "organization": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      }
+    },
+    "publicDashboardAccessToken": "",
+    "publicDashboardUid": "",
+    "publicDashboardEnabled": false
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 1,
+    "links": [],
+    "panels": [
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "Buffers"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 9,
+          "x": 0,
+          "y": 0
+        },
+        "id": 16,
+        "options": {
+          "displayMode": "gradient",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": false
+        },
+        "pluginVersion": "7.1.5",
+        "targets": [
+          {
+            "refCount": 0,
+            "refId": "A",
+            "target": "alias(sumSeries(keepLastValue(icarus.evb*.*.Shared_Memory_Full_Buffers, 100)), ' Full')",
+            "textEditor": false
+          },
+          {
+            "refCount": 0,
+            "refId": "D",
+            "target": "alias(maxSeries(keepLastValue(icarus.evb*.*.Shared_Memory_Full_Buffers, 100)), 'Max full ')"
+          },
+          {
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(sumSeries(keepLastValue(icarus.evb*.*.Shared_Memory_Reading_Buffers, 100)), 'Reading')"
+          },
+          {
+            "refCount": 0,
+            "refId": "E",
+            "target": "alias(sumSeries(keepLastValue(icarus.evb*.*.Shared_Memory_Pending_Buffers, 100)), 'Writing')"
+          },
+          {
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(minSeries(icarus.evb*.*.Shared_Memory_Available_Buffers), 'Min available')"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Event Builder Buffer Occupancy",
+        "type": "bargauge"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "mappings": [],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 50
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 15,
+          "x": 9,
+          "y": 0
+        },
+        "id": 18,
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true
+        },
+        "pluginVersion": "7.1.5",
+        "targets": [
+          {
+            "refCount": 0,
+            "refId": "B",
+            "target": "aliasByNode(keepLastValue(icarus.evb*.*.Shared_Memory_Full_%, 1), 1)"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Event Builders Shared Memory Full %",
+        "type": "gauge"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "align": null
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "yellow",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 9
+        },
+        "id": 22,
+        "options": {
+          "displayMode": "lcd",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true
+        },
+        "pluginVersion": "7.1.5",
+        "targets": [
+          {
+            "refCount": 0,
+            "refId": "A",
+            "target": "lowestCurrent(aliasByNode(icarus.tpcw*.BoardReader.*.Fragment_Count, 1), 10)"
+          },
+          {
+            "refCount": 0,
+            "refId": "B",
+            "target": "highestCurrent(aliasByNode(icarus.tpcw*.BoardReader.*.Fragment_Count, 1), 10)"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "TPC West Module: Min and Max Fragment Counts",
+        "type": "bargauge"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "align": null
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "yellow",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 9
+        },
+        "id": 23,
+        "options": {
+          "displayMode": "lcd",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true
+        },
+        "pluginVersion": "7.1.5",
+        "targets": [
+          {
+            "refCount": 0,
+            "refId": "A",
+            "target": "lowestCurrent(aliasByNode(icarus.tpce*.BoardReader.*.Fragment_Count, 1), 10)"
+          },
+          {
+            "refCount": 0,
+            "refId": "B",
+            "target": "highestCurrent(aliasByNode(icarus.tpce*.BoardReader.*.Fragment_Count, 1), 10)"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "TPC East Module: Min and Max Fragment Counts",
+        "type": "bargauge"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "align": null
+            },
+            "mappings": [],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 50
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 17
+        },
+        "id": 20,
+        "options": {
+          "displayMode": "lcd",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true
+        },
+        "pluginVersion": "7.1.5",
+        "targets": [
+          {
+            "refId": "A",
+            "target": "aliasByNode(highestMax(keepLastValue(icarus.tpc*.BoardReader.*.Fragment_Buffer_Full_%Bytes, 100), 20), 1)"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "TPC Boardreaders: Top 20 Buffer Usage (% by bytes)",
+        "type": "bargauge"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "align": null
+            },
+            "mappings": [],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 50
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 12,
+          "x": 12,
+          "y": 17
+        },
+        "id": 24,
+        "options": {
+          "displayMode": "lcd",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true
+        },
+        "pluginVersion": "7.1.5",
+        "targets": [
+          {
+            "refId": "A",
+            "target": "aliasByNode(highestMax(keepLastValue(icarus.icaruspmt*.BoardReader.*.Fragment_Buffer_Full_%Bytes, 100), 10), 1)"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "PMT Boardreaders: Top 10 Buffer Usage (% by bytes)",
+        "type": "bargauge"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "align": null
+            },
+            "mappings": [],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 50
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 12,
+          "x": 12,
+          "y": 22
+        },
+        "id": 25,
+        "options": {
+          "displayMode": "lcd",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true
+        },
+        "pluginVersion": "7.1.5",
+        "targets": [
+          {
+            "refId": "A",
+            "target": "aliasByNode(highestMax(keepLastValue(icarus.crt*.BoardReader.*.Fragment_Buffer_Full_%Bytes, 100), 10), 1)"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "CRT Boardreaders: Top 10 Buffer Usage (% by bytes)",
+        "type": "bargauge"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 0.1
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 0.2
+                },
+                {
+                  "color": "green",
+                  "value": 0.5
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 26
+        },
+        "id": 27,
+        "options": {
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true
+        },
+        "pluginVersion": "7.1.5",
+        "targets": [
+          {
+            "refCount": 0,
+            "refId": "A",
+            "target": "alias(keepLastValue(sumSeries(icarus.disp01.*.Input_Fragment_Rate), 100), 'Dispatcher Incoming Fragment Rate')"
+          },
+          {
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(keepLastValue(sumSeries(icarus.disp01.*.Event_Rate), 100), 'Dispatcher Processed Fragment Rate')"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Dispatcher Rates",
+        "type": "gauge"
+      }
+    ],
+    "refresh": "5s",
+    "schemaVersion": 26,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ]
+    },
+    "timezone": "",
+    "title": "icarus_artdaq",
+    "uid": "kwdyOD1Wk",
+    "version": 47
+  }
+}

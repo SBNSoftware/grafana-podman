@@ -1,0 +1,9 @@
+{
+  "uid": "b2d71fe7-818b-482a-bf22-8a85b9d6d28c",
+  "name": "DAQ Alert channel",
+  "type": "slack",
+  "settings": {
+    "url": "[REDACTED]"
+  },
+  "disableResolveMessage": false
+}

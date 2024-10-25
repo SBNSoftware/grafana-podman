@@ -1,0 +1,79 @@
+{
+  "receiver": "autogen-contact-point-default",
+  "group_by": [
+    "grafana_folder",
+    "alertname"
+  ],
+  "routes": [
+    {
+      "receiver": "ICARUS Test Slack Channel",
+      "object_matchers": [
+        [
+          "__contacts__",
+          "=~",
+          ".*\"ICARUS Test Slack Channel\".*"
+        ]
+      ],
+      "continue": true,
+      "repeat_interval": "52w"
+    },
+    {
+      "receiver": "PMT Expert channel",
+      "object_matchers": [
+        [
+          "__contacts__",
+          "=~",
+          ".*\"PMT Expert channel\".*"
+        ]
+      ],
+      "continue": true,
+      "repeat_interval": "52w"
+    },
+    {
+      "receiver": "ICARUS Test NoData Alerts",
+      "object_matchers": [
+        [
+          "__contacts__",
+          "=~",
+          ".*\"ICARUS Test NoData Alerts\".*"
+        ]
+      ],
+      "continue": true,
+      "routes": [
+        {
+          "receiver": "Shifter Operations Channel",
+          "object_matchers": [
+            [
+              "__target__",
+              "=~",
+              ".*\"shifter\".*"
+            ]
+          ],
+          "continue": true
+        },
+        {
+          "receiver": "ICARUS Test NoData Alerts",
+          "object_matchers": [
+            [
+              "__target__",
+              "=~",
+              ".*\"testchannel\".*"
+            ]
+          ],
+          "continue": true
+        }
+      ]
+    },
+    {
+      "receiver": "DAQ Alert channel",
+      "object_matchers": [
+        [
+          "__contacts__",
+          "=~",
+          ".*\"DAQ Alert channel\".*"
+        ]
+      ],
+      "continue": true
+    }
+  ]
+}

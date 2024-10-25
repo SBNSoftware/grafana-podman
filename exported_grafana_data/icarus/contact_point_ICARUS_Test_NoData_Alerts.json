@@ -1,0 +1,10 @@
+{
+  "uid": "af52782b-6f9f-4ac0-ac57-ece717e29fa1",
+  "name": "ICARUS Test NoData Alerts",
+  "type": "slack",
+  "settings": {
+    "recipient": "C05L0P8KE07",
+    "url": "[REDACTED]"
+  },
+  "disableResolveMessage": false
+}

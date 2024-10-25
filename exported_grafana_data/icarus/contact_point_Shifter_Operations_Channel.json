@@ -1,0 +1,10 @@
+{
+  "uid": "d52f5c0c-0bc3-4ec2-9a07-b1330cf256c4",
+  "name": "Shifter Operations Channel",
+  "type": "slack",
+  "settings": {
+    "recipient": "CVDLZ17S8",
+    "url": "[REDACTED]"
+  },
+  "disableResolveMessage": false
+}

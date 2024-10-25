@@ -1,0 +1,73 @@
+{
+  "id": 8,
+  "uid": "b057ac5e-ba46-4365-85e3-ba927759a6d6",
+  "orgID": 1,
+  "folderUID": "fffc36fa-f756-4904-885b-60cd4436c9ff",
+  "ruleGroup": "TPC EE01T Board Temp Max alert",
+  "title": "TPC EE01T Board Temp Max alert",
+  "condition": "B",
+  "data": [
+    {
+      "refId": "A",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 300,
+        "to": 0
+      },
+      "datasourceUid": "",
+      "model": {
+        "refId": "A",
+        "target": "maxSeries(icarus.tpcee01t.BoardReader.0.Temp.Board*.Temp2)"
+      }
+    },
+    {
+      "refId": "B",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 0,
+        "to": 0
+      },
+      "datasourceUid": "__expr__",
+      "model": {
+        "type": "classic_conditions",
+        "refId": "B",
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                31
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A"
+              ]
+            },
+            "reducer": {
+              "type": "avg"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "updated": "2023-08-03T14:36:27-05:00",
+  "noDataState": "NoData",
+  "execErrState": "Alerting",
+  "for": "5m",
+  "annotations": {
+    "__alertId__": "7",
+    "__dashboardUid__": "G9ZheVeGz",
+    "__panelId__": "7",
+    "message": "prova alarm board temp"
+  },
+  "labels": {
+    "__contacts__": "\"ICARUS Test Slack Channel\"",
+    "rule_uid": "b057ac5e-ba46-4365-85e3-ba927759a6d6"
+  },
+  "isPaused": true
+}

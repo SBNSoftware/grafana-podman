@@ -1,0 +1,73 @@
+{
+  "id": 9,
+  "uid": "a63d767c-dda2-40ed-9244-50b3cdd873dc",
+  "orgID": 1,
+  "folderUID": "fffc36fa-f756-4904-885b-60cd4436c9ff",
+  "ruleGroup": "Missing PMT Fragments alert",
+  "title": "Missing PMT Fragments alert",
+  "condition": "B",
+  "data": [
+    {
+      "refId": "A",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 300,
+        "to": 0
+      },
+      "datasourceUid": "",
+      "model": {
+        "refId": "A",
+        "target": "sumSeries(icarus.icaruspmt*.*.*.Missing_Fragments, icarus.icaruspmt*.*.Missing_Fragments)"
+      }
+    },
+    {
+      "refId": "B",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 0,
+        "to": 0
+      },
+      "datasourceUid": "__expr__",
+      "model": {
+        "type": "classic_conditions",
+        "refId": "B",
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                1
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A"
+              ]
+            },
+            "reducer": {
+              "type": "avg"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "updated": "2023-08-03T14:36:27-05:00",
+  "noDataState": "NoData",
+  "execErrState": "Error",
+  "for": "5m",
+  "annotations": {
+    "__alertId__": "6",
+    "__dashboardUid__": "b3ZIF6Znz",
+    "__panelId__": "15",
+    "message": "PMT Missing fragments"
+  },
+  "labels": {
+    "__contacts__": "\"PMT Expert channel\"",
+    "rule_uid": "a63d767c-dda2-40ed-9244-50b3cdd873dc"
+  },
+  "isPaused": false
+}

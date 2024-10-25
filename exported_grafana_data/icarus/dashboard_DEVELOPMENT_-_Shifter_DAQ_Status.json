@@ -1,0 +1,1055 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "canDelete": true,
+    "slug": "development-shifter-daq-status",
+    "url": "/d/Rgj9ODbnz/development-shifter-daq-status",
+    "expires": "0001-01-01T00:00:00Z",
+    "created": "2022-01-24T11:37:47-06:00",
+    "updated": "2022-01-24T11:37:47-06:00",
+    "updatedBy": "admin",
+    "createdBy": "admin",
+    "version": 1,
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 0,
+    "folderUid": "",
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": "",
+    "annotationsPermissions": {
+      "dashboard": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      },
+      "organization": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      }
+    },
+    "publicDashboardAccessToken": "",
+    "publicDashboardUid": "",
+    "publicDashboardEnabled": false
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "description": "This dashboard is the one intended for use by the shifter. The others are generally expert level :)",
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "hideControls": false,
+    "id": 22,
+    "links": [],
+    "panels": [
+      {
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 27,
+        "title": "Row title",
+        "type": "row"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [
+              {
+                "options": {
+                  "match": "null",
+                  "result": {
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 4,
+          "x": 0,
+          "y": 1
+        },
+        "id": 6,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "none",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "/^icarus\\.partition1.run_number$/",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.1.2",
+        "targets": [
+          {
+            "refId": "A",
+            "target": "icarus.partition1.run_number"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Last Run Number (partition 1)",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "displayName": "${__series.name}",
+            "links": [],
+            "mappings": [],
+            "max": 15,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "green",
+                  "value": 0.5
+                },
+                {
+                  "color": "yellow",
+                  "value": 6
+                },
+                {
+                  "color": "orange",
+                  "value": 10
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Dispatcher Event Rate"
+              },
+              "properties": [
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "red",
+                        "value": null
+                      },
+                      {
+                        "color": "green",
+                        "value": 0.05
+                      },
+                      {
+                        "color": "#EAB839",
+                        "value": 5
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 20,
+          "x": 4,
+          "y": 1
+        },
+        "id": 2,
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "text": {}
+        },
+        "pluginVersion": "8.1.2",
+        "targets": [
+          {
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(averageSeries(keepLastValue(icarus.tpce*.BoardReader.*.Fragment_Rate, 10)), 'TPC (East) Avg Rate')",
+            "textEditor": false
+          },
+          {
+            "refCount": 0,
+            "refId": "F",
+            "target": "alias(averageSeries(keepLastValue(icarus.tpcw*.BoardReader.*.Fragment_Rate, 10)), 'TPC (West) Avg Rate')",
+            "textEditor": false
+          },
+          {
+            "refCount": 0,
+            "refId": "D",
+            "target": "alias(averageSeries(keepLastValue(icarus.*pmt*.BoardReader.*.Fragment_Rate, 10)), 'PMT Avg Fragment Rate')",
+            "textEditor": false
+          },
+          {
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(sumSeries(keepLastValue(icarus.evb*.*.Event_Rate, 10)), 'EventBuilder Event Rate')",
+            "textEditor": false
+          },
+          {
+            "hide": true,
+            "refCount": 0,
+            "refId": "A",
+            "target": "alias(sumSeries(icarus.dl*.*.Event_Rate), 'DataLogger Event Rate')",
+            "textEditor": false
+          },
+          {
+            "refCount": 0,
+            "refId": "E",
+            "target": "alias(sumSeries(keepLastValue(icarus.disp01.*.Event_Rate)), 'Dispatcher Event Rate')",
+            "textEditor": false
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Total Event Rates",
+        "type": "gauge"
+      },
+      {
+        "cacheTimeout": "60",
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "#6ED0E0",
+                  "value": 0.2
+                },
+                {
+                  "color": "green",
+                  "value": 0.5
+                },
+                {
+                  "color": "orange",
+                  "value": 10
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 20,
+          "x": 4,
+          "y": 8
+        },
+        "id": 22,
+        "options": {
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "text": {}
+        },
+        "pluginVersion": "8.1.2",
+        "targets": [
+          {
+            "refCount": 0,
+            "refId": "D",
+            "target": "alias(transformNull(keepLastValue(icarus.trigger.BoardReader.*.EventRate, 10), 0), 'Total')"
+          },
+          {
+            "refCount": 0,
+            "refId": "A",
+            "target": "alias(transformNull(keepLastValue(icarus.trigger.BoardReader.*.BNBEventRate, 10), 0), 'BNB')"
+          },
+          {
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(transformNull(keepLastValue(icarus.trigger.BoardReader.*.NuMIEventRate, 10), 0), 'NuMI')"
+          },
+          {
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(transformNull(keepLastValue(icarus.trigger.BoardReader.*.OtherEventRate, 10), 0), 'Other')"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Trigger Rates",
+        "type": "gauge"
+      },
+      {
+        "cacheTimeout": null,
+        "columns": [
+          {
+            "$$hashKey": "object:1282",
+            "text": "Current",
+            "value": "current"
+          }
+        ],
+        "datasource": null,
+        "description": "This shows the number of events collected for this run.",
+        "fontSize": "100%",
+        "gridPos": {
+          "h": 5,
+          "w": 12,
+          "x": 0,
+          "y": 14
+        },
+        "id": 10,
+        "links": [],
+        "pageSize": null,
+        "pluginVersion": "6.4.4",
+        "showHeader": true,
+        "sort": {
+          "col": null,
+          "desc": false
+        },
+        "styles": [
+          {
+            "alias": "Time",
+            "align": "auto",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "pattern": "Time",
+            "type": "date"
+          },
+          {
+            "alias": "",
+            "align": "auto",
+            "colorMode": null,
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(237, 129, 40, 0.89)",
+              "rgba(50, 172, 45, 0.97)"
+            ],
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "decimals": 2,
+            "mappingType": 1,
+            "pattern": "",
+            "thresholds": [],
+            "type": "number",
+            "unit": "short"
+          }
+        ],
+        "targets": [
+          {
+            "hide": false,
+            "refCount": 0,
+            "refId": "A",
+            "target": "alias(sumSeries(keepLastValue(icarus.evb*.*.Events_Released_to_art_this_run, 10)), 'Events Released to art in EventBuilders')",
+            "textEditor": false
+          },
+          {
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(sumSeries(keepLastValue(icarus.dl*.*.Events_Released_to_art_this_run, 10)), 'Events Released to art in DataLoggers')",
+            "textEditor": false
+          },
+          {
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(sumSeries(keepLastValue(icarus.disp*.*.Events_Released_to_art_this_run, 10)), 'Events Released to art in Dispatchers')",
+            "textEditor": false
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Events Released To Art From This Run",
+        "transform": "timeseries_aggregations",
+        "type": "table-old"
+      },
+      {
+        "cacheTimeout": null,
+        "columns": [
+          {
+            "$$hashKey": "object:754",
+            "text": "Current",
+            "value": "current"
+          }
+        ],
+        "datasource": null,
+        "description": "In the ideal case, there are no incomplete events. If you start seeing incomplete events, make note of this in the ECL!",
+        "fontSize": "100%",
+        "gridPos": {
+          "h": 5,
+          "w": 12,
+          "x": 12,
+          "y": 14
+        },
+        "id": 12,
+        "links": [],
+        "pageSize": null,
+        "pluginVersion": "6.4.4",
+        "showHeader": true,
+        "sort": {
+          "col": null,
+          "desc": false
+        },
+        "styles": [
+          {
+            "alias": "Time",
+            "align": "auto",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "pattern": "Time",
+            "type": "date"
+          },
+          {
+            "alias": "",
+            "align": "auto",
+            "colorMode": "row",
+            "colors": [
+              "rgb(0, 0, 0)",
+              "#F2495C",
+              "#F2495C"
+            ],
+            "decimals": 2,
+            "pattern": "/.*/",
+            "thresholds": [
+              "1"
+            ],
+            "type": "number",
+            "unit": "short"
+          }
+        ],
+        "targets": [
+          {
+            "hide": false,
+            "refCount": 0,
+            "refId": "A",
+            "target": "alias(sumSeries(keepLastValue(icarus.evb*.*.Incomplete_Events_Released_to_art_this_run, 10)), 'Incomplete Events in EventBuilders')",
+            "textEditor": false
+          },
+          {
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(sumSeries(keepLastValue(icarus.dl*.*.Incomplete_Events_Released_to_art_this_run, 10)), 'Inomplete Events in DataLoggers')",
+            "textEditor": false
+          },
+          {
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(sumSeries(keepLastValue(icarus.disp01.*.Incomplete_Events_Released_to_art_this_run, 10)), 'Inomplete Events in Dispatchers')",
+            "textEditor": false
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Incomplete Events Released To Art From This Run",
+        "transform": "timeseries_aggregations",
+        "type": "table-old"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": null,
+        "description": "This panel should read 0 if the intended TPC boards are being read as expected. If one goes into the \"busy\" status, this box will turn red.\n\nIn this case, there is an issue.",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [
+              {
+                "options": {
+                  "match": "null",
+                  "result": {
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "rgb(0, 0, 0)",
+                  "value": null
+                },
+                {
+                  "color": "#C4162A",
+                  "value": 1
+                },
+                {
+                  "color": "#C4162A"
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 0,
+          "y": 19
+        },
+        "id": 25,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.1.2",
+        "targets": [
+          {
+            "refId": "A",
+            "target": "sumSeries(icarus.tpc*.BoardReader.*.Status.N_Busy_-_Max)"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "ALARM: TPC BoardReaders Busy",
+        "type": "stat"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": null,
+        "description": "This panel should read 0 if the intended PMT boards are being read as expected. If one goes into the \"busy\" status, this box will turn red.\n\nIn this case, there is an issue.",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [
+              {
+                "options": {
+                  "match": "null",
+                  "result": {
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "rgb(0, 0, 0)",
+                  "value": null
+                },
+                {
+                  "color": "#C4162A",
+                  "value": 1
+                },
+                {
+                  "color": "#C4162A"
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 4,
+          "y": 19
+        },
+        "id": 23,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.1.2",
+        "targets": [
+          {
+            "refId": "A",
+            "target": "sumSeries(icarus.icaruspmt*.BoardReader.*.CAENV1730.*.*.MemoryFull)"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "ALARM: PMT Digitizers Busy",
+        "type": "stat"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": null,
+        "description": "This shows the maximum circular buffer occupancy across the elements in the run.\n\nIf this box goes red then the circular buffers are acting outside of expected conditions.",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [
+              {
+                "options": {
+                  "match": "null",
+                  "result": {
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "rgb(0, 0, 0)",
+                  "value": null
+                },
+                {
+                  "color": "#C4162A",
+                  "value": 150000000
+                },
+                {
+                  "color": "#C4162A"
+                }
+              ]
+            },
+            "unit": "decbytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 5,
+          "x": 8,
+          "y": 19
+        },
+        "id": 16,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.1.2",
+        "targets": [
+          {
+            "refId": "A",
+            "target": "maxSeries(keepLastValue(icarus.tpc*.BoardReader.*.GetData.CircularBufferOccupancy_-_Average))",
+            "textEditor": false
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "ALARM: TPC Circular Buffers Occupancy",
+        "type": "stat"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "artdaq",
+        "description": "Shows how much of the /data area on evb01 is being used.\n\nIt's set to go orange above 60%, meaning take note, and it's set to go red above 95%, meaning alarm.",
+        "fieldConfig": {
+          "defaults": {
+            "decimals": 0,
+            "mappings": [
+              {
+                "options": {
+                  "match": "null",
+                  "result": {
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "max": 1,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "orange",
+                  "value": 0.6
+                },
+                {
+                  "color": "red",
+                  "value": 0.95
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 11,
+          "x": 13,
+          "y": 19
+        },
+        "id": 18,
+        "links": [],
+        "options": {
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "text": {}
+        },
+        "pluginVersion": "8.1.2",
+        "targets": [
+          {
+            "refCount": 0,
+            "refId": "A",
+            "target": "alias(icarus.icarus-evb01.data.Percent_Used, 'icarus-evb01')"
+          },
+          {
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(icarus.icarus-evb02.data.Percent_Used, 'icaurs-evb02')"
+          },
+          {
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(icarus.icarus-evb03.data.Percent_Used, 'icarus-evb03')"
+          },
+          {
+            "refCount": 0,
+            "refId": "D",
+            "target": "alias(icarus.icarus-evb04.data.Percent_Used, 'icarus-evb04')"
+          },
+          {
+            "refCount": 0,
+            "refId": "E",
+            "target": "alias(icarus.icarus-evb05.data.Percent_Used, 'icarus-evb05')"
+          },
+          {
+            "refCount": 0,
+            "refId": "F",
+            "target": "icarus.icarus-evb06.data.Percent_Used"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "/data Usage Monitor",
+        "type": "gauge"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": null,
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 23
+        },
+        "hiddenSeries": false,
+        "id": 20,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 3,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "8.1.2",
+        "pointradius": 1,
+        "points": true,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "refId": "A",
+            "target": "icarus.crt*.BoardReader.*.feb_hit_rate_Hz_*"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "CRT Hit Rates (corrected for lost hits)",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:125",
+            "format": "hertz",
+            "label": null,
+            "logBase": 10,
+            "max": null,
+            "min": "0.5",
+            "show": true
+          },
+          {
+            "$$hashKey": "object:126",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 0.1
+                },
+                {
+                  "color": "dark-green",
+                  "value": 0.2
+                }
+              ]
+            },
+            "unit": "hertz"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 23
+        },
+        "id": 31,
+        "options": {
+          "displayMode": "gradient",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true,
+          "text": {}
+        },
+        "pluginVersion": "8.1.2",
+        "targets": [
+          {
+            "refId": "A",
+            "target": "icarus.icaruspmt*.*.*.Fragment_Rate"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "PMT Fragments rate",
+        "type": "bargauge"
+      }
+    ],
+    "refresh": "10s",
+    "schemaVersion": 30,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ]
+    },
+    "timezone": "",
+    "title": "DEVELOPMENT - Shifter DAQ Status",
+    "uid": "Rgj9ODbnz",
+    "version": 1
+  }
+}

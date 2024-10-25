@@ -1,0 +1,264 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "canDelete": true,
+    "slug": "wr-dashboard-copy",
+    "url": "/d/5jsZlhxnz/wr-dashboard-copy",
+    "expires": "0001-01-01T00:00:00Z",
+    "created": "2022-01-26T14:39:52-06:00",
+    "updated": "2022-01-26T15:19:26-06:00",
+    "updatedBy": "admin",
+    "createdBy": "admin",
+    "version": 2,
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 0,
+    "folderUid": "",
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": "",
+    "annotationsPermissions": {
+      "dashboard": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      },
+      "organization": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      }
+    },
+    "publicDashboardAccessToken": "",
+    "publicDashboardUid": "",
+    "publicDashboardEnabled": false
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 24,
+    "links": [],
+    "panels": [
+      {
+        "datasource": null,
+        "description": "Rate of the beam signals transmitted through the White Rabbit network",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 2,
+            "mappings": [],
+            "noValue": "0",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "transparent",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "light-green",
+                  "value": 0.5
+                },
+                {
+                  "color": "semi-dark-green",
+                  "value": 3
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 8
+                },
+                {
+                  "color": "#EF843C",
+                  "value": 10
+                }
+              ]
+            },
+            "unit": "hertz"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 20,
+          "x": 0,
+          "y": 0
+        },
+        "id": 4,
+        "interval": null,
+        "maxDataPoints": 100,
+        "options": {
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "text": {}
+        },
+        "pluginVersion": "8.1.2",
+        "targets": [
+          {
+            "refCount": 0,
+            "refId": "A",
+            "target": "alias(icarus.clk02.*.*.WR_CLK02_SPEC_DIO_gatedBES.DIO_Channel_4_Rates, 'BNB Gated BES')"
+          },
+          {
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(icarus.daq02.*.*.WR_CLK02_SPEC_DIO_$1D.DIO_Channel_1_Rates, 'BNB $1D')"
+          },
+          {
+            "hide": false,
+            "refCount": 0,
+            "refId": "D",
+            "target": "alias(icarus.daq02.BoardReader.*.WR_CLK02_SPEC_DIO_$74.DIO_Channel_3_Rates, 'NuMI MIBS $74')"
+          },
+          {
+            "hide": false,
+            "refCount": 0,
+            "refId": "E",
+            "target": "alias(icarus.daq02.BoardReader.*.WR_CLK02_SPEC_DIO_$AE.DIO_Channel_2_Rates, 'NuMI $AD')"
+          },
+          {
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(icarus.daq02.BoardReader.*.WR_CLK02_SPEC_DIO_PPS.DIO_Channel_0_Rates, 'PPS')"
+          }
+        ],
+        "title": "Beam Signals ",
+        "type": "gauge"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 6
+        },
+        "id": 2,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "targets": [
+          {
+            "refCount": 0,
+            "refId": "A",
+            "target": "icarus.daq02.BoardReader.*.WR_*.DIO_*_Rates"
+          }
+        ],
+        "title": "WR Rates",
+        "type": "timeseries"
+      }
+    ],
+    "refresh": "5s",
+    "schemaVersion": 30,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "WR Dashboard Copy",
+    "uid": "5jsZlhxnz",
+    "version": 2
+  }
+}

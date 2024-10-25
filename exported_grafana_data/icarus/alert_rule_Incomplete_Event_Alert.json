@@ -1,0 +1,73 @@
+{
+  "id": 6,
+  "uid": "f4ae033f-7a82-4621-a7e5-d38192e2733d",
+  "orgID": 1,
+  "folderUID": "fffc36fa-f756-4904-885b-60cd4436c9ff",
+  "ruleGroup": "Incomplete Event Alert",
+  "title": "Incomplete Event Alert",
+  "condition": "B",
+  "data": [
+    {
+      "refId": "A",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 60,
+        "to": 0
+      },
+      "datasourceUid": "",
+      "model": {
+        "refId": "A",
+        "target": "keepLastValue(icarus.evb*.EventBuilder*.Incomplete_Events_Released_to_art_this_run, 10)"
+      }
+    },
+    {
+      "refId": "B",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 0,
+        "to": 0
+      },
+      "datasourceUid": "__expr__",
+      "model": {
+        "type": "classic_conditions",
+        "refId": "B",
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                0
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A"
+              ]
+            },
+            "reducer": {
+              "type": "max"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "updated": "2023-08-03T14:36:27-05:00",
+  "noDataState": "OK",
+  "execErrState": "Error",
+  "for": "10s",
+  "annotations": {
+    "__alertId__": "1",
+    "__dashboardUid__": "FtFF1eQGz",
+    "__panelId__": "2",
+    "message": ""
+  },
+  "labels": {
+    "__contacts__": "\"ICARUS Test Slack Channel\"",
+    "rule_uid": "f4ae033f-7a82-4621-a7e5-d38192e2733d"
+  },
+  "isPaused": false
+}

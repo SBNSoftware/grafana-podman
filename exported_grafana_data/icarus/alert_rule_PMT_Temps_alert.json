@@ -1,0 +1,73 @@
+{
+  "id": 2,
+  "uid": "f68de7ae-950e-43b4-b8db-75eb8f18005c",
+  "orgID": 1,
+  "folderUID": "fffc36fa-f756-4904-885b-60cd4436c9ff",
+  "ruleGroup": "PMT Temps alert",
+  "title": "PMT Temps alert",
+  "condition": "B",
+  "data": [
+    {
+      "refId": "A",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 300,
+        "to": 0
+      },
+      "datasourceUid": "",
+      "model": {
+        "refId": "A",
+        "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.CAENV1730.Card0.*.Temp, 1)"
+      }
+    },
+    {
+      "refId": "B",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 0,
+        "to": 0
+      },
+      "datasourceUid": "__expr__",
+      "model": {
+        "type": "classic_conditions",
+        "refId": "B",
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                65
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A"
+              ]
+            },
+            "reducer": {
+              "type": "avg"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "updated": "2023-08-03T14:36:27-05:00",
+  "noDataState": "NoData",
+  "execErrState": "Error",
+  "for": "5m",
+  "annotations": {
+    "__alertId__": "3",
+    "__dashboardUid__": "b3ZIF6Znz",
+    "__panelId__": "2",
+    "message": "CAEN1730V Boards temperature exceeding 65 C. Please consider stopping the run"
+  },
+  "labels": {
+    "__contacts__": "\"PMT Expert channel\"",
+    "rule_uid": "f68de7ae-950e-43b4-b8db-75eb8f18005c"
+  },
+  "isPaused": false
+}
