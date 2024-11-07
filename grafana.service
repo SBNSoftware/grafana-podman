@@ -7,7 +7,7 @@ After=network.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-EnvironmentFile=%h/path/to/grafana-service/grafana-service.env
+EnvironmentFile=%h/grafana-podman/grafana-service.env
 ExecStart=${SYSTEMD_SCRIPTS_DIR}/grafana-service-ctrl.sh start
 ExecStop=${SYSTEMD_SCRIPTS_DIR}/grafana-service-ctrl.sh stop
 ExecReload=${SYSTEMD_SCRIPTS_DIR}/grafana-service-ctrl.sh restart
