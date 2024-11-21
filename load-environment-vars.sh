@@ -26,6 +26,8 @@ fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+USER_ID=$(id -u)
+
 unset SERVICE_ENVIRONMENT_CONFIG
 
 if [ -z "${SERVICE_ENVIRONMENT_CONFIG-}" ]; then
@@ -68,3 +70,5 @@ if [ -n "${BASH_ENVIRONMENT_CHECK}" ]; then
         fi
     fi
 fi
+
+[[ -d $SCRIPT_DIR/env ]] && { export VIRTUAL_ENV=$SCRIPT_DIR/env; export PATH=${VIRTUAL_ENV}/bin:$PATH; }

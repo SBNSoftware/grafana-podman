@@ -1,4 +1,7 @@
 # This is a systemd unit file for managing the Grafana Service Stack
+# 1. copy this file to ${HOME}/.config/systemd/user/grafana.service
+# 2. systemctl --user daemon-reload
+# 3. systemctl --user enable --now grafana.service
 
 [Unit]
 Description=Grafana Service Stack
@@ -7,10 +10,9 @@ After=network.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-EnvironmentFile=%h/path/to/grafana-service/grafana-service.env
-ExecStart=${SYSTEMD_SCRIPTS_DIR}/grafana-service-ctrl.sh start
-ExecStop=${SYSTEMD_SCRIPTS_DIR}/grafana-service-ctrl.sh stop
-ExecReload=${SYSTEMD_SCRIPTS_DIR}/grafana-service-ctrl.sh restart
+ExecStart=%h/grafana-podman/grafana-service-ctrl.sh start
+ExecStop=%h/grafana-podman/grafana-service-ctrl.sh stop
+ExecReload=%h/grafana-podman/grafana-service-ctrl.sh restart
 
 [Install]
 WantedBy=default.target

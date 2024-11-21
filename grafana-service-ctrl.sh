@@ -31,18 +31,19 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 LOADENV_BASH="$SCRIPT_DIR/load-environment-vars.sh"
 
-if [ -f "$LOADENV_BASH" ]; then
+if [ -r "$LOADENV_BASH" ]; then
     source "$LOADENV_BASH"
 else
     echo "Error: $LOADENV_BASH not found."
     exit 1
 fi
 
-COMPOSE_FILE="${COMPOSE_FILE:-$SCRIPT_DIR/podman-compose.yml}"
-
-if [ ! -f "$COMPOSE_FILE" ]; then
-    echo "Error: $COMPOSE_FILE not found."
-    exit 1
+if [ -z "$COMPOSE_FILE" ] || [ ! -r "$COMPOSE_FILE" ]; then
+    COMPOSE_FILE="$SCRIPT_DIR/podman-compose.yml"
+    if [ ! -r "$COMPOSE_FILE" ]; then
+        echo "Error: $COMPOSE_FILE is not readable or does not exist."
+        exit 1
+    fi
 fi
 
 if ! podman-compose -f "$COMPOSE_FILE" ps > /dev/null 2>&1; then

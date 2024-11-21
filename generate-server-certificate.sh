@@ -111,7 +111,7 @@ distinguished_name = req_distinguished_name
 x509_extensions = v3_req
 prompt = no
 [req_distinguished_name]
-CN = grafana.example.com
+CN = $(hostname)
 [v3_req]
 keyUsage = critical, digitalSignature, keyEncipherment
 extendedKeyUsage = serverAuth
