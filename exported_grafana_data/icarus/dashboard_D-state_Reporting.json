@@ -9,8 +9,8 @@
     "slug": "d-state-reporting",
     "url": "/d/HRvG9cEMk/d-state-reporting",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2021-02-11T21:17:07-06:00",
-    "updated": "2021-02-11T22:51:27-06:00",
+    "created": "2021-02-12T03:17:07Z",
+    "updated": "2021-02-12T04:51:27Z",
     "updatedBy": "admin",
     "createdBy": "admin",
     "version": 9,
@@ -33,10 +33,7 @@
         "canEdit": true,
         "canDelete": true
       }
-    },
-    "publicDashboardAccessToken": "",
-    "publicDashboardUid": "",
-    "publicDashboardEnabled": false
+    }
   },
   "dashboard": {
     "annotations": {

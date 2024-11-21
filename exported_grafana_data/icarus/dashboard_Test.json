@@ -9,11 +9,11 @@
     "slug": "test",
     "url": "/d/a0f7654e-9ae7-4733-abaa-898475519b0a/test",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2024-10-18T18:30:41-05:00",
-    "updated": "2024-10-18T18:30:41-05:00",
+    "created": "2024-10-18T23:30:41Z",
+    "updated": "2024-10-28T23:58:44Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 1,
+    "version": 3,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -33,10 +33,7 @@
         "canEdit": true,
         "canDelete": true
       }
-    },
-    "publicDashboardAccessToken": "",
-    "publicDashboardUid": "",
-    "publicDashboardEnabled": false
+    }
   },
   "dashboard": {
     "annotations": {
@@ -63,18 +60,125 @@
     "liveNow": false,
     "panels": [
       {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "the rate of the total empty fragments collected normalized to the total number of events collected",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "noValue": "n/a",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "transparent"
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 0.5
+                },
+                {
+                  "color": "dark-red",
+                  "value": 1
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
         "gridPos": {
-          "h": 8,
-          "w": 12,
+          "h": 14,
+          "w": 17,
           "x": 0,
           "y": 0
         },
-        "id": 1,
-        "title": "Panel Title",
+        "id": 35,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "8.1.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "A",
+            "target": "sumSeries(keepLastValue(icarus.evb*.*.Events_Released_to_art_this_run, 10))"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "keepLastValue(icarus.evb*.*.Events_Released_to_art_this_run, 10)"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": true,
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(sumSeries(keepLastValue(removeBelowValue(icarus.evb*.EventBuilder*_art*.EventsWithEmptyFragmentsOnCRT,1), 10)), 'Events with CRT Empty fragments')"
+          }
+        ],
+        "title": "Triggered Events",
         "type": "timeseries"
       }
     ],
-    "refresh": "",
+    "refresh": false,
     "schemaVersion": 38,
     "style": "dark",
     "tags": [],
@@ -89,7 +193,7 @@
     "timezone": "",
     "title": "Test",
     "uid": "a0f7654e-9ae7-4733-abaa-898475519b0a",
-    "version": 1,
+    "version": 3,
     "weekStart": ""
   }
 }

@@ -9,8 +9,8 @@
     "slug": "gennadiy-tests",
     "url": "/d/beEfq3aGz/gennadiy-tests",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2021-01-12T15:00:17-06:00",
-    "updated": "2022-08-04T13:57:44-05:00",
+    "created": "2021-01-12T21:00:17Z",
+    "updated": "2022-08-04T18:57:44Z",
     "updatedBy": "admin",
     "createdBy": "admin",
     "version": 11,
@@ -33,10 +33,7 @@
         "canEdit": true,
         "canDelete": true
       }
-    },
-    "publicDashboardAccessToken": "",
-    "publicDashboardUid": "",
-    "publicDashboardEnabled": false
+    }
   },
   "dashboard": {
     "annotations": {

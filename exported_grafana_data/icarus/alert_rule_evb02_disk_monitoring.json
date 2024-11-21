@@ -114,12 +114,14 @@
       }
     }
   ],
-  "updated": "2024-08-21T14:03:25-05:00",
+  "updated": "2024-08-21T19:03:25Z",
   "noDataState": "Alerting",
   "execErrState": "Alerting",
   "for": "5m",
   "labels": {
     "__contacts__": "\"ICARUS Test NoData Alerts\""
   },
-  "isPaused": false
+  "isPaused": false,
+  "notification_settings": null,
+  "record": null
 }

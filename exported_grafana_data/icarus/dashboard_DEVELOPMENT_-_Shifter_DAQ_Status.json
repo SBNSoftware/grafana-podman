@@ -9,8 +9,8 @@
     "slug": "development-shifter-daq-status",
     "url": "/d/Rgj9ODbnz/development-shifter-daq-status",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2022-01-24T11:37:47-06:00",
-    "updated": "2022-01-24T11:37:47-06:00",
+    "created": "2022-01-24T17:37:47Z",
+    "updated": "2022-01-24T17:37:47Z",
     "updatedBy": "admin",
     "createdBy": "admin",
     "version": 1,
@@ -33,10 +33,7 @@
         "canEdit": true,
         "canDelete": true
       }
-    },
-    "publicDashboardAccessToken": "",
-    "publicDashboardUid": "",
-    "publicDashboardEnabled": false
+    }
   },
   "dashboard": {
     "annotations": {

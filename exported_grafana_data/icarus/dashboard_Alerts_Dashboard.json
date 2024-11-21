@@ -9,8 +9,8 @@
     "slug": "alerts-dashboard",
     "url": "/d/FtFF1eQGz/alerts-dashboard",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2021-03-28T11:01:24-05:00",
-    "updated": "2021-10-16T13:10:34-05:00",
+    "created": "2021-03-28T16:01:24Z",
+    "updated": "2021-10-16T18:10:34Z",
     "updatedBy": "admin",
     "createdBy": "admin",
     "version": 18,
@@ -33,10 +33,7 @@
         "canEdit": true,
         "canDelete": true
       }
-    },
-    "publicDashboardAccessToken": "",
-    "publicDashboardUid": "",
-    "publicDashboardEnabled": false
+    }
   },
   "dashboard": {
     "annotations": {

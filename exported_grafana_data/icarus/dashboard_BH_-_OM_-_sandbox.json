@@ -9,8 +9,8 @@
     "slug": "bh-om-sandbox",
     "url": "/d/LM-noUEWk/bh-om-sandbox",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2020-01-15T16:59:13-06:00",
-    "updated": "2021-10-08T16:04:38-05:00",
+    "created": "2020-01-15T22:59:13Z",
+    "updated": "2021-10-08T21:04:38Z",
     "updatedBy": "admin",
     "createdBy": "admin",
     "version": 13,
@@ -33,10 +33,7 @@
         "canEdit": true,
         "canDelete": true
       }
-    },
-    "publicDashboardAccessToken": "",
-    "publicDashboardUid": "",
-    "publicDashboardEnabled": false
+    }
   },
   "dashboard": {
     "annotations": {

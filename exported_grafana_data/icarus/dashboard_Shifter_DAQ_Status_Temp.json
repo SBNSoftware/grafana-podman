@@ -9,8 +9,8 @@
     "slug": "shifter-daq-status-temp",
     "url": "/d/de2fae76-a978-4c09-afe5-09c9be8aec09/shifter-daq-status-temp",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2024-01-19T11:44:38-06:00",
-    "updated": "2024-01-19T11:44:38-06:00",
+    "created": "2024-01-19T17:44:38Z",
+    "updated": "2024-01-19T17:44:38Z",
     "updatedBy": "admin",
     "createdBy": "admin",
     "version": 1,
@@ -33,10 +33,7 @@
         "canEdit": true,
         "canDelete": true
       }
-    },
-    "publicDashboardAccessToken": "",
-    "publicDashboardUid": "",
-    "publicDashboardEnabled": false
+    }
   },
   "dashboard": {
     "annotations": {

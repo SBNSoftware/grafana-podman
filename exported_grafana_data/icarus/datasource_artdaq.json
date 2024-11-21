@@ -1,5 +1,5 @@
 {
-  "id": 155,
+  "id": 157,
   "uid": "PED8062B0600A9C35",
   "orgId": 1,
   "name": "artdaq",
@@ -7,7 +7,7 @@
   "typeName": "Graphite",
   "typeLogoUrl": "public/app/plugins/datasource/graphite/img/graphite_logo.png",
   "access": "proxy",
-  "url": "http://127.0.0.1:10081",
+  "url": "http://graphite:80",
   "user": "admin",
   "database": "",
   "basicAuth": true,

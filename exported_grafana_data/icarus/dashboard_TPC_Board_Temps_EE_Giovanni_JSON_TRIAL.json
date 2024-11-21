@@ -9,8 +9,8 @@
     "slug": "tpc-board-temps-ee-giovanni-json-trial",
     "url": "/d/NgqXg334l/tpc-board-temps-ee-giovanni-json-trial",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2023-09-06T11:58:26-05:00",
-    "updated": "2023-09-22T09:53:04-05:00",
+    "created": "2023-09-06T16:58:26Z",
+    "updated": "2023-09-22T14:53:04Z",
     "updatedBy": "admin",
     "createdBy": "admin",
     "version": 9,
@@ -33,10 +33,7 @@
         "canEdit": true,
         "canDelete": true
       }
-    },
-    "publicDashboardAccessToken": "",
-    "publicDashboardUid": "",
-    "publicDashboardEnabled": false
+    }
   },
   "dashboard": {
     "annotations": {

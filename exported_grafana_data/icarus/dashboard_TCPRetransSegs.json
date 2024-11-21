@@ -9,8 +9,8 @@
     "slug": "tcpretranssegs",
     "url": "/d/zmBsiMBGz/tcpretranssegs",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2021-01-14T14:47:59-06:00",
-    "updated": "2021-01-14T17:46:19-06:00",
+    "created": "2021-01-14T20:47:59Z",
+    "updated": "2021-01-14T23:46:19Z",
     "updatedBy": "admin",
     "createdBy": "admin",
     "version": 4,
@@ -33,10 +33,7 @@
         "canEdit": true,
         "canDelete": true
       }
-    },
-    "publicDashboardAccessToken": "",
-    "publicDashboardUid": "",
-    "publicDashboardEnabled": false
+    }
   },
   "dashboard": {
     "annotations": {

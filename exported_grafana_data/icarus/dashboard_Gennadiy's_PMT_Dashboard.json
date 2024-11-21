@@ -9,8 +9,8 @@
     "slug": "gennadiys-pmt-dashboard",
     "url": "/d/prB21EgVz/gennadiys-pmt-dashboard",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2022-07-22T15:22:13-05:00",
-    "updated": "2022-08-26T12:49:34-05:00",
+    "created": "2022-07-22T20:22:13Z",
+    "updated": "2022-08-26T17:49:34Z",
     "updatedBy": "admin",
     "createdBy": "admin",
     "version": 55,
@@ -33,10 +33,7 @@
         "canEdit": true,
         "canDelete": true
       }
-    },
-    "publicDashboardAccessToken": "",
-    "publicDashboardUid": "",
-    "publicDashboardEnabled": false
+    }
   },
   "dashboard": {
     "annotations": {

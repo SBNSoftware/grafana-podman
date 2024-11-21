@@ -55,7 +55,7 @@
       }
     }
   ],
-  "updated": "2023-08-03T14:36:27-05:00",
+  "updated": "2023-08-03T19:36:27Z",
   "noDataState": "NoData",
   "execErrState": "Error",
   "for": "5m",
@@ -69,5 +69,7 @@
     "__contacts__": "\"PMT Expert channel\"",
     "rule_uid": "fa6f6650-2f93-44ab-8b96-9213c3369d4a"
   },
-  "isPaused": false
+  "isPaused": false,
+  "notification_settings": null,
+  "record": null
 }

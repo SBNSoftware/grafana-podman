@@ -9,8 +9,8 @@
     "slug": "jcz-trigger-sandbox",
     "url": "/d/NBeVUDx7z/jcz-trigger-sandbox",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2022-01-24T15:30:29-06:00",
-    "updated": "2022-12-08T18:34:29-06:00",
+    "created": "2022-01-24T21:30:29Z",
+    "updated": "2022-12-09T00:34:29Z",
     "updatedBy": "admin",
     "createdBy": "admin",
     "version": 2,
@@ -33,10 +33,7 @@
         "canEdit": true,
         "canDelete": true
       }
-    },
-    "publicDashboardAccessToken": "",
-    "publicDashboardUid": "",
-    "publicDashboardEnabled": false
+    }
   },
   "dashboard": {
     "annotations": {

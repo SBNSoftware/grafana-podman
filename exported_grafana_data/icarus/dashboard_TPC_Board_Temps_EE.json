@@ -9,8 +9,8 @@
     "slug": "tpc-board-temps-ee",
     "url": "/d/G9ZheVeGz/tpc-board-temps-ee",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2021-06-01T11:40:45-05:00",
-    "updated": "2023-07-14T14:56:10-05:00",
+    "created": "2021-06-01T16:40:45Z",
+    "updated": "2023-07-14T19:56:10Z",
     "updatedBy": "admin",
     "createdBy": "admin",
     "version": 39,
@@ -33,10 +33,7 @@
         "canEdit": true,
         "canDelete": true
       }
-    },
-    "publicDashboardAccessToken": "",
-    "publicDashboardUid": "",
-    "publicDashboardEnabled": false
+    }
   },
   "dashboard": {
     "annotations": {

@@ -9,8 +9,8 @@
     "slug": "networking-monitoring",
     "url": "/d/uGb1h-fGz/networking-monitoring",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2021-01-20T14:02:59-06:00",
-    "updated": "2021-01-20T14:02:59-06:00",
+    "created": "2021-01-20T20:02:59Z",
+    "updated": "2021-01-20T20:02:59Z",
     "updatedBy": "admin",
     "createdBy": "admin",
     "version": 1,
@@ -33,10 +33,7 @@
         "canEdit": true,
         "canDelete": true
       }
-    },
-    "publicDashboardAccessToken": "",
-    "publicDashboardUid": "",
-    "publicDashboardEnabled": false
+    }
   },
   "dashboard": {
     "annotations": {
