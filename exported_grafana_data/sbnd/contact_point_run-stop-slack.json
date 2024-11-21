@@ -1,0 +1,13 @@
+{
+  "uid": "c46479ce-6976-4cf2-8288-e26c5524fb84",
+  "name": "run-stop-slack",
+  "type": "slack",
+  "settings": {
+    "icon_emoji": "hal9000",
+    "text": "The DAQ is no longer running! ",
+    "title": "RUN HAS STOPPED",
+    "url": "[REDACTED]",
+    "username": "SBND DAQ Monitoring"
+  },
+  "disableResolveMessage": false
+}

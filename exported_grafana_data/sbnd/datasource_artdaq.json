@@ -1,0 +1,19 @@
+{
+  "id": 48,
+  "uid": "PED8062B0600A9C35",
+  "orgId": 1,
+  "name": "artdaq",
+  "type": "graphite",
+  "typeName": "Graphite",
+  "typeLogoUrl": "public/app/plugins/datasource/graphite/img/graphite_logo.png",
+  "access": "proxy",
+  "url": "http://127.0.0.1:10081",
+  "user": "admin",
+  "database": "",
+  "basicAuth": true,
+  "isDefault": true,
+  "jsonData": {
+    "graphiteVersion": "0.9x"
+  },
+  "readOnly": false
+}
