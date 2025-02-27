@@ -1,0 +1,11 @@
+{
+  "uid": "bfdbb1ff-10cc-49c1-9b03-841d809bee07",
+  "name": "trigger-expert-email",
+  "type": "email",
+  "settings": {
+    "addresses": "kroupa@sas.upenn.edu",
+    "message": "There is a Grafana alert for the SBND Trigger rates!",
+    "singleEmail": false
+  },
+  "disableResolveMessage": false
+}

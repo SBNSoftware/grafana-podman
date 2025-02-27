@@ -1,0 +1,15 @@
+{
+  "receiver": "run-stop-slack",
+  "routes": [
+    {
+      "receiver": "trigger-expert-email",
+      "object_matchers": [
+        [
+          "trigger_rate",
+          "=",
+          "high"
+        ]
+      ]
+    }
+  ]
+}
