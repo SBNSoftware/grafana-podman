@@ -137,6 +137,30 @@ start_stack() {
     echo "Container stack started successfully."
 }
 
+clean_graphite_pid_files() {
+  if [[ -z "${GRAPHITE_STORAGE_DIR}" ]]; then
+    echo "Error: GRAPHITE_STORAGE_DIR is not set." >&2
+    return 1
+  fi
+
+  if [[ ! -d "${GRAPHITE_STORAGE_DIR}" ]]; then
+    echo "Error: Directory '${GRAPHITE_STORAGE_DIR}' does not exist." >&2
+    return 1
+  fi
+
+  local pid_file
+  for pid_file in "${GRAPHITE_STORAGE_DIR}"/*.pid; do
+    if [[ -f "${pid_file}" ]]; then
+      if rm -- "${pid_file}"; then
+        echo "Deleted: ${pid_file}"
+      else
+        echo "Error: Failed to delete '${pid_file}'." >&2
+        return 1
+      fi
+    fi
+  done
+}
+
 stop_stack() {
     echo "Stopping the container stack..."
     if ! podman-compose down; then
@@ -156,6 +180,9 @@ stop_stack() {
 
     echo "Removing all volumes..."
     podman volume rm $(podman volume ls -q) 2>/dev/null || echo "No volumes to remove."
+
+    clean_graphite_pid_files
+
     echo "Container stack stopped successfully."
 }
 
