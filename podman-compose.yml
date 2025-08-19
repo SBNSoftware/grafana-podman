@@ -10,6 +10,13 @@ services:
       - "127.0.0.1:${CARBON_PICKLE_PORT}:${CARBON_PICKLE_PORT}"
     environment:
       - GRAPHITE_STORAGE_DIR=/data
+      - CARBON_RELAY_DISABLED=true
+      - COLLECTD_DISABLED=true
+      - GO_CARBON_DISABLED=true
+      - BRUBECK_DISABLED=true
+      - GRAPHITE_LOG_RENDERING_PERFORMANCE=false
+      - GRAPHITE_LOG_CACHE_PERFORMANCE=false
+      #- GOCARBON=1
     volumes:
       - ${GRAPHITE_STORAGE_DIR}:/data:Z
       - ${GRAPHITE_CONFIG_DIR}:/opt/graphite/conf:ro
