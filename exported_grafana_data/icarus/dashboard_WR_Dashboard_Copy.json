@@ -9,13 +9,14 @@
     "slug": "wr-dashboard-copy",
     "url": "/d/5jsZlhxnz/wr-dashboard-copy",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2022-01-26T14:39:52-06:00",
-    "updated": "2022-01-26T15:19:26-06:00",
+    "created": "2022-01-26T20:39:52Z",
+    "updated": "2022-01-26T21:19:26Z",
     "updatedBy": "admin",
     "createdBy": "admin",
     "version": 2,
     "hasAcl": false,
     "isFolder": false,
+    "apiVersion": "v0alpha1",
     "folderId": 0,
     "folderUid": "",
     "folderTitle": "General",
@@ -33,10 +34,7 @@
         "canEdit": true,
         "canDelete": true
       }
-    },
-    "publicDashboardAccessToken": "",
-    "publicDashboardUid": "",
-    "publicDashboardEnabled": false
+    }
   },
   "dashboard": {
     "annotations": {

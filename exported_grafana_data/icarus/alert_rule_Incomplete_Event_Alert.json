@@ -8,16 +8,22 @@
   "condition": "B",
   "data": [
     {
-      "refId": "A",
+      "refId": "Incomplete events",
       "queryType": "",
       "relativeTimeRange": {
         "from": 60,
         "to": 0
       },
-      "datasourceUid": "",
+      "datasourceUid": "PED8062B0600A9C35",
       "model": {
-        "refId": "A",
-        "target": "keepLastValue(icarus.evb*.EventBuilder*.Incomplete_Events_Released_to_art_this_run, 10)"
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "intervalMs": 1000,
+        "maxDataPoints": 43200,
+        "refId": "Incomplete events",
+        "target": "sumSeries(keepLastValue(icarus.evb*.*.Incomplete_Events_Released_to_art_this_run, 10))"
       }
     },
     {
@@ -29,8 +35,6 @@
       },
       "datasourceUid": "__expr__",
       "model": {
-        "type": "classic_conditions",
-        "refId": "B",
         "conditions": [
           {
             "evaluator": {
@@ -44,30 +48,39 @@
             },
             "query": {
               "params": [
-                "A"
+                "Incomplete events"
               ]
             },
             "reducer": {
-              "type": "max"
+              "params": [],
+              "type": "last"
             }
           }
-        ]
+        ],
+        "intervalMs": 1000,
+        "maxDataPoints": 43200,
+        "refId": "B",
+        "type": "classic_conditions"
       }
     }
   ],
-  "updated": "2023-08-03T14:36:27-05:00",
+  "updated": "2024-12-04T17:10:09Z",
   "noDataState": "OK",
   "execErrState": "Error",
-  "for": "10s",
+  "for": "1m",
+  "keep_firing_for": "0s",
   "annotations": {
     "__alertId__": "1",
     "__dashboardUid__": "FtFF1eQGz",
     "__panelId__": "2",
-    "message": ""
+    "description": "Incomplete Events have been reported",
+    "summary": "Incomplete Events are >0 !!"
   },
   "labels": {
     "__contacts__": "\"ICARUS Test Slack Channel\"",
     "rule_uid": "f4ae033f-7a82-4621-a7e5-d38192e2733d"
   },
-  "isPaused": false
+  "isPaused": false,
+  "notification_settings": null,
+  "record": null
 }

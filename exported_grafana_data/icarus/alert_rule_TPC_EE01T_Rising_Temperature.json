@@ -137,10 +137,11 @@
       }
     }
   ],
-  "updated": "2024-04-15T08:41:02-05:00",
+  "updated": "2024-04-15T13:41:02Z",
   "noDataState": "OK",
   "execErrState": "Error",
   "for": "0s",
+  "keep_firing_for": "0s",
   "annotations": {
     "__dashboardUid__": "NgqXg334l",
     "__panelId__": "59"
@@ -148,5 +149,7 @@
   "labels": {
     "__contacts__": "\"ICARUS Test Slack Channel\""
   },
-  "isPaused": false
+  "isPaused": false,
+  "notification_settings": null,
+  "record": null
 }

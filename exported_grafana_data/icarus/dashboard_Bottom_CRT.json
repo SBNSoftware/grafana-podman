@@ -9,13 +9,14 @@
     "slug": "bottom-crt",
     "url": "/d/X8EgVwhVz/bottom-crt",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2023-01-13T14:39:51-06:00",
-    "updated": "2023-05-31T12:27:51-05:00",
+    "created": "2023-01-13T20:39:51Z",
+    "updated": "2023-05-31T17:27:51Z",
     "updatedBy": "admin",
     "createdBy": "admin",
     "version": 13,
     "hasAcl": false,
     "isFolder": false,
+    "apiVersion": "v0alpha1",
     "folderId": 0,
     "folderUid": "",
     "folderTitle": "General",
@@ -33,10 +34,7 @@
         "canEdit": true,
         "canDelete": true
       }
-    },
-    "publicDashboardAccessToken": "",
-    "publicDashboardUid": "",
-    "publicDashboardEnabled": false
+    }
   },
   "dashboard": {
     "annotations": {

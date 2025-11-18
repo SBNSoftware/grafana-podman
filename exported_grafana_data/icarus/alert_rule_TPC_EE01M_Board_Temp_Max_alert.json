@@ -55,10 +55,11 @@
       }
     }
   ],
-  "updated": "2023-08-03T14:36:27-05:00",
+  "updated": "2023-08-03T19:36:27Z",
   "noDataState": "NoData",
   "execErrState": "Alerting",
   "for": "5m",
+  "keep_firing_for": "0s",
   "annotations": {
     "__alertId__": "8",
     "__dashboardUid__": "G9ZheVeGz",
@@ -69,5 +70,7 @@
     "__contacts__": "\"ICARUS Test Slack Channel\"",
     "rule_uid": "e2ebf762-49a0-4133-9173-796998a79c0b"
   },
-  "isPaused": true
+  "isPaused": true,
+  "notification_settings": null,
+  "record": null
 }

@@ -9,13 +9,14 @@
     "slug": "shifter-daq-status",
     "url": "/d/hNjxNryWk/shifter-daq-status",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2020-01-29T14:36:49-06:00",
-    "updated": "2024-10-05T14:57:24-05:00",
+    "created": "2020-01-29T20:36:49Z",
+    "updated": "2025-11-07T15:19:04Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 147,
+    "version": 199,
     "hasAcl": false,
     "isFolder": false,
+    "apiVersion": "v0alpha1",
     "folderId": 0,
     "folderUid": "",
     "folderTitle": "General",
@@ -33,10 +34,7 @@
         "canEdit": true,
         "canDelete": true
       }
-    },
-    "publicDashboardAccessToken": "",
-    "publicDashboardUid": "",
-    "publicDashboardEnabled": false
+    }
   },
   "dashboard": {
     "annotations": {
@@ -67,13 +65,9 @@
     "graphTooltip": 0,
     "id": 8,
     "links": [],
-    "liveNow": false,
     "panels": [
       {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
+        "collapsed": false,
         "gridPos": {
           "h": 1,
           "w": 24,
@@ -81,15 +75,7 @@
           "y": 0
         },
         "id": 27,
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A"
-          }
-        ],
+        "panels": [],
         "title": "Row title",
         "type": "row"
       },
@@ -138,13 +124,13 @@
           "y": 1
         },
         "id": 6,
-        "links": [],
         "maxDataPoints": 100,
         "options": {
           "colorMode": "none",
           "graphMode": "none",
           "justifyMode": "auto",
           "orientation": "horizontal",
+          "percentChangeColorMode": "standard",
           "reduceOptions": {
             "calcs": [
               "lastNotNull"
@@ -152,10 +138,12 @@
             "fields": "/^icarus\\.partition1.run_number$/",
             "values": false
           },
+          "showPercentChange": false,
           "text": {},
-          "textMode": "auto"
+          "textMode": "auto",
+          "wideLayout": true
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
@@ -249,6 +237,8 @@
         },
         "id": 2,
         "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
           "orientation": "auto",
           "reduceOptions": {
             "calcs": [
@@ -259,9 +249,10 @@
           },
           "showThresholdLabels": false,
           "showThresholdMarkers": true,
+          "sizing": "auto",
           "text": {}
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
@@ -368,13 +359,15 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 6,
+          "h": 5,
           "w": 20,
           "x": 4,
           "y": 7
         },
         "id": 22,
         "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
           "orientation": "auto",
           "reduceOptions": {
             "calcs": [
@@ -385,9 +378,10 @@
           },
           "showThresholdLabels": false,
           "showThresholdMarkers": true,
+          "sizing": "auto",
           "text": {}
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
@@ -494,14 +488,16 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 6,
+          "h": 5,
           "w": 20,
           "x": 4,
-          "y": 13
+          "y": 12
         },
         "id": 43,
         "maxDataPoints": 100,
         "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
           "orientation": "auto",
           "reduceOptions": {
             "calcs": [
@@ -512,9 +508,10 @@
           },
           "showThresholdLabels": false,
           "showThresholdMarkers": true,
+          "sizing": "auto",
           "text": {}
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
@@ -570,59 +567,98 @@
         "type": "gauge"
       },
       {
-        "columns": [
-          {
-            "$$hashKey": "object:1282",
-            "text": "Current",
-            "value": "current"
-          }
-        ],
         "datasource": {
           "type": "graphite",
           "uid": "PED8062B0600A9C35"
         },
         "description": "This shows the number of events collected for this run.",
-        "fontSize": "100%",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [
+              {
+                "options": {
+                  "0": {
+                    "color": "dark-red",
+                    "index": 0,
+                    "text": "STOPPED"
+                  }
+                },
+                "type": "value"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "rgb(0,0,0)",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Time"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Time"
+                },
+                {
+                  "id": "unit",
+                  "value": "time: YYYY-MM-DD HH:mm:ss"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": ""
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "short"
+                },
+                {
+                  "id": "decimals",
+                  "value": 2
+                }
+              ]
+            }
+          ]
+        },
         "gridPos": {
-          "h": 5,
+          "h": 4,
           "w": 12,
           "x": 0,
-          "y": 19
+          "y": 17
         },
         "id": 10,
-        "links": [],
-        "pluginVersion": "6.4.4",
-        "showHeader": true,
-        "sort": {
-          "desc": false
-        },
-        "styles": [
-          {
-            "$$hashKey": "object:77",
-            "alias": "Time",
-            "align": "auto",
-            "dateFormat": "YYYY-MM-DD HH:mm:ss",
-            "pattern": "Time",
-            "type": "date"
-          },
-          {
-            "$$hashKey": "object:78",
-            "alias": "",
-            "align": "auto",
-            "colors": [
-              "rgba(245, 54, 54, 0.9)",
-              "rgba(237, 129, 40, 0.89)",
-              "rgba(50, 172, 45, 0.97)"
+        "options": {
+          "colorMode": "background_solid",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
             ],
-            "dateFormat": "YYYY-MM-DD HH:mm:ss",
-            "decimals": 2,
-            "mappingType": 1,
-            "pattern": "",
-            "thresholds": [],
-            "type": "number",
-            "unit": "short"
-          }
-        ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
@@ -633,18 +669,18 @@
             "refCount": 0,
             "refId": "A",
             "target": "alias(sumSeries(keepLastValue(icarus.evb*.*.Events_Released_to_art_this_run, 10)), 'Events Released to art in EventBuilders')",
-            "textEditor": false
+            "textEditor": true
           },
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
+            "hide": true,
             "refCount": 0,
             "refId": "B",
             "target": "alias(sumSeries(keepLastValue(icarus.dl*.*.Events_Released_to_art_this_run, 10)), 'Events Released to art in DataLoggers')",
-            "textEditor": false
+            "textEditor": true
           },
           {
             "datasource": {
@@ -655,68 +691,85 @@
             "refCount": 0,
             "refId": "C",
             "target": "alias(sumSeries(keepLastValue(icarus.disp*.*.Events_Released_to_art_this_run, 10)), 'Events Released to art in Dispatchers')",
-            "textEditor": false
+            "textEditor": true
           }
         ],
         "title": "Events Released To Art From This Run",
-        "transform": "timeseries_aggregations",
-        "type": "table-old"
+        "type": "stat"
       },
       {
-        "columns": [
-          {
-            "$$hashKey": "object:754",
-            "text": "Current",
-            "value": "current"
-          }
-        ],
         "datasource": {
           "type": "graphite",
           "uid": "PED8062B0600A9C35"
         },
         "description": "In the ideal case, there are no incomplete events. If you start seeing incomplete events, make note of this in the ECL!",
-        "fontSize": "100%",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 0,
+            "displayName": "",
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "rgb(0, 0, 0)",
+                  "value": null
+                },
+                {
+                  "color": "dark-red",
+                  "value": 1
+                }
+              ]
+            },
+            "unit": "short"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Time"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Time"
+                },
+                {
+                  "id": "unit",
+                  "value": "time: YYYY-MM-DD HH:mm:ss"
+                }
+              ]
+            }
+          ]
+        },
         "gridPos": {
-          "h": 5,
+          "h": 4,
           "w": 12,
           "x": 12,
-          "y": 19
+          "y": 17
         },
         "id": 12,
-        "links": [],
-        "pluginVersion": "6.4.4",
-        "showHeader": true,
-        "sort": {
-          "desc": false
-        },
-        "styles": [
-          {
-            "$$hashKey": "object:145",
-            "alias": "Time",
-            "align": "auto",
-            "dateFormat": "YYYY-MM-DD HH:mm:ss",
-            "pattern": "Time",
-            "type": "date"
+        "options": {
+          "colorMode": "background_solid",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
           },
-          {
-            "$$hashKey": "object:146",
-            "alias": "",
-            "align": "auto",
-            "colorMode": "row",
-            "colors": [
-              "rgb(0, 0, 0)",
-              "#F2495C",
-              "#F2495C"
-            ],
-            "decimals": 0,
-            "pattern": "/.*/",
-            "thresholds": [
-              "1"
-            ],
-            "type": "number",
-            "unit": "short"
-          }
-        ],
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
@@ -727,7 +780,7 @@
             "refCount": 0,
             "refId": "A",
             "target": "alias(sumSeries(keepLastValue(icarus.evb*.*.Incomplete_Events_Released_to_art_this_run, 10)), 'Incomplete Events in EventBuilders')",
-            "textEditor": false
+            "textEditor": true
           },
           {
             "datasource": {
@@ -737,7 +790,7 @@
             "hide": false,
             "refCount": 0,
             "refId": "B",
-            "target": "alias(sumSeries(keepLastValue(icarus.dl*.*.Incomplete_Events_Released_to_art_this_run, 10)), 'Inomplete Events in DataLoggers')",
+            "target": "alias(sumSeries(keepLastValue(icarus.dl*.*.Incomplete_Events_Released_to_art_this_run, 10)), 'Incomplete Events in DataLoggers')",
             "textEditor": false
           },
           {
@@ -748,13 +801,12 @@
             "hide": false,
             "refCount": 0,
             "refId": "C",
-            "target": "alias(sumSeries(keepLastValue(icarus.disp*.*.Incomplete_Events_Released_to_art_this_run, 10)), 'Inomplete Events in Dispatchers')",
+            "target": "alias(sumSeries(keepLastValue(icarus.disp*.*.Incomplete_Events_Released_to_art_this_run, 10)), 'Incomplete Events in Dispatchers')",
             "textEditor": false
           }
         ],
         "title": "Incomplete Events Released To Art From This Run",
-        "transform": "timeseries_aggregations",
-        "type": "table-old"
+        "type": "stat"
       },
       {
         "datasource": {
@@ -799,19 +851,19 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 4,
+          "h": 5,
           "w": 3,
           "x": 0,
-          "y": 24
+          "y": 21
         },
         "id": 25,
-        "links": [],
         "maxDataPoints": 100,
         "options": {
           "colorMode": "background",
           "graphMode": "none",
           "justifyMode": "auto",
           "orientation": "horizontal",
+          "percentChangeColorMode": "standard",
           "reduceOptions": {
             "calcs": [
               "lastNotNull"
@@ -819,10 +871,12 @@
             "fields": "",
             "values": false
           },
+          "showPercentChange": false,
           "text": {},
-          "textMode": "auto"
+          "textMode": "auto",
+          "wideLayout": true
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
@@ -834,153 +888,6 @@
           }
         ],
         "title": "ALARM: TPC BoardReaders Busy",
-        "type": "stat"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "Monitor for the internal temperature of the CAENV1730. It turns red when the temperature exceeds 65 degrees. A run should be stopped if this occurrence happens",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "#000000fa",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 65
-                }
-              ]
-            },
-            "unit": "celsius"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 4,
-          "w": 3,
-          "x": 3,
-          "y": 24
-        },
-        "id": 35,
-        "maxDataPoints": 100,
-        "options": {
-          "colorMode": "background",
-          "graphMode": "none",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "text": {},
-          "textMode": "value"
-        },
-        "pluginVersion": "10.0.3",
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "alias(maxSeries(keepLastValue(icarus.icaruspmt*.BoardReader.*.CAENV1730.*.*.Temp)), 'PMT Max temperature')",
-            "textEditor": true
-          }
-        ],
-        "title": "ALARM: PMT Digitizers",
-        "type": "stat"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "This panel should read 0 if the intended PMT boards are being read as expected. If one goes into the \"busy\" status, this box will turn red.\n\nIn this case, there is an issue.",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "mappings": [
-              {
-                "options": {
-                  "match": "null",
-                  "result": {
-                    "text": "N/A"
-                  }
-                },
-                "type": "special"
-              }
-            ],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "rgb(0, 0, 0)",
-                  "value": null
-                },
-                {
-                  "color": "#C4162A",
-                  "value": 1
-                },
-                {
-                  "color": "#C4162A"
-                }
-              ]
-            },
-            "unit": "none"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 4,
-          "w": 3,
-          "x": 6,
-          "y": 24
-        },
-        "id": 23,
-        "links": [],
-        "maxDataPoints": 100,
-        "options": {
-          "colorMode": "background",
-          "graphMode": "none",
-          "justifyMode": "auto",
-          "orientation": "horizontal",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "text": {},
-          "textMode": "auto"
-        },
-        "pluginVersion": "10.0.3",
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "sumSeries(icarus.icaruspmt*.BoardReader.*.CAENV1730.*.*.MemoryFull)"
-          }
-        ],
-        "title": "ALARM: PMT Digitizers Busy",
         "type": "stat"
       },
       {
@@ -1026,19 +933,19 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 4,
-          "w": 4,
-          "x": 9,
-          "y": 24
+          "h": 5,
+          "w": 3,
+          "x": 3,
+          "y": 21
         },
         "id": 16,
-        "links": [],
         "maxDataPoints": 100,
         "options": {
           "colorMode": "background",
           "graphMode": "none",
           "justifyMode": "auto",
           "orientation": "horizontal",
+          "percentChangeColorMode": "standard",
           "reduceOptions": {
             "calcs": [
               "lastNotNull"
@@ -1046,10 +953,12 @@
             "fields": "",
             "values": false
           },
+          "showPercentChange": false,
           "text": {},
-          "textMode": "auto"
+          "textMode": "auto",
+          "wideLayout": true
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
@@ -1069,10 +978,12 @@
           "type": "graphite",
           "uid": "PED8062B0600A9C35"
         },
-        "description": "Shows how much of the /data area on evb01 is being used.\n\nIt's set to go orange above 60%, meaning take note, and it's set to go red above 95%, meaning alarm.",
+        "description": "This panel should read 0 if the intended PMT boards are being read as expected. If one goes into the \"busy\" status, this box will turn red.\n\nIn this case, there is an issue.",
         "fieldConfig": {
           "defaults": {
-            "decimals": 0,
+            "color": {
+              "mode": "thresholds"
+            },
             "mappings": [
               {
                 "options": {
@@ -1084,323 +995,40 @@
                 "type": "special"
               }
             ],
-            "max": 1,
-            "min": 0,
             "thresholds": {
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green",
+                  "color": "rgb(0, 0, 0)",
                   "value": null
                 },
                 {
-                  "color": "orange",
-                  "value": 0.6
+                  "color": "#C4162A",
+                  "value": 1
                 },
                 {
-                  "color": "red",
-                  "value": 0.95
+                  "color": "#C4162A"
                 }
               ]
             },
-            "unit": "percentunit"
+            "unit": "none"
           },
           "overrides": []
         },
         "gridPos": {
-          "h": 4,
-          "w": 11,
-          "x": 13,
-          "y": 24
+          "h": 5,
+          "w": 3,
+          "x": 6,
+          "y": 21
         },
-        "id": 18,
-        "links": [],
+        "id": 23,
+        "maxDataPoints": 100,
         "options": {
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "showThresholdLabels": false,
-          "showThresholdMarkers": true,
-          "text": {}
-        },
-        "pluginVersion": "10.0.3",
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refCount": 0,
-            "refId": "A",
-            "target": "alias(icarus.icarus-evb01.data.Percent_Used, 'icarus-evb01')"
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refCount": 0,
-            "refId": "B",
-            "target": "alias(icarus.icarus-evb02.data.Percent_Used, 'icaurs-evb02')"
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refCount": 0,
-            "refId": "C",
-            "target": "alias(icarus.icarus-evb03.data.Percent_Used, 'icarus-evb03')"
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refCount": 0,
-            "refId": "D",
-            "target": "alias(icarus.icarus-evb04.data.Percent_Used, 'icarus-evb04')",
-            "textEditor": true
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refCount": 0,
-            "refId": "E",
-            "target": "alias(icarus.icarus-evb05.data.Percent_Used, 'icarus-evb05')"
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refCount": 0,
-            "refId": "F",
-            "target": "alias(icarus.icarus-evb06.data.Percent_Used, 'icarus-evb06')",
-            "textEditor": true
-          }
-        ],
-        "timeFrom": "24h",
-        "title": "/data Usage Monitor",
-        "type": "gauge"
-      },
-      {
-        "aliasColors": {},
-        "bars": false,
-        "dashLength": 10,
-        "dashes": false,
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "",
-        "fieldConfig": {
-          "defaults": {
-            "links": []
-          },
-          "overrides": []
-        },
-        "fill": 1,
-        "fillGradient": 0,
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 0,
-          "y": 28
-        },
-        "hiddenSeries": false,
-        "id": 20,
-        "legend": {
-          "avg": false,
-          "current": false,
-          "max": false,
-          "min": false,
-          "show": true,
-          "total": false,
-          "values": false
-        },
-        "lines": true,
-        "linewidth": 3,
-        "nullPointMode": "null",
-        "options": {
-          "alertThreshold": true
-        },
-        "percentage": false,
-        "pluginVersion": "10.0.3",
-        "pointradius": 1,
-        "points": true,
-        "renderer": "flot",
-        "seriesOverrides": [],
-        "spaceLength": 10,
-        "stack": false,
-        "steppedLine": false,
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "icarus.crt*.BoardReader.*.feb_hit_rate_Hz_*"
-          }
-        ],
-        "thresholds": [],
-        "timeRegions": [],
-        "title": "CRT Hit Rates (corrected for lost hits)",
-        "tooltip": {
-          "shared": true,
-          "sort": 0,
-          "value_type": "individual"
-        },
-        "type": "graph",
-        "xaxis": {
-          "mode": "time",
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
-          {
-            "$$hashKey": "object:125",
-            "format": "hertz",
-            "logBase": 10,
-            "min": "0.5",
-            "show": true
-          },
-          {
-            "$$hashKey": "object:126",
-            "format": "short",
-            "logBase": 1,
-            "show": true
-          }
-        ],
-        "yaxis": {
-          "align": false
-        }
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 0
-                },
-                {
-                  "color": "#EAB839",
-                  "value": 0.1
-                },
-                {
-                  "color": "dark-green",
-                  "value": 0.2
-                }
-              ]
-            },
-            "unit": "hertz"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 12,
-          "y": 28
-        },
-        "id": 31,
-        "options": {
-          "displayMode": "gradient",
-          "minVizHeight": 10,
-          "minVizWidth": 0,
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
           "orientation": "horizontal",
-          "reduceOptions": {
-            "calcs": [
-              "last"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "showUnfilled": true,
-          "text": {},
-          "valueMode": "color"
-        },
-        "pluginVersion": "10.0.3",
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "keepLastValue(icarus.icaruspmt*.*.*.Fragment_Rate, 10)"
-          }
-        ],
-        "title": "PMT Fragments rate",
-        "type": "bargauge"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "displays the Usage of /daq/log/ partition on evb machines",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "mappings": [],
-            "max": 1,
-            "min": 0,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "#EAB839",
-                  "value": 0.5
-                },
-                {
-                  "color": "red",
-                  "value": 0.8
-                }
-              ]
-            },
-            "unit": "percentunit"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 6,
-          "w": 8,
-          "x": 0,
-          "y": 36
-        },
-        "id": 46,
-        "options": {
-          "orientation": "auto",
+          "percentChangeColorMode": "standard",
           "reduceOptions": {
             "calcs": [
               "lastNotNull"
@@ -1408,23 +1036,107 @@
             "fields": "",
             "values": false
           },
-          "showThresholdLabels": false,
-          "showThresholdMarkers": true,
-          "text": {}
+          "showPercentChange": false,
+          "text": {},
+          "textMode": "auto",
+          "wideLayout": true
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
+            "refCount": 0,
             "refId": "A",
-            "target": "icarus.icarus-evb06.daq_log.Percent_Used"
+            "target": "keepLastValue(sumSeries(icarus.icaruspmt*.BoardReader.*.Busy), 10)",
+            "textEditor": false
           }
         ],
-        "title": "/daq/log monitoring",
-        "type": "gauge"
+        "title": "ALARM: PMT Digitizers Busy",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "Monitor for the internal temperature of the CAENV1730. It turns red when the temperature exceeds 65 degrees. A run should be stopped if this occurrence happens",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [
+              {
+                "options": {
+                  "match": "null",
+                  "result": {
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#000000fa",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 65
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 3,
+          "x": 9,
+          "y": 21
+        },
+        "id": 35,
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "text": {},
+          "textMode": "value",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.3.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "alias(maxSeries(keepLastValue(icarus.icaruspmt*.BoardReader.*.Channel*.Temp)), 'PMT Max temperature')",
+            "textEditor": true
+          }
+        ],
+        "title": "ALARM: PMT Temperatures",
+        "type": "stat"
       },
       {
         "datasource": {
@@ -1445,7 +1157,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "#000000fa"
+                  "color": "#000000fa",
+                  "value": null
                 },
                 {
                   "color": "#EAB839",
@@ -1462,10 +1175,10 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 6,
-          "w": 8,
-          "x": 8,
-          "y": 36
+          "h": 5,
+          "w": 6,
+          "x": 12,
+          "y": 21
         },
         "id": 39,
         "options": {
@@ -1473,6 +1186,7 @@
           "graphMode": "none",
           "justifyMode": "center",
           "orientation": "auto",
+          "percentChangeColorMode": "standard",
           "reduceOptions": {
             "calcs": [
               "lastNotNull"
@@ -1480,10 +1194,12 @@
             "fields": "",
             "values": false
           },
+          "showPercentChange": false,
           "text": {},
-          "textMode": "auto"
+          "textMode": "auto",
+          "wideLayout": true
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
@@ -1538,7 +1254,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "#000000fa"
+                  "color": "#000000fa",
+                  "value": null
                 },
                 {
                   "color": "#EAB839",
@@ -1555,10 +1272,10 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 6,
-          "w": 8,
-          "x": 16,
-          "y": 36
+          "h": 5,
+          "w": 6,
+          "x": 18,
+          "y": 21
         },
         "id": 41,
         "options": {
@@ -1566,6 +1283,7 @@
           "graphMode": "none",
           "justifyMode": "center",
           "orientation": "auto",
+          "percentChangeColorMode": "standard",
           "reduceOptions": {
             "calcs": [
               "lastNotNull"
@@ -1573,10 +1291,12 @@
             "fields": "",
             "values": false
           },
+          "showPercentChange": false,
           "text": {},
-          "textMode": "auto"
+          "textMode": "auto",
+          "wideLayout": true
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
@@ -1638,6 +1358,216 @@
           "type": "graphite",
           "uid": "PED8062B0600A9C35"
         },
+        "description": "displays the Usage of /daq/log/ partition on evb machines",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "max": 1,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 0.5
+                },
+                {
+                  "color": "red",
+                  "value": 0.8
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 6,
+          "x": 0,
+          "y": 26
+        },
+        "id": 46,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto",
+          "text": {}
+        },
+        "pluginVersion": "11.3.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "icarus.icarus-evb12.daq_log.Percent_Used",
+            "textEditor": true
+          }
+        ],
+        "timeFrom": "2h",
+        "title": "/daq/log monitoring",
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "Shows how much of the /data area on evb01 is being used.\n\nIt's set to go orange above 60%, meaning take note, and it's set to go red above 95%, meaning alarm.",
+        "fieldConfig": {
+          "defaults": {
+            "decimals": 0,
+            "mappings": [
+              {
+                "options": {
+                  "match": "null",
+                  "result": {
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "max": 1,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "orange",
+                  "value": 0.6
+                },
+                {
+                  "color": "red",
+                  "value": 0.95
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 18,
+          "x": 6,
+          "y": 26
+        },
+        "id": 18,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto",
+          "text": {}
+        },
+        "pluginVersion": "11.3.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(icarus.icarus-evb07.data.Percent_Used, 'icarus-evb07')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "D",
+            "target": "alias(icarus.icarus-evb08.data.Percent_Used, 'icarus-evb08')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "E",
+            "target": "alias(icarus.icarus-evb09.data.Percent_Used, 'icarus-evb09')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "F",
+            "target": "alias(icarus.icarus-evb10.data.Percent_Used, 'icarus-evb10')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "G",
+            "target": "alias(icarus.icarus-evb11.data.Percent_Used, 'icarus-evb11')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "H",
+            "target": "alias(icarus.icarus-evb12.data.Percent_Used, 'icarus-evb12')",
+            "textEditor": true
+          }
+        ],
+        "timeFrom": "2h",
+        "title": "/data Usage Monitor",
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
         "description": "Shows how much of the /scratch_local area on evb01 is being used.\n\nIt's set to go orange above 60%, meaning take note, and it's set to go red above 95%, meaning alarm.",
         "fieldConfig": {
           "defaults": {
@@ -1677,14 +1607,15 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 6,
+          "h": 5,
           "w": 24,
           "x": 0,
-          "y": 42
+          "y": 31
         },
         "id": 47,
-        "links": [],
         "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
           "orientation": "auto",
           "reduceOptions": {
             "calcs": [
@@ -1695,9 +1626,10 @@
           },
           "showThresholdLabels": false,
           "showThresholdMarkers": true,
+          "sizing": "auto",
           "text": {}
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
@@ -1705,26 +1637,9 @@
               "uid": "PED8062B0600A9C35"
             },
             "refCount": 0,
-            "refId": "A",
-            "target": "aliasByNode(icarus.icarus-evb01.scratch_local.Percent_Used, 1)"
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refCount": 0,
-            "refId": "B",
-            "target": "aliasByNode(icarus.icarus-evb02.scratch_local.Percent_Used, 1)"
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refCount": 0,
             "refId": "C",
-            "target": "aliasByNode(icarus.icarus-evb03.scratch_local.Percent_Used, 1)"
+            "target": "aliasByNode(icarus.icarus-evb07.scratch_local.Percent_Used, 1)",
+            "textEditor": true
           },
           {
             "datasource": {
@@ -1733,7 +1648,8 @@
             },
             "refCount": 0,
             "refId": "D",
-            "target": "aliasByNode(icarus.icarus-evb04.scratch_local.Percent_Used, 1)"
+            "target": "aliasByNode(icarus.icarus-evb08.scratch_local.Percent_Used, 1)",
+            "textEditor": true
           },
           {
             "datasource": {
@@ -1742,7 +1658,8 @@
             },
             "refCount": 0,
             "refId": "E",
-            "target": "aliasByNode(icarus.icarus-evb05.scratch_local.Percent_Used, 1)"
+            "target": "aliasByNode(icarus.icarus-evb09.scratch_local.Percent_Used, 1)",
+            "textEditor": true
           },
           {
             "datasource": {
@@ -1751,17 +1668,225 @@
             },
             "refCount": 0,
             "refId": "F",
-            "target": "aliasByNode(icarus.icarus-evb06.scratch_local.Percent_Used, 1)"
+            "target": "aliasByNode(icarus.icarus-evb10.scratch_local.Percent_Used, 1)",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "G",
+            "target": "aliasByNode(icarus.icarus-evb11.scratch_local.Percent_Used, 1)",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "H",
+            "target": "aliasByNode(icarus.icarus-evb12.scratch_local.Percent_Used, 1)",
+            "textEditor": true
           }
         ],
-        "timeFrom": "24h",
+        "timeFrom": "2h",
         "title": "/scratch_local Usage Monitor",
         "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 10,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 3,
+              "pointSize": 4,
+              "scaleDistribution": {
+                "log": 10,
+                "type": "log"
+              },
+              "showPoints": "always",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "links": [],
+            "mappings": [],
+            "min": 0.5,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "hertz"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 36
+        },
+        "id": 20,
+        "options": {
+          "alertThreshold": true,
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "multi",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.3.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refId": "A",
+            "target": "icarus.crt*.BoardReader.*.feb_hit_rate_Hz_*"
+          }
+        ],
+        "title": "CRT Hit Rates (corrected for lost hits)",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "fieldMinMax": false,
+            "mappings": [],
+            "max": 11,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 0.1
+                },
+                {
+                  "color": "dark-green",
+                  "value": 0.2
+                }
+              ]
+            },
+            "unit": "hertz"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 36
+        },
+        "id": 31,
+        "options": {
+          "displayMode": "gradient",
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "maxVizHeight": 300,
+          "minVizHeight": 10,
+          "minVizWidth": 0,
+          "namePlacement": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true,
+          "sizing": "auto",
+          "text": {},
+          "valueMode": "color"
+        },
+        "pluginVersion": "11.3.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "aliasByNode(alias(keepLastValue(icarus.icaruspmt*.*.*.Fragment_Rate, 10), 'alias'), 1)"
+          }
+        ],
+        "title": "PMT Fragments rate",
+        "type": "bargauge"
       }
     ],
+    "preload": false,
     "refresh": "5s",
-    "schemaVersion": 38,
-    "style": "dark",
+    "schemaVersion": 40,
     "tags": [],
     "templating": {
       "list": []
@@ -1770,24 +1895,11 @@
       "from": "now-6h",
       "to": "now"
     },
-    "timepicker": {
-      "refresh_intervals": [
-        "5s",
-        "10s",
-        "30s",
-        "1m",
-        "5m",
-        "15m",
-        "30m",
-        "1h",
-        "2h",
-        "1d"
-      ]
-    },
+    "timepicker": {},
     "timezone": "",
     "title": "Shifter DAQ Status",
     "uid": "hNjxNryWk",
-    "version": 147,
+    "version": 199,
     "weekStart": ""
   }
 }

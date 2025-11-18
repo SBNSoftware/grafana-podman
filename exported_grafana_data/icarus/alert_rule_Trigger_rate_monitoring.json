@@ -1,14 +1,14 @@
 {
-  "id": 38,
-  "uid": "a55f129c-a832-4ef2-b45f-a96b588c4e4c",
+  "id": 49,
+  "uid": "feb9ngdujmrk0a",
   "orgID": 1,
-  "folderUID": "d9adc348-6f87-47e9-a358-aa65455e8002",
-  "ruleGroup": "New disk monitoring",
-  "title": "evb06 disk monitoring",
+  "folderUID": "fffc36fa-f756-4904-885b-60cd4436c9ff",
+  "ruleGroup": "Trigger rate alert",
+  "title": "Trigger rate monitoring",
   "condition": "C",
   "data": [
     {
-      "refId": "D",
+      "refId": "A",
       "queryType": "",
       "relativeTimeRange": {
         "from": 600,
@@ -16,18 +16,17 @@
       },
       "datasourceUid": "PED8062B0600A9C35",
       "model": {
-        "hide": false,
         "intervalMs": 1000,
         "maxDataPoints": 43200,
-        "refId": "D",
-        "target": "alias(icarus.icarus-evb06.data.Percent_Used, 'icarus-evb06')"
+        "refId": "A",
+        "target": "icarus.trigger.BoardReader.*.EventRate"
       }
     },
     {
       "refId": "B",
       "queryType": "",
       "relativeTimeRange": {
-        "from": 600,
+        "from": 0,
         "to": 0
       },
       "datasourceUid": "__expr__",
@@ -57,15 +56,11 @@
           "type": "__expr__",
           "uid": "__expr__"
         },
-        "expression": "D",
-        "hide": false,
+        "expression": "A",
         "intervalMs": 1000,
         "maxDataPoints": 43200,
         "reducer": "last",
         "refId": "B",
-        "settings": {
-          "mode": "dropNN"
-        },
         "type": "reduce"
       }
     },
@@ -73,7 +68,7 @@
       "refId": "C",
       "queryType": "",
       "relativeTimeRange": {
-        "from": 600,
+        "from": 0,
         "to": 0
       },
       "datasourceUid": "__expr__",
@@ -82,9 +77,9 @@
           {
             "evaluator": {
               "params": [
-                0.5
+                0.2
               ],
-              "type": "gt"
+              "type": "lt"
             },
             "operator": {
               "type": "and"
@@ -106,7 +101,6 @@
           "uid": "__expr__"
         },
         "expression": "B",
-        "hide": false,
         "intervalMs": 1000,
         "maxDataPoints": 43200,
         "refId": "C",
@@ -114,15 +108,18 @@
       }
     }
   ],
-  "updated": "2025-09-11T03:47:08Z",
-  "noDataState": "Alerting",
-  "execErrState": "Alerting",
-  "for": "5m",
+  "updated": "2025-01-31T18:24:42Z",
+  "noDataState": "NoData",
+  "execErrState": "Error",
+  "for": "1m",
   "keep_firing_for": "0s",
-  "labels": {
-    "__contacts__": "\"ICARUS Test NoData Alerts\""
+  "annotations": {
+    "description": "Zero trigger rate alert",
+    "summary": "Zero trigger rate alert"
   },
   "isPaused": false,
-  "notification_settings": null,
+  "notification_settings": {
+    "receiver": "ICARUS Test NoData Alerts"
+  },
   "record": null
 }

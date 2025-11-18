@@ -9,13 +9,14 @@
     "slug": "crt-monitoring",
     "url": "/d/m87lDajWz/crt-monitoring",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2020-04-09T17:39:17-05:00",
-    "updated": "2023-10-27T15:51:19-05:00",
+    "created": "2020-04-09T22:39:17Z",
+    "updated": "2023-10-27T20:51:19Z",
     "updatedBy": "admin",
     "createdBy": "admin",
     "version": 30,
     "hasAcl": false,
     "isFolder": false,
+    "apiVersion": "v0alpha1",
     "folderId": 0,
     "folderUid": "",
     "folderTitle": "General",
@@ -33,10 +34,7 @@
         "canEdit": true,
         "canDelete": true
       }
-    },
-    "publicDashboardAccessToken": "",
-    "publicDashboardUid": "",
-    "publicDashboardEnabled": false
+    }
   },
   "dashboard": {
     "annotations": {

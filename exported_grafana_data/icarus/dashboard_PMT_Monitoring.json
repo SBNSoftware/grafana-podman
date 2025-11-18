@@ -9,13 +9,14 @@
     "slug": "pmt-monitoring",
     "url": "/d/b3ZIF6Znz/pmt-monitoring",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2021-07-30T15:51:12-05:00",
-    "updated": "2024-10-05T14:50:13-05:00",
+    "created": "2021-07-30T20:51:12Z",
+    "updated": "2025-09-11T01:46:31Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 78,
+    "version": 87,
     "hasAcl": false,
     "isFolder": false,
+    "apiVersion": "v0alpha1",
     "folderId": 0,
     "folderUid": "",
     "folderTitle": "General",
@@ -33,10 +34,7 @@
         "canEdit": true,
         "canDelete": true
       }
-    },
-    "publicDashboardAccessToken": "",
-    "publicDashboardUid": "",
-    "publicDashboardEnabled": false
+    }
   },
   "dashboard": {
     "annotations": {
@@ -67,7 +65,6 @@
     "graphTooltip": 0,
     "id": 19,
     "links": [],
-    "liveNow": false,
     "panels": [
       {
         "collapsed": false,
@@ -94,11 +91,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -107,6 +106,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -142,7 +142,7 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 9,
+          "h": 14,
           "w": 12,
           "x": 0,
           "y": 1
@@ -160,16 +160,17 @@
             "sort": "none"
           }
         },
-        "pluginVersion": "8.1.2",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
+            "refCount": 0,
             "refId": "A",
-            "target": "groupByNode(icarus.icaruspmt*.BoardReader.*.CAENV1730.*.*.Temp, 1, 'maxSeries')",
-            "textEditor": false
+            "target": "groupByNode(icarus.icaruspmt*.BoardReader.*.Channel*.Temp, 1, 'maxSeries')",
+            "textEditor": true
           }
         ],
         "title": "CAEN Temperature",
@@ -187,11 +188,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -200,6 +203,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -240,7 +244,7 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 6,
+          "h": 14,
           "w": 12,
           "x": 12,
           "y": 1
@@ -258,7 +262,7 @@
             "sort": "none"
           }
         },
-        "pluginVersion": "8.1.2",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
@@ -303,169 +307,6 @@
         "fieldConfig": {
           "defaults": {
             "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "noValue": "n/a",
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "transparent"
-                },
-                {
-                  "color": "#EAB839",
-                  "value": 0.5
-                },
-                {
-                  "color": "dark-red",
-                  "value": 1
-                }
-              ]
-            },
-            "unit": "none"
-          },
-          "overrides": [
-            {
-              "__systemRef": "hideSeriesFrom",
-              "matcher": {
-                "id": "byNames",
-                "options": {
-                  "mode": "exclude",
-                  "names": [
-                    "keepLastValue(removeBelowValue(icarus.evb07.EventBuilder7_art6.EventsWithEmptyFragmentsOnPMT, 1))"
-                  ],
-                  "prefix": "All except:",
-                  "readOnly": true
-                }
-              },
-              "properties": [
-                {
-                  "id": "custom.hideFrom",
-                  "value": {
-                    "legend": false,
-                    "tooltip": false,
-                    "viz": true
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        "gridPos": {
-          "h": 10,
-          "w": 12,
-          "x": 12,
-          "y": 7
-        },
-        "id": 42,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": true
-          },
-          "tooltip": {
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "pluginVersion": "8.1.2",
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "hide": false,
-            "refCount": 0,
-            "refId": "A",
-            "target": "icarus.evb07.EventBuilder7_art6.EventsWithEmptyFragmentsOnPMT"
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "hide": false,
-            "refCount": 0,
-            "refId": "B",
-            "target": "removeBelowValue(icarus.evb07.EventBuilder7_art6.EventsWithEmptyFragmentsOnPMT,1)"
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "hide": false,
-            "refCount": 0,
-            "refId": "C",
-            "target": "keepLastValue(removeBelowValue(icarus.evb07.EventBuilder7_art6.EventsWithEmptyFragmentsOnPMT,1),100)"
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "hide": true,
-            "refCount": 0,
-            "refId": "D",
-            "target": "keepLastValue(removeBelowValue(icarus.evb01.EventBuilder1_art1.EventsWithEmptyFragmentsOnPMT,1),100)"
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "hide": true,
-            "refCount": 0,
-            "refId": "E",
-            "target": "sumSeries(keepLastValue(removeBelowValue(icarus.evb07.EventBuilder7_art6.EventsWithEmptyFragmentsOnPMT,1),100),keepLastValue(removeBelowValue(icarus.evb01.EventBuilder1_art1.EventsWithEmptyFragmentsOnPMT,1),100))"
-          }
-        ],
-        "title": "DEBUGGING empty fragments metric queries",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "the rate of the total empty fragments collected normalized to the total number of events collected",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
               "mode": "thresholds"
             },
             "decimals": 2,
@@ -497,7 +338,7 @@
           "h": 6,
           "w": 12,
           "x": 0,
-          "y": 10
+          "y": 15
         },
         "id": 37,
         "options": {
@@ -505,6 +346,7 @@
           "graphMode": "none",
           "justifyMode": "center",
           "orientation": "auto",
+          "percentChangeColorMode": "standard",
           "reduceOptions": {
             "calcs": [
               "lastNotNull"
@@ -512,10 +354,12 @@
             "fields": "",
             "values": false
           },
+          "showPercentChange": false,
           "text": {},
-          "textMode": "auto"
+          "textMode": "auto",
+          "wideLayout": true
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
@@ -560,129 +404,16 @@
         "fieldConfig": {
           "defaults": {
             "color": {
-              "mode": "thresholds"
-            },
-            "decimals": 2,
-            "mappings": [],
-            "max": 2,
-            "noValue": "n/a",
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "transparent",
-                  "value": null
-                },
-                {
-                  "color": "#EAB839",
-                  "value": 0.5
-                },
-                {
-                  "color": "dark-red",
-                  "value": 1
-                }
-              ]
-            },
-            "unit": "%"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 6,
-          "w": 12,
-          "x": 0,
-          "y": 16
-        },
-        "id": 33,
-        "options": {
-          "colorMode": "none",
-          "graphMode": "area",
-          "justifyMode": "center",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "text": {},
-          "textMode": "auto"
-        },
-        "pluginVersion": "10.0.3",
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "hide": true,
-            "refCount": 0,
-            "refId": "A",
-            "target": "alias(sumSeries(transformNull(keepLastValue(removeBelowValue(icarus.evb*.EventBuilder*_art*.EventsWithEmptyFragmentsOnPMT,1), 10),0)), 'PMT')"
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "hide": true,
-            "refCount": 0,
-            "refId": "C",
-            "target": "alias(sumSeries(transformNull(keepLastValue(removeBelowValue(icarus.evb*.EventBuilder*_art*.EventsWithEmptyFragmentsOnCRT,1), 10),0)), 'CRT')"
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "hide": true,
-            "refCount": 0,
-            "refId": "B",
-            "target": "sumSeries(keepLastValue(icarus.evb*.EventBuilder*.Events_Released_to_art_this_run, 10))"
-          },
-          {
-            "datasource": {
-              "type": "__expr__",
-              "uid": "__expr__"
-            },
-            "expression": "($A/$B)*100",
-            "hide": false,
-            "refCount": 0,
-            "refId": "PMT [%]",
-            "type": "math"
-          },
-          {
-            "datasource": {
-              "type": "__expr__",
-              "uid": "__expr__"
-            },
-            "expression": "($C/$B)*100",
-            "hide": false,
-            "refId": "CRT [%]",
-            "type": "math"
-          }
-        ],
-        "title": "Events with empty fragments [%]",
-        "type": "stat"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "the rate of the total empty fragments collected normalized to the total number of events collected",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -691,6 +422,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -732,10 +464,10 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 6,
+          "h": 13,
           "w": 12,
           "x": 12,
-          "y": 17
+          "y": 15
         },
         "id": 39,
         "options": {
@@ -750,7 +482,7 @@
             "sort": "none"
           }
         },
-        "pluginVersion": "8.1.2",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
@@ -812,55 +544,50 @@
           "type": "graphite",
           "uid": "PED8062B0600A9C35"
         },
+        "description": "the rate of the total empty fragments collected normalized to the total number of events collected",
         "fieldConfig": {
           "defaults": {
             "color": {
               "mode": "thresholds"
             },
+            "decimals": 2,
             "mappings": [],
+            "max": 2,
+            "noValue": "n/a",
             "thresholds": {
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green"
+                  "color": "transparent",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 0.5
                 },
                 {
                   "color": "dark-red",
-                  "value": 247
-                },
-                {
-                  "color": "light-green",
-                  "value": 248
-                },
-                {
-                  "color": "semi-dark-red",
-                  "value": 249
-                },
-                {
-                  "color": "light-green",
-                  "value": 250
-                },
-                {
-                  "color": "dark-red",
-                  "value": 251
+                  "value": 1
                 }
               ]
-            }
+            },
+            "unit": "%"
           },
           "overrides": []
         },
         "gridPos": {
-          "h": 8,
+          "h": 6,
           "w": 12,
           "x": 0,
-          "y": 22
+          "y": 21
         },
-        "id": 4,
+        "id": 33,
         "options": {
-          "colorMode": "background",
+          "colorMode": "none",
           "graphMode": "area",
-          "justifyMode": "auto",
+          "justifyMode": "center",
           "orientation": "auto",
+          "percentChangeColorMode": "standard",
           "reduceOptions": {
             "calcs": [
               "lastNotNull"
@@ -868,21 +595,66 @@
             "fields": "",
             "values": false
           },
+          "showPercentChange": false,
           "text": {},
-          "textMode": "auto"
+          "textMode": "auto",
+          "wideLayout": true
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
+            "hide": true,
+            "refCount": 0,
             "refId": "A",
-            "target": "icarus.icaruspmt*.BoardReader.*.CAENV1730.Card0.*.Status"
+            "target": "alias(sumSeries(transformNull(keepLastValue(removeBelowValue(icarus.evb*.EventBuilder*_art*.EventsWithEmptyFragmentsOnPMT,1), 10),0)), 'PMT')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": true,
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(sumSeries(transformNull(keepLastValue(removeBelowValue(icarus.evb*.EventBuilder*_art*.EventsWithEmptyFragmentsOnCRT,1), 10),0)), 'CRT')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": true,
+            "refCount": 0,
+            "refId": "B",
+            "target": "sumSeries(keepLastValue(icarus.evb*.EventBuilder*.Events_Released_to_art_this_run, 10))"
+          },
+          {
+            "datasource": {
+              "type": "__expr__",
+              "uid": "__expr__"
+            },
+            "expression": "($A/$B)*100",
+            "hide": false,
+            "refCount": 0,
+            "refId": "PMT [%]",
+            "type": "math"
+          },
+          {
+            "datasource": {
+              "type": "__expr__",
+              "uid": "__expr__"
+            },
+            "expression": "($C/$B)*100",
+            "hide": false,
+            "refId": "CRT [%]",
+            "type": "math"
           }
         ],
-        "title": "PMT Status",
+        "title": "Events with empty fragments [%]",
         "type": "stat"
       },
       {
@@ -893,95 +665,6 @@
         "fieldConfig": {
           "defaults": {
             "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green"
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            },
-            "unit": "bytes"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 12,
-          "y": 23
-        },
-        "id": 27,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "icarus.*pmt*.*.*.Average_Fragment_Size"
-          }
-        ],
-        "title": "Panel Title",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
               "mode": "thresholds"
             },
             "mappings": [],
@@ -989,10 +672,11 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green"
+                  "color": "dark-red",
+                  "value": null
                 },
                 {
-                  "color": "red",
+                  "color": "green",
                   "value": 1
                 }
               ]
@@ -1001,17 +685,18 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 8,
+          "h": 10,
           "w": 12,
           "x": 0,
-          "y": 30
+          "y": 27
         },
-        "id": 5,
+        "id": 4,
         "options": {
           "colorMode": "background",
           "graphMode": "area",
           "justifyMode": "auto",
           "orientation": "auto",
+          "percentChangeColorMode": "standard",
           "reduceOptions": {
             "calcs": [
               "lastNotNull"
@@ -1019,21 +704,25 @@
             "fields": "",
             "values": false
           },
+          "showPercentChange": false,
           "text": {},
-          "textMode": "auto"
+          "textMode": "auto",
+          "wideLayout": true
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
+            "refCount": 0,
             "refId": "A",
-            "target": "icarus.icaruspmt*.BoardReader.*.CAENV1730.*.*.MemoryFull"
+            "target": "icarus.icaruspmt*.BoardReader.*.Running\n",
+            "textEditor": true
           }
         ],
-        "title": "PMT Busy",
+        "title": "PMT Running",
         "type": "stat"
       },
       {
@@ -1048,11 +737,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -1061,6 +752,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -1084,7 +776,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "transparent"
+                  "color": "transparent",
+                  "value": null
                 }
               ]
             },
@@ -1093,10 +786,10 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 9,
+          "h": 10,
           "w": 12,
           "x": 12,
-          "y": 31
+          "y": 28
         },
         "id": 21,
         "options": {
@@ -1111,7 +804,7 @@
             "sort": "none"
           }
         },
-        "pluginVersion": "8.1.2",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
@@ -1140,39 +833,12 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "light-green"
-                },
-                {
-                  "color": "super-light-blue",
-                  "value": 20
-                },
-                {
-                  "color": "light-green",
-                  "value": 30
-                },
-                {
-                  "color": "semi-dark-green",
-                  "value": 50
-                },
-                {
-                  "color": "super-light-yellow",
-                  "value": 55
-                },
-                {
-                  "color": "semi-dark-yellow",
-                  "value": 60
-                },
-                {
-                  "color": "dark-orange",
-                  "value": 65
+                  "color": "green",
+                  "value": null
                 },
                 {
                   "color": "red",
-                  "value": 70
-                },
-                {
-                  "color": "#6ED0E0",
-                  "value": 80
+                  "value": 1
                 }
               ]
             }
@@ -1180,17 +846,18 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 14,
+          "h": 10,
           "w": 12,
           "x": 0,
-          "y": 38
+          "y": 37
         },
-        "id": 9,
+        "id": 5,
         "options": {
           "colorMode": "background",
           "graphMode": "area",
           "justifyMode": "auto",
           "orientation": "auto",
+          "percentChangeColorMode": "standard",
           "reduceOptions": {
             "calcs": [
               "lastNotNull"
@@ -1198,21 +865,25 @@
             "fields": "",
             "values": false
           },
+          "showPercentChange": false,
           "text": {},
-          "textMode": "auto"
+          "textMode": "auto",
+          "wideLayout": true
         },
-        "pluginVersion": "8.1.2",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
+            "refCount": 0,
             "refId": "A",
-            "target": "icarus.icaruspmt*.BoardReader.*.CAENV1730.Card0.*.Temp"
+            "target": "icarus.icaruspmt*.BoardReader.*.Busy",
+            "textEditor": true
           }
         ],
-        "title": "PMT Temps",
+        "title": "PMT Busy",
         "type": "stat"
       },
       {
@@ -1227,11 +898,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -1240,6 +913,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -1263,7 +937,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "transparent"
+                  "color": "transparent",
+                  "value": null
                 },
                 {
                   "color": "semi-dark-yellow",
@@ -1284,10 +959,10 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 4,
+          "h": 10,
           "w": 12,
           "x": 12,
-          "y": 40
+          "y": 38
         },
         "id": 11,
         "options": {
@@ -1302,7 +977,7 @@
             "sort": "none"
           }
         },
-        "pluginVersion": "8.1.2",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
@@ -1321,6 +996,74 @@
           "type": "graphite",
           "uid": "PED8062B0600A9C35"
         },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "dark-red",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 11,
+          "w": 12,
+          "x": 0,
+          "y": 47
+        },
+        "id": 9,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "text": {},
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.3.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "icarus.icaruspmt*.BoardReader.*.Shutdown",
+            "textEditor": true
+          }
+        ],
+        "title": "PMT Shutdown",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -1328,11 +1071,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -1341,6 +1086,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -1364,7 +1110,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "transparent"
+                  "color": "transparent",
+                  "value": null
                 }
               ]
             },
@@ -1373,10 +1120,10 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 9,
+          "h": 10,
           "w": 12,
           "x": 12,
-          "y": 44
+          "y": 48
         },
         "id": 29,
         "options": {
@@ -1391,7 +1138,7 @@
             "sort": "none"
           }
         },
-        "pluginVersion": "8.1.2",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
@@ -1406,163 +1153,81 @@
         "type": "timeseries"
       },
       {
-        "alert": {
-          "alertRuleTags": {},
-          "conditions": [
-            {
-              "evaluator": {
-                "params": [
-                  1
-                ],
-                "type": "gt"
-              },
-              "operator": {
-                "type": "and"
-              },
-              "query": {
-                "params": [
-                  "A",
-                  "5m",
-                  "now"
-                ]
-              },
-              "reducer": {
-                "params": [],
-                "type": "avg"
-              },
-              "type": "query"
-            }
-          ],
-          "executionErrorState": "keep_state",
-          "for": "5m",
-          "frequency": "1m",
-          "handler": 1,
-          "message": "PMT Fragment is returning busy state",
-          "name": "PMT Busy alert",
-          "noDataState": "keep_state",
-          "notifications": [
-            {
-              "uid": "xbA0jSO7k"
-            }
-          ]
-        },
         "datasource": {
           "type": "graphite",
           "uid": "PED8062B0600A9C35"
         },
         "fieldConfig": {
           "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
             "custom": {
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
               "hideFrom": {
                 "legend": false,
                 "tooltip": false,
                 "viz": false
               },
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
               "scaleDistribution": {
                 "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
               }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green"
-                },
-                {
-                  "color": "red",
-                  "value": 1
-                }
-              ]
             }
           },
-          "overrides": [
-            {
-              "__systemRef": "hideSeriesFrom",
-              "matcher": {
-                "id": "byNames",
-                "options": {
-                  "mode": "exclude",
-                  "names": [
-                    "icarus.icaruspmteebot03.BoardReader.23.CAENV1730.Card0.Channel12.MemoryFull"
-                  ],
-                  "prefix": "All except:",
-                  "readOnly": true
-                }
-              },
-              "properties": [
-                {
-                  "id": "custom.hideFrom",
-                  "value": {
-                    "legend": false,
-                    "tooltip": false,
-                    "viz": true
-                  }
-                }
-              ]
-            }
-          ]
+          "overrides": []
         },
         "gridPos": {
-          "h": 8,
+          "h": 12,
           "w": 12,
           "x": 0,
-          "y": 52
+          "y": 58
         },
-        "id": 13,
+        "id": 19,
         "options": {
+          "calculate": false,
+          "cellGap": 1,
+          "color": {
+            "exponent": 0.5,
+            "fill": "dark-orange",
+            "mode": "scheme",
+            "reverse": false,
+            "scale": "exponential",
+            "scheme": "Oranges",
+            "steps": 64
+          },
+          "exemplars": {
+            "color": "rgba(255,0,255,0.7)"
+          },
+          "filterValues": {
+            "le": 1e-09
+          },
           "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
+            "show": true
+          },
+          "rowsFrame": {
+            "layout": "auto"
           },
           "tooltip": {
-            "mode": "multi"
+            "mode": "single",
+            "showColorScale": false,
+            "yHistogram": false
+          },
+          "yAxis": {
+            "axisPlacement": "hidden",
+            "reverse": false
           }
         },
-        "pluginVersion": "8.1.2",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
+            "refCount": 0,
             "refId": "A",
-            "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.CAENV1730.*.*.MemoryFull, 1)"
+            "target": "icarus.icaruspmt*.BoardReader.*.Channel*.Temp",
+            "textEditor": true
           }
         ],
-        "thresholds": [
-          {
-            "colorMode": "critical",
-            "op": "gt",
-            "value": 1,
-            "visible": true
-          }
-        ],
-        "title": "PMT Busy",
-        "type": "timeseries"
+        "title": "PMT Temps",
+        "type": "heatmap"
       },
       {
         "datasource": {
@@ -1576,9 +1241,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -1587,6 +1256,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -1610,7 +1280,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "transparent"
+                  "color": "transparent",
+                  "value": null
                 }
               ]
             },
@@ -1619,10 +1290,10 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 9,
+          "h": 12,
           "w": 12,
           "x": 12,
-          "y": 53
+          "y": 58
         },
         "id": 31,
         "options": {
@@ -1633,10 +1304,11 @@
             "showLegend": true
           },
           "tooltip": {
-            "mode": "single"
+            "mode": "single",
+            "sort": "none"
           }
         },
-        "pluginVersion": "8.1.2",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
@@ -1658,252 +1330,16 @@
         "fieldConfig": {
           "defaults": {
             "color": {
-              "mode": "thresholds"
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "light-green"
-                },
-                {
-                  "color": "dark-red",
-                  "value": 65
-                }
-              ]
-            },
-            "unit": "celsius"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 12,
-          "w": 12,
-          "x": 0,
-          "y": 60
-        },
-        "id": 19,
-        "options": {
-          "colorMode": "background",
-          "graphMode": "area",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "max"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "text": {},
-          "textMode": "value"
-        },
-        "pluginVersion": "8.1.2",
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "alias(maxSeries(icarus.icaruspmt*.BoardReader.*.CAENV1730.Card0.*.Temp), 'PMT Max temperature')"
-          }
-        ],
-        "title": "PMT Temps",
-        "type": "stat"
-      },
-      {
-        "alert": {
-          "alertRuleTags": {},
-          "conditions": [
-            {
-              "evaluator": {
-                "params": [
-                  1
-                ],
-                "type": "gt"
-              },
-              "operator": {
-                "type": "and"
-              },
-              "query": {
-                "params": [
-                  "A",
-                  "5m",
-                  "now"
-                ]
-              },
-              "reducer": {
-                "params": [],
-                "type": "avg"
-              },
-              "type": "query"
-            }
-          ],
-          "executionErrorState": "keep_state",
-          "for": "5m",
-          "frequency": "1m",
-          "handler": 1,
-          "message": "PMT Missing fragments",
-          "name": "Missing PMT Fragments alert",
-          "noDataState": "keep_state",
-          "notifications": [
-            {
-              "uid": "xbA0jSO7k"
-            }
-          ]
-        },
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "Number of missing fragments from PMTs",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "decimals": 0,
-            "mappings": [],
-            "noValue": "0",
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "transparent"
-                },
-                {
-                  "color": "red",
-                  "value": 1
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 7,
-          "w": 12,
-          "x": 12,
-          "y": 62
-        },
-        "id": 15,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": true
-          },
-          "tooltip": {
-            "mode": "single"
-          }
-        },
-        "pluginVersion": "8.1.2",
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "sumSeries(icarus.icaruspmt*.*.*.Missing_Fragments, icarus.icaruspmt*.*.Missing_Fragments)"
-          }
-        ],
-        "thresholds": [
-          {
-            "colorMode": "critical",
-            "op": "gt",
-            "value": 1,
-            "visible": true
-          }
-        ],
-        "title": "Missing PMT Fragments",
-        "type": "timeseries"
-      },
-      {
-        "alert": {
-          "alertRuleTags": {},
-          "conditions": [
-            {
-              "evaluator": {
-                "params": [
-                  65
-                ],
-                "type": "gt"
-              },
-              "operator": {
-                "type": "and"
-              },
-              "query": {
-                "params": [
-                  "A",
-                  "5m",
-                  "now"
-                ]
-              },
-              "reducer": {
-                "params": [],
-                "type": "avg"
-              },
-              "type": "query"
-            }
-          ],
-          "executionErrorState": "keep_state",
-          "for": "5m",
-          "frequency": "1m",
-          "handler": 1,
-          "message": "CAEN1730V Boards temperature exceeding 65 C. Please consider stopping the run",
-          "name": "PMT Temps alert",
-          "noDataState": "keep_state",
-          "notifications": [
-            {
-              "uid": "xbA0jSO7k"
-            }
-          ]
-        },
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 10,
               "gradientMode": "none",
@@ -1912,6 +1348,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineStyle": {
                 "fill": "solid"
@@ -1937,7 +1374,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "transparent"
+                  "color": "transparent",
+                  "value": null
                 },
                 {
                   "color": "red",
@@ -1952,8 +1390,8 @@
         "gridPos": {
           "h": 10,
           "w": 12,
-          "x": 12,
-          "y": 69
+          "x": 0,
+          "y": 70
         },
         "id": 2,
         "options": {
@@ -1964,10 +1402,109 @@
             "showLegend": false
           },
           "tooltip": {
-            "mode": "multi"
+            "mode": "multi",
+            "sort": "none"
           }
         },
-        "pluginVersion": "8.1.2",
+        "pluginVersion": "11.3.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.Channel*.Temp, 1)",
+            "textEditor": true
+          }
+        ],
+        "title": "PMT Temps",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "Number of missing fragments from PMTs",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "decimals": 0,
+            "mappings": [],
+            "noValue": "0",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "transparent",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 10,
+          "w": 12,
+          "x": 12,
+          "y": 70
+        },
+        "id": 15,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.3.0",
         "targets": [
           {
             "datasource": {
@@ -1975,50 +1512,29 @@
               "uid": "PED8062B0600A9C35"
             },
             "refId": "A",
-            "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.CAENV1730.Card0.*.Temp, 1)"
+            "target": "sumSeries(icarus.icaruspmt*.*.*.Missing_Fragments, icarus.icaruspmt*.*.Missing_Fragments)"
           }
         ],
-        "thresholds": [
-          {
-            "colorMode": "critical",
-            "op": "gt",
-            "value": 65,
-            "visible": true
-          }
-        ],
-        "title": "PMT Temps",
+        "title": "Missing PMT Fragments",
         "type": "timeseries"
       },
       {
         "collapsed": true,
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
         "gridPos": {
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 79
+          "y": 80
         },
         "id": 23,
         "panels": [],
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A"
-          }
-        ],
         "title": "Row title",
         "type": "row"
       }
     ],
+    "preload": false,
     "refresh": "30s",
-    "schemaVersion": 38,
-    "style": "dark",
+    "schemaVersion": 40,
     "tags": [],
     "templating": {
       "list": []
@@ -2031,7 +1547,7 @@
     "timezone": "",
     "title": "PMT Monitoring",
     "uid": "b3ZIF6Znz",
-    "version": 78,
+    "version": 87,
     "weekStart": ""
   }
 }

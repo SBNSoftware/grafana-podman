@@ -8,16 +8,22 @@
   "condition": "B",
   "data": [
     {
-      "refId": "A",
+      "refId": "Missing fragments",
       "queryType": "",
       "relativeTimeRange": {
         "from": 300,
         "to": 0
       },
-      "datasourceUid": "",
+      "datasourceUid": "PED8062B0600A9C35",
       "model": {
-        "refId": "A",
-        "target": "sumSeries(icarus.icaruspmt*.*.*.Missing_Fragments, icarus.icaruspmt*.*.Missing_Fragments)"
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "intervalMs": 1000,
+        "maxDataPoints": 43200,
+        "refId": "Missing fragments",
+        "target": "sumSeries(transformNull(keepLastValue(removeBelowValue(icarus.evb*.EventBuilder*_art*.EventsWithEmptyFragmentsOnPMT,1), 10),0))"
       }
     },
     {
@@ -29,13 +35,11 @@
       },
       "datasourceUid": "__expr__",
       "model": {
-        "type": "classic_conditions",
-        "refId": "B",
         "conditions": [
           {
             "evaluator": {
               "params": [
-                1
+                100
               ],
               "type": "gt"
             },
@@ -44,30 +48,39 @@
             },
             "query": {
               "params": [
-                "A"
+                "Missing fragments"
               ]
             },
             "reducer": {
-              "type": "avg"
+              "params": [],
+              "type": "last"
             }
           }
-        ]
+        ],
+        "intervalMs": 1000,
+        "maxDataPoints": 43200,
+        "refId": "B",
+        "type": "classic_conditions"
       }
     }
   ],
-  "updated": "2023-08-03T14:36:27-05:00",
+  "updated": "2024-12-04T17:10:47Z",
   "noDataState": "NoData",
   "execErrState": "Error",
-  "for": "5m",
+  "for": "1m",
+  "keep_firing_for": "0s",
   "annotations": {
     "__alertId__": "6",
     "__dashboardUid__": "b3ZIF6Znz",
     "__panelId__": "15",
-    "message": "PMT Missing fragments"
+    "description": "PMT Missing fragments reported above 100.",
+    "summary": "PMT Missing fragments are >100 !!"
   },
   "labels": {
     "__contacts__": "\"PMT Expert channel\"",
     "rule_uid": "a63d767c-dda2-40ed-9244-50b3cdd873dc"
   },
-  "isPaused": false
+  "isPaused": false,
+  "notification_settings": null,
+  "record": null
 }

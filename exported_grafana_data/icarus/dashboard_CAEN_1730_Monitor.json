@@ -9,13 +9,14 @@
     "slug": "caen-1730-monitor",
     "url": "/d/oQy3Tuc4z/caen-1730-monitor",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2022-12-20T15:40:37-06:00",
-    "updated": "2022-12-21T10:31:13-06:00",
+    "created": "2022-12-20T21:40:37Z",
+    "updated": "2025-09-11T01:33:20Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 41,
+    "version": 51,
     "hasAcl": false,
     "isFolder": false,
+    "apiVersion": "v0alpha1",
     "folderId": 0,
     "folderUid": "",
     "folderTitle": "General",
@@ -33,17 +34,17 @@
         "canEdit": true,
         "canDelete": true
       }
-    },
-    "publicDashboardAccessToken": "",
-    "publicDashboardUid": "",
-    "publicDashboardEnabled": false
+    }
   },
   "dashboard": {
     "annotations": {
       "list": [
         {
           "builtIn": 1,
-          "datasource": "-- Grafana --",
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
           "enable": true,
           "hide": true,
           "iconColor": "rgba(0, 211, 255, 1)",
@@ -59,13 +60,13 @@
       ]
     },
     "editable": true,
-    "gnetId": null,
+    "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
     "id": 32,
     "links": [],
     "panels": [
       {
-        "datasource": null,
+        "collapsed": false,
         "gridPos": {
           "h": 1,
           "w": 24,
@@ -73,11 +74,15 @@
           "y": 0
         },
         "id": 18,
+        "panels": [],
         "title": "CAEN Monitor",
         "type": "row"
       },
       {
-        "datasource": null,
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -85,9 +90,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -96,6 +105,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -131,8 +141,8 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 9,
-          "w": 12,
+          "h": 13,
+          "w": 24,
           "x": 0,
           "y": 1
         },
@@ -140,71 +150,62 @@
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "hidden",
-            "placement": "bottom"
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
           },
           "tooltip": {
-            "mode": "multi"
+            "mode": "multi",
+            "sort": "none"
           }
         },
-        "pluginVersion": "8.1.2",
+        "pluginVersion": "11.3.0",
         "targets": [
           {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
             "refId": "A",
-            "target": "groupByNode(icarus.icaruspmt*.BoardReader.*.CAENV1730.*.*.Temp, 1, 'maxSeries')",
-            "textEditor": false
+            "target": "groupByNode(icarus.icaruspmt*.BoardReader.*.Channel*.Temp, 1, 'maxSeries')",
+            "textEditor": true
           }
         ],
         "title": "CAEN Temp",
         "type": "timeseries"
       },
       {
-        "datasource": null,
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
         "description": "",
         "fieldConfig": {
           "defaults": {
             "color": {
-              "mode": "palette-classic"
+              "mode": "thresholds"
             },
             "custom": {
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
+              "fillOpacity": 70,
               "hideFrom": {
                 "legend": false,
                 "tooltip": false,
                 "viz": false
               },
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
+              "lineWidth": 1
             },
             "mappings": [],
             "thresholds": {
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green",
+                  "color": "dark-red",
                   "value": null
                 },
                 {
-                  "color": "red",
-                  "value": 80
+                  "color": "green",
+                  "value": 0.5
                 }
               ]
             }
@@ -212,106 +213,134 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 9,
-          "w": 12,
-          "x": 12,
-          "y": 1
-        },
-        "id": 15,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "hidden",
-            "placement": "bottom"
-          },
-          "tooltip": {
-            "mode": "multi"
-          }
-        },
-        "pluginVersion": "8.1.2",
-        "targets": [
-          {
-            "refId": "A",
-            "target": "groupByNode(icarus.icaruspmt*.BoardReader.*.CAENV1730.*.*.MemoryFull, 1, 'sum')",
-            "textEditor": false
-          }
-        ],
-        "title": "CAEN Memory Full",
-        "type": "timeseries"
-      },
-      {
-        "cards": {
-          "cardPadding": null,
-          "cardRound": null
-        },
-        "color": {
-          "cardColor": "#b4ff00",
-          "colorScale": "sqrt",
-          "colorScheme": "interpolatePlasma",
-          "exponent": 0.5,
-          "mode": "spectrum"
-        },
-        "dataFormat": "timeseries",
-        "datasource": null,
-        "description": "",
-        "gridPos": {
-          "h": 9,
+          "h": 15,
           "w": 12,
           "x": 0,
-          "y": 10
+          "y": 14
         },
-        "heatmap": {},
-        "hideZeroBuckets": false,
-        "highlightCards": true,
         "id": 19,
-        "legend": {
-          "show": true
+        "options": {
+          "colWidth": 0.9,
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "rowHeight": 0.9,
+          "showValue": "auto",
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
         },
-        "pluginVersion": "8.1.2",
-        "reverseYBuckets": false,
+        "pluginVersion": "11.3.0",
         "targets": [
           {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
             "refId": "A",
-            "target": "icarus.icaruspmt*.BoardReader.*.CAENV1730.*.*.Status",
+            "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.Running, 1)",
+            "textEditor": true
+          }
+        ],
+        "title": "CAEN Running",
+        "type": "status-history"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "fillOpacity": 70,
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineWidth": 1
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "transparent",
+                  "value": null
+                },
+                {
+                  "color": "dark-red",
+                  "value": 0.5
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 15,
+          "w": 12,
+          "x": 12,
+          "y": 14
+        },
+        "id": 20,
+        "options": {
+          "colWidth": 0.9,
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "rowHeight": 0.9,
+          "showValue": "auto",
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.3.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.Busy, 1)",
             "textEditor": false
           }
         ],
-        "title": "CAEN Status",
-        "tooltip": {
-          "show": false,
-          "showHistogram": false
-        },
-        "type": "heatmap",
-        "xAxis": {
-          "show": true
-        },
-        "xBucketNumber": null,
-        "xBucketSize": "",
-        "yAxis": {
-          "decimals": 0,
-          "format": "none",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true,
-          "splitFactor": null,
-          "width": null
-        },
-        "yBucketBound": "auto",
-        "yBucketNumber": null,
-        "yBucketSize": null
+        "title": "CAEN Busy",
+        "type": "status-history"
       },
       {
-        "datasource": null,
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -320,6 +349,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -357,22 +387,29 @@
         "gridPos": {
           "h": 9,
           "w": 12,
-          "x": 12,
-          "y": 10
+          "x": 0,
+          "y": 29
         },
         "id": 6,
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "hidden",
-            "placement": "bottom"
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
           },
           "tooltip": {
-            "mode": "multi"
+            "mode": "multi",
+            "sort": "none"
           }
         },
+        "pluginVersion": "11.3.0",
         "targets": [
           {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
             "refId": "A",
             "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.Missing_Fragments, 1)",
             "textEditor": false
@@ -382,21 +419,10 @@
         "type": "timeseries"
       },
       {
-        "collapsed": false,
-        "datasource": null,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 19
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
         },
-        "id": 4,
-        "panels": [],
-        "title": "Board Reader Core Monitor",
-        "type": "row"
-      },
-      {
-        "datasource": null,
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -404,9 +430,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -415,6 +445,116 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 12,
+          "y": 29
+        },
+        "id": 15,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "mode": "multi",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.3.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "groupByNode(icarus.icaruspmt*.BoardReader.*.Channel*.MemoryFull, 1, 'sum')",
+            "textEditor": true
+          }
+        ],
+        "title": "CAEN Memory Full",
+        "type": "timeseries"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 38
+        },
+        "id": 4,
+        "panels": [],
+        "title": "Board Reader Core Monitor",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -453,21 +593,28 @@
           "h": 9,
           "w": 12,
           "x": 0,
-          "y": 20
+          "y": 39
         },
         "id": 9,
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "hidden",
-            "placement": "bottom"
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
           },
           "tooltip": {
-            "mode": "multi"
+            "mode": "multi",
+            "sort": "none"
           }
         },
+        "pluginVersion": "11.3.0",
         "targets": [
           {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
             "refId": "A",
             "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.Data_Rate, 1)",
             "textEditor": true
@@ -477,16 +624,23 @@
         "type": "timeseries"
       },
       {
-        "datasource": null,
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -495,6 +649,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -535,21 +690,28 @@
           "h": 9,
           "w": 12,
           "x": 12,
-          "y": 20
+          "y": 39
         },
         "id": 11,
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "hidden",
-            "placement": "bottom"
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
           },
           "tooltip": {
-            "mode": "multi"
+            "mode": "multi",
+            "sort": "none"
           }
         },
+        "pluginVersion": "11.3.0",
         "targets": [
           {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
             "refId": "A",
             "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.Fragment_Rate, 1)",
             "textEditor": false
@@ -559,16 +721,23 @@
         "type": "timeseries"
       },
       {
-        "datasource": null,
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -577,6 +746,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -616,21 +786,28 @@
           "h": 9,
           "w": 12,
           "x": 0,
-          "y": 29
+          "y": 48
         },
         "id": 2,
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "hidden",
-            "placement": "bottom"
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
           },
           "tooltip": {
-            "mode": "multi"
+            "mode": "multi",
+            "sort": "none"
           }
         },
+        "pluginVersion": "11.3.0",
         "targets": [
           {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
             "refId": "A",
             "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.Buffer_Depth_Fragments, 1)",
             "textEditor": false
@@ -640,16 +817,23 @@
         "type": "timeseries"
       },
       {
-        "datasource": null,
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -658,6 +842,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -699,21 +884,28 @@
           "h": 9,
           "w": 12,
           "x": 12,
-          "y": 29
+          "y": 48
         },
         "id": 5,
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "hidden",
-            "placement": "bottom"
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
           },
           "tooltip": {
-            "mode": "multi"
+            "mode": "multi",
+            "sort": "none"
           }
         },
+        "pluginVersion": "11.3.0",
         "targets": [
           {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
             "refId": "A",
             "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.Fragment_Buffer_Full_%, 1)",
             "textEditor": false
@@ -723,7 +915,10 @@
         "type": "timeseries"
       },
       {
-        "datasource": null,
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -731,9 +926,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -742,6 +941,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -783,21 +983,28 @@
           "h": 9,
           "w": 12,
           "x": 0,
-          "y": 38
+          "y": 57
         },
         "id": 10,
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "hidden",
-            "placement": "bottom"
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
           },
           "tooltip": {
-            "mode": "multi"
+            "mode": "multi",
+            "sort": "none"
           }
         },
+        "pluginVersion": "11.3.0",
         "targets": [
           {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
             "refId": "A",
             "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.Request_Response_Time, 1)",
             "textEditor": true
@@ -807,7 +1014,10 @@
         "type": "timeseries"
       },
       {
-        "datasource": null,
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -815,9 +1025,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -826,6 +1040,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -867,21 +1082,28 @@
           "h": 9,
           "w": 12,
           "x": 12,
-          "y": 38
+          "y": 57
         },
         "id": 14,
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "hidden",
-            "placement": "bottom"
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
           },
           "tooltip": {
-            "mode": "multi"
+            "mode": "multi",
+            "sort": "none"
           }
         },
+        "pluginVersion": "11.3.0",
         "targets": [
           {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
             "refId": "A",
             "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.Fragment_Create_Time__Max, 1)",
             "textEditor": true
@@ -891,7 +1113,10 @@
         "type": "timeseries"
       },
       {
-        "datasource": null,
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -899,9 +1124,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -910,6 +1139,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -951,21 +1181,28 @@
           "h": 9,
           "w": 12,
           "x": 0,
-          "y": 47
+          "y": 66
         },
         "id": 13,
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "hidden",
-            "placement": "bottom"
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
           },
           "tooltip": {
-            "mode": "multi"
+            "mode": "multi",
+            "sort": "none"
           }
         },
+        "pluginVersion": "11.3.0",
         "targets": [
           {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
             "refId": "A",
             "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.Fragment_Latency_at_Send_-_Average, 1)",
             "textEditor": true
@@ -975,7 +1212,10 @@
         "type": "timeseries"
       },
       {
-        "datasource": null,
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -983,9 +1223,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -994,6 +1238,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -1035,21 +1280,28 @@
           "h": 9,
           "w": 12,
           "x": 12,
-          "y": 47
+          "y": 66
         },
         "id": 7,
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "hidden",
-            "placement": "bottom"
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
           },
           "tooltip": {
-            "mode": "multi"
+            "mode": "multi",
+            "sort": "none"
           }
         },
+        "pluginVersion": "11.3.0",
         "targets": [
           {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
             "refId": "A",
             "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.Fragment_Latency_at_Send_-_Max, 1)",
             "textEditor": true
@@ -1059,9 +1311,9 @@
         "type": "timeseries"
       }
     ],
+    "preload": false,
     "refresh": "10s",
-    "schemaVersion": 30,
-    "style": "dark",
+    "schemaVersion": 40,
     "tags": [],
     "templating": {
       "list": []
@@ -1074,6 +1326,7 @@
     "timezone": "",
     "title": "CAEN 1730 Monitor",
     "uid": "oQy3Tuc4z",
-    "version": 41
+    "version": 51,
+    "weekStart": ""
   }
 }

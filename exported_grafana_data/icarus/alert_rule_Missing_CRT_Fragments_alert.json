@@ -1,14 +1,14 @@
 {
-  "id": 19,
-  "uid": "e4cc9149-c9e0-4714-84c3-882b259d191e",
+  "id": 50,
+  "uid": "cf3umpavm9wqoa",
   "orgID": 1,
-  "folderUID": "ed4ee564-8ea9-4f85-b831-acb760df3ac2",
-  "ruleGroup": "NoDataGroup1",
-  "title": "NoData Alert",
+  "folderUID": "fffc36fa-f756-4904-885b-60cd4436c9ff",
+  "ruleGroup": "Missing CRT Fragments alert",
+  "title": "Missing CRT Fragments alert",
   "condition": "B",
   "data": [
     {
-      "refId": "A",
+      "refId": "Missing fragments",
       "queryType": "",
       "relativeTimeRange": {
         "from": 300,
@@ -20,18 +20,17 @@
           "type": "graphite",
           "uid": "PED8062B0600A9C35"
         },
-        "hide": false,
         "intervalMs": 1000,
         "maxDataPoints": 43200,
-        "refId": "A",
-        "target": "icarus.tpcee01t.BoardReader.*.Temp.*.Temp1"
+        "refId": "Missing fragments",
+        "target": "sumSeries(transformNull(keepLastValue(removeBelowValue(icarus.evb*.EventBuilder*_art*.EventsWithEmptyFragmentsOnCRT, 1), 10), 0))"
       }
     },
     {
       "refId": "B",
       "queryType": "",
       "relativeTimeRange": {
-        "from": 600,
+        "from": 0,
         "to": 0
       },
       "datasourceUid": "__expr__",
@@ -40,32 +39,24 @@
           {
             "evaluator": {
               "params": [
-                0,
-                0
+                100
               ],
-              "type": "no_value"
+              "type": "gt"
             },
             "operator": {
               "type": "and"
             },
             "query": {
               "params": [
-                "A"
+                "Missing fragments"
               ]
             },
             "reducer": {
               "params": [],
               "type": "last"
-            },
-            "type": "query"
+            }
           }
         ],
-        "datasource": {
-          "name": "Expression",
-          "type": "__expr__",
-          "uid": "__expr__"
-        },
-        "expression": "",
         "intervalMs": 1000,
         "maxDataPoints": 43200,
         "refId": "B",
@@ -73,17 +64,21 @@
       }
     }
   ],
-  "updated": "2023-09-26T21:51:48Z",
-  "noDataState": "OK",
+  "updated": "2025-11-12T00:34:00Z",
+  "noDataState": "NoData",
   "execErrState": "Error",
-  "for": "5m",
+  "for": "1m",
   "keep_firing_for": "0s",
   "annotations": {
-    "__dashboardUid__": "NgqXg334l",
-    "__panelId__": "59"
+    "__alertId__": "7",
+    "__dashboardUid__": "b3ZIF6Znz",
+    "__panelId__": "15",
+    "description": "CRT Missing fragments reported above 100.",
+    "summary": "CRT Missing fragments are >100 !!"
   },
   "labels": {
-    "__contacts__": "\"ICARUS Test NoData Alerts\""
+    "__contacts__": "\"PMT Expert channel\"",
+    "rule_uid": "a63d767c-dda2-40ed-9244-50b3cdd873dc"
   },
   "isPaused": false,
   "notification_settings": null,
