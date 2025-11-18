@@ -119,6 +119,7 @@
   "noDataState": "NoData",
   "execErrState": "Error",
   "for": "15m",
+  "keep_firing_for": "0s",
   "annotations": {
     "description": "Alert if no run is ongoing"
   },

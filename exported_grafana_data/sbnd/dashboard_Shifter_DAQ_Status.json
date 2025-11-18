@@ -10,12 +10,13 @@
     "url": "/d/hNjxNryWk/shifter-daq-status",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2022-05-13T21:07:30Z",
-    "updated": "2025-02-27T02:00:38Z",
+    "updated": "2025-11-01T06:59:39Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 156,
+    "version": 201,
     "hasAcl": false,
     "isFolder": false,
+    "apiVersion": "v0alpha1",
     "folderId": 0,
     "folderUid": "",
     "folderTitle": "General",
@@ -66,6 +67,19 @@
     "links": [],
     "panels": [
       {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 69,
+        "panels": [],
+        "title": "Summary",
+        "type": "row"
+      },
+      {
         "cacheTimeout": "240",
         "datasource": {
           "type": "graphite",
@@ -83,7 +97,7 @@
               "steps": [
                 {
                   "color": "red",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "green",
@@ -98,7 +112,7 @@
           "h": 5,
           "w": 24,
           "x": 0,
-          "y": 0
+          "y": 1
         },
         "hideTimeOverride": true,
         "id": 65,
@@ -119,7 +133,7 @@
           "textMode": "auto",
           "wideLayout": true
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -134,19 +148,6 @@
         "timeFrom": "5m",
         "title": "Current Event Number",
         "type": "stat"
-      },
-      {
-        "collapsed": false,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 5
-        },
-        "id": 69,
-        "panels": [],
-        "title": "Summary",
-        "type": "row"
       },
       {
         "datasource": {
@@ -174,7 +175,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -212,7 +213,7 @@
           "textMode": "auto",
           "wideLayout": true
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -248,7 +249,7 @@
               "steps": [
                 {
                   "color": "red",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "green",
@@ -256,11 +257,11 @@
                 },
                 {
                   "color": "yellow",
-                  "value": 10
+                  "value": 12
                 },
                 {
                   "color": "orange",
-                  "value": 12
+                  "value": 15
                 }
               ]
             }
@@ -279,7 +280,7 @@
                     "steps": [
                       {
                         "color": "red",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "green",
@@ -319,7 +320,7 @@
           "sizing": "auto",
           "text": {}
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -403,11 +404,22 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
+            "hide": true,
+            "refCount": 0,
+            "refId": "H",
+            "target": "alias(sumSeries(keepLastValue(sbnd.evb*.*.Event_Rate, 10)), 'EventBuilder Event Rate')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
             "hide": false,
             "refCount": 0,
             "refId": "total event rate",
-            "target": "alias(sumSeries(#A, #B, #C, #E, #F, #G), 'Total Event Rate')",
-            "targetFull": "alias(sumSeries(alias(keepLastValue(sumSeries(keepLastValue(sbnd.evb01.*.Event_Rate, 10)), 10), 'EventBuilder1 Event Rate'), alias(sumSeries(keepLastValue(sbnd.evb02.*.Event_Rate, 10)), 'EventBuilder2 Event Rate'), alias(sumSeries(keepLastValue(sbnd.evb03.*.Event_Rate, 10)), 'EventBuilder3 Event Rate'), alias(sumSeries(keepLastValue(sbnd.evb05.*.Event_Rate, 10)), 'EventBuilder5 Event Rate'), alias(sumSeries(keepLastValue(sbnd.evb06.*.Event_Rate, 10)), 'EventBuilder6 Event Rate'), alias(sumSeries(keepLastValue(sbnd.evb07.*.Event_Rate, 10)), 'EventBuilder7 Event Rate')), 'Total Event Rate')",
+            "target": "alias(diffSeries(sumSeries(#H)), 'Total Event Rate')",
+            "targetFull": "alias(diffSeries(sumSeries(alias(sumSeries(keepLastValue(sbnd.evb*.*.Event_Rate, 10)), 'EventBuilder Event Rate'))), 'Total Event Rate')",
             "textEditor": false
           },
           {
@@ -473,11 +485,12 @@
             "values": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -598,7 +611,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -625,11 +638,12 @@
             "showLegend": true
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -728,7 +742,7 @@
               "steps": [
                 {
                   "color": "transparent",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "dark-green",
@@ -769,7 +783,7 @@
           "textMode": "auto",
           "wideLayout": true
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -815,101 +829,143 @@
         "fieldConfig": {
           "defaults": {
             "color": {
-              "mode": "palette-classic"
+              "mode": "thresholds"
             },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "axisSoftMin": 0,
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "decimals": 1,
+            "displayName": "${__series.name}",
+            "links": [],
             "mappings": [],
+            "max": 100000,
+            "min": 0,
             "thresholds": {
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green",
-                  "value": null
-                },
-                {
                   "color": "red",
-                  "value": 80
+                  "value": 0
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Change in rate"
+              },
+              "properties": [
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      },
+                      {
+                        "color": "#EAB839",
+                        "value": -1000.0007
+                      },
+                      {
+                        "color": "green",
+                        "value": -999
+                      },
+                      {
+                        "color": "green",
+                        "value": 999
+                      },
+                      {
+                        "color": "red",
+                        "value": 1000
+                      }
+                    ]
+                  }
                 }
               ]
             },
-            "unit": "rothz"
-          },
-          "overrides": []
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Total Low Level  Light Rate"
+              },
+              "properties": [
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      },
+                      {
+                        "color": "#EAB839",
+                        "value": -1000.0002
+                      },
+                      {
+                        "color": "green",
+                        "value": -999
+                      },
+                      {
+                        "color": "green",
+                        "value": 999
+                      },
+                      {
+                        "color": "red",
+                        "value": 80000
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
         },
         "gridPos": {
-          "h": 8,
+          "h": 7,
           "w": 8,
           "x": 4,
           "y": 13
         },
-        "id": 70,
+        "id": 61,
         "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": true
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
           },
-          "tooltip": {
-            "mode": "single",
-            "sort": "none"
-          }
+          "showThresholdLabels": false,
+          "showThresholdMarkers": false,
+          "sizing": "auto",
+          "text": {}
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
-            "refId": "A",
-            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_20_rate, 'Flash LLT rate: MTCA HI')"
+            "refId": "F",
+            "target": "alias(averageSeries(keepLastValue(sbnd.ptb.*.*.PTB_LLT_14_rate, 10)), 'Total Low Level  Light Rate')",
+            "textEditor": false
           },
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
+            "hide": true,
             "refCount": 0,
-            "refId": "C",
-            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_21_rate, 'MTCA MED')"
+            "refId": "A",
+            "target": "alias(averageSeries(keepLastValue(sbnd.ptb.*.*.PTB_HLT_rate, 10)), 'High Level Trigger Rate')",
+            "textEditor": false
           },
           {
             "datasource": {
@@ -919,11 +975,12 @@
             "hide": false,
             "refCount": 0,
             "refId": "B",
-            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_18_rate, 'MTCA LO')"
+            "target": "alias(derivative(sbnd.ptb.BoardReader.8.PTB_LLT_14_rate), 'Change in rate')",
+            "textEditor": true
           }
         ],
-        "title": "PTB  Low Level Light Trigger Rate",
-        "type": "timeseries"
+        "title": "Light Trigger Rates",
+        "type": "gauge"
       },
       {
         "datasource": {
@@ -945,7 +1002,7 @@
               "steps": [
                 {
                   "color": "red",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "green",
@@ -976,7 +1033,7 @@
                     "steps": [
                       {
                         "color": "red",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "green",
@@ -994,7 +1051,7 @@
           ]
         },
         "gridPos": {
-          "h": 8,
+          "h": 7,
           "w": 12,
           "x": 12,
           "y": 13
@@ -1016,7 +1073,7 @@
           "sizing": "auto",
           "text": {}
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -1074,7 +1131,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "green",
@@ -1123,7 +1180,7 @@
           "textMode": "auto",
           "wideLayout": true
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -1179,7 +1236,15 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
+                },
+                {
+                  "color": "dark-red",
+                  "value": 0
+                },
+                {
+                  "color": "dark-green",
+                  "value": ""
                 }
               ]
             },
@@ -1209,7 +1274,7 @@
           "showThresholdMarkers": true,
           "sizing": "auto"
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -1233,183 +1298,102 @@
         "fieldConfig": {
           "defaults": {
             "color": {
-              "mode": "thresholds"
+              "mode": "palette-classic"
             },
-            "displayName": "${__series.name}",
-            "links": [],
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "axisSoftMin": 0,
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "decimals": 1,
             "mappings": [],
-            "max": 10000,
-            "min": 0,
             "thresholds": {
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "red",
-                  "value": null
-                },
-                {
-                  "color": "#F2495C",
-                  "value": 15.9998
-                },
-                {
                   "color": "green",
-                  "value": 1999.9998
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
                 }
               ]
-            }
+            },
+            "unit": "rothz"
           },
-          "overrides": [
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "High Level Trigger Rate"
-              },
-              "properties": [
-                {
-                  "id": "thresholds",
-                  "value": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "red",
-                        "value": null
-                      },
-                      {
-                        "color": "green",
-                        "value": 0.1
-                      },
-                      {
-                        "color": "#EAB839",
-                        "value": 175
-                      },
-                      {
-                        "color": "red",
-                        "value": 240
-                      }
-                    ]
-                  }
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "High Level Trigger Rate"
-              },
-              "properties": [
-                {
-                  "id": "max",
-                  "value": 10
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Change in rate"
-              },
-              "properties": [
-                {
-                  "id": "thresholds",
-                  "value": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": null
-                      },
-                      {
-                        "color": "#EAB839",
-                        "value": -1000.0007
-                      },
-                      {
-                        "color": "green",
-                        "value": -999
-                      },
-                      {
-                        "color": "green",
-                        "value": 999
-                      },
-                      {
-                        "color": "red",
-                        "value": 1000
-                      }
-                    ]
-                  }
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Total Low Level  Light Rate"
-              },
-              "properties": [
-                {
-                  "id": "thresholds",
-                  "value": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": null
-                      },
-                      {
-                        "color": "red",
-                        "value": 40000
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          ]
+          "overrides": []
         },
         "gridPos": {
-          "h": 7,
+          "h": 8,
           "w": 8,
           "x": 4,
-          "y": 21
+          "y": 20
         },
-        "id": 61,
+        "id": 70,
         "options": {
-          "minVizHeight": 75,
-          "minVizWidth": 75,
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "last"
-            ],
-            "fields": "",
-            "values": false
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
           },
-          "showThresholdLabels": false,
-          "showThresholdMarkers": false,
-          "sizing": "auto",
-          "text": {}
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
+            "hide": false,
             "refCount": 0,
-            "refId": "F",
-            "target": "alias(averageSeries(keepLastValue(sbnd.ptb.*.*.PTB_LLT_14_rate, 10)), 'Total Low Level  Light Rate')",
-            "textEditor": false
+            "refId": "A",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_20_rate, 'Flash LLT rate: MTCA HI')"
           },
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": true,
+            "hide": false,
             "refCount": 0,
-            "refId": "A",
-            "target": "alias(averageSeries(keepLastValue(sbnd.ptb.*.*.PTB_HLT_rate, 10)), 'High Level Trigger Rate')",
-            "textEditor": false
+            "refId": "C",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_21_rate, 'Event LLT rate: MTCA MED')"
           },
           {
             "datasource": {
@@ -1419,12 +1403,11 @@
             "hide": false,
             "refCount": 0,
             "refId": "B",
-            "target": "alias(derivative(sbnd.ptb.BoardReader.8.PTB_LLT_14_rate), 'Change in rate')",
-            "textEditor": true
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_18_rate, 'MTCA LO')"
           }
         ],
-        "title": "Light Trigger Rates",
-        "type": "gauge"
+        "title": "PTB  Low Level Light Trigger Rate",
+        "type": "timeseries"
       },
       {
         "datasource": {
@@ -1481,7 +1464,7 @@
               "steps": [
                 {
                   "color": "red",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "green",
@@ -1494,10 +1477,10 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 7,
+          "h": 8,
           "w": 12,
           "x": 12,
-          "y": 21
+          "y": 20
         },
         "id": 71,
         "options": {
@@ -1508,11 +1491,12 @@
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -1612,7 +1596,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 }
               ]
             },
@@ -1642,7 +1626,7 @@
           "showThresholdMarkers": true,
           "sizing": "auto"
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -1685,15 +1669,15 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "orange",
-                  "value": 0.6
+                  "value": 0.5
                 },
                 {
                   "color": "red",
-                  "value": 0.95
+                  "value": 0.75
                 }
               ]
             },
@@ -1702,7 +1686,7 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 6,
+          "h": 5,
           "w": 24,
           "x": 0,
           "y": 28
@@ -1724,7 +1708,7 @@
           "sizing": "auto",
           "text": {}
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -1809,8 +1793,8 @@
             "textEditor": true
           }
         ],
-        "timeFrom": "12h",
-        "title": "/data Usage Monitor",
+        "timeFrom": "359m",
+        "title": "evb:/data Usage Monitor -- Contact sbnd-data-expert",
         "type": "gauge"
       },
       {
@@ -1819,7 +1803,284 @@
           "h": 1,
           "w": 24,
           "x": 0,
+          "y": 33
+        },
+        "id": 80,
+        "panels": [],
+        "title": "SuperNova Monitoring",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "Is tpc15 on and updating",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [
+              {
+                "options": {
+                  "match": "null+nan",
+                  "result": {
+                    "color": "dark-red",
+                    "index": 0,
+                    "text": "OFF"
+                  }
+                },
+                "type": "special"
+              },
+              {
+                "options": {
+                  "match": "empty",
+                  "result": {
+                    "color": "dark-red",
+                    "index": 1,
+                    "text": "OFF"
+                  }
+                },
+                "type": "special"
+              },
+              {
+                "options": {
+                  "from": 0,
+                  "result": {
+                    "color": "dark-green",
+                    "index": 2,
+                    "text": "On"
+                  },
+                  "to": 1
+                },
+                "type": "range"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 4,
+          "x": 0,
           "y": 34
+        },
+        "id": 78,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "refCount": 0,
+            "refId": "A",
+            "target": "aliasByNode(sbnd.sbnd-tpc15.data.Percent_Used, 1)"
+          }
+        ],
+        "title": "TPC15 Status",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "Mean of SN write to disk and DMA count from tpc01-12",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "#C4162A",
+              "mode": "thresholds"
+            },
+            "displayName": "${__series.name}",
+            "links": [],
+            "mappings": [],
+            "max": 15,
+            "min": 0,
+            "noValue": "OFF",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-red",
+                  "value": 0
+                },
+                {
+                  "color": "dark-green",
+                  "value": 1e-06
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 8,
+          "x": 4,
+          "y": 34
+        },
+        "id": 77,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto",
+          "text": {}
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "A",
+            "target": "alias(averageSeries(\n  sbnd.tpc{01,02,03,04,05,06,07,08,09,10,11}.BoardReader.*.SN_WritetoDisk_Count\n), 'SN Write')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(averageSeries(\n  sbnd.tpc{01,02,03,04,05,06,07,08,09,10,11}.BoardReader.*.SN_DMA_Count\n), 'SN DMA')",
+            "textEditor": false
+          }
+        ],
+        "title": "SN Writing",
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "Shows how much of the /data area on tpc is being used.\n\nIt's set to go orange above 60%, meaning take note, and it's set to go red above 95%, meaning alarm.",
+        "fieldConfig": {
+          "defaults": {
+            "decimals": 0,
+            "mappings": [
+              {
+                "options": {
+                  "match": "null",
+                  "result": {
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "max": 1,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "orange",
+                  "value": 0.6
+                },
+                {
+                  "color": "red",
+                  "value": 0.75
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 12,
+          "x": 12,
+          "y": 34
+        },
+        "id": 76,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto",
+          "text": {}
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "aliasByNode(sbnd.sbnd-tpc{01,02,03,04,05,06,07,08,09,10,11,12,15,18}.data.Percent_Used, 1)",
+            "textEditor": true
+          }
+        ],
+        "timeFrom": "359m",
+        "title": "TPC:/data Usage Monitor - Contact sbnd-daq-expertt",
+        "type": "gauge"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 40
         },
         "id": 27,
         "panels": [],
@@ -1834,8 +2095,7 @@
         "fieldConfig": {
           "defaults": {
             "color": {
-              "fixedColor": "purple",
-              "mode": "fixed"
+              "mode": "palette-classic"
             },
             "custom": {
               "axisBorderShow": false,
@@ -1843,16 +2103,28 @@
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
-              "fillOpacity": 80,
-              "gradientMode": "none",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "bars",
+              "fillOpacity": 100,
+              "gradientMode": "hue",
               "hideFrom": {
                 "legend": false,
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
               "lineWidth": 1,
+              "pointSize": 5,
               "scaleDistribution": {
                 "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
               },
               "thresholdsStyle": {
                 "mode": "off"
@@ -1864,7 +2136,11 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
                 }
               ]
             }
@@ -1875,32 +2151,23 @@
           "h": 10,
           "w": 9,
           "x": 0,
-          "y": 35
+          "y": 41
         },
         "id": 64,
         "options": {
-          "barRadius": 0,
-          "barWidth": 1,
-          "fullHighlight": false,
-          "groupWidth": 0.7,
           "legend": {
             "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": true
+            "displayMode": "hidden",
+            "placement": "right",
+            "showLegend": false
           },
-          "orientation": "auto",
-          "showValue": "auto",
-          "stacking": "none",
-          "text": {},
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
-          },
-          "xTickLabelRotation": 0,
-          "xTickLabelSpacing": 100
+          }
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -1914,7 +2181,7 @@
         ],
         "timeFrom": "10m",
         "title": "Events current run",
-        "type": "barchart"
+        "type": "timeseries"
       },
       {
         "datasource": {
@@ -1934,7 +2201,7 @@
               "steps": [
                 {
                   "color": "transparent",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "#EAB839",
@@ -1954,7 +2221,7 @@
           "h": 5,
           "w": 15,
           "x": 9,
-          "y": 35
+          "y": 41
         },
         "id": 51,
         "options": {
@@ -1975,7 +2242,7 @@
           "textMode": "auto",
           "wideLayout": true
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -2022,12 +2289,8 @@
         "description": "This shows the number of events collected for this run.",
         "fieldConfig": {
           "defaults": {
-            "custom": {
-              "align": "auto",
-              "cellOptions": {
-                "type": "auto"
-              },
-              "inspect": false
+            "color": {
+              "mode": "thresholds"
             },
             "mappings": [],
             "thresholds": {
@@ -2035,11 +2298,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
+                  "value": 0
                 }
               ]
             }
@@ -2058,9 +2317,6 @@
                 {
                   "id": "unit",
                   "value": "time: YYYY-MM-DD HH:mm:ss"
-                },
-                {
-                  "id": "custom.align"
                 }
               ]
             },
@@ -2077,9 +2333,6 @@
                 {
                   "id": "decimals",
                   "value": 2
-                },
-                {
-                  "id": "custom.align"
                 }
               ]
             }
@@ -2089,22 +2342,27 @@
           "h": 5,
           "w": 7,
           "x": 9,
-          "y": 40
+          "y": 46
         },
         "id": 10,
         "options": {
-          "cellHeight": "sm",
-          "footer": {
-            "countRows": false,
-            "fields": "",
-            "reducer": [
-              "sum"
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
             ],
-            "show": false
+            "fields": "",
+            "values": false
           },
-          "showHeader": true
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "hide": false,
@@ -2129,7 +2387,7 @@
           }
         ],
         "title": "Events Released To Art From This Run",
-        "type": "table"
+        "type": "stat"
       },
       {
         "datasource": {
@@ -2139,11 +2397,8 @@
         "description": "In the ideal case, there are no incomplete events. If you start seeing incomplete events, make note of this in the ECL!",
         "fieldConfig": {
           "defaults": {
-            "custom": {
-              "cellOptions": {
-                "type": "color-background"
-              },
-              "inspect": false
+            "color": {
+              "mode": "thresholds"
             },
             "decimals": 2,
             "displayName": "",
@@ -2153,7 +2408,7 @@
               "steps": [
                 {
                   "color": "rgb(0, 0, 0)",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "#F2495C",
@@ -2177,9 +2432,6 @@
                 {
                   "id": "unit",
                   "value": "time: YYYY-MM-DD HH:mm:ss"
-                },
-                {
-                  "id": "custom.align"
                 }
               ]
             }
@@ -2189,22 +2441,27 @@
           "h": 5,
           "w": 8,
           "x": 16,
-          "y": 40
+          "y": 46
         },
         "id": 12,
         "options": {
-          "cellHeight": "sm",
-          "footer": {
-            "countRows": false,
-            "fields": "",
-            "reducer": [
-              "sum"
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
             ],
-            "show": false
+            "fields": "",
+            "values": false
           },
-          "showHeader": true
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "hide": false,
@@ -2229,7 +2486,7 @@
           }
         ],
         "title": "Incomplete Events Released To Art From This Run",
-        "type": "table"
+        "type": "stat"
       },
       {
         "datasource": {
@@ -2248,7 +2505,7 @@
               "steps": [
                 {
                   "color": "red",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "green",
@@ -2263,7 +2520,7 @@
           "h": 5,
           "w": 4,
           "x": 0,
-          "y": 45
+          "y": 51
         },
         "id": 74,
         "options": {
@@ -2281,7 +2538,7 @@
           "showThresholdMarkers": true,
           "sizing": "auto"
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -2316,7 +2573,7 @@
               "steps": [
                 {
                   "color": "red",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "green",
@@ -2347,7 +2604,7 @@
                     "steps": [
                       {
                         "color": "red",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "green",
@@ -2375,7 +2632,7 @@
                     "steps": [
                       {
                         "color": "red",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "green",
@@ -2407,7 +2664,7 @@
                     "steps": [
                       {
                         "color": "red",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "green",
@@ -2432,7 +2689,7 @@
           "h": 5,
           "w": 20,
           "x": 4,
-          "y": 45
+          "y": 51
         },
         "id": 2,
         "options": {
@@ -2451,7 +2708,7 @@
           "sizing": "auto",
           "text": {}
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -2585,7 +2842,7 @@
               "steps": [
                 {
                   "color": "red",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "green",
@@ -2638,10 +2895,10 @@
           ]
         },
         "gridPos": {
-          "h": 3,
+          "h": 4,
           "w": 24,
           "x": 0,
-          "y": 50
+          "y": 56
         },
         "id": 73,
         "options": {
@@ -2652,11 +2909,12 @@
             "showLegend": true
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -2715,7 +2973,7 @@
               "steps": [
                 {
                   "color": "red",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "green",
@@ -2746,7 +3004,7 @@
                     "steps": [
                       {
                         "color": "red",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "green",
@@ -2767,7 +3025,7 @@
           "h": 5,
           "w": 17,
           "x": 0,
-          "y": 53
+          "y": 60
         },
         "id": 45,
         "options": {
@@ -2786,7 +3044,7 @@
           "sizing": "auto",
           "text": {}
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -2911,7 +3169,7 @@
               "steps": [
                 {
                   "color": "red",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "green",
@@ -2942,7 +3200,7 @@
                     "steps": [
                       {
                         "color": "red",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "green",
@@ -2963,7 +3221,7 @@
           "h": 5,
           "w": 7,
           "x": 17,
-          "y": 53
+          "y": 60
         },
         "id": 72,
         "options": {
@@ -2982,7 +3240,7 @@
           "sizing": "auto",
           "text": {}
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -3059,7 +3317,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 58
+          "y": 65
         },
         "id": 50,
         "panels": [],
@@ -3116,7 +3374,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 }
               ]
             },
@@ -3128,7 +3386,7 @@
           "h": 8,
           "w": 12,
           "x": 0,
-          "y": 59
+          "y": 66
         },
         "id": 46,
         "options": {
@@ -3139,11 +3397,12 @@
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -3208,7 +3467,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 }
               ]
             },
@@ -3220,7 +3479,7 @@
           "h": 7,
           "w": 12,
           "x": 12,
-          "y": 59
+          "y": 66
         },
         "id": 66,
         "options": {
@@ -3231,11 +3490,12 @@
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -3301,7 +3561,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 }
               ]
             },
@@ -3313,7 +3573,7 @@
           "h": 8,
           "w": 12,
           "x": 12,
-          "y": 66
+          "y": 73
         },
         "id": 49,
         "options": {
@@ -3324,11 +3584,12 @@
             "showLegend": true
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -3443,7 +3704,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 }
               ]
             },
@@ -3455,7 +3716,7 @@
           "h": 8,
           "w": 12,
           "x": 0,
-          "y": 67
+          "y": 74
         },
         "id": 48,
         "options": {
@@ -3466,11 +3727,12 @@
             "showLegend": true
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -3594,7 +3856,7 @@
               "steps": [
                 {
                   "color": "transparent",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "#EAB839",
@@ -3614,7 +3876,7 @@
           "h": 8,
           "w": 12,
           "x": 12,
-          "y": 74
+          "y": 81
         },
         "id": 62,
         "options": {
@@ -3625,11 +3887,12 @@
             "showLegend": true
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -3719,7 +3982,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -3735,7 +3998,7 @@
           "h": 7,
           "w": 12,
           "x": 0,
-          "y": 75
+          "y": 82
         },
         "id": 58,
         "options": {
@@ -3746,11 +4009,12 @@
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -3777,11 +4041,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -3790,6 +4056,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -3813,7 +4080,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green"
+                  "color": "green",
+                  "value": 0
                 }
               ]
             },
@@ -3864,6 +4132,30 @@
                   }
                 }
               ]
+            },
+            {
+              "__systemRef": "hideSeriesFrom",
+              "matcher": {
+                "id": "byNames",
+                "options": {
+                  "mode": "exclude",
+                  "names": [
+                    "Total"
+                  ],
+                  "prefix": "All except:",
+                  "readOnly": true
+                }
+              },
+              "properties": [
+                {
+                  "id": "custom.hideFrom",
+                  "value": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": true
+                  }
+                }
+              ]
             }
           ]
         },
@@ -3871,7 +4163,7 @@
           "h": 8,
           "w": 12,
           "x": 0,
-          "y": 82
+          "y": 89
         },
         "id": 59,
         "options": {
@@ -3882,11 +4174,12 @@
             "showLegend": true
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -3990,11 +4283,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -4003,6 +4298,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -4025,7 +4321,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "transparent"
+                  "color": "transparent",
+                  "value": 0
                 },
                 {
                   "color": "#EAB839",
@@ -4045,7 +4342,7 @@
           "h": 8,
           "w": 12,
           "x": 12,
-          "y": 82
+          "y": 89
         },
         "id": 57,
         "options": {
@@ -4056,11 +4353,12 @@
             "showLegend": true
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -4097,11 +4395,253 @@
         ],
         "title": "All Evb Missing/Empty fragments ",
         "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "Total Data Rate from a Board Reader Subsystem",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "log": 10,
+                "type": "symlog"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                }
+              ]
+            },
+            "unit": "decbytes"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "tdc*"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "purple",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Total"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "text",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "xarapuca*"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "dark-green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "__systemRef": "hideSeriesFrom",
+              "matcher": {
+                "id": "byNames",
+                "options": {
+                  "mode": "exclude",
+                  "names": [
+                    "pmt*"
+                  ],
+                  "prefix": "All except:",
+                  "readOnly": true
+                }
+              },
+              "properties": [
+                {
+                  "id": "custom.hideFrom",
+                  "value": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 97
+        },
+        "id": 75,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "G",
+            "target": "alias(sumSeries(sbnd.*.BoardReader.*.Fragment_Rate), 'Total')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "aliasByNode(sumSeries(sbnd.crt*.BoardReader.*.Data_Rate), 1)"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "aliasByNode(sumSeries(sbnd.pmt*.BoardReader.*.Data_Rate), 1)",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "aliasByNode(sumSeries(sbnd.tpc*.BoardReader.*.Data_Rate), 1)",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "D",
+            "target": "aliasByNode(sumSeries(sbnd.ntb*.BoardReader.*.Data_Rate), 1)",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "E",
+            "target": "aliasByNode(sumSeries(sbnd.ptb*.BoardReader.*.Data_Rate), 1)",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "F",
+            "target": "aliasByNode(sumSeries(sbnd.tdc*.BoardReader.*.Data_Rate), 1)",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "H",
+            "target": "aliasByNode(sumSeries(sbnd.xarapuca*.BoardReader.*.Data_Rate), 1)",
+            "textEditor": true
+          }
+        ],
+        "title": "BoardReader Data Rate",
+        "type": "timeseries"
       }
     ],
     "preload": false,
     "refresh": "10s",
-    "schemaVersion": 40,
+    "schemaVersion": 41,
     "tags": [],
     "templating": {
       "list": []
@@ -4114,7 +4654,6 @@
     "timezone": "",
     "title": "Shifter DAQ Status",
     "uid": "hNjxNryWk",
-    "version": 156,
-    "weekStart": ""
+    "version": 201
   }
 }

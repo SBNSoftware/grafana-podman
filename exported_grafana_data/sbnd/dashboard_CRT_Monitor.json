@@ -10,12 +10,13 @@
     "url": "/d/F_iqbmj7k/crt-monitor",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2022-06-07T19:36:13Z",
-    "updated": "2025-01-03T09:27:55Z",
+    "updated": "2025-10-08T08:14:00Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 234,
+    "version": 235,
     "hasAcl": false,
     "isFolder": false,
+    "apiVersion": "v0alpha1",
     "folderId": 0,
     "folderUid": "",
     "folderTitle": "General",
@@ -64,7 +65,6 @@
     "graphTooltip": 0,
     "id": 3,
     "links": [],
-    "liveNow": false,
     "panels": [
       {
         "collapsed": false,
@@ -107,7 +107,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -127,13 +127,13 @@
         },
         "hideTimeOverride": true,
         "id": 160,
-        "links": [],
         "maxDataPoints": 500,
         "options": {
           "colorMode": "none",
           "graphMode": "none",
           "justifyMode": "auto",
           "orientation": "horizontal",
+          "percentChangeColorMode": "standard",
           "reduceOptions": {
             "calcs": [
               "lastNotNull"
@@ -141,10 +141,12 @@
             "fields": "/^sbnd\\.partition2\\.run_number$/",
             "values": false
           },
+          "showPercentChange": false,
           "text": {},
-          "textMode": "auto"
+          "textMode": "auto",
+          "wideLayout": true
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -181,7 +183,7 @@
               "steps": [
                 {
                   "color": "red",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "green",
@@ -201,6 +203,8 @@
         "id": 2,
         "maxDataPoints": 1000,
         "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
           "orientation": "auto",
           "reduceOptions": {
             "calcs": [],
@@ -209,9 +213,10 @@
           },
           "showThresholdLabels": false,
           "showThresholdMarkers": true,
+          "sizing": "auto",
           "text": {}
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -226,7 +231,6 @@
           }
         ],
         "title": "Fragment Rate",
-        "transformations": [],
         "transparent": true,
         "type": "gauge"
       },
@@ -257,7 +261,7 @@
               "steps": [
                 {
                   "color": "transparent",
-                  "value": null
+                  "value": 0
                 }
               ]
             }
@@ -334,7 +338,6 @@
           "y": 1
         },
         "id": 10,
-        "links": [],
         "options": {
           "cellHeight": "sm",
           "footer": {
@@ -348,7 +351,7 @@
           "showHeader": true,
           "sortBy": []
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -502,7 +505,7 @@
               "steps": [
                 {
                   "color": "rgb(0, 0, 0)",
-                  "value": null
+                  "value": 0
                 }
               ]
             },
@@ -561,7 +564,6 @@
           "y": 1
         },
         "id": 12,
-        "links": [],
         "options": {
           "cellHeight": "sm",
           "footer": {
@@ -580,7 +582,7 @@
             }
           ]
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -653,12 +655,14 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "axisSoftMin": 0,
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -667,6 +671,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -690,7 +695,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -717,10 +722,12 @@
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "multi",
             "sort": "none"
           }
         },
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -748,12 +755,14 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "axisSoftMin": 0,
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -762,6 +771,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -785,7 +795,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -812,10 +822,12 @@
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "multi",
             "sort": "none"
           }
         },
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -842,11 +854,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -855,6 +869,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -877,7 +892,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -903,10 +918,12 @@
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -932,11 +949,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -945,6 +964,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -967,7 +987,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -993,10 +1013,12 @@
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -1038,7 +1060,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "orange",
@@ -1061,8 +1083,9 @@
           "y": 15
         },
         "id": 165,
-        "links": [],
         "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
           "orientation": "vertical",
           "reduceOptions": {
             "calcs": [
@@ -1073,9 +1096,10 @@
           },
           "showThresholdLabels": false,
           "showThresholdMarkers": true,
+          "sizing": "auto",
           "text": {}
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -1486,7 +1510,6 @@
               }
             ],
             "title": "CRT Hits Per Plane During Beam Spill",
-            "transformations": [],
             "type": "timeseries"
           },
           {
@@ -2324,11 +2347,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -2337,6 +2362,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -2359,7 +2385,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -2385,10 +2411,12 @@
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -2414,11 +2442,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -2427,6 +2457,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -2449,7 +2480,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -2475,10 +2506,12 @@
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -2504,11 +2537,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -2517,6 +2552,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -2539,7 +2575,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -2565,10 +2601,12 @@
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -2594,11 +2632,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -2607,6 +2647,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -2629,7 +2670,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -2655,10 +2696,12 @@
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -2684,11 +2727,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -2697,6 +2742,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -2719,7 +2765,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -2745,10 +2791,12 @@
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -2774,11 +2822,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -2787,6 +2837,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -2809,7 +2860,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -2835,10 +2886,12 @@
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -2864,11 +2917,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -2877,6 +2932,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -2899,7 +2955,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -2925,19 +2981,32 @@
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
+            "refCount": 0,
             "refId": "A",
             "target": "currentAbove(aliasByNode(sbnd.crtflat*.BoardReader.*.feb_hit_rate_Hz_*, 1, 4), -1)",
             "textEditor": false
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "currentAbove(aliasByNode(sbnd.crtminos*.BoardReader.*.feb_hit_rate_Hz_*, 1, 4), -1)"
           }
         ],
         "title": "Flat FEB Hit Rate (Hz)",
@@ -2955,11 +3024,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -2968,6 +3039,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -2990,7 +3062,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -3016,10 +3088,12 @@
             "showLegend": true
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -3701,7 +3775,7 @@
               "steps": [
                 {
                   "color": "red",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "green",
@@ -3720,6 +3794,8 @@
         },
         "id": 148,
         "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
           "orientation": "auto",
           "reduceOptions": {
             "calcs": [
@@ -3729,9 +3805,10 @@
             "values": false
           },
           "showThresholdLabels": false,
-          "showThresholdMarkers": true
+          "showThresholdMarkers": true,
+          "sizing": "auto"
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -3744,7 +3821,6 @@
           }
         ],
         "title": "Golden Neutrino Stream Rate ",
-        "transformations": [],
         "type": "gauge"
       },
       {
@@ -3758,11 +3834,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -3771,6 +3849,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -3793,7 +3872,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -3819,10 +3898,12 @@
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -3855,11 +3936,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -3868,6 +3951,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -3890,7 +3974,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -3916,11 +4000,12 @@
             "showLegend": true
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -4012,7 +4097,6 @@
           }
         ],
         "title": "CRT Hits Per Plane During Beam Spill",
-        "transformations": [],
         "type": "timeseries"
       },
       {
@@ -4027,11 +4111,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -4040,6 +4126,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -4062,7 +4149,7 @@
               "steps": [
                 {
                   "color": "red",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "green",
@@ -4088,11 +4175,12 @@
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -4105,7 +4193,6 @@
           }
         ],
         "title": "Golden Neutrino Stream Rate ",
-        "transformations": [],
         "type": "timeseries"
       },
       {
@@ -4129,7 +4216,11 @@
                 "tooltip": false,
                 "viz": false
               },
-              "lineWidth": 1
+              "lineWidth": 1,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              }
             },
             "mappings": [],
             "max": 1580000,
@@ -4139,7 +4230,7 @@
               "steps": [
                 {
                   "color": "transparent",
-                  "value": null
+                  "value": 0
                 }
               ]
             },
@@ -4165,9 +4256,14 @@
             "displayMode": "list",
             "placement": "bottom",
             "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
           }
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -4183,7 +4279,6 @@
         ],
         "timeFrom": "24h",
         "title": "CRT Hits During Beam Spill T1 Time",
-        "transformations": [],
         "type": "histogram"
       },
       {
@@ -5119,7 +5214,6 @@
               "y": 56
             },
             "id": 18,
-            "links": [],
             "options": {
               "orientation": "vertical",
               "reduceOptions": {
@@ -5381,10 +5475,9 @@
         "type": "row"
       }
     ],
+    "preload": false,
     "refresh": "10s",
-    "revision": 1,
-    "schemaVersion": 38,
-    "style": "dark",
+    "schemaVersion": 41,
     "tags": [],
     "templating": {
       "list": []
@@ -5393,24 +5486,10 @@
       "from": "now-6h",
       "to": "now"
     },
-    "timepicker": {
-      "refresh_intervals": [
-        "5s",
-        "10s",
-        "30s",
-        "1m",
-        "5m",
-        "15m",
-        "30m",
-        "1h",
-        "2h",
-        "1d"
-      ]
-    },
+    "timepicker": {},
     "timezone": "America/Chicago",
     "title": "CRT Monitor",
     "uid": "F_iqbmj7k",
-    "version": 234,
-    "weekStart": ""
+    "version": 235
   }
 }

@@ -115,6 +115,7 @@
   "noDataState": "NoData",
   "execErrState": "Error",
   "for": "2m",
+  "keep_firing_for": "0s",
   "annotations": {
     "__dashboardUid__": "hNjxNryWk",
     "__panelId__": "61",

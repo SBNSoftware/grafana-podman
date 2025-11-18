@@ -10,12 +10,13 @@
     "url": "/d/fdea6696-77ba-4f62-9617-68e4635ce4eb/pmt-monitoring",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2023-10-17T21:22:58Z",
-    "updated": "2024-12-13T00:31:39Z",
+    "updated": "2025-10-31T18:54:18Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 43,
+    "version": 57,
     "hasAcl": false,
     "isFolder": false,
+    "apiVersion": "v0alpha1",
     "folderId": 0,
     "folderUid": "",
     "folderTitle": "General",
@@ -57,7 +58,6 @@
     "graphTooltip": 0,
     "id": 10,
     "links": [],
-    "liveNow": false,
     "panels": [
       {
         "collapsed": false,
@@ -100,7 +100,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -120,13 +120,13 @@
         },
         "hideTimeOverride": true,
         "id": 31,
-        "links": [],
         "maxDataPoints": 500,
         "options": {
           "colorMode": "none",
           "graphMode": "none",
           "justifyMode": "auto",
           "orientation": "vertical",
+          "percentChangeColorMode": "standard",
           "reduceOptions": {
             "calcs": [
               "lastNotNull"
@@ -134,10 +134,12 @@
             "fields": "/^sbnd\\.partition6\\.run_number$/",
             "values": false
           },
+          "showPercentChange": false,
           "text": {},
-          "textMode": "auto"
+          "textMode": "auto",
+          "wideLayout": true
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -146,7 +148,7 @@
             },
             "refCount": 0,
             "refId": "A",
-            "target": "sbnd.partition5.run_number"
+            "target": "sbnd.partition1.run_number"
           }
         ],
         "timeFrom": "24h",
@@ -169,7 +171,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -188,6 +190,8 @@
         },
         "id": 4,
         "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
           "orientation": "auto",
           "reduceOptions": {
             "calcs": [
@@ -197,9 +201,10 @@
             "values": false
           },
           "showThresholdLabels": false,
-          "showThresholdMarkers": true
+          "showThresholdMarkers": true,
+          "sizing": "auto"
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -225,7 +230,8 @@
           "name": "TDC Sample Rate",
           "uid": "c271b987-3954-460b-ba8c-6aba4a4ad09d"
         },
-        "title": "TDC Sample Rate"
+        "title": "TDC Sample Rate",
+        "type": "library-panel-ref"
       },
       {
         "datasource": {
@@ -246,7 +252,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "dark-red",
@@ -266,6 +272,8 @@
         "id": 39,
         "maxDataPoints": 1000,
         "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
           "orientation": "auto",
           "reduceOptions": {
             "calcs": [],
@@ -274,9 +282,10 @@
           },
           "showThresholdLabels": false,
           "showThresholdMarkers": true,
+          "sizing": "auto",
           "text": {}
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -303,11 +312,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -316,6 +327,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -338,7 +350,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -364,10 +376,12 @@
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "multi",
             "sort": "none"
           }
         },
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -393,7 +407,8 @@
           "name": "Empty Fragments",
           "uid": "d6c4db28-155e-4ec7-bbf0-6a892538d195"
         },
-        "title": "Empty Fragments"
+        "title": "Empty Fragments",
+        "type": "library-panel-ref"
       },
       {
         "gridPos": {
@@ -407,7 +422,8 @@
           "name": "Missing Fragments",
           "uid": "fe3debcc-0bcf-4446-9477-779cb28e4557"
         },
-        "title": "Missing Fragments"
+        "title": "Missing Fragments",
+        "type": "library-panel-ref"
       },
       {
         "gridPos": {
@@ -421,7 +437,8 @@
           "name": "Fragment Watcher",
           "uid": "e5fecf22-78dd-4be4-9f64-807303c4b9d5"
         },
-        "title": "Fragment Watcher"
+        "title": "Fragment Watcher",
+        "type": "library-panel-ref"
       },
       {
         "collapsed": false,
@@ -452,7 +469,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "#EAB839",
@@ -471,6 +488,8 @@
         },
         "id": 33,
         "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
           "orientation": "auto",
           "reduceOptions": {
             "calcs": [
@@ -480,9 +499,10 @@
             "values": false
           },
           "showThresholdLabels": false,
-          "showThresholdMarkers": true
+          "showThresholdMarkers": true,
+          "sizing": "auto"
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -508,11 +528,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -521,6 +543,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -543,7 +566,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -570,18 +593,21 @@
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "multi",
             "sort": "none"
           }
         },
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
+            "refCount": 0,
             "refId": "A",
-            "target": "sbnd.pmtx0*.BoardReader.*.Data_Rate"
+            "target": "sbnd.pmt0*.BoardReader.*.Data_Rate"
           }
         ],
         "title": "Data Rate",
@@ -599,7 +625,14 @@
               "mode": "thresholds"
             },
             "custom": {
+              "axisPlacement": "auto",
               "fillOpacity": 70,
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
               "lineWidth": 0,
               "spanNulls": false
             },
@@ -609,7 +642,7 @@
               "steps": [
                 {
                   "color": "transparent",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "dark-blue",
@@ -675,10 +708,12 @@
           "rowHeight": 0.9,
           "showValue": "never",
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
@@ -704,11 +739,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -717,6 +754,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -739,7 +777,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -766,18 +804,21 @@
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "multi",
             "sort": "none"
           }
         },
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
+            "refCount": 0,
             "refId": "A",
-            "target": "sbnd.pmtx0*.BoardReader.*.Average_Fragment_Size"
+            "target": "sbnd.pmt0*.BoardReader.*.Average_Fragment_Size"
           }
         ],
         "title": "Average Fragment Size",
@@ -790,224 +831,6 @@
           "w": 24,
           "x": 0,
           "y": 33
-        },
-        "id": 17,
-        "panels": [],
-        "title": "Event Builder Monitoring",
-        "type": "row"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "custom": {
-              "fillOpacity": 70,
-              "lineWidth": 0,
-              "spanNulls": false
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "transparent",
-                  "value": null
-                },
-                {
-                  "color": "green",
-                  "value": 0
-                },
-                {
-                  "color": "yellow",
-                  "value": 5
-                },
-                {
-                  "color": "orange",
-                  "value": 10
-                },
-                {
-                  "color": "red",
-                  "value": 20
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 7,
-          "w": 11,
-          "x": 0,
-          "y": 34
-        },
-        "id": 25,
-        "options": {
-          "alignValue": "left",
-          "legend": {
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "mergeValues": true,
-          "rowHeight": 0.9,
-          "showValue": "never",
-          "tooltip": {
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refCount": 0,
-            "refId": "A",
-            "target": "aliasByNode(sortByName(movingAverage(sbnd.evb*.EventBuilder*.Shared_Memory_Pending_Buffers, 1), true), 2)",
-            "textEditor": false
-          }
-        ],
-        "title": "EVB  Pending Buffers",
-        "type": "state-timeline"
-      },
-      {
-        "gridPos": {
-          "h": 7,
-          "w": 13,
-          "x": 11,
-          "y": 34
-        },
-        "id": 27,
-        "libraryPanel": {
-          "name": "EVB  Pending Buffers Time Series",
-          "uid": "a6bff43c-81ea-4f34-8910-8c2b9653f640"
-        },
-        "title": "EVB  Pending Buffers"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "custom": {
-              "fillOpacity": 70,
-              "lineWidth": 0,
-              "spanNulls": false
-            },
-            "decimals": 0,
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "transparent"
-                },
-                {
-                  "color": "dark-green",
-                  "value": 0
-                },
-                {
-                  "color": "green",
-                  "value": 1
-                },
-                {
-                  "color": "light-green",
-                  "value": 10
-                },
-                {
-                  "color": "super-light-green",
-                  "value": 30
-                },
-                {
-                  "color": "#EAB839",
-                  "value": 40
-                },
-                {
-                  "color": "#EF843C",
-                  "value": 60
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            },
-            "unit": "percent"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 7,
-          "w": 11,
-          "x": 0,
-          "y": 41
-        },
-        "id": 29,
-        "options": {
-          "alignValue": "left",
-          "legend": {
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "mergeValues": true,
-          "rowHeight": 0.9,
-          "showValue": "never",
-          "tooltip": {
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "pluginVersion": "8.5.2",
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "sortByName(aliasByNode(keepLastValue(sbnd.evb*.EventBuilder*.Shared_Memory_Full_%, 10), 2), true)",
-            "textEditor": false
-          }
-        ],
-        "title": "EVB Memory Full %",
-        "type": "state-timeline"
-      },
-      {
-        "gridPos": {
-          "h": 7,
-          "w": 13,
-          "x": 11,
-          "y": 41
-        },
-        "id": 23,
-        "libraryPanel": {
-          "name": "EVB  Full Buffers",
-          "uid": "b0f6a53d-2a8e-48bd-8ffa-02e2167a1e91"
-        },
-        "title": "EVB  Full Buffers"
-      },
-      {
-        "collapsed": false,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 48
         },
         "id": 15,
         "panels": [],
@@ -1025,11 +848,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -1038,6 +863,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -1061,7 +887,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green"
+                  "color": "green",
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -1074,10 +901,10 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 8,
-          "w": 5,
+          "h": 11,
+          "w": 11,
           "x": 0,
-          "y": 49
+          "y": 34
         },
         "id": 16,
         "options": {
@@ -1085,25 +912,27 @@
             "calcs": [],
             "displayMode": "list",
             "placement": "bottom",
-            "showLegend": false
+            "showLegend": true
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "multi",
             "sort": "none"
           }
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
+            "refCount": 0,
             "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.*.*.CAENV1730.Card3.*.Temp, 1, 6)"
+            "target": "aliasByNode(sbnd.pmt00.*.40960.Channel*.Temp, 4)"
           }
         ],
-        "title": "Temperature ",
+        "title": "Temperature - Fragment ID 40960",
         "type": "timeseries"
       },
       {
@@ -1117,11 +946,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -1130,6 +961,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -1153,7 +985,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green"
+                  "color": "green",
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -1166,10 +999,10 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 8,
-          "w": 5,
-          "x": 5,
-          "y": 49
+          "h": 11,
+          "w": 13,
+          "x": 11,
+          "y": 34
         },
         "id": 48,
         "options": {
@@ -1177,25 +1010,27 @@
             "calcs": [],
             "displayMode": "list",
             "placement": "bottom",
-            "showLegend": false
+            "showLegend": true
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "multi",
             "sort": "none"
           }
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
+            "refCount": 0,
             "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.*.*.CAENV1730.Card5.*.Temp, 1, 6)"
+            "target": "aliasByNode(sbnd.pmt00.*.40961.Channel*.Temp, 4)"
           }
         ],
-        "title": "Temperature ",
+        "title": "Temperature - Fragment ID 40961",
         "type": "timeseries"
       },
       {
@@ -1209,11 +1044,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -1222,6 +1059,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -1245,7 +1083,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green"
+                  "color": "green",
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -1258,10 +1097,10 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 8,
-          "w": 5,
-          "x": 10,
-          "y": 49
+          "h": 10,
+          "w": 11,
+          "x": 0,
+          "y": 45
         },
         "id": 49,
         "options": {
@@ -1269,25 +1108,27 @@
             "calcs": [],
             "displayMode": "list",
             "placement": "bottom",
-            "showLegend": false
+            "showLegend": true
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "multi",
             "sort": "none"
           }
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
+            "refCount": 0,
             "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.*.*.CAENV1730.Card7.*.Temp, 1, 6)"
+            "target": "aliasByNode(sbnd.pmt00.*.40962.Channel*.Temp, 4)"
           }
         ],
-        "title": "Temperature ",
+        "title": "Temperature - Fragment ID 40962",
         "type": "timeseries"
       },
       {
@@ -1301,11 +1142,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -1314,6 +1157,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -1337,7 +1181,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green"
+                  "color": "green",
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -1350,10 +1195,10 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 8,
-          "w": 5,
-          "x": 15,
-          "y": 49
+          "h": 10,
+          "w": 13,
+          "x": 11,
+          "y": 45
         },
         "id": 50,
         "options": {
@@ -1361,25 +1206,27 @@
             "calcs": [],
             "displayMode": "list",
             "placement": "bottom",
-            "showLegend": false
+            "showLegend": true
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "multi",
             "sort": "none"
           }
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
+            "refCount": 0,
             "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.*.*.CAENV1730.Card9.*.Temp, 1, 6)"
+            "target": "aliasByNode(sbnd.pmt00.*.40963.Channel*.Temp, 4)"
           }
         ],
-        "title": "Temperature ",
+        "title": "Temperature - Fragment ID 40963",
         "type": "timeseries"
       },
       {
@@ -1393,11 +1240,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -1406,6 +1255,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -1429,7 +1279,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green"
+                  "color": "green",
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -1442,10 +1293,10 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 8,
-          "w": 4,
-          "x": 20,
-          "y": 49
+          "h": 10,
+          "w": 11,
+          "x": 0,
+          "y": 55
         },
         "id": 51,
         "options": {
@@ -1453,25 +1304,27 @@
             "calcs": [],
             "displayMode": "list",
             "placement": "bottom",
-            "showLegend": false
+            "showLegend": true
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "multi",
             "sort": "none"
           }
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
+            "refCount": 0,
             "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.*.*.CAENV1730.Card11.*.Temp, 1, 6)"
+            "target": "aliasByNode(sbnd.pmt00.*.40964.Channel*.Temp, 4)"
           }
         ],
-        "title": "Temperature ",
+        "title": "Temperature - Fragment ID 40964",
         "type": "timeseries"
       },
       {
@@ -1485,11 +1338,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -1498,6 +1353,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -1521,7 +1377,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green"
+                  "color": "green",
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -1531,13 +1388,38 @@
             },
             "unit": "celsius"
           },
-          "overrides": []
+          "overrides": [
+            {
+              "__systemRef": "hideSeriesFrom",
+              "matcher": {
+                "id": "byNames",
+                "options": {
+                  "mode": "exclude",
+                  "names": [
+                    "Channel1"
+                  ],
+                  "prefix": "All except:",
+                  "readOnly": true
+                }
+              },
+              "properties": [
+                {
+                  "id": "custom.hideFrom",
+                  "value": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": true
+                  }
+                }
+              ]
+            }
+          ]
         },
         "gridPos": {
-          "h": 8,
-          "w": 5,
-          "x": 0,
-          "y": 57
+          "h": 10,
+          "w": 13,
+          "x": 11,
+          "y": 55
         },
         "id": 52,
         "options": {
@@ -1545,25 +1427,27 @@
             "calcs": [],
             "displayMode": "list",
             "placement": "bottom",
-            "showLegend": false
+            "showLegend": true
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "multi",
             "sort": "none"
           }
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
+            "refCount": 0,
             "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.*.*.CAENV1730.Card13.*.Temp, 1, 6)"
+            "target": "aliasByNode(sbnd.pmt00.*.40965.Channel*.Temp, 4)"
           }
         ],
-        "title": "Temperature ",
+        "title": "Temperature - Fragment ID 40965",
         "type": "timeseries"
       },
       {
@@ -1577,11 +1461,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -1590,6 +1476,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -1613,7 +1500,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green"
+                  "color": "green",
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -1626,10 +1514,10 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 8,
-          "w": 5,
-          "x": 5,
-          "y": 57
+          "h": 10,
+          "w": 11,
+          "x": 0,
+          "y": 65
         },
         "id": 53,
         "options": {
@@ -1637,25 +1525,27 @@
             "calcs": [],
             "displayMode": "list",
             "placement": "bottom",
-            "showLegend": false
+            "showLegend": true
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "multi",
             "sort": "none"
           }
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
+            "refCount": 0,
             "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.*.*.CAENV1730.Card15.*.Temp, 1, 6)"
+            "target": "aliasByNode(sbnd.pmt00.*.40966.Channel*.Temp, 4)"
           }
         ],
-        "title": "Temperature ",
+        "title": "Temperature - Fragment ID 40966",
         "type": "timeseries"
       },
       {
@@ -1669,11 +1559,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -1682,6 +1574,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -1705,7 +1598,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green"
+                  "color": "green",
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -1718,10 +1612,10 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 8,
-          "w": 5,
-          "x": 10,
-          "y": 57
+          "h": 10,
+          "w": 13,
+          "x": 11,
+          "y": 65
         },
         "id": 54,
         "options": {
@@ -1729,25 +1623,27 @@
             "calcs": [],
             "displayMode": "list",
             "placement": "bottom",
-            "showLegend": false
+            "showLegend": true
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "multi",
             "sort": "none"
           }
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
+            "refCount": 0,
             "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.*.*.CAENV1730.Card17.*.Temp, 1, 6)"
+            "target": "aliasByNode(sbnd.pmt00.*.40967.Channel*.Temp, 4)"
           }
         ],
-        "title": "Temperature ",
+        "title": "Temperature - Fragment 40967",
         "type": "timeseries"
       },
       {
@@ -1761,11 +1657,13 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
+              "barWidthFactor": 0.6,
               "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
@@ -1774,6 +1672,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -1797,7 +1696,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green"
+                  "color": "green",
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -1810,10 +1710,10 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 8,
-          "w": 5,
-          "x": 15,
-          "y": 57
+          "h": 9,
+          "w": 11,
+          "x": 0,
+          "y": 75
         },
         "id": 55,
         "options": {
@@ -1824,1665 +1724,30 @@
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "multi",
             "sort": "none"
           }
         },
-        "pluginVersion": "10.0.3",
+        "pluginVersion": "12.1.1",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
+            "refCount": 0,
             "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.*.*.CAENV1730.Card19.*.Temp, 1, 6)"
+            "target": "aliasByNode(sbnd.pmt00.*.40968.Channel*.Temp, 4)"
           }
         ],
-        "title": "Temperature ",
-        "type": "timeseries"
-      },
-      {
-        "collapsed": false,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 65
-        },
-        "id": 56,
-        "panels": [],
-        "title": "Channel Status Monitoring ",
-        "type": "row"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineStyle": {
-                "fill": "solid"
-              },
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green"
-                },
-                {
-                  "color": "red",
-                  "value": 250
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 5,
-          "x": 0,
-          "y": 66
-        },
-        "id": 40,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.*.*.CAENV1730.Card3.*.Status, 1, 6)"
-          }
-        ],
-        "title": " Status",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineStyle": {
-                "fill": "solid"
-              },
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green"
-                },
-                {
-                  "color": "red",
-                  "value": 250
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 5,
-          "x": 5,
-          "y": 66
-        },
-        "id": 41,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.*.*.CAENV1730.Card5.*.Status, 1, 6)"
-          }
-        ],
-        "title": " Status",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineStyle": {
-                "fill": "solid"
-              },
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green"
-                },
-                {
-                  "color": "red",
-                  "value": 250
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 5,
-          "x": 10,
-          "y": 66
-        },
-        "id": 46,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.*.*.CAENV1730.Card7.*.Status, 1, 6)"
-          }
-        ],
-        "title": " Status",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineStyle": {
-                "fill": "solid"
-              },
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green"
-                },
-                {
-                  "color": "red",
-                  "value": 250
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 5,
-          "x": 15,
-          "y": 66
-        },
-        "id": 42,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.*.*.CAENV1730.Card9.*.Status, 1, 6)"
-          }
-        ],
-        "title": " Status",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineStyle": {
-                "fill": "solid"
-              },
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green"
-                },
-                {
-                  "color": "red",
-                  "value": 250
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 4,
-          "x": 20,
-          "y": 66
-        },
-        "id": 43,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.*.*.CAENV1730.Card11.*.Status, 1, 6)"
-          }
-        ],
-        "title": " Status",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineStyle": {
-                "fill": "solid"
-              },
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green"
-                },
-                {
-                  "color": "red",
-                  "value": 250
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 7,
-          "w": 5,
-          "x": 0,
-          "y": 74
-        },
-        "id": 44,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.*.*.CAENV1730.Card13.*.Status, 1, 6)"
-          }
-        ],
-        "title": " Status",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineStyle": {
-                "fill": "solid"
-              },
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green"
-                },
-                {
-                  "color": "red",
-                  "value": 250
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 7,
-          "w": 5,
-          "x": 5,
-          "y": 74
-        },
-        "id": 45,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.*.*.CAENV1730.Card15.*.Status, 1, 6)"
-          }
-        ],
-        "title": " Status",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineStyle": {
-                "fill": "solid"
-              },
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green"
-                },
-                {
-                  "color": "red",
-                  "value": 250
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 7,
-          "w": 5,
-          "x": 10,
-          "y": 74
-        },
-        "id": 47,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.*.*.CAENV1730.Card17.*.Status, 1, 6)"
-          }
-        ],
-        "title": " Status",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineStyle": {
-                "fill": "solid"
-              },
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green"
-                },
-                {
-                  "color": "red",
-                  "value": 250
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 7,
-          "w": 5,
-          "x": 15,
-          "y": 74
-        },
-        "id": 18,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.*.*.CAENV1730.Card19.*.Status, 1, 6)"
-          }
-        ],
-        "title": " Status",
-        "type": "timeseries"
-      },
-      {
-        "collapsed": false,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 81
-        },
-        "id": 57,
-        "panels": [],
-        "title": "Channel Memory Full %",
-        "type": "row"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green"
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 7,
-          "w": 5,
-          "x": 0,
-          "y": 82
-        },
-        "id": 5,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.BoardReader.*.CAENV1730.Card3.*.MemoryFull, 1, 6)"
-          }
-        ],
-        "title": "Memory Full %",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green"
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 7,
-          "w": 5,
-          "x": 5,
-          "y": 82
-        },
-        "id": 58,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.BoardReader.*.CAENV1730.Card5.*.MemoryFull, 1, 6)"
-          }
-        ],
-        "title": "Memory Full %",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green"
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 7,
-          "w": 5,
-          "x": 10,
-          "y": 82
-        },
-        "id": 59,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.BoardReader.*.CAENV1730.Card7.*.MemoryFull, 1, 6)"
-          }
-        ],
-        "title": "Memory Full %",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green"
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 7,
-          "w": 5,
-          "x": 15,
-          "y": 82
-        },
-        "id": 60,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.BoardReader.*.CAENV1730.Card9.*.MemoryFull, 1, 6)"
-          }
-        ],
-        "title": "Memory Full %",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green"
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 7,
-          "w": 4,
-          "x": 20,
-          "y": 82
-        },
-        "id": 62,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.BoardReader.*.CAENV1730.Card11.*.MemoryFull, 1, 6)"
-          }
-        ],
-        "title": "Memory Full %",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green"
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 7,
-          "w": 5,
-          "x": 0,
-          "y": 89
-        },
-        "id": 61,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.BoardReader.*.CAENV1730.Card13.*.MemoryFull, 1, 6)"
-          }
-        ],
-        "title": "Memory Full %",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green"
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 7,
-          "w": 5,
-          "x": 5,
-          "y": 89
-        },
-        "id": 63,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.BoardReader.*.CAENV1730.Card15.*.MemoryFull, 1, 6)"
-          }
-        ],
-        "title": "Memory Full %",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green"
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 7,
-          "w": 5,
-          "x": 10,
-          "y": 89
-        },
-        "id": 64,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.BoardReader.*.CAENV1730.Card17.*.MemoryFull, 1, 6)"
-          }
-        ],
-        "title": "Memory Full %",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green"
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 7,
-          "w": 5,
-          "x": 15,
-          "y": 89
-        },
-        "id": 65,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "aliasByNode(sbnd.pmtx0*.BoardReader.*.CAENV1730.Card19.*.MemoryFull, 1, 6)"
-          }
-        ],
-        "title": "Memory Full %",
+        "title": "Temperature - Fragment ID 40968",
         "type": "timeseries"
       }
     ],
+    "preload": false,
     "refresh": "",
-    "schemaVersion": 38,
-    "style": "dark",
+    "schemaVersion": 41,
     "tags": [],
     "templating": {
       "list": []
@@ -3495,7 +1760,6 @@
     "timezone": "",
     "title": "PMT Monitoring",
     "uid": "fdea6696-77ba-4f62-9617-68e4635ce4eb",
-    "version": 43,
-    "weekStart": ""
+    "version": 57
   }
 }

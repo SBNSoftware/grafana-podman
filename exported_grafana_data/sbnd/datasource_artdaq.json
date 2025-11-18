@@ -5,7 +5,7 @@
   "name": "artdaq",
   "type": "graphite",
   "typeName": "Graphite",
-  "typeLogoUrl": "public/app/plugins/datasource/graphite/img/graphite_logo.png",
+  "typeLogoUrl": "public/plugins/graphite/img/graphite_logo.png",
   "access": "proxy",
   "url": "http://graphite:80",
   "user": "admin",
