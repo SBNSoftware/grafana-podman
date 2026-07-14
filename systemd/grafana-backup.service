@@ -1,0 +1,9 @@
+[Unit]
+Description=Backup Grafana configuration via grafana-ninja
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=${REPO_DIR}
+ExecStart=${REPO_DIR}/env/bin/python ${REPO_DIR}/grafana-ninja.py --config ${REPO_DIR}/grafana-service.env --mode export

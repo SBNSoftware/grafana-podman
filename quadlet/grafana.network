@@ -1,0 +1,6 @@
+[Unit]
+Description=Grafana stack container network
+
+[Network]
+NetworkName=grafana
+Driver=bridge

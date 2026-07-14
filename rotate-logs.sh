@@ -78,5 +78,4 @@ truncate_all_logs() {
 }
 
 MAX_FILE_SIZE=500
-truncate_all_logs "/data/grafana/logs/*.log" $MAX_FILE_SIZE
-rotate_logs_all "/data/grafana/logs/*.log" $MAX_FILE_SIZE
+rotate_logs_all "/grafana/logs/*.log" $MAX_FILE_SIZE

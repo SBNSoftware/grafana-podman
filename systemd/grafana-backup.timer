@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily Grafana configuration backup
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+RandomizedDelaySec=300
+
+[Install]
+WantedBy=timers.target

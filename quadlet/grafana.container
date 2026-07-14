@@ -1,0 +1,35 @@
+[Unit]
+Description=Grafana dashboards
+Wants=network-online.target
+After=network-online.target
+
+[Container]
+ContainerName=grafana
+Image=docker.io/grafana/grafana:${GRAFANA_VERSION}
+Network=grafana.network
+
+PublishPort=${BIND_IP}:${GRAFANA_PORT}:3000
+PublishPort=127.0.0.1:${GRAFANA_PORT}:3000
+
+Environment=GF_SECURITY_ADMIN_USER=admin
+Environment=GF_SECURITY_ADMIN_PASSWORD__FILE=/run/secrets/admin_password
+Environment=GF_PLUGINS_PREINSTALL_DISABLED=true
+Secret=admin_password
+
+Volume=${GRAFANA_DATA_DIR}:/var/lib/grafana
+Volume=${LOGS_DIR}:/var/log/grafana
+
+HealthCmd=curl -sf http://127.0.0.1:3000/api/health
+HealthInterval=30s
+HealthTimeout=10s
+HealthRetries=3
+
+LogDriver=json-file
+PodmanArgs=--memory=${GRAFANA_MEMORY_LIMIT} --log-opt=max-size=${LOG_MAX_SIZE} --log-opt=max-file=3
+
+[Service]
+Restart=always
+TimeoutStartSec=300
+
+[Install]
+WantedBy=default.target
