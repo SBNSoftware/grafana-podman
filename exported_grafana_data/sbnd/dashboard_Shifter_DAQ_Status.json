@@ -9,8 +9,8 @@
     "slug": "shifter-daq-status",
     "url": "/d/hNjxNryWk/shifter-daq-status",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2026-07-14T19:37:06Z",
-    "updated": "2026-07-14T19:37:06Z",
+    "created": "2026-07-14T21:26:37Z",
+    "updated": "2026-07-14T21:26:37Z",
     "updatedBy": "Anonymous",
     "createdBy": "Anonymous",
     "version": 1,
@@ -58,7 +58,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 955760001011712,
+    "id": 983321449091072,
     "links": [],
     "panels": [
       {

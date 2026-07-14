@@ -9,8 +9,8 @@
     "slug": "supernova-daq-status",
     "url": "/d/supernova_DAQ/supernova-daq-status",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2026-07-14T19:37:07Z",
-    "updated": "2026-07-14T19:37:07Z",
+    "created": "2026-07-14T21:26:38Z",
+    "updated": "2026-07-14T21:26:38Z",
     "updatedBy": "Anonymous",
     "createdBy": "Anonymous",
     "version": 1,
@@ -58,7 +58,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 955762450485248,
+    "id": 983324871643136,
     "links": [],
     "panels": [
       {

@@ -9,8 +9,8 @@
     "slug": "crt-monitor",
     "url": "/d/F_iqbmj7k/crt-monitor",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2026-07-14T19:37:04Z",
-    "updated": "2026-07-14T19:37:04Z",
+    "created": "2026-07-14T21:26:31Z",
+    "updated": "2026-07-14T21:26:31Z",
     "updatedBy": "Anonymous",
     "createdBy": "Anonymous",
     "version": 1,
@@ -58,7 +58,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 955751314608128,
+    "id": 983296039997440,
     "links": [],
     "panels": [
       {

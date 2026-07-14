@@ -9,8 +9,8 @@
     "slug": "daq-performance-monitor",
     "url": "/d/e595a447-0ae2-4b7c-9117-4ee93ce9ca93/daq-performance-monitor",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2026-07-14T19:37:04Z",
-    "updated": "2026-07-14T19:37:04Z",
+    "created": "2026-07-14T21:26:33Z",
+    "updated": "2026-07-14T21:26:33Z",
     "updatedBy": "Anonymous",
     "createdBy": "Anonymous",
     "version": 1,
@@ -52,7 +52,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 955753176879104,
+    "id": 983303258394624,
     "links": [],
     "panels": [
       {
