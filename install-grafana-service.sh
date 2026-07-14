@@ -26,19 +26,12 @@ LOADENV_BASH="$SCRIPT_DIR/load-environment-vars.sh"
 if ! command -v podman &> /dev/null
 then
     echo "Podman is not installed. Installing..."
-    sudo dnf install -y podman
+    ksu dnf install -y podman
 
 else
     echo "Podman is already installed."
 fi
 
-if ! command -v podman-compose &> /dev/null
-then
-    echo "Podman Compose is not installed. Installing..."
-    sudo dnf install -y podman-compose podman-plugins
-else
-    echo "Podman Compose is already installed."
-fi
 
 mkdir -p "$PODMAN_DATA_DIR/containers"
 mkdir -p ~/.config/containers
@@ -50,24 +43,25 @@ EOF
 
 mkdir -p ~/.config/systemd/user
 cat <<EOF > ~/.config/systemd/user/grafana.service
+# This is a systemd unit file for managing the Grafana Service Stack
+
 [Unit]
-Description=Grafana Podman Compose Service
+Description=Grafana Service Stack
 After=network.target
 
 [Service]
-Type=simple
-WorkingDirectory=/path/to/your/compose/dir
-Environment=PODMAN_USERNS=keep-id
-ExecStartPre=/usr/bin/podman-compose down
-ExecStart=/usr/bin/podman-compose up
-ExecStop=/usr/bin/podman-compose down
-Restart=always
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=%h/grafana-podman/grafana-service-ctrl.sh start
+ExecStop=%h/grafana-podman/grafana-service-ctrl.sh stop
+ExecReload=%h/grafana-podman/grafana-service-ctrl.sh restart
 
 [Install]
 WantedBy=default.target
+
 EOF
 
-#loginctl enable-linger $(whoami)
+#ksu loginctl enable-linger `whoami`
 systemctl --user daemon-reload
 
 if ! systemctl --user  is-active --quiet podman.socket
