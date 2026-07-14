@@ -2,3 +2,4 @@ exported_grafana_data.*
 .DS_Store
 env
 
+__pycache__

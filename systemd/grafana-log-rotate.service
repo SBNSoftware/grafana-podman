@@ -1,0 +1,6 @@
+[Unit]
+Description=Rotate/truncate Grafana stack logs
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bash ${REPO_DIR}/rotate-logs.sh
