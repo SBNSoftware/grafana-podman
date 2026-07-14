@@ -1,5 +1,0 @@
-exported_grafana_data.*
-.DS_Store
-env
-*.bak
-__pycache__

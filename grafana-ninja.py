@@ -83,14 +83,6 @@ def get_alert_rules(grafana_url, headers, verify, retry_count) -> List[Dict]:
 
 
 def get_contact_points(grafana_url, headers, verify, retry_count) -> List[Dict]:
-    """Contact points WITH decrypted secrets.
-
-    The plain list endpoint redacts secure settings (Slack url/token show as
-    "[REDACTED]"), which makes restore produce broken notifications. The export
-    endpoint returns decrypted secrets (when the token has
-    alerting.provisioning.secrets:read) grouped by contact point -> receivers.
-    We flatten that back into the per-receiver shape the create endpoint expects.
-    """
     data = _get_json(
         grafana_url,
         "/api/v1/provisioning/contact-points/export?decrypt=true&format=json",
@@ -143,18 +135,17 @@ def _name_uid(item_type: str, item_data: Dict):
     raise ValueError(f"Unsupported item_type: {item_type}")
 
 
-def export_item(item_type: str, item_data: Dict, export_dir: str):
-    """Write one item to <item_type>_<name>__<uid>.json.
+_exported_stems: set = set()
 
-    Including the uid guarantees uniqueness even when two items share a title/name
-    (e.g. dashboards with the same title in different folders, or a contact point
-    with multiple integrations) — naming by title alone silently overwrote them.
-    """
+
+def export_item(item_type: str, item_data: Dict, export_dir: str):
     try:
         name, uid = _name_uid(item_type, item_data)
         stem = f"{item_type}_{_safe(name)}"
-        if uid:
-            stem += f"__{_safe(uid)}"
+        if stem in _exported_stems:
+            print(f"WARNING: duplicate name for {item_type} '{name}' (uid {uid}) — "
+                  f"overwriting {stem}.json; rename one of them in Grafana to keep both.")
+        _exported_stems.add(stem)
         filename = os.path.join(export_dir, f"{stem}.json")
         with open(filename, "w") as f:
             json.dump(item_data, f, indent=2)
@@ -394,10 +385,6 @@ def import_grafana_data(config: Dict[str, str], force: bool, verify: bool,
 
 
 def _inject_ds_secret(item_data: Dict, secrets: Dict[str, Dict]):
-    """Merge operator-supplied datasource secrets (secureJsonData) before POST.
-
-    secrets is keyed by datasource name or uid, e.g. {"artdaq": {"basicAuthPassword": "..."}}.
-    """
     if not secrets:
         return
     key = None

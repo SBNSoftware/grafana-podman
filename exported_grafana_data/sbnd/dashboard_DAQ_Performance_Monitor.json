@@ -9,11 +9,11 @@
     "slug": "daq-performance-monitor",
     "url": "/d/e595a447-0ae2-4b7c-9117-4ee93ce9ca93/daq-performance-monitor",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2024-03-11T21:08:27Z",
-    "updated": "2025-11-11T00:42:27Z",
-    "updatedBy": "admin",
-    "createdBy": "admin",
-    "version": 146,
+    "created": "2026-07-14T19:37:04Z",
+    "updated": "2026-07-14T19:37:04Z",
+    "updatedBy": "Anonymous",
+    "createdBy": "Anonymous",
+    "version": 1,
     "hasAcl": false,
     "isFolder": false,
     "apiVersion": "v0alpha1",
@@ -25,11 +25,6 @@
     "provisionedExternalId": "",
     "annotationsPermissions": {
       "dashboard": {
-        "canAdd": true,
-        "canEdit": true,
-        "canDelete": true
-      },
-      "organization": {
         "canAdd": true,
         "canEdit": true,
         "canDelete": true
@@ -57,7 +52,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 11,
+    "id": 955753176879104,
     "links": [],
     "panels": [
       {
@@ -5574,6 +5569,6 @@
     "timezone": "",
     "title": "DAQ Performance Monitor",
     "uid": "e595a447-0ae2-4b7c-9117-4ee93ce9ca93",
-    "version": 146
+    "version": 1
   }
 }

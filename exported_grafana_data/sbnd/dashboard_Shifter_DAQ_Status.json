@@ -9,11 +9,11 @@
     "slug": "shifter-daq-status",
     "url": "/d/hNjxNryWk/shifter-daq-status",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2022-05-13T21:07:30Z",
-    "updated": "2025-11-01T06:59:39Z",
-    "updatedBy": "admin",
-    "createdBy": "admin",
-    "version": 201,
+    "created": "2026-07-14T19:37:06Z",
+    "updated": "2026-07-14T19:37:06Z",
+    "updatedBy": "Anonymous",
+    "createdBy": "Anonymous",
+    "version": 1,
     "hasAcl": false,
     "isFolder": false,
     "apiVersion": "v0alpha1",
@@ -25,11 +25,6 @@
     "provisionedExternalId": "",
     "annotationsPermissions": {
       "dashboard": {
-        "canAdd": true,
-        "canEdit": true,
-        "canDelete": true
-      },
-      "organization": {
         "canAdd": true,
         "canEdit": true,
         "canDelete": true
@@ -63,7 +58,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 1,
+    "id": 955760001011712,
     "links": [],
     "panels": [
       {
@@ -4654,6 +4649,6 @@
     "timezone": "",
     "title": "Shifter DAQ Status",
     "uid": "hNjxNryWk",
-    "version": 201
+    "version": 1
   }
 }

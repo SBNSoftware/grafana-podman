@@ -9,11 +9,11 @@
     "slug": "supernova-daq-status",
     "url": "/d/supernova_DAQ/supernova-daq-status",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2025-07-23T13:17:04Z",
-    "updated": "2025-07-24T16:15:24Z",
-    "updatedBy": "admin",
-    "createdBy": "admin",
-    "version": 9,
+    "created": "2026-07-14T19:37:07Z",
+    "updated": "2026-07-14T19:37:07Z",
+    "updatedBy": "Anonymous",
+    "createdBy": "Anonymous",
+    "version": 1,
     "hasAcl": false,
     "isFolder": false,
     "apiVersion": "v0alpha1",
@@ -25,11 +25,6 @@
     "provisionedExternalId": "",
     "annotationsPermissions": {
       "dashboard": {
-        "canAdd": true,
-        "canEdit": true,
-        "canDelete": true
-      },
-      "organization": {
         "canAdd": true,
         "canEdit": true,
         "canDelete": true
@@ -63,7 +58,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 15,
+    "id": 955762450485248,
     "links": [],
     "panels": [
       {
@@ -1223,7 +1218,7 @@
     "timezone": "",
     "title": "SuperNova DAQ Status",
     "uid": "supernova_DAQ",
-    "version": 9,
+    "version": 1,
     "weekStart": ""
   }
 }

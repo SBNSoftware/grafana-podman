@@ -9,11 +9,11 @@
     "slug": "x-arapuca-monitoring",
     "url": "/d/f57d2644-d718-469e-ac26-1bfbbb369694/x-arapuca-monitoring",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2024-10-23T22:07:50Z",
-    "updated": "2024-11-15T18:01:05Z",
-    "updatedBy": "admin",
-    "createdBy": "admin",
-    "version": 5,
+    "created": "2026-07-14T19:37:10Z",
+    "updated": "2026-07-14T19:37:10Z",
+    "updatedBy": "Anonymous",
+    "createdBy": "Anonymous",
+    "version": 1,
     "hasAcl": false,
     "isFolder": false,
     "apiVersion": "v0alpha1",
@@ -25,11 +25,6 @@
     "provisionedExternalId": "",
     "annotationsPermissions": {
       "dashboard": {
-        "canAdd": true,
-        "canEdit": true,
-        "canDelete": true
-      },
-      "organization": {
         "canAdd": true,
         "canEdit": true,
         "canDelete": true
@@ -56,7 +51,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 12,
+    "id": 955777482870784,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -2664,7 +2659,7 @@
     "timezone": "",
     "title": "X-ARAPUCA Monitoring",
     "uid": "f57d2644-d718-469e-ac26-1bfbbb369694",
-    "version": 5,
+    "version": 1,
     "weekStart": ""
   }
 }

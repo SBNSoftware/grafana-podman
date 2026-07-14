@@ -1,7 +1,5 @@
 #!/bin/bash
-#
-# grafana-quadlet-ctrl.sh — manage the rootless Quadlet Grafana stack via systemd --user.
-#
+
 set -euo pipefail
 
 export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"

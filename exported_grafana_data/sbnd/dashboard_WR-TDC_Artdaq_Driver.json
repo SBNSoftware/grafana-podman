@@ -9,11 +9,11 @@
     "slug": "wr-tdc-artdaq-driver",
     "url": "/d/3dyrrGC7k/wr-tdc-artdaq-driver",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2022-06-08T17:08:43Z",
-    "updated": "2024-10-17T09:35:19Z",
-    "updatedBy": "admin",
-    "createdBy": "admin",
-    "version": 30,
+    "created": "2026-07-14T19:37:08Z",
+    "updated": "2026-07-14T19:37:08Z",
+    "updatedBy": "Anonymous",
+    "createdBy": "Anonymous",
+    "version": 1,
     "hasAcl": false,
     "isFolder": false,
     "apiVersion": "v0alpha1",
@@ -25,11 +25,6 @@
     "provisionedExternalId": "",
     "annotationsPermissions": {
       "dashboard": {
-        "canAdd": true,
-        "canEdit": true,
-        "canDelete": true
-      },
-      "organization": {
         "canAdd": true,
         "canEdit": true,
         "canDelete": true
@@ -63,7 +58,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 4,
+    "id": 955768603529216,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -2532,7 +2527,7 @@
     "timezone": "",
     "title": "WR-TDC Artdaq Driver",
     "uid": "3dyrrGC7k",
-    "version": 30,
+    "version": 1,
     "weekStart": ""
   }
 }

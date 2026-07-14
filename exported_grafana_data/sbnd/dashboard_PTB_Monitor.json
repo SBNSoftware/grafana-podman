@@ -9,11 +9,11 @@
     "slug": "ptb-monitor",
     "url": "/d/niEFg33nk/ptb-monitor",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2022-06-30T21:26:02Z",
-    "updated": "2025-10-03T13:07:42Z",
-    "updatedBy": "admin",
-    "createdBy": "admin",
-    "version": 63,
+    "created": "2026-07-14T19:37:05Z",
+    "updated": "2026-07-14T19:37:05Z",
+    "updatedBy": "Anonymous",
+    "createdBy": "Anonymous",
+    "version": 1,
     "hasAcl": false,
     "isFolder": false,
     "apiVersion": "v0alpha1",
@@ -25,11 +25,6 @@
     "provisionedExternalId": "",
     "annotationsPermissions": {
       "dashboard": {
-        "canAdd": true,
-        "canEdit": true,
-        "canDelete": true
-      },
-      "organization": {
         "canAdd": true,
         "canEdit": true,
         "canDelete": true
@@ -63,7 +58,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 5,
+    "id": 955757085970432,
     "links": [],
     "panels": [
       {
@@ -3815,6 +3810,6 @@
     "timezone": "",
     "title": "PTB Monitor",
     "uid": "niEFg33nk",
-    "version": 63
+    "version": 1
   }
 }

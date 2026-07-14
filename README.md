@@ -1,6 +1,7 @@
-# Grafana Monitoring Stack with Podman
+# Grafana Monitoring Stack with Podman Quadlets
 
-A containerized monitoring solution using Podman, featuring Grafana, Graphite, and nginx reverse proxy.
+A containerized monitoring stack — Grafana, Graphite, nginx TLS reverse proxy,
+and Dozzle — deployed as **rootless Podman Quadlet units under `systemd --user`**.
 
 ## Table of Contents
 
@@ -12,135 +13,163 @@ A containerized monitoring solution using Podman, featuring Grafana, Graphite, a
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
+- [Backup and Restore](#backup-and-restore)
 - [Scripts](#scripts)
 - [Troubleshooting](#troubleshooting)
 
 ## Overview
 
-- Container-based monitoring stack
-- Secure deployment with nginx reverse proxy
-- Automated certificate management
-- Granular resource control
-- Persistent data storage
+- Rootless Quadlet/systemd-managed container stack (no compose, no root daemon)
+- Secure access via nginx TLS reverse proxy (self-signed CA)
+- Automatic boot start via user lingering + `WantedBy=default.target`
+- Systemd timers: hourly log rotation, weekly config backup, 2-minute watchdog
+- Persistent data under `/grafana/` (`CONTAINER_HOME_DIR`), outside the repo
 
 ## Prerequisites
 
-- Podman >= 4.9
-- Podman-compose >= 1.2
-- Python >= 3.9
-- systemd (user services)
+- Podman >= 4.4 with the user Quadlet generator
+  (`/usr/lib/systemd/user-generators/podman-user-generator`)
+- systemd user services (lingering is enabled by the installer)
+- subuid/subgid range for the service user
+- A valid Kerberos ticket `kinit`
 
 ## Quick Start
 
 ```bash
-# Clone repository
+# Clone repository and pick the branch for this deployment
 git clone <repository-url>
 cd grafana-podman
+git checkout release/<experiment>     # e.g. release/sbnd
 
-# Setup environment
-cp grafana-service.env ~/.grafana-service.env
-./create-needed-dirs.sh
+# Grafana admin password (never committed)
+echo '<password>' > admin_password.txt
 
-# Generate certificates
-./generate-server-certificate.sh
+# Provision host + render/install all units (rootless; run as the service user)
+kinit
+./install-quadlet.sh
 
-# Start services
-./grafana-service-ctrl.sh start
+# Start the stack
+./grafana-quadlet-ctrl.sh start
 ```
 
 ## Architecture
 
 ```plaintext
-Client -> NGINX (10443) -> Grafana (10080)
-                       -> Graphite (10081)
-                       -> Dozzle (10085)
+Client -> NGINX (10443, HTTPS) -> Grafana  (10080)
+                                -> Graphite (10081)
+                                -> Dozzle   (10085)
+Metrics -> carbon (2003)
 ```
 
 ## Components
 
-| Service  | Port  | Purpose                    |
-|----------|-------|----------------------------|
-| Nginx    | 10443 | Reverse Proxy (HTTPS)      |
-| Grafana  | 10080 | Visualization Platform     |
-| Graphite | 10081 | Time-series Database      |
-| Dozzle   | 10085 | Container Log Viewer      |
+| Service  | Port  | Purpose                  |
+|----------|-------|--------------------------|
+| Nginx    | 10443 | Reverse proxy (HTTPS)    |
+| Grafana  | 10080 | Visualization platform   |
+| Graphite | 10081 | Time-series database     |
+| carbon   | 2003  | Metrics ingestion        |
+| Dozzle   | 10085 | Container log viewer     |
 
 ## Installation
 
-1. Directory Structure:
-```bash
-mkdir -p /grafana/{data,logs,podman}
-mkdir -p /grafana/data/{grafana,graphite,certs}
-```
+`./install-quadlet.sh` does everything; it is idempotent and safe to re-run:
 
-2. Environment Setup:
-```bash
-cp grafana-service.env ~/.grafana-service.env
-source load-environment-vars.sh
-```
+1. Host provisioning (root steps via `ksu`, needs a Kerberos ticket):
+   user lingering, cpu/memory cgroup delegation for user slices, creation of
+   `CONTAINER_HOME_DIR` (default `/grafana/`).
+2. Rootless setup: podman graphroot under `${CONTAINER_HOME_DIR}/podman`,
+   user `podman.socket`, data/log/cert directories, `podman unshare chown`
+   of the Grafana data dir, podman secret `admin_password` from
+   `admin_password.txt`, self-signed CA + server certificate into
+   `$SSL_CERTS_DIR` (skipped if already present), Python venv `env/`.
+3. Renders the templates in `quadlet/` and `systemd/` through `envsubst`
+   (variable whitelist `VARS` inside the installer) into
+   `~/.config/containers/systemd/` and `~/.config/systemd/user/`, then
+   `systemctl --user daemon-reload` and enables the timers.
 
-3. Certificate Generation:
-```bash
-./generate-server-certificate.sh
-```
+**Editing templates in the repo does nothing until `install-quadlet.sh` is
+re-run** (followed by a restart of the affected services).
+
+Quadlet-generated container services cannot be `systemctl enable`d; boot start
+works via `[Install] WantedBy=default.target` plus user lingering.
 
 ## Configuration
 
-### Environment Variables
+Single source of configuration: **`grafana-service.env`** (image versions,
+ports, memory limits, `BIND_IP`, directories, `EXPERIMENT_NAME`).
 
-Key configuration files:
-- `grafana-service.env`: Main configuration
-- `podman-compose.yml`: Container orchestration
+- `EXPERIMENT_NAME` selects `config/<experiment>/` (Graphite/carbon configs)
+  and `exported_grafana_data/<experiment>/` (dashboard backups).
+- Branch model: `master` is the common base; `release/icarus` /
+  `release/sbnd` carry the per-host `grafana-service.env` and merge master.
+- `GRAFANA_API_KEY=changeme` is the committed placeholder — real tokens and
+  `admin_password.txt` must stay out of git.
 
-Essential variables:
-```env
-BIND_IP=127.0.0.1
-GRAFANA_PORT=10080
-NGINX_PORT=10443
-GRAPHITE_PORT=10081
-```
+Unit templates: `quadlet/*.container`, `quadlet/grafana.network`,
+`systemd/*.{service,timer}`. Dependency chain: `nginx.service` Requires
+`grafana.service` + `graphite.service`; `dozzle.service` Requires the user
+`podman.socket`.
 
 ## Usage
 
-### Service Control
-
 ```bash
-./grafana-service-ctrl.sh [command]
+./grafana-quadlet-ctrl.sh {start|stop|restart|status|health|logs|ps}
 
-Commands:
-  start    - Start services
-  stop     - Stop services
-  restart  - Restart services
-  health   - Check health status
-  fresh    - Clean start
-  status   - Show service status
-  logs     - View logs
+journalctl --user -u grafana.service     # also graphite/nginx/dozzle
+./grafana-login-checks.sh                # port/status health report
 ```
 
-### Grafana Management
+Timers (installed and enabled by `install-quadlet.sh`):
+
+| Timer | Schedule | Action |
+|-------|----------|--------|
+| `grafana-log-rotate.timer` | hourly | size-rotate container logs in `$LOGS_DIR` (`rotate-logs.sh`) |
+| `grafana-backup.timer` | weekly (Mon 00:00) | `grafana-ninja.py --mode export` |
+| `grafana-watchdog.timer` | every 2 min | restart services down/unhealthy > 10 min (`grafana-watchdog.sh`) |
+
+## Backup and Restore
 
 ```bash
-python3 grafana-ninja.py --config config.env --mode [export|import]
+# Mint/refresh the grafana-ninja service-account token (writes GRAFANA_API_KEY
+# into grafana-service.env — working tree only, do not commit)
+./create-grafana-token.sh
 
-Options:
-  --wipe-existing-data  Clear existing configuration
-  --token-instructions  Show API token setup
+# Export dashboards, datasources, alert rules, contact points
+./env/bin/python grafana-ninja.py --config grafana-service.env --mode export
+
+# Import (restore) — optionally --dry-run / --wipe-existing-data
+./env/bin/python grafana-ninja.py --config grafana-service.env --mode import
 ```
+
+Exports land in `exported_grafana_data/<experiment>/`; commit them to back
+them up ("backup dashboards" commits).
 
 ## Scripts
 
 | Script | Purpose |
 |--------|---------|
-| `grafana-service-ctrl.sh` | Service management |
-| `generate-server-certificate.sh` | SSL certificate generation |
-| `grafana-ninja.py` | Configuration management |
-| `grafana-login-checks.sh` | Health monitoring |
+| `install-quadlet.sh` | Provision host + render/install all units |
+| `grafana-quadlet-ctrl.sh` | Stack control (start/stop/restart/status/health/logs/ps) |
+| `grafana-watchdog.sh` | Auto-restart of down/unhealthy services (timer-driven) |
+| `rotate-logs.sh` | Log rotation (timer-driven) |
+| `grafana-login-checks.sh` | Health/port report |
+| `create-grafana-token.sh` | Create service account + API token for backups |
+| `generate-server-certificate.sh` | Standalone SSL certificate (re)generation |
+| `grafana-ninja.py` | Config export/import (backup/restore) |
 
 ## Troubleshooting
 
 ```bash
-# Check service status
+# Overall stack state
+./grafana-quadlet-ctrl.sh status
+./grafana-quadlet-ctrl.sh health
 ./grafana-login-checks.sh
 
-# View logs
-./grafana-service-ctrl.sh logs
+# Per-service journal
+journalctl --user -u nginx.service -n 200
+
+# After changing templates or grafana-service.env
+./install-quadlet.sh && systemctl --user daemon-reload
+./grafana-quadlet-ctrl.sh restart
+```

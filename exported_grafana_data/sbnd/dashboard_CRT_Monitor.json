@@ -9,11 +9,11 @@
     "slug": "crt-monitor",
     "url": "/d/F_iqbmj7k/crt-monitor",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2022-06-07T19:36:13Z",
-    "updated": "2025-10-08T08:14:00Z",
-    "updatedBy": "admin",
-    "createdBy": "admin",
-    "version": 235,
+    "created": "2026-07-14T19:37:04Z",
+    "updated": "2026-07-14T19:37:04Z",
+    "updatedBy": "Anonymous",
+    "createdBy": "Anonymous",
+    "version": 1,
     "hasAcl": false,
     "isFolder": false,
     "apiVersion": "v0alpha1",
@@ -25,11 +25,6 @@
     "provisionedExternalId": "",
     "annotationsPermissions": {
       "dashboard": {
-        "canAdd": true,
-        "canEdit": true,
-        "canDelete": true
-      },
-      "organization": {
         "canAdd": true,
         "canEdit": true,
         "canDelete": true
@@ -63,7 +58,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 3,
+    "id": 955751314608128,
     "links": [],
     "panels": [
       {
@@ -5490,6 +5485,6 @@
     "timezone": "America/Chicago",
     "title": "CRT Monitor",
     "uid": "F_iqbmj7k",
-    "version": 235
+    "version": 1
   }
 }

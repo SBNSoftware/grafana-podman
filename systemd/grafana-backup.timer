@@ -1,8 +1,8 @@
 [Unit]
-Description=Daily Grafana configuration backup
+Description=Weekly Grafana configuration backup
 
 [Timer]
-OnCalendar=daily
+OnCalendar=weekly
 Persistent=true
 RandomizedDelaySec=300
 

@@ -9,11 +9,11 @@
     "slug": "wr-tdc-monitor-spec-tdc01",
     "url": "/d/Hs2cYmunk/wr-tdc-monitor-spec-tdc01",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2022-05-13T23:47:38Z",
-    "updated": "2025-10-10T03:51:46Z",
-    "updatedBy": "admin",
-    "createdBy": "admin",
-    "version": 730,
+    "created": "2026-07-14T19:37:09Z",
+    "updated": "2026-07-14T19:37:09Z",
+    "updatedBy": "grafana-ninja",
+    "createdBy": "grafana-ninja",
+    "version": 2,
     "hasAcl": false,
     "isFolder": false,
     "apiVersion": "v0alpha1",
@@ -25,11 +25,6 @@
     "provisionedExternalId": "",
     "annotationsPermissions": {
       "dashboard": {
-        "canAdd": true,
-        "canEdit": true,
-        "canDelete": true
-      },
-      "organization": {
         "canAdd": true,
         "canEdit": true,
         "canDelete": true
@@ -63,7 +58,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 2,
+    "id": 955770788761600,
     "links": [],
     "panels": [
       {
@@ -4352,6 +4347,6 @@
     "timezone": "",
     "title": "WR-TDC Monitor SPEC-TDC01",
     "uid": "Hs2cYmunk",
-    "version": 730
+    "version": 2
   }
 }

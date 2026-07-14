@@ -1,6 +1,4 @@
 #!/bin/bash
-#
-# install-quadlet.sh — provision the host and install the Grafana stack as ROOTLESS
 
 set -euo pipefail
 
@@ -10,18 +8,17 @@ print_usage() {
     echo "under this user's systemd (systemd --user)."
     echo
     echo "Options:"
-    echo "  --remove-rootful  Tear down a previous rootful install (sudo), migrate /grafana"
-    echo "                    ownership to this user, then install the rootless stack"
     echo "  -h, --help        Show this help and exit"
     echo
     echo "Environment overrides:"
     echo "  BIND_IP=<ip>  Deployment IP to publish ports on (default: from grafana-service.env)"
+    echo
+    echo "First-time host provisioning (lingering, cgroup delegation, data dir) needs root;"
+    echo "that is done via ksu, so run with a valid Kerberos ticket (kinit)."
 }
 
-REMOVE_ROOTFUL=0
 case "${1:-}" in
     -h|--help|"/?") print_usage; exit 0 ;;
-    --remove-rootful) REMOVE_ROOTFUL=1 ;;
     "") ;;
     *) echo "Error: unknown option '$1'." >&2; print_usage; exit 1 ;;
 esac
@@ -30,6 +27,15 @@ if [[ "$(id -u)" -eq 0 ]]; then
     echo "Error: this is a ROOTLESS deployment — run as the service user, not root." >&2
     exit 1
 fi
+
+run_root() {
+    if ! klist -s 2>/dev/null; then
+        echo "Error: this step needs root via ksu but there is no valid Kerberos ticket." >&2
+        echo "       Run kinit, then re-run. Command wanted: $*" >&2
+        exit 1
+    fi
+    script -qec "ksu -q -e $*" /dev/null
+}
 
 export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
 
@@ -45,16 +51,17 @@ ENV_FILE="$SCRIPT_DIR/grafana-service.env"
 [[ -d "$SYSTEMD_SRC" ]] || { echo "Error: $SYSTEMD_SRC not found." >&2; exit 1; }
 
 if ! command -v podman &>/dev/null; then
-    echo "Error: podman is not installed. Run: sudo dnf install -y podman" >&2
+    echo "Error: podman is not installed. Run: ksu -e /usr/bin/dnf install -y podman" >&2
     exit 1
 fi
 if [[ ! -e /usr/lib/systemd/user-generators/podman-user-generator ]]; then
     echo "Error: the user Quadlet systemd generator is missing (need podman >= 4.4)." >&2
     exit 1
 fi
-if ! grep -q "^$(id -un):" /etc/subuid || ! grep -q "^$(id -un):" /etc/subgid; then
+
+if ! grep -qE "^($(id -un)|$(id -u)):" /etc/subuid || ! grep -qE "^($(id -un)|$(id -u)):" /etc/subgid; then
     echo "Error: no subuid/subgid range for $(id -un). Fix with:" >&2
-    echo "  sudo usermod --add-subuids 362144-427679 --add-subgids 362144-427679 $(id -un)" >&2
+    echo "  ksu -e /usr/sbin/usermod --add-subuids 362144-427679 --add-subgids 362144-427679 $(id -un)" >&2
     exit 1
 fi
 echo "podman $(podman --version | awk '{print $3}') with user Quadlet generator present."
@@ -87,36 +94,9 @@ if [[ "$BIND_IP" != "0.0.0.0" ]] && ! ip -o -4 addr show | awk '{print $4}' | cu
     echo "         Re-run as:  BIND_IP=<this-host-ip> $0"
 fi
 
-ROOTFUL_SERVICES=(nginx.service dozzle.service grafana.service graphite.service grafana-network.service)
-if [[ "$REMOVE_ROOTFUL" -eq 1 ]]; then
-    echo "Removing the rootful stack (sudo)..."
-    sudo systemctl disable --now grafana-backup.timer grafana-log-rotate.timer 2>/dev/null || true
-    for s in "${ROOTFUL_SERVICES[@]}"; do sudo systemctl stop "$s" 2>/dev/null || true; done
-    sudo rm -f /etc/containers/systemd/{grafana.network,graphite.container,grafana.container,nginx.container,dozzle.container}
-    sudo rm -f /etc/systemd/system/{grafana-backup,grafana-log-rotate}.{service,timer}
-    sudo systemctl daemon-reload
-    sudo systemctl reset-failed "${ROOTFUL_SERVICES[@]}" 2>/dev/null || true
-    sudo podman secret rm admin_password 2>/dev/null || true
-    sudo podman network rm grafana 2>/dev/null || true
-    sudo podman rmi \
-        "docker.io/graphiteapp/graphite-statsd:${GRAPHITE_VERSION}" \
-        "docker.io/grafana/grafana:${GRAFANA_VERSION}" \
-        "docker.io/library/nginx:${NGINX_VERSION}" \
-        "docker.io/amir20/dozzle:${DOZZLE_VERSION}" 2>/dev/null || true
-
-    sudo systemctl disable --now podman.socket 2>/dev/null || true
-    echo "Handing $CONTAINER_HOME_DIR to $(id -un) (container uids are remapped below)..."
-    sudo chown -R "$(id -un):$(id -gn)" "$CONTAINER_HOME_DIR"
-    echo "Rootful stack removed."
-elif [[ -f /etc/containers/systemd/graphite.container ]]; then
-    echo "Error: a rootful install is still present in /etc/containers/systemd/." >&2
-    echo "Migrate it first:  $0 --remove-rootful" >&2
-    exit 1
-fi
-
 if [[ "$(loginctl show-user "$(id -un)" --property=Linger --value 2>/dev/null)" != "yes" ]]; then
     echo "Enabling lingering for $(id -un) (user services run without a login session)..."
-    sudo loginctl enable-linger "$(id -un)"
+    run_root /usr/bin/loginctl enable-linger "$(id -un)"
 fi
 
 for _ in $(seq 1 30); do
@@ -128,12 +108,15 @@ done
 
 CGROUP_CONTROLLERS="/sys/fs/cgroup/user.slice/user-$(id -u).slice/user@$(id -u).service/cgroup.controllers"
 if ! grep -qw memory "$CGROUP_CONTROLLERS" 2>/dev/null; then
-    echo "Delegating cpu/memory cgroup controllers to user managers (sudo)..."
-    sudo install -d -m 0755 /etc/systemd/system/user@.service.d
-    printf '[Service]\nDelegate=cpu cpuset io memory pids\n' | \
-        sudo tee /etc/systemd/system/user@.service.d/delegate.conf >/dev/null
-    sudo systemctl daemon-reload
-    sudo systemctl restart "user@$(id -u).service"
+    echo "Delegating cpu/memory cgroup controllers to user managers (root via ksu)..."
+    echo "NOTE: this restarts user@$(id -u).service — all user services stop briefly."
+    DELEGATE_TMP="$(mktemp)"
+    printf '[Service]\nDelegate=cpu cpuset io memory pids\n' > "$DELEGATE_TMP"
+    run_root /usr/bin/install -d -m 0755 /etc/systemd/system/user@.service.d
+    run_root /usr/bin/install -m 0644 "$DELEGATE_TMP" /etc/systemd/system/user@.service.d/delegate.conf
+    rm -f "$DELEGATE_TMP"
+    run_root /usr/bin/systemctl daemon-reload
+    run_root /usr/bin/systemctl restart "user@$(id -u).service"
     sleep 2
     grep -qw memory "$CGROUP_CONTROLLERS" || {
         echo "Error: memory controller still not delegated; container memory limits would fail." >&2
@@ -146,12 +129,34 @@ if ! systemctl --user is-active --quiet podman.socket; then
     systemctl --user enable --now podman.socket
 fi
 
+STORAGE_CONF="${XDG_CONFIG_HOME:-$HOME/.config}/containers/storage.conf"
+WANT_GRAPHROOT="${CONTAINER_HOME_DIR%/}/podman/containers"
+CUR_GRAPHROOT="$(sed -n 's/^ *graphroot *= *"\(.*\)"/\1/p' "$STORAGE_CONF" 2>/dev/null || true)"
+if [[ "$CUR_GRAPHROOT" != "$WANT_GRAPHROOT" ]]; then
+    if [[ -n "$CUR_GRAPHROOT" && -d "$CUR_GRAPHROOT/overlay-containers" ]]; then
+        echo "WARNING: $STORAGE_CONF graphroot=$CUR_GRAPHROOT already holds containers;"
+        echo "         not repointing it to $WANT_GRAPHROOT automatically."
+    else
+        echo "Pointing podman graphroot to $WANT_GRAPHROOT (was: ${CUR_GRAPHROOT:-unset})..."
+        install -d -m 0755 "$(dirname "$STORAGE_CONF")"
+        printf '[storage]\ndriver = "overlay"\ngraphroot = "%s"\n' "$WANT_GRAPHROOT" > "$STORAGE_CONF"
+    fi
+fi
+
+LEGACY_UNIT="${XDG_CONFIG_HOME:-$HOME/.config}/systemd/user/grafana.service"
+if [[ -f "$LEGACY_UNIT" ]] && grep -q "grafana-service-ctrl.sh" "$LEGACY_UNIT"; then
+    echo "Removing legacy pre-Quadlet user unit grafana.service..."
+    systemctl --user disable --now grafana.service 2>/dev/null || true
+    rm -f "$LEGACY_UNIT"
+    systemctl --user daemon-reload
+fi
+
 echo "Creating $CONTAINER_HOME_DIR data/log/cert tree..."
 if [[ ! -d "$CONTAINER_HOME_DIR" ]]; then
-    sudo install -d -m 0755 -o "$(id -un)" -g "$(id -gn)" "$CONTAINER_HOME_DIR"
+    run_root /usr/bin/install -d -m 0755 -o "$(id -un)" -g "$(id -gn)" "$CONTAINER_HOME_DIR"
 elif [[ "$(stat -c '%U' "$CONTAINER_HOME_DIR")" != "$(id -un)" ]]; then
     echo "Error: $CONTAINER_HOME_DIR is not owned by $(id -un)." >&2
-    echo "Migrating from a rootful install? Run:  $0 --remove-rootful" >&2
+    echo "Fix with:  ksu -e /usr/bin/chown -R $(id -un):$(id -gn) $CONTAINER_HOME_DIR" >&2
     exit 1
 fi
 
@@ -236,8 +241,8 @@ for f in grafana.network graphite.container grafana.container nginx.container do
 done
 
 echo "Rendering timer units into $SYSTEMD_DEST ..."
-TIMERS=(grafana-log-rotate.timer grafana-backup.timer)
-for f in grafana-log-rotate.service grafana-log-rotate.timer grafana-backup.service grafana-backup.timer; do
+TIMERS=(grafana-log-rotate.timer grafana-backup.timer grafana-watchdog.timer)
+for f in grafana-log-rotate.service grafana-log-rotate.timer grafana-backup.service grafana-backup.timer grafana-watchdog.service grafana-watchdog.timer; do
     [[ -f "$SYSTEMD_SRC/$f" ]] || { echo "Error: missing template $SYSTEMD_SRC/$f" >&2; exit 1; }
     envsubst "$VARS" < "$SYSTEMD_SRC/$f" > "$SYSTEMD_DEST/$f"
     echo "  installed $f"
@@ -253,7 +258,7 @@ cat <<EOF
 
 Done.
   Container units -> $QUADLET_DEST (generated into user systemd services)
-  Timer units     -> $SYSTEMD_DEST (log rotation hourly, config backup daily)
+  Timer units     -> $SYSTEMD_DEST (log rotation hourly, config backup weekly, watchdog every 2 min)
 
 Start the stack with:
     ./grafana-quadlet-ctrl.sh start

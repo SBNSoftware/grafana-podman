@@ -9,11 +9,11 @@
     "slug": "tutorial",
     "url": "/d/xt1WwUIVz/tutorial",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2022-10-18T17:04:19Z",
-    "updated": "2023-08-08T19:29:51Z",
-    "updatedBy": "admin",
-    "createdBy": "admin",
-    "version": 4,
+    "created": "2026-07-14T19:37:08Z",
+    "updated": "2026-07-14T19:37:08Z",
+    "updatedBy": "Anonymous",
+    "createdBy": "Anonymous",
+    "version": 1,
     "hasAcl": false,
     "isFolder": false,
     "apiVersion": "v0alpha1",
@@ -25,11 +25,6 @@
     "provisionedExternalId": "",
     "annotationsPermissions": {
       "dashboard": {
-        "canAdd": true,
-        "canEdit": true,
-        "canDelete": true
-      },
-      "organization": {
         "canAdd": true,
         "canEdit": true,
         "canDelete": true
@@ -63,7 +58,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 7,
+    "id": 955766724481024,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -4039,7 +4034,7 @@
     "timezone": "",
     "title": "Tutorial",
     "uid": "xt1WwUIVz",
-    "version": 4,
+    "version": 1,
     "weekStart": ""
   }
 }

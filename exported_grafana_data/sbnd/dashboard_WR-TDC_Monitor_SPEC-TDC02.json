@@ -9,11 +9,11 @@
     "slug": "wr-tdc-monitor-spec-tdc02",
     "url": "/d/c98126f0-13ef-4f89-b47c-3a218bef0d17/wr-tdc-monitor-spec-tdc02",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2024-12-05T22:37:40Z",
-    "updated": "2024-12-05T23:59:01Z",
-    "updatedBy": "admin",
-    "createdBy": "admin",
-    "version": 16,
+    "created": "2026-07-14T19:37:10Z",
+    "updated": "2026-07-14T19:37:10Z",
+    "updatedBy": "Anonymous",
+    "createdBy": "Anonymous",
+    "version": 1,
     "hasAcl": false,
     "isFolder": false,
     "apiVersion": "v0alpha1",
@@ -25,11 +25,6 @@
     "provisionedExternalId": "",
     "annotationsPermissions": {
       "dashboard": {
-        "canAdd": true,
-        "canEdit": true,
-        "canDelete": true
-      },
-      "organization": {
         "canAdd": true,
         "canEdit": true,
         "canDelete": true
@@ -63,7 +58,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 13,
+    "id": 955774978871296,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -4276,7 +4271,7 @@
     "timezone": "",
     "title": "WR-TDC Monitor SPEC-TDC02",
     "uid": "c98126f0-13ef-4f89-b47c-3a218bef0d17",
-    "version": 16,
+    "version": 1,
     "weekStart": ""
   }
 }
