@@ -2,4 +2,7 @@ exported_grafana_data.*
 .DS_Store
 env
 *.bak
+CLAUDE.md
+WORK-NOTES.md
+missing-cread.md
 __pycache__
