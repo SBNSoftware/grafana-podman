@@ -1,0 +1,3815 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "canDelete": true,
+    "slug": "ptb-monitor",
+    "url": "/d/niEFg33nk/ptb-monitor",
+    "expires": "0001-01-01T00:00:00Z",
+    "created": "2026-07-14T21:26:36Z",
+    "updated": "2026-07-14T21:26:36Z",
+    "updatedBy": "Anonymous",
+    "createdBy": "Anonymous",
+    "version": 1,
+    "hasAcl": false,
+    "isFolder": false,
+    "apiVersion": "v0alpha1",
+    "folderId": 0,
+    "folderUid": "",
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": "",
+    "annotationsPermissions": {
+      "dashboard": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      }
+    }
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "description": "This dashboard is the one intended for use by the shifter. The others are generally expert level :)",
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 983317821018112,
+    "links": [],
+    "panels": [
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 60,
+        "panels": [],
+        "title": "Overview",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 0,
+            "mappings": [
+              {
+                "options": {
+                  "match": "null",
+                  "result": {
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 5,
+          "x": 0,
+          "y": 1
+        },
+        "hideTimeOverride": true,
+        "id": 44,
+        "maxDataPoints": 500,
+        "options": {
+          "colorMode": "none",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "vertical",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "/^sbnd\\.partition3\\.run_number$/",
+            "values": false
+          },
+          "showPercentChange": false,
+          "text": {},
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "sbnd.partition3.run_number"
+          }
+        ],
+        "timeFrom": "24h",
+        "title": "Run Number (P 3)",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "links": [],
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "green",
+                  "value": 0.5
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 4,
+          "x": 6,
+          "y": 1
+        },
+        "id": 2,
+        "maxDataPoints": 1000,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto",
+          "text": {}
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "A",
+            "target": "sbnd.ptb.BoardReader.8.PTB_HLT_rate"
+          }
+        ],
+        "title": "Overall Trigger Rate",
+        "transparent": true,
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "links": [],
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "green",
+                  "value": 0.5
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 4,
+          "x": 10,
+          "y": 1
+        },
+        "id": 143,
+        "maxDataPoints": 1000,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto",
+          "text": {}
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "A",
+            "target": "sbnd.ptb.BoardReader.8.Data_Rate"
+          }
+        ],
+        "title": "Data Rate",
+        "transparent": true,
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "links": [],
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "green",
+                  "value": 0.5
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 4,
+          "x": 14,
+          "y": 1
+        },
+        "id": 145,
+        "maxDataPoints": 1000,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto",
+          "text": {}
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "A",
+            "target": "sbnd.ptb.BoardReader.8.PTB_Word_rate"
+          }
+        ],
+        "title": "PTB Word Rate",
+        "transparent": true,
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "links": [],
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "green",
+                  "value": 0.5
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 4,
+          "x": 18,
+          "y": 1
+        },
+        "id": 157,
+        "maxDataPoints": 1000,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto",
+          "text": {}
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "A",
+            "target": "sbnd.ptb.BoardReader.8.Fragment_Rate"
+          }
+        ],
+        "title": "Fragment Rate",
+        "transparent": true,
+        "type": "gauge"
+      },
+      {
+        "collapsed": true,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 7
+        },
+        "id": 164,
+        "panels": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "axisSoftMin": 0,
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "mappings": [],
+                "min": 0,
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green"
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unit": "none"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 8,
+              "w": 16,
+              "x": 0,
+              "y": 8
+            },
+            "id": 48,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": {
+                "mode": "multi",
+                "sort": "none"
+              }
+            },
+            "targets": [
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "Total",
+                "target": "alias(sbnd.ptb.BoardReader.999.PTB_HLT_rate, 'Total HLT Rate')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "0",
+                "target": "alias(sbnd.ptb.BoardReader.999.PTB_HLT_0_rate, 'HLT 0')",
+                "textEditor": false
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "1",
+                "target": "alias(sbnd.ptb.BoardReader.999.PTB_HLT_1_rate, 'HLT 1')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "2",
+                "target": "alias(sbnd.ptb.BoardReader.999.PTB_HLT_2_rate, 'HLT 2')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "3",
+                "target": "alias(sbnd.ptb.BoardReader.999.PTB_HLT_3_rate, 'HLT 3')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "4",
+                "target": "alias(sbnd.ptb.BoardReader.999.PTB_HLT_4_rate, 'HLT 4')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "5",
+                "target": "alias(sbnd.ptb.BoardReader.999.PTB_HLT_5_rate, 'HLT 5')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "6",
+                "target": "alias(sbnd.ptb.BoardReader.999.PTB_HLT_6_rate, 'HLT 6')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "7",
+                "target": "alias(sbnd.ptb.BoardReader.999.PTB_HLT_7_rate, 'HLT 7')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": true,
+                "refCount": 0,
+                "refId": "29",
+                "target": "alias(sbnd.ptb.BoardReader.999.PTB_HLT_29_rate, 'HLT 29')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": true,
+                "refCount": 0,
+                "refId": "30",
+                "target": "alias(sbnd.ptb.BoardReader.999.PTB_HLT_30_rate, 'HLT 30')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": true,
+                "refCount": 0,
+                "refId": "31",
+                "target": "alias(sbnd.ptb.BoardReader.999.PTB_HLT_31_rate, 'HLT 31')"
+              }
+            ],
+            "title": "PTB HLT Rates",
+            "transformations": [
+              {
+                "disabled": true,
+                "id": "calculateField",
+                "options": {
+                  "alias": "Total HLT Rate",
+                  "binary": {
+                    "left": "Total HLT Rate",
+                    "operator": "+",
+                    "reducer": "sum",
+                    "right": "Total HLT Rate 999"
+                  },
+                  "mode": "binary",
+                  "reduce": {
+                    "include": [
+                      "Total HLT Rate"
+                    ],
+                    "reducer": "sum"
+                  },
+                  "replaceFields": false
+                }
+              },
+              {
+                "disabled": true,
+                "id": "calculateField",
+                "options": {
+                  "alias": "HLT 1",
+                  "binary": {
+                    "left": "HLT 1",
+                    "reducer": "sum",
+                    "right": "HLT 1 999"
+                  },
+                  "mode": "binary",
+                  "reduce": {
+                    "reducer": "sum"
+                  },
+                  "replaceFields": false
+                }
+              }
+            ],
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green"
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 8,
+              "w": 8,
+              "x": 16,
+              "y": 8
+            },
+            "id": 122,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": {
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "targets": [
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refId": "A",
+                "target": "sbnd.ptb.BoardReader.*.Fragment_Rate"
+              }
+            ],
+            "title": "PTB Fragment Rate",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green"
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 15,
+              "w": 24,
+              "x": 0,
+              "y": 16
+            },
+            "id": 160,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": {
+                "mode": "multi",
+                "sort": "none"
+              }
+            },
+            "targets": [
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "Total",
+                "target": "alias(movingAverage(sbnd.ptb.BoardReader.*.PTB_LLT_rate, 1), 'Total LLT Rate')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "11",
+                "target": "alias(movingAverage(sbnd.ptb.BoardReader.*.PTB_LLT_11_rate, 1), 'LLT 11')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "14",
+                "target": "alias(movingAverage(sbnd.ptb.BoardReader.*.PTB_LLT_14_rate, 1), 'LLT 14')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "17",
+                "target": "alias(movingAverage(sbnd.ptb.BoardReader.*.PTB_LLT_17_rate, 1), 'LLT 17')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": true,
+                "refCount": 0,
+                "refId": "19",
+                "target": "alias(movingAverage(sbnd.ptb.BoardReader.*.PTB_LLT_19_rate, 1), 'LLT 19')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": true,
+                "refCount": 0,
+                "refId": "20",
+                "target": "alias(movingAverage(sbnd.ptb.BoardReader.*.PTB_LLT_20_rate, 1), 'LLT 20')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": true,
+                "refCount": 0,
+                "refId": "21",
+                "target": "alias(movingAverage(sbnd.ptb.BoardReader.*.PTB_LLT_21_rate, 1), 'LLT 21')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": true,
+                "refCount": 0,
+                "refId": "22",
+                "target": "alias(movingAverage(sbnd.ptb.BoardReader.*.PTB_LLT_22_rate, 1), 'LLT 22')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "27",
+                "target": "alias(movingAverage(sbnd.ptb.BoardReader.*.PTB_LLT_27_rate, 1), 'LLT 27')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "28",
+                "target": "alias(movingAverage(sbnd.ptb.BoardReader.*.PTB_LLT_28_rate, 1), 'LLT 28')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "29",
+                "target": "alias(movingAverage(sbnd.ptb.BoardReader.*.PTB_LLT_29_rate, 1), 'LLT 29')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "30",
+                "target": "alias(movingAverage(sbnd.ptb.BoardReader.*.PTB_LLT_30_rate, 1), 'LLT 30')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "31",
+                "target": "alias(movingAverage(sbnd.ptb.BoardReader.*.PTB_LLT_31_rate, 1), 'LLT 31')"
+              }
+            ],
+            "title": "PTB LLT Rates",
+            "type": "timeseries"
+          }
+        ],
+        "title": "PTB Trigger Rates 999 (old artdaq)",
+        "type": "row"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 8
+        },
+        "id": 165,
+        "panels": [],
+        "title": "PTB Trigger Rates 8 (new artdaq)",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "#ffffff",
+              "mode": "fixed"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "axisSoftMin": 0,
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "log": 2,
+                "type": "log"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Total HLT Rate"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-purple",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 0 (random 1)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "#808080",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 1 (BNB 0 bias)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "dark-green",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 2 (BNB light+beam)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-green",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 3 (off-beam 0 bias)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "super-light-green",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 4 (off-beam light+beam)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "light-green",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 5"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "red",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 28 (light+prearrival)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "yellow",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 29 (light + post ET)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "yellow",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 30 (light+off-beam prearrival)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "yellow",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 31 (random 2)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "#808080",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 20 (BNB CRT reset)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "red",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 21 (off-beam CRT reset)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "red",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 8 (CRT north&east)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-blue",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 9 (CRT west&east)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-blue",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 10 (CRT west&north)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-blue",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 11 (CRT south&west)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-blue",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 12 (CRT south&east)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-blue",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 13 (CRT south&north)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-blue",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 14 (CRT south&north only)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-blue",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 15 (CRT west&east only)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-blue",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 7 (CRT north&bottom)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-blue",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 26 (Beam acceptance)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "super-light-yellow",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 27 (Off-Beam acceptance)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "super-light-yellow",
+                    "mode": "shades"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 26 (Beam acceptance)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "dark-orange",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 27 (Off-Beam acceptance)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "orange",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HLT 17 (muDAR off-beam)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "#808080",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 16,
+          "x": 0,
+          "y": 9
+        },
+        "id": 163,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "multi",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "Total",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_rate, 'Total HLT Rate')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "0",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_0_rate, 'HLT 0 (random 1)')",
+            "textEditor": false
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "1",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_1_rate, 'HLT 1 (BNB 0 bias)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "2",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_2_rate, 'HLT 2 (BNB light+beam)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "3",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_3_rate, 'HLT 3 (off-beam 0 bias)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "4",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_4_rate, 'HLT 4 (off-beam light+beam)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": true,
+            "refCount": 0,
+            "refId": "5",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_5_rate, 'HLT 5')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "6",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_6_rate, 'HLT 6  (Light)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "7",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_7_rate, 'HLT 7 (CRT north&bottom)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "8",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_8_rate, 'HLT 8 (CRT north&east)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "9",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_9_rate, 'HLT 9 (CRT west&east)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "10",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_10_rate, 'HLT 10 (CRT west&north)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "11",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_11_rate, 'HLT 11 (CRT south&west)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "12",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_12_rate, 'HLT 12 (CRT south&east)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "13",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_13_rate, 'HLT 13 (CRT south&north)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "14",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_14_rate, 'HLT 14 (CRT south&north only)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "15",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_15_rate, 'HLT 15 (CRT west&east only)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "16",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_16_rate, 'HLT 16 (muDAR)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "17",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_17_rate, 'HLT 17 (muDAR off-beam)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "19",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_19_rate, 'HLT 19 (Sunset)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "20",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_20_rate, 'HLT 20 (BNB CRT reset)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "21",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_21_rate, 'HLT 21 (off-beam CRT reset)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "22",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_22_rate, 'HLT 22 (uninhibited HLT 4)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "23",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_23_rate, 'HLT 23 (uninhibited HLT 17)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "26",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_26_rate, 'HLT 26 (Beam acceptance)')",
+            "textEditor": false
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "27",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_27_rate, 'HLT 27 (Off-Beam acceptance)')",
+            "textEditor": false
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "28",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_28_rate, 'HLT 28 (light+prearrival)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "29",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_29_rate, 'HLT 29 (light + post ET)')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "30",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_30_rate, 'HLT 30 (light+off-beam prearrival)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "31",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_HLT_31_rate, 'HLT 31 (random 2)')"
+          }
+        ],
+        "title": "PTB HLT Rates",
+        "transformations": [
+          {
+            "disabled": true,
+            "id": "calculateField",
+            "options": {
+              "alias": "Total HLT Rate",
+              "binary": {
+                "left": "Total HLT Rate",
+                "operator": "+",
+                "reducer": "sum",
+                "right": "Total HLT Rate 999"
+              },
+              "mode": "binary",
+              "reduce": {
+                "include": [
+                  "Total HLT Rate"
+                ],
+                "reducer": "sum"
+              },
+              "replaceFields": false
+            }
+          },
+          {
+            "disabled": true,
+            "id": "calculateField",
+            "options": {
+              "alias": "HLT 1",
+              "binary": {
+                "left": "HLT 1",
+                "reducer": "sum",
+                "right": "HLT 1 999"
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              },
+              "replaceFields": false
+            }
+          }
+        ],
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 8,
+          "x": 16,
+          "y": 9
+        },
+        "id": 166,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refId": "A",
+            "target": "sbnd.ptb.BoardReader.*.Fragment_Rate"
+          }
+        ],
+        "title": "PTB Fragment Rate",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "log": 2,
+                "type": "log"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 0 (Post ET Flash)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "#808080",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 1 (Post ET Inhibit)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "#808080",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 2 (Rand 1)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "light-red",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 3 (Rand 2)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "light-red",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 4 (CRT Reset)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-blue",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 5 (CRT Reset EXT)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-blue",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 6 (CRT all)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "light-blue",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 7 (CRT top high)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "light-blue",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 8 (CRT east)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "light-blue",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 9 (CRT south)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "light-blue",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 10 (CRT bottom)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "light-blue",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 12 (CRT north)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "light-blue",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 13 (CRT west)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "light-blue",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 14 (MTCA)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-orange",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 15 (CAEN IN 10)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-orange",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 16"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-orange",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 17 (Any Majority)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-orange",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 18 (MTC/A low)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-orange",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 19"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-orange",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 21 (MTC/A med)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "dark-red",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 20 (MTC/A hi)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-orange",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 22"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "dark-red",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 23"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-orange",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 28 (EW)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 29 (Pre A)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 30 (Beam Acc)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 31 (Post A)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Total LLT Rate"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-purple",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 27 (Off-Beam Post A)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "light-green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 26 (Off-Beam Beam Acc)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "light-green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 25 (Off-Beam Pre A)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "light-green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 24 (Off-Beam EW)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "light-green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LLT 11 (CRT top low)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "light-blue",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 15,
+          "w": 24,
+          "x": 0,
+          "y": 17
+        },
+        "id": 167,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "multi",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "Total",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_rate, 'Total LLT Rate')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "0",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_0_rate, 'LLT 0 (Post ET Flash)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "1",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_1_rate, 'LLT 1 (Post ET Inhibit)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "2",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_2_rate, 'LLT 2 (Rand 1)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "3",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_3_rate, 'LLT 3 (Rand 2)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "4",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_4_rate, 'LLT 4 (CRT Reset)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "5",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_5_rate, 'LLT 5 (CRT Reset EXT)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "6",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_6_rate, 'LLT 6 (CRT all)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "7",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_7_rate, 'LLT 7 (CRT top high)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "8",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_8_rate, 'LLT 8 (CRT east)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "9",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_9_rate, 'LLT 9 (CRT south)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "10",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_10_rate, 'LLT 10 (CRT bottom)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "11",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_11_rate, 'LLT 11 (CRT top low)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "12",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_12_rate, 'LLT 12 (CRT north)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "13",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_13_rate, 'LLT 13 (CRT west)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "14",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_14_rate, 'LLT 14 (MTCA)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "15",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_15_rate, 'LLT 15 (CAEN IN 10)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "16",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_16_rate, 'LLT 16')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "17",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_17_rate, 'LLT 17 (Any Majority)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "18",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_18_rate, 'LLT 18 (MTC/A low)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "19",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_19_rate, 'LLT 19')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "20",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_20_rate, 'LLT 20 (MTC/A hi)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "21",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_21_rate, 'LLT 21 (MTC/A med)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "22",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_22_rate, 'LLT 22')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "23",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_23_rate, 'LLT 23')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "24",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_24_rate, 'LLT 24 (Off-Beam EW)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "25",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_25_rate, 'LLT 25 (Off-Beam Pre A)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "26",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_26_rate, 'LLT 26 (Off-Beam Beam Acc)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "27",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_27_rate, 'LLT 27 (Off-Beam Post A)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "28",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_28_rate, 'LLT 28 (EW)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "29",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_29_rate, 'LLT 29 (Pre A)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "30",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_30_rate, 'LLT 30 (Beam Acc)')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "31",
+            "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_31_rate, 'LLT 31 (Post A)')"
+          }
+        ],
+        "title": "PTB LLT Rates",
+        "type": "timeseries"
+      },
+      {
+        "collapsed": true,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 32
+        },
+        "id": 161,
+        "panels": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green"
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 15,
+              "w": 24,
+              "x": 0,
+              "y": 33
+            },
+            "id": 168,
+            "options": {
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true
+            },
+            "pluginVersion": "10.0.3",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "Total",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_rate, 'Total LLT Rate')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "0",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_0_rate, 'LLT 0')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "1",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_1_rate, 'LLT 1')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "2",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_2_rate, 'LLT 2')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "3",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_3_rate, 'LLT 3')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "4",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_4_rate, 'LLT 4')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "5",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_5_rate, 'LLT 5')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "6",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_6_rate, 'LLT 6')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "7",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_7_rate, 'LLT 7')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "8",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_8_rate, 'LLT 8')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "9",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_9_rate, 'LLT 9')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "10",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_10_rate, 'LLT 10')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "11",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_11_rate, 'LLT 11')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "12",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_12_rate, 'LLT 12')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "13",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_13_rate, 'LLT 13')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "14",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_14_rate, 'LLT 14')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "15",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_15_rate, 'LLT 15')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "16",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_16_rate, 'LLT 16')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "17",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_17_rate, 'LLT 17')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "18",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_18_rate, 'LLT 18')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": true,
+                "refCount": 0,
+                "refId": "19",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_19_rate, 'LLT 19')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": true,
+                "refCount": 0,
+                "refId": "20",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_20_rate, 'LLT 20')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": true,
+                "refCount": 0,
+                "refId": "21",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_21_rate, 'LLT 21')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": true,
+                "refCount": 0,
+                "refId": "22",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_22_rate, 'LLT 22')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "23",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_23_rate, 'LLT 23')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "24",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_24_rate, 'LLT 24')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "25",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_25_rate, 'LLT 25')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "26",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_26_rate, 'LLT 26')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "27",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_27_rate, 'LLT 27')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "28",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_28_rate, 'LLT 28')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "29",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_29_rate, 'LLT 29')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "30",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_30_rate, 'LLT 30')"
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": false,
+                "refCount": 0,
+                "refId": "31",
+                "target": "alias(sbnd.ptb.BoardReader.8.PTB_LLT_31_rate, 'LLT 31')"
+              }
+            ],
+            "title": "PTB LLT Rates",
+            "type": "gauge"
+          }
+        ],
+        "title": "PTB LLT Rates Detail (8)",
+        "type": "row"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 33
+        },
+        "id": 139,
+        "panels": [],
+        "title": "PTB Fragments",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 9,
+          "x": 0,
+          "y": 34
+        },
+        "id": 155,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refId": "A",
+            "target": "sbnd.ptb.BoardReader.*.Fragment_Rate"
+          }
+        ],
+        "title": "PTB Fragment Rate",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 9,
+          "x": 9,
+          "y": 34
+        },
+        "id": 151,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "aliasByMetric(sbnd.ptb.BoardReader.8.PTB_Fragments_Sent)"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "aliasByMetric(sbnd.ptb.BoardReader.8.Fragment_Count)"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "sbnd.ptb.BoardReader.999"
+          }
+        ],
+        "title": "Cumulative Fragments",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 18,
+          "y": 34
+        },
+        "id": 153,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto"
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refId": "A",
+            "target": "sbnd.ptb.BoardReader.8.Fragment_Buffer_Full_%"
+          }
+        ],
+        "title": "Fragment Buffer Full %",
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "links": [],
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "green",
+                  "value": 0.5
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 0,
+          "y": 42
+        },
+        "id": 147,
+        "maxDataPoints": 1000,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "A",
+            "target": "sbnd.ptb.BoardReader.8.Avg_Frags_Per_Read"
+          }
+        ],
+        "title": "Average Fragments/Read",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 9,
+          "x": 6,
+          "y": 42
+        },
+        "id": 149,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refId": "A",
+            "target": "aliasByMetric(sbnd.ptb.BoardReader.8.Average_Fragment_Size)"
+          }
+        ],
+        "title": "Average Fragment Size",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 9,
+          "x": 15,
+          "y": 42
+        },
+        "id": 159,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "aliasByMetric(sbnd.ptb.BoardReader.8.Fragment_Latency_at_Send_-_Average)"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "aliasByMetric(sbnd.ptb.BoardReader.8.Fragment_Latency_at_Send_-_Max)"
+          }
+        ],
+        "title": "Fragment Latency",
+        "type": "timeseries"
+      }
+    ],
+    "preload": false,
+    "refresh": "10s",
+    "schemaVersion": 41,
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "PTB Monitor",
+    "uid": "niEFg33nk",
+    "version": 1
+  }
+}

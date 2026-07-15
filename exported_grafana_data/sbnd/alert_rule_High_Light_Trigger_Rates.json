@@ -1,0 +1,131 @@
+{
+  "id": 2,
+  "uid": "db9ed1e4-54f9-4558-b206-4b8efbaed43b",
+  "orgID": 1,
+  "folderUID": "d976410d-93f5-41cd-9016-9a4c037202ba",
+  "ruleGroup": "trigger rates",
+  "title": "High Light Trigger Rates",
+  "condition": "C",
+  "data": [
+    {
+      "refId": "A",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 600,
+        "to": 0
+      },
+      "datasourceUid": "PED8062B0600A9C35",
+      "model": {
+        "hide": false,
+        "intervalMs": 1000,
+        "maxDataPoints": 43200,
+        "refId": "A",
+        "target": "averageSeries(keepLastValue(sbnd.ptb.*.*.PTB_LLT_14_rate, 10))"
+      }
+    },
+    {
+      "refId": "B",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 600,
+        "to": 0
+      },
+      "datasourceUid": "__expr__",
+      "model": {
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "B"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "last"
+            },
+            "type": "query"
+          }
+        ],
+        "datasource": {
+          "type": "__expr__",
+          "uid": "__expr__"
+        },
+        "expression": "A",
+        "hide": false,
+        "intervalMs": 1000,
+        "maxDataPoints": 43200,
+        "reducer": "last",
+        "refId": "B",
+        "type": "reduce"
+      }
+    },
+    {
+      "refId": "C",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 600,
+        "to": 0
+      },
+      "datasourceUid": "__expr__",
+      "model": {
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                5000
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "C"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "last"
+            },
+            "type": "query"
+          }
+        ],
+        "datasource": {
+          "type": "__expr__",
+          "uid": "__expr__"
+        },
+        "expression": "B",
+        "hide": false,
+        "intervalMs": 1000,
+        "maxDataPoints": 43200,
+        "refId": "C",
+        "type": "threshold"
+      }
+    }
+  ],
+  "updated": "2026-07-14T21:27:04Z",
+  "noDataState": "NoData",
+  "execErrState": "Error",
+  "for": "2m",
+  "keep_firing_for": "0s",
+  "annotations": {
+    "__dashboardUid__": "hNjxNryWk",
+    "__panelId__": "61",
+    "description": "Light Trigger Rate Too High!",
+    "summary": "Light Trigger Rate Too High!"
+  },
+  "labels": {
+    "trigger_rate": "high"
+  },
+  "isPaused": false,
+  "notification_settings": null,
+  "record": null
+}

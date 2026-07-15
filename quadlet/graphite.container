@@ -1,0 +1,43 @@
+[Unit]
+Description=Graphite (carbon + graphite-web) monitoring backend
+Wants=network-online.target
+After=network-online.target
+
+[Container]
+ContainerName=graphite
+Image=docker.io/graphiteapp/graphite-statsd:${GRAPHITE_VERSION}
+Network=grafana.network
+
+PublishPort=${BIND_IP}:${GRAPHITE_PORT}:80
+PublishPort=127.0.0.1:${GRAPHITE_PORT}:80
+PublishPort=${BIND_IP}:${CARBON_PORT}:${CARBON_PORT}
+PublishPort=127.0.0.1:${CARBON_PORT}:${CARBON_PORT}
+
+Environment=GRAPHITE_STORAGE_DIR=/data
+Environment=CARBON_RELAY_DISABLED=true
+Environment=COLLECTD_DISABLED=true
+Environment=GO_CARBON_DISABLED=true
+Environment=BRUBECK_DISABLED=true
+Environment=GRAPHITE_LOG_RENDERING_PERFORMANCE=false
+Environment=GRAPHITE_LOG_CACHE_PERFORMANCE=false
+
+Volume=${GRAPHITE_STORAGE_DIR}:/data
+Volume=${GRAPHITE_CONFIG_DIR}:/opt/graphite/conf:ro
+Volume=${LOGS_DIR}:/var/log/graphite
+
+HealthCmd=wget -q -O /dev/null http://127.0.0.1:80
+HealthInterval=30s
+HealthTimeout=10s
+HealthRetries=3
+
+LogDriver=json-file
+PodmanArgs=--memory=${GRAPHITE_MEMORY_LIMIT} --log-opt=max-size=${LOG_MAX_SIZE} --log-opt=max-file=3
+
+[Service]
+Restart=always
+TimeoutStartSec=300
+SuccessExitStatus=129
+ExecStartPre=-/usr/bin/bash -c 'rm -f ${GRAPHITE_STORAGE_DIR}/*.pid'
+
+[Install]
+WantedBy=default.target

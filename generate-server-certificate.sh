@@ -28,14 +28,15 @@ fi
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-LOADENV_BASH="$SCRIPT_DIR/load-environment-vars.sh"
+ENV_FILE="$SCRIPT_DIR/grafana-service.env"
 
-if [ -f "$LOADENV_BASH" ]; then
-    source "$LOADENV_BASH"
-else
-    echo "Error: $LOADENV_BASH not found."
-    exit 1
-fi
+[[ -f "$ENV_FILE" ]] || { echo "Error: $ENV_FILE not found." >&2; exit 1; }
+
+export USER_ID="$(id -u)"
+set -a
+# shellcheck disable=SC1090
+source "$ENV_FILE"; source "$ENV_FILE"
+set +a
 
 if [ -z "${SSL_CERTS_DIR:-}" ]; then
     echo "Error: SSL_CERTS_DIR is not set."
@@ -111,7 +112,7 @@ distinguished_name = req_distinguished_name
 x509_extensions = v3_req
 prompt = no
 [req_distinguished_name]
-CN = $(hostname)
+CN = $(hostname -s)-daq.fnal.gov
 [v3_req]
 keyUsage = critical, digitalSignature, keyEncipherment
 extendedKeyUsage = serverAuth
@@ -129,7 +130,6 @@ openssl req -new -key "$SERVER_KEY" -out "$SERVER_CSR" -config "$SSL_CERTS_DIR/s
 echo "Signing server certificate with CA..."
 openssl x509 -req -in "$SERVER_CSR" -CA "$CA_CERT" -CAkey "$CA_KEY" -passin pass:"$CA_KEY_PASS" -CAcreateserial -out "$SERVER_CERT" -days 365 -sha256 -extfile "$SSL_CERTS_DIR/server.cnf" -extensions v3_req
 
-# Clean up temporary configuration file
 rm "$SSL_CERTS_DIR/server.cnf"
 
 echo "New SSL certificates have been generated and signed by the CA."

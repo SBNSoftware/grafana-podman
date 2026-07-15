@@ -1,0 +1,5574 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "canDelete": true,
+    "slug": "daq-performance-monitor",
+    "url": "/d/e595a447-0ae2-4b7c-9117-4ee93ce9ca93/daq-performance-monitor",
+    "expires": "0001-01-01T00:00:00Z",
+    "created": "2026-07-14T21:26:33Z",
+    "updated": "2026-07-14T21:26:33Z",
+    "updatedBy": "Anonymous",
+    "createdBy": "Anonymous",
+    "version": 1,
+    "hasAcl": false,
+    "isFolder": false,
+    "apiVersion": "v0alpha1",
+    "folderId": 0,
+    "folderUid": "",
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": "",
+    "annotationsPermissions": {
+      "dashboard": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      }
+    }
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "description": "https://github.com/art-daq/artdaq/wiki/Artdaq-built-in-metric-catalog",
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 983303258394624,
+    "links": [],
+    "panels": [
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 19,
+        "panels": [],
+        "title": "Rates",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "Total Data Rate from a Board Reader Subsystem",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                }
+              ]
+            },
+            "unit": "decbytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 24,
+          "x": 0,
+          "y": 1
+        },
+        "id": 16,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "aliasByNode(sumSeries(sbnd.crt*.BoardReader.*.Data_Rate), 1)"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "aliasByNode(sumSeries(sbnd.pmt*.BoardReader.*.Data_Rate), 1)",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "aliasByNode(sumSeries(sbnd.tpc*.BoardReader.*.Data_Rate), 1)",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "D",
+            "target": "aliasByNode(sumSeries(sbnd.ntb*.BoardReader.*.Data_Rate), 1)",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "E",
+            "target": "aliasByNode(sumSeries(sbnd.ptb*.BoardReader.*.Data_Rate), 1)",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "F",
+            "target": "aliasByNode(sumSeries(sbnd.tdc*.BoardReader.*.Data_Rate), 1)",
+            "textEditor": true
+          }
+        ],
+        "title": "BoardReader Data Rate",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "Data rate by subsystem -- stacked",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 75,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "normal"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "min": -2,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "Bps"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 8
+        },
+        "id": 27,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "A",
+            "target": "alias(sumSeries(sbnd.crt*.BoardReader.*.Data_Rate), 'CRT')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "E",
+            "target": "alias(sumSeries(sbnd.tpc*.BoardReader.*.Data_Rate), 'TPC')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(sumSeries(sbnd.ntb*.BoardReader.*.Data_Rate), 'NTB')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "D",
+            "target": "alias(sumSeries(sbnd.pmt00.BoardReader.*.Data_Rate), 'PMT')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(sumSeries(sbnd.ptb*.BoardReader.*.Data_Rate), 'PTB')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "F",
+            "target": "alias(sumSeries(sbnd.tdc.BoardReader.*.Data_Rate), 'SPEC TDC')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "G",
+            "target": "alias(sumSeries(sbnd.xarapuca*.BoardReader.*.Data_Rate), 'XARAPUCA')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "H",
+            "target": "alias(sumSeries(sbnd.*.BoardReader.*.Data_Rate), 'Total')",
+            "textEditor": true
+          }
+        ],
+        "title": "Data_Rate (stacked)",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "Fragment Rate",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "rothz"
+          },
+          "overrides": [
+            {
+              "__systemRef": "hideSeriesFrom",
+              "matcher": {
+                "id": "byNames",
+                "options": {
+                  "mode": "exclude",
+                  "names": [
+                    "TPC"
+                  ],
+                  "prefix": "All except:",
+                  "readOnly": true
+                }
+              },
+              "properties": [
+                {
+                  "id": "custom.hideFrom",
+                  "value": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 8
+        },
+        "id": 22,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "multi",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "alias(sumSeries(sbnd.*.BoardReader.*.Fragment_Rate), 'Total')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(sumSeries(sbnd.pmt*.BoardReader.*.Fragment_Rate), 'PMT')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "D",
+            "target": "alias(sumSeries(sbnd.crt*.BoardReader.*.Fragment_Rate), 'CRT')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "E",
+            "target": "alias(sumSeries(sbnd.tpc*.BoardReader.*.Fragment_Rate), 'TPC')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(sumSeries(sbnd.ntb*.BoardReader.*.Fragment_Rate), 'NTB')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "F",
+            "target": "alias(sumSeries(sbnd.ptb*.BoardReader.*.Fragment_Rate), 'PTB')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "G",
+            "target": "alias(sumSeries(sbnd.tdc*.BoardReader.*.Fragment_Rate), 'TDC')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "H",
+            "target": "alias(sumSeries(sbnd.xarapuca*.BoardReader.*.Fragment_Rate), 'ARAPUCA')",
+            "textEditor": true
+          }
+        ],
+        "title": "Fragment Rate",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "sbnd.evb*.EventBuilder*.Incomplete_Event_Rate",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 16
+        },
+        "id": 17,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refId": "A",
+            "target": "sbnd.evb*.EventBuilder*.Incomplete_Event_Rate"
+          }
+        ],
+        "title": "sbnd.evb*.EventBuilder*.Incomplete_Event_Rate",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "EventBuilder*.Average_Event_Size",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "decbytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 16
+        },
+        "id": 6,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refId": "A",
+            "target": "sbnd.*.EventBuilder*.Average_Event_Size"
+          }
+        ],
+        "title": "EventBuilder*.Average_Event_Size",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "sbnd.evb*.EventBuilder*_art*.EventsWithMissingFragments",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "min": 1,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 24
+        },
+        "id": 11,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "alias(sumSeries(sbnd.evb01.EventBuilder*_art*.EventsWithMissingFragments), 'evb01')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(sumSeries(sbnd.evb02.EventBuilder*_art*.EventsWithMissingFragments), 'evb02')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(sumSeries(sbnd.evb03.EventBuilder*_art*.EventsWithMissingFragments), 'evb03')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "D",
+            "target": "alias(sumSeries(sbnd.evb04.EventBuilder*_art*.EventsWithMissingFragments), 'evb04')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "E",
+            "target": "alias(sumSeries(sbnd.evb05.EventBuilder*_art*.EventsWithMissingFragments), 'evb05')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "F",
+            "target": "alias(sumSeries(sbnd.evb06.EventBuilder*_art*.EventsWithMissingFragments), 'evb06')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "G",
+            "target": "alias(sumSeries(sbnd.evb07.EventBuilder*_art*.EventsWithMissingFragments), 'evb07')"
+          }
+        ],
+        "title": "EventBuilder*_art*.EventsWithMissingFragments",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "sbnd.evb*.EventBuilder*_art*.EventsWithEmptyFragments",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "log": 2,
+                "type": "log"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "min": 1,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 24
+        },
+        "id": 12,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "sbnd.evb*.EventBuilder*_art*.EventsWithEmptyFragments"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(sumSeries(sbnd.evb*.EventBuilder*_art*.EventsWithEmptyFragments), 'Total')"
+          }
+        ],
+        "title": "EventBuilder*_art*.EventsWithEmptyFragments",
+        "type": "timeseries"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 32
+        },
+        "id": 20,
+        "panels": [],
+        "title": "Buffer Usage",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "sbnd.*.BoardReader.*.Fragment_Buffer_Full_%",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "max": 100,
+            "min": 1,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 33
+        },
+        "id": 1,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "alias(sbnd.tpc*.BoardReader.*.Fragment_Buffer_Full_%, 'TPC')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(sbnd.crt*.BoardReader.*.Fragment_Buffer_Full_%, 'CRT')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(sbnd.pmt*.BoardReader.*.Fragment_Buffer_Full_%, 'PMT')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "D",
+            "target": "alias(sbnd.ntb*.BoardReader.*.Fragment_Buffer_Full_%, 'NTB')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "E",
+            "target": "alias(sbnd.xarapuca*.BoardReader.*.Fragment_Buffer_Full_%, 'XA')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "F",
+            "target": "alias(sbnd.tdc*.BoardReader.*.Fragment_Buffer_Full_%, 'SPEC-TDC')"
+          }
+        ],
+        "title": "BoardReader.*.Fragment_Buffer_Full_%",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "sbnd.*.EventBuilder*.Shared_Memory_Full_%",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "log": 10,
+                "type": "log"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "max": 100,
+            "min": 1,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 33
+        },
+        "id": 5,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refId": "A",
+            "target": "sbnd.*.EventBuilder*.Shared_Memory_Full_%"
+          }
+        ],
+        "title": "EventBuilder*.Shared_Memory_Full_%",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "__systemRef": "hideSeriesFrom",
+              "matcher": {
+                "id": "byNames",
+                "options": {
+                  "mode": "exclude",
+                  "names": [
+                    "EventBuilder7_p2",
+                    "EventBuilder7"
+                  ],
+                  "prefix": "All except:",
+                  "readOnly": true
+                }
+              },
+              "properties": [
+                {
+                  "id": "custom.hideFrom",
+                  "value": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 41
+        },
+        "id": 40,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": true,
+            "refCount": 0,
+            "refId": "A",
+            "target": "sbnd.evb*.*.Shared_Memory_Available_Buffers"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "aliasByNode(currentAbove(sbnd.evb01.EventBuilder*.Shared_Memory_Available_Buffers, -1), 2)"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "aliasByNode(currentAbove(sbnd.evb02.EventBuilder*.Shared_Memory_Available_Buffers, -1), 2)"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "D",
+            "target": "aliasByNode(currentAbove(sbnd.evb03.EventBuilder*.Shared_Memory_Available_Buffers, -1), 2)"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "E",
+            "target": "aliasByNode(currentAbove(sbnd.evb04.EventBuilder*.Shared_Memory_Available_Buffers, -1), 2)"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "F",
+            "target": "aliasByNode(currentAbove(sbnd.evb05.EventBuilder*.Shared_Memory_Available_Buffers, -1), 2)"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "G",
+            "target": "aliasByNode(currentAbove(sbnd.evb06.EventBuilder*.Shared_Memory_Available_Buffers, -1), 2)"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "H",
+            "target": "aliasByNode(currentAbove(sbnd.evb07.EventBuilder*.Shared_Memory_Available_Buffers, -1), 2)"
+          }
+        ],
+        "title": "EventBuilder*.Shared_Memory_Available_Buffers",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 41
+        },
+        "id": 30,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "A",
+            "target": "sbnd.evb*.*.Shared_Memory_Pending_Buffers"
+          }
+        ],
+        "title": "EventBuilder*.Shared_Memory_Pending_Buffers",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 49
+        },
+        "id": 45,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "A",
+            "target": "sbnd.disp*.*.Shared_Memory_Available_Buffers"
+          }
+        ],
+        "title": "Dispatcher*.Shared_Memory_Available_Buffers",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 49
+        },
+        "id": 46,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "A",
+            "target": "sbnd.disp*.*.Shared_Memory_Pending_Buffers",
+            "textEditor": true
+          }
+        ],
+        "title": "Dispatcher*.Shared_Memory_Pending_Buffers",
+        "type": "timeseries"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 57
+        },
+        "id": 18,
+        "panels": [],
+        "title": "Event Building Statistics",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "sbnd.evb0*.EventBuilder*.Back-pressure_wait_time",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 58
+        },
+        "id": 7,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "sbnd.evb*.EventBuilder*.Back-pressure_wait_time"
+          }
+        ],
+        "title": "EventBuilder*.Back-pressure_wait_time",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "sbnd.*.EventBuilder*.Average_Event_Building_Time",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "log": 10,
+                "type": "log"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "min": 0.1,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "s"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 58
+        },
+        "id": 4,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refId": "A",
+            "target": "sbnd.*.EventBuilder*.Average_Event_Building_Time"
+          }
+        ],
+        "title": "EventBuilder*.Average_Event_Building_Time",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "Fragment latency at send- max  \n(max series where there is more then one)",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "log": 10,
+                "type": "log"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "s"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 66
+        },
+        "id": 35,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refId": "A",
+            "target": "sbnd.evb*.*.Avg_Input_Wait_Time"
+          }
+        ],
+        "title": "EventBuilder*.Average Input Wait Time",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "log": 10,
+                "type": "log"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "s"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 66
+        },
+        "id": 28,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refId": "A",
+            "target": "currentAbove(sbnd.*.EventBuilder*.ArtdaqInputHelper_Latency, -1)"
+          }
+        ],
+        "title": "EventBuilder*.ArtdaqInputHelper_Latency",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "Fragment latency at send- max  \n(max series where there is more then one)",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "log": 10,
+                "type": "log"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "s"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 74
+        },
+        "id": 33,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refId": "A",
+            "target": "sbnd.evb*.*.Avg_Processing_Time"
+          }
+        ],
+        "title": "EventBuilder*.Average Processing Time ",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "Fragment rate by subsystem -- stacked",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 19,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "normal"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "rothz"
+          },
+          "overrides": [
+            {
+              "__systemRef": "hideSeriesFrom",
+              "matcher": {
+                "id": "byNames",
+                "options": {
+                  "mode": "exclude",
+                  "names": [
+                    "NTB"
+                  ],
+                  "prefix": "All except:",
+                  "readOnly": true
+                }
+              },
+              "properties": [
+                {
+                  "id": "custom.hideFrom",
+                  "value": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 74
+        },
+        "id": 25,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "A",
+            "target": "alias(sumSeries(sbnd.crt*.BoardReader.*.Fragment_Rate), 'CRT')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(sumSeries(sbnd.ntb*.BoardReader.*.Fragment_Rate), 'NTB')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "D",
+            "target": "alias(sumSeries(sbnd.pmt*.BoardReader.*.Fragment_Rate), 'PMT')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(sumSeries(sbnd.ptb*.BoardReader.*.Fragment_Rate), 'PTB')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "F",
+            "target": "alias(sumSeries(sbnd.tdc.BoardReader.*.Fragment_Rate), 'SPEC TDC')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "E",
+            "target": "alias(sumSeries(sbnd.tpc*.BoardReader.*.Fragment_Rate), 'TPC')"
+          }
+        ],
+        "title": "Fragment_Rate (stacked)",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "Fragment latency at send- max  \n(max series where there is more then one)",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "log": 10,
+                "type": "log"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "s"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 82
+        },
+        "id": 34,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refId": "A",
+            "target": "sbnd.evb*.*.Avg_Read_Time"
+          }
+        ],
+        "title": "EventBuilder*.Average Read Time ",
+        "type": "timeseries"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 90
+        },
+        "id": 32,
+        "panels": [],
+        "title": "Send/Receive Rate",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "Fragment latency at send- max  \n(max series where there is more then one)",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "s"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 91
+        },
+        "id": 26,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "A",
+            "target": "alias(maxSeries(sbnd.crt*.BoardReader.*.Fragment_Latency_at_Send_-_Max), 'CRT')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(maxSeries(sbnd.ntb*.BoardReader.*.Fragment_Latency_at_Send_-_Max), 'NTB')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "D",
+            "target": "alias(maxSeries(sbnd.pmt*.BoardReader.*.Fragment_Latency_at_Send_-_Max), 'PMT')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(maxSeries(sbnd.ptb*.BoardReader.*.Fragment_Latency_at_Send_-_Max), 'PTB')",
+            "textEditor": false
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "F",
+            "target": "alias(maxSeries(sbnd.tdc.BoardReader.*.Fragment_Latency_at_Send_-_Max), 'SPEC TDC')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "E",
+            "target": "alias(maxSeries(sbnd.tpc*.BoardReader.*.Fragment_Latency_at_Send_-_Max), 'TPC')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "G",
+            "target": "alias(maxSeries(sbnd.xarapuca*.BoardReader.*.Fragment_Latency_at_Send_-_Max), 'XA')"
+          }
+        ],
+        "title": "Fragement latency max",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "Fragment latency at send- max  \n(max series where there is more then one)",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "s"
+          },
+          "overrides": [
+            {
+              "__systemRef": "hideSeriesFrom",
+              "matcher": {
+                "id": "byNames",
+                "options": {
+                  "mode": "exclude",
+                  "names": [
+                    "TPC"
+                  ],
+                  "prefix": "All except:",
+                  "readOnly": true
+                }
+              },
+              "properties": [
+                {
+                  "id": "custom.hideFrom",
+                  "value": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 91
+        },
+        "id": 52,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "A",
+            "target": "alias(maxSeries(sbnd.crt*.BoardReader.*.Fragment_Latency_at_Send_-_Avg), 'CRT')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(maxSeries(sbnd.ntb*.BoardReader.*.Fragment_Latency_at_Send_-_Average), 'NTB')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "D",
+            "target": "alias(maxSeries(sbnd.pmt*.BoardReader.*.Fragment_Latency_at_Send_-_Average), 'PMT')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(maxSeries(sbnd.ptb*.BoardReader.*.Fragment_Latency_at_Send_-_Average), 'PTB')",
+            "textEditor": false
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "F",
+            "target": "alias(maxSeries(sbnd.tdc.BoardReader.*.Fragment_Latency_at_Send_-_Average), 'SPEC TDC')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "E",
+            "target": "alias(maxSeries(sbnd.tpc*.BoardReader.*.Fragment_Latency_at_Send_-_Average), 'TPC')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "G",
+            "target": "alias(maxSeries(sbnd.xarapuca*.BoardReader.*.Fragment_Latency_at_Send_-_Average), 'XA')"
+          }
+        ],
+        "title": "Fragement latency avg",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "ns"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 99
+        },
+        "id": 51,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "refCount": 0,
+            "refId": "A",
+            "target": "alias(sbnd.pmt*.BoardReader.40960.FragmentCreationGapMax, 'pmt01')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(sbnd.pmt*.BoardReader.40961.FragmentCreationGapMax, 'pmt02')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(sbnd.pmt*.BoardReader.40962.FragmentCreationGapMax, 'pmt03')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "D",
+            "target": "alias(sbnd.pmt*.BoardReader.40963.FragmentCreationGapMax, 'pmt04')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "E",
+            "target": "alias(sbnd.pmt*.BoardReader.40964.FragmentCreationGapMax, 'pmt05')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "F",
+            "target": "alias(sbnd.pmt*.BoardReader.40965.FragmentCreationGapMax, 'pmt06')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "G",
+            "target": "alias(sbnd.pmt*.BoardReader.40966.FragmentCreationGapMax, 'pmt07')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "H",
+            "target": "alias(sbnd.pmt*.BoardReader.40967.FragmentCreationGapMax, 'pmt08')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "I",
+            "target": "alias(sbnd.pmt*.BoardReader.40968.FragmentCreationGapMax, 'pmt09')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "J",
+            "target": "alias(sbnd.xarapuca*.BoardReader.41223.Fragment, 'xarapuca01')"
+          }
+        ],
+        "title": "Fragment Creation Gap Max",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "ns"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 99
+        },
+        "id": 53,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "refCount": 0,
+            "refId": "A",
+            "target": "alias(sbnd.pmt*.BoardReader.40960.FragmentCreationGapAvg, 'pmt01')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(sbnd.pmt*.BoardReader.40961.FragmentCreationGapAvg, 'pmt02')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(sbnd.pmt*.BoardReader.40962.FragmentCreationGapAvg, 'pmt03')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "D",
+            "target": "alias(sbnd.pmt*.BoardReader.40963.FragmentCreationGapAvg, 'pmt04')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "E",
+            "target": "alias(sbnd.pmt*.BoardReader.40964.FragmentCreationGapAvg, 'pmt05')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "F",
+            "target": "alias(sbnd.pmt*.BoardReader.40965.FragmentCreationGapAvg, 'pmt06')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "G",
+            "target": "alias(sbnd.pmt*.BoardReader.40966.FragmentCreationGapAvg, 'pmt07')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "H",
+            "target": "alias(sbnd.pmt*.BoardReader.40967.FragmentCreationGapAvg, 'pmt08')"
+          }
+        ],
+        "title": "Fragment Creation Gap Avg",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "BoardReader.*.Avg_Request_Response_Wait_Time",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "min": 0.1,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "s"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 107
+        },
+        "id": 56,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refId": "A",
+            "target": "sbnd.*.BoardReader.*.Avg_Request_Response_Wait_Time"
+          }
+        ],
+        "title": "BoardReader*.Avg_Request_Response_Wait_Time",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "BoardReader.*.Avg_Request_Response_Wait_Time",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "min": 0.05,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "s"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 107
+        },
+        "id": 37,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "A",
+            "target": "sbnd.*.BoardReader.*.Request_Response_Time"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": true,
+            "refCount": 0,
+            "refId": "B",
+            "target": "sbnd.pmt*.BoardReader.*.Request_Response_Time"
+          }
+        ],
+        "title": "BoardReader*.Request_Response_Time",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "BoardReader.*.Avg_Request_Response_Wait_Time",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "min": 0.1,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "s"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 115
+        },
+        "id": 2,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "sbnd.tpc*.BoardReader.*.Avg_Request_Response_Wait_Time"
+          }
+        ],
+        "title": "TPC BoardReader*.Avg_Request_Response_Wait_Time",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "BoardReader.*.Avg_Request_Response_Wait_Time",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "min": 0.1,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "s"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 115
+        },
+        "id": 57,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "sbnd.tpc*.BoardReader.*.Request_Response_Time"
+          }
+        ],
+        "title": "TPC BoardReader*.Request_Response_Time",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "sbnd.evb*.EventBuilder*.Avg_Fragment_Wait_Time_From_Rank_*",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "log": 10,
+                "type": "log"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "ms"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 123
+        },
+        "id": 9,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refId": "A",
+            "target": "sbnd.evb*.EventBuilder*.Avg_Fragment_Wait_Time_From_Rank_*"
+          }
+        ],
+        "title": "EventBuilder*.Avg_Fragment_Wait_Time_From_Rank_*",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "sbnd.evb*.EventBuilder*.Total_Shared_Memory_Wait_Time_From_Rank_*",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "log": 10,
+                "type": "log"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "min": 0.001,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "s"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 123
+        },
+        "id": 36,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refId": "A",
+            "target": "sbnd.evb*.EventBuilder*.Total_Shared_Memory_Wait_Time_From_Rank_*"
+          }
+        ],
+        "title": "EventBuilder*.Total_Shared_Memory_Wait_Time_From_Rank_*",
+        "type": "timeseries"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 131
+        },
+        "id": 24,
+        "panels": [],
+        "title": "RAM etc",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "sbnd.evb*.EventBuilder*.Total_Shared_Memory_Wait_Time_From_Rank_*",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "decgbytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 132
+        },
+        "id": 41,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "right",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": true,
+            "refCount": 0,
+            "refId": "A",
+            "target": "aliasByNode(currentAbove(sbnd.evb*.EventBuilder*.Available_RAM, -1), 2)",
+            "textEditor": false
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(sumSeries(sbnd.evb01.EventBuilder1.Available_RAM), 'evb01')",
+            "textEditor": false
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(sumSeries(sbnd.evb02.EventBuilder2.Available_RAM), 'evb02')",
+            "textEditor": false
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "D",
+            "target": "alias(sumSeries(sbnd.evb03.EventBuilder3.Available_RAM), 'evb03')",
+            "textEditor": false
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "E",
+            "target": "alias(sumSeries(sbnd.evb04.EventBuilder4.Available_RAM), 'evb04')",
+            "textEditor": false
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "F",
+            "target": "alias(sumSeries(sbnd.evb05.EventBuilder5.Available_RAM), 'evb05')",
+            "textEditor": false
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "G",
+            "target": "alias(sumSeries(sbnd.evb06.EventBuilder6.Available_RAM), 'evb06')",
+            "textEditor": false
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "H",
+            "target": "alias(sumSeries(sbnd.evb07.EventBuilder7.Available_RAM), 'evb07')",
+            "textEditor": false
+          }
+        ],
+        "title": "EventBuilder*.AvailableRAM",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "sbnd.evb*.EventBuilder*.Total_Shared_Memory_Wait_Time_From_Rank_*",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "log": 10,
+                "type": "log"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "min": 100000000,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "decbytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 132
+        },
+        "id": 14,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": true,
+            "refCount": 0,
+            "refId": "A",
+            "target": "sbnd.evb*.EventBuilder*.Free_RAM",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(sumSeries(sbnd.evb01.EventBuilder1.Free_RAM), 'evb01')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(sumSeries(sbnd.evb02.EventBuilder2.Free_RAM), 'evb02')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "D",
+            "target": "alias(sumSeries(sbnd.evb03.EventBuilder3.Free_RAM), 'evb03')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "E",
+            "target": "alias(sumSeries(sbnd.evb04.EventBuilder4.Free_RAM), 'evb04')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "F",
+            "target": "alias(sumSeries(sbnd.evb05.EventBuilder5.Free_RAM), 'evb05')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "G",
+            "target": "alias(sumSeries(sbnd.evb06.EventBuilder6.Free_RAM), 'evb06')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "H",
+            "target": "alias(sumSeries(sbnd.evb07.EventBuilder7.Free_RAM), 'evb07')"
+          }
+        ],
+        "title": "EventBuilder*.FreeRAM",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "sbnd.evb*.*.*.Process_CPU_Usage",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "decbytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 140
+        },
+        "id": 43,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "A",
+            "target": "aliasByNode(currentAbove(sbnd.evb01.EventBuilder*art*.Process_RAM_Usage, -1), 2)"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "aliasByNode(currentAbove(sbnd.evb02.EventBuilder*art*.Process_RAM_Usage, -1), 2)"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "aliasByNode(currentAbove(sbnd.evb03.EventBuilder*art*.Process_RAM_Usage, -1), 2)"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "D",
+            "target": "aliasByNode(currentAbove(sbnd.evb04.EventBuilder*art*.Process_RAM_Usage, -1), 2)"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "E",
+            "target": "aliasByNode(currentAbove(sbnd.evb05.EventBuilder*art*.Process_RAM_Usage, -1), 2)"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "F",
+            "target": "aliasByNode(currentAbove(sbnd.evb06.EventBuilder*art*.Process_RAM_Usage, -1), 2)"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "G",
+            "target": "aliasByNode(currentAbove(sbnd.evb07.EventBuilder*art*.Process_RAM_Usage, -1), 2)"
+          }
+        ],
+        "title": "sbnd.evb*.*.*.Process_RAM_Usage (art)",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "sbnd.evb*.*.*.Process_CPU_Usage",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "decbytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 140
+        },
+        "id": 55,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "A",
+            "target": "exclude(aliasByNode(currentAbove(sbnd.evb01.*.Process_RAM_Usage, -1), 2), 'art')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "exclude(aliasByNode(currentAbove(sbnd.evb02.*.Process_RAM_Usage, -1), 2), 'art')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "exclude(aliasByNode(currentAbove(sbnd.evb03.*.Process_RAM_Usage, -1), 2), 'art')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "D",
+            "target": "exclude(aliasByNode(currentAbove(sbnd.evb04.*.Process_RAM_Usage, -1), 2), 'art')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "E",
+            "target": "exclude(aliasByNode(currentAbove(sbnd.evb05.*.Process_RAM_Usage, -1), 2), 'art')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "F",
+            "target": "exclude(aliasByNode(currentAbove(sbnd.evb06.*.Process_RAM_Usage, -1), 2), 'art')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "G",
+            "target": "exclude(aliasByNode(currentAbove(sbnd.evb07.*.Process_RAM_Usage, -1), 2), 'art')"
+          }
+        ],
+        "title": "sbnd.evb*.*.*.Process_RAM_Usage (no art)",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "sbnd.evb*.EventBuilder*_art*.Process_CPU_Usage",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 148
+        },
+        "id": 47,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "currentAbove(sbnd.evb*.EventBuilder*_art*.Process_CPU_Usage, -1)",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": true,
+            "refCount": 0,
+            "refId": "B",
+            "target": "sbnd.*.BoardReader.*.Process_RAM_Usage"
+          }
+        ],
+        "title": "sbnd.evb*.EventBuilder*_art*.Process_CPU_Usage",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "sbnd.evb*.EventBuilder*.Process_CPU_Usage - no art",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 148
+        },
+        "id": 44,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "currentAbove(sbnd.evb*.EventBuilder*.Process_CPU_Usage, -1)",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": true,
+            "refCount": 0,
+            "refId": "B",
+            "target": "sbnd.*.BoardReader.*.Process_RAM_Usage"
+          }
+        ],
+        "title": "sbnd.evb*.EventBuilder*.Process_CPU_Usage - no art",
+        "transformations": [
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "names": [
+                  "Time",
+                  "sbnd.evb01.EventBuilder1.Process_CPU_Usage",
+                  "sbnd.evb02.EventBuilder2.Process_CPU_Usage",
+                  "sbnd.evb02.EventBuilder2_p2.Process_CPU_Usage",
+                  "sbnd.evb03.EventBuilder3.Process_CPU_Usage",
+                  "sbnd.evb03.EventBuilder3_p2.Process_CPU_Usage",
+                  "sbnd.evb04.EventBuilder4.Process_CPU_Usage",
+                  "sbnd.evb05.EventBuilder5.Process_CPU_Usage",
+                  "sbnd.evb05.EventBuilder5_p2.Process_CPU_Usage",
+                  "sbnd.evb06.EventBuilder6.Process_CPU_Usage",
+                  "sbnd.evb06.EventBuilder6_p2.Process_CPU_Usage"
+                ]
+              }
+            }
+          }
+        ],
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "sbnd.evb*.EventBuilder*_art*.Process_CPU_Idle",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 156
+        },
+        "id": 49,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "currentAbove(sbnd.evb*.EventBuilder*_art*.System_CPU_Idle, -1)",
+            "textEditor": false
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": true,
+            "refCount": 0,
+            "refId": "B",
+            "target": "sbnd.*.BoardReader.*.Process_RAM_Usage"
+          }
+        ],
+        "title": "sbnd.evb*.EventBuilder*_art*.Process_CPU_Idle",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "sbnd.evb*.EventBuilder*_art*.Process_CPU_Idle",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 156
+        },
+        "id": 48,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "currentAbove(sbnd.evb*.EventBuilder*.System_CPU_Idle, -1)",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": true,
+            "refCount": 0,
+            "refId": "B",
+            "target": "sbnd.*.BoardReader.*.Process_RAM_Usage"
+          }
+        ],
+        "title": "sbnd.evb*.EventBuilder*.Process_CPU_Idle - no art",
+        "transformations": [
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "names": [
+                  "Time",
+                  "sbnd.evb01.EventBuilder1.System_CPU_Idle",
+                  "sbnd.evb02.EventBuilder2.System_CPU_Idle",
+                  "sbnd.evb02.EventBuilder2_p2.System_CPU_Idle",
+                  "sbnd.evb03.EventBuilder3.System_CPU_Idle",
+                  "sbnd.evb03.EventBuilder3_p2.System_CPU_Idle",
+                  "sbnd.evb04.EventBuilder4.System_CPU_Idle",
+                  "sbnd.evb05.EventBuilder5.System_CPU_Idle",
+                  "sbnd.evb05.EventBuilder5_p2.System_CPU_Idle",
+                  "sbnd.evb06.EventBuilder6.System_CPU_Idle",
+                  "sbnd.evb06.EventBuilder6_p2.System_CPU_Idle"
+                ]
+              }
+            }
+          }
+        ],
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "sbnd.*.BoardReader.*.Process_CPU_Usage",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 164
+        },
+        "id": 39,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refId": "A",
+            "target": "sbnd.*.BoardReader.*.Process_CPU_Usage",
+            "textEditor": true
+          }
+        ],
+        "title": "sbnd.*.BoardReader.*.Process_CPU_Usage",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "Total RAM usage by subsystem -- stacked",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 19,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "normal"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "decbytes"
+          },
+          "overrides": [
+            {
+              "__systemRef": "hideSeriesFrom",
+              "matcher": {
+                "id": "byNames",
+                "options": {
+                  "mode": "exclude",
+                  "names": [
+                    "TPC"
+                  ],
+                  "prefix": "All except:",
+                  "readOnly": true
+                }
+              },
+              "properties": [
+                {
+                  "id": "custom.hideFrom",
+                  "value": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 164
+        },
+        "id": 23,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "A",
+            "target": "alias(sumSeries(sbnd.crt*.BoardReader.*.Total_RAM), 'CRT')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(sumSeries(sbnd.ntb*.BoardReader.*.Total_RAM), 'NTB')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "D",
+            "target": "alias(sumSeries(sbnd.pmt*.BoardReader.*.Total_RAM), 'PMT')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(sumSeries(sbnd.ptb*.BoardReader.*.Total_RAM), 'PTB')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "F",
+            "target": "alias(sumSeries(sbnd.tdc.BoardReader.*.Total_RAM), 'SPEC TDC')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "E",
+            "target": "alias(sumSeries(sbnd.tpc*.BoardReader.*.Total_RAM), 'TPC')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "G",
+            "target": "alias(sumSeries(sbnd.xarapuca*.BoardReader.*.Total_RAM), 'XA')",
+            "textEditor": true
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "H",
+            "target": "alias(sumSeries(sbnd.*.BoardReader.*.Total_RAM), 'Total')",
+            "textEditor": true
+          }
+        ],
+        "title": "Total RAM (stacked)",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "description": "Total RAM usage by subsystem -- stacked",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 19,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "normal"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "decbytes"
+          },
+          "overrides": [
+            {
+              "__systemRef": "hideSeriesFrom",
+              "matcher": {
+                "id": "byNames",
+                "options": {
+                  "mode": "exclude",
+                  "names": [
+                    "TPC"
+                  ],
+                  "prefix": "All except:",
+                  "readOnly": true
+                }
+              },
+              "properties": [
+                {
+                  "id": "custom.hideFrom",
+                  "value": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 172
+        },
+        "id": 54,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.1.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "A",
+            "target": "alias(sumSeries(sbnd.pmt00.BoardReader.*.Process_RAM_Usage), 'PMT')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "B",
+            "target": "alias(sumSeries(sbnd.crt*.BoardReader.*.Process_RAM_Usage), 'CRT')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "C",
+            "target": "alias(sumSeries(sbnd.ntb*.BoardReader.*.Process_RAM_Usage), 'NTB')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "D",
+            "target": "alias(sumSeries(sbnd.tpc*.BoardReader.*.Process_RAM_Usage), 'TPC')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "E",
+            "target": "alias(sumSeries(sbnd.xarapuca*.BoardReader.*.Process_RAM_Usage), 'XA')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "F",
+            "target": "alias(sumSeries(sbnd.tdc.BoardReader.*.Process_RAM_Usage), 'SPEC-TDC')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "G",
+            "target": "alias(sumSeries(sbnd.ptb.BoardReader.*.Process_RAM_Usage), 'PTB')"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "hide": false,
+            "refCount": 0,
+            "refId": "H",
+            "target": "alias(sumSeries(sbnd.*.BoardReader.*.Process_RAM_Usage), 'Total')"
+          }
+        ],
+        "title": "Board Reader Process RAM Usage (stacked)",
+        "type": "timeseries"
+      },
+      {
+        "collapsed": true,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 180
+        },
+        "id": 21,
+        "panels": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "description": "sbnd.evb*.EventBuilder*_art*.EventsProcessed",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "continuous-GrYlRd"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": 0
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 27,
+              "w": 24,
+              "x": 0,
+              "y": 189
+            },
+            "id": 13,
+            "options": {
+              "colorMode": "value",
+              "graphMode": "none",
+              "justifyMode": "auto",
+              "orientation": "auto",
+              "percentChangeColorMode": "standard",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showPercentChange": false,
+              "textMode": "value",
+              "wideLayout": true
+            },
+            "pluginVersion": "12.1.1",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "A",
+                "target": "sbnd.evb0[1-3].EventBuilder*_art*.EventsProcessed",
+                "textEditor": true
+              }
+            ],
+            "title": "EventBuilder*_art*.EventsProcessed",
+            "type": "stat"
+          }
+        ],
+        "title": "Events Processed by EventBuilder ART Workers",
+        "type": "row"
+      }
+    ],
+    "preload": false,
+    "refresh": "10s",
+    "schemaVersion": 41,
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-24h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "DAQ Performance Monitor",
+    "uid": "e595a447-0ae2-4b7c-9117-4ee93ce9ca93",
+    "version": 1
+  }
+}

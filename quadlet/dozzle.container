@@ -1,0 +1,25 @@
+[Unit]
+Description=Dozzle container log viewer
+Wants=network-online.target
+After=network-online.target podman.socket
+Requires=podman.socket
+
+[Container]
+ContainerName=dozzle
+Image=docker.io/amir20/dozzle:${DOZZLE_VERSION}
+Network=grafana.network
+
+PublishPort=${BIND_IP}:${DOZZLE_PORT}:8080
+
+Volume=${PODMAN_SOCK}:/var/run/docker.sock:ro
+Volume=${LOGS_DIR}:/var/log/dozzle
+
+LogDriver=json-file
+PodmanArgs=--memory=${DOZZLE_MEMORY_LIMIT} --log-opt=max-size=${LOG_MAX_SIZE} --log-opt=max-file=3
+
+[Service]
+Restart=always
+TimeoutStartSec=300
+
+[Install]
+WantedBy=default.target

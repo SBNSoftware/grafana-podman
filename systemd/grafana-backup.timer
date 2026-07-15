@@ -1,0 +1,10 @@
+[Unit]
+Description=Weekly Grafana configuration backup
+
+[Timer]
+OnCalendar=weekly
+Persistent=true
+RandomizedDelaySec=300
+
+[Install]
+WantedBy=timers.target

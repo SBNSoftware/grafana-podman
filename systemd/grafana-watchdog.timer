@@ -1,0 +1,9 @@
+[Unit]
+Description=Periodic health check of the Grafana stack (restart if down >10 min)
+
+[Timer]
+OnCalendar=*:0/2
+Persistent=false
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,32 @@
+[Unit]
+Description=Nginx TLS reverse proxy for Grafana/Dozzle
+Wants=network-online.target
+After=network-online.target grafana.service graphite.service
+Requires=grafana.service graphite.service
+
+[Container]
+ContainerName=nginx
+Image=docker.io/library/nginx:${NGINX_VERSION}
+Network=grafana.network
+
+PublishPort=${BIND_IP}:${NGINX_PORT}:443
+PublishPort=127.0.0.1:${NGINX_PORT}:443
+
+Volume=${NGINX_CONF_DIR}/nginx.conf:/etc/nginx/nginx.conf:ro
+Volume=${NGINX_CERTS_DIR}:/etc/nginx/certs:ro
+Volume=${LOGS_DIR}:/var/log/nginx
+
+HealthCmd=curl -fsk https://localhost:443
+HealthInterval=30s
+HealthTimeout=10s
+HealthRetries=3
+
+LogDriver=json-file
+PodmanArgs=--memory=${NGINX_MEMORY_LIMIT} --log-opt=max-size=${LOG_MAX_SIZE} --log-opt=max-file=3
+
+[Service]
+Restart=always
+TimeoutStartSec=300
+
+[Install]
+WantedBy=default.target

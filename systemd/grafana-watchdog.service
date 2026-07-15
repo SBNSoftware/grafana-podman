@@ -1,0 +1,6 @@
+[Unit]
+Description=Watchdog: restart Grafana stack services down longer than 10 minutes
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bash ${REPO_DIR}/grafana-watchdog.sh

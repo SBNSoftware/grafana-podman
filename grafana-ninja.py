@@ -4,14 +4,12 @@ try:
     import requests
     import json
     import os
+    import re
     import argparse
     from dotenv import load_dotenv
     from urllib3.exceptions import InsecureRequestWarning
     from time import sleep
-    from typing import Dict, List
-    import getpass
-    import socket
-    from datetime import datetime
+    from typing import Dict, List, Optional
 except ImportError as e:
     print(f"Error: Required library not found: {e.name}")
     print("Please ensure you have a Python virtual environment set up and activated.")
@@ -32,16 +30,23 @@ def load_config(config_file: str) -> Dict[str, str]:
         "GRAFANA_API_KEY": os.getenv("GRAFANA_API_KEY", ""),
         "EXPORT_DIR": os.getenv("EXPORT_DIR", "exported_grafana_data"),
         "RETRY_COUNT": os.getenv("RETRY_COUNT", "3"),
-        "EXPERIMENT_NAME": os.getenv("EXPERIMENT_NAME", "")
+        "EXPERIMENT_NAME": os.getenv("EXPERIMENT_NAME", ""),
+        "GRAFANA_INSECURE": os.getenv("GRAFANA_INSECURE", "false"),
     }
 
-def get_headers(api_key: str) -> Dict[str, str]:
-    return {
+
+def get_headers(api_key: str, disable_provenance: bool = False) -> Dict[str, str]:
+    headers = {
         "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
     }
+    if disable_provenance:
+        headers["X-Disable-Provenance"] = "true"
+    return headers
 
-def make_api_request(method: str, url: str, headers: Dict[str, str], json_data: Dict = None, verify: bool = True, retry_count: int = 3) -> requests.Response:
+
+def make_api_request(method: str, url: str, headers: Dict[str, str], json_data: Dict = None,
+                     verify: bool = True, retry_count: int = 3) -> requests.Response:
     for attempt in range(retry_count):
         try:
             response = requests.request(method, url, headers=headers, json=json_data, verify=verify)
@@ -50,344 +55,453 @@ def make_api_request(method: str, url: str, headers: Dict[str, str], json_data: 
         except requests.RequestException as e:
             if retry_count > 1:
                 print(f"Request failed (attempt {attempt + 1}/{retry_count})\nError: {e}")
-                #print(f"Method: {method}")
-                #print(f"Response body: {e.response.text if e.response else 'No response body'}")
             if attempt < retry_count - 1:
                 sleep(0.25)
             else:
                 raise
     raise Exception("All retry attempts failed")
 
-def get_dashboards(grafana_url: str, headers: Dict[str, str], verify: bool, retry_count: int) -> List[Dict]:
-    search_url = f"{grafana_url}/api/search?type=dash-db"
-    response = make_api_request("GET", search_url, headers, verify=verify, retry_count=retry_count)
-    return json.loads(response.text)
 
-def get_datasources(grafana_url: str, headers: Dict[str, str], verify: bool, retry_count: int) -> List[Dict]:
-    datasources_url = f"{grafana_url}/api/datasources"
-    response = make_api_request("GET", datasources_url, headers, verify=verify, retry_count=retry_count)
-    return json.loads(response.text)
+# --------------------------------------------------------------------------- #
+# GET helpers
+# --------------------------------------------------------------------------- #
+def _get_json(grafana_url: str, path: str, headers: Dict[str, str], verify: bool, retry_count: int):
+    response = make_api_request("GET", f"{grafana_url}{path}", headers, verify=verify, retry_count=retry_count)
+    return response.json()
 
-def get_alert_rules(grafana_url: str, headers: Dict[str, str], verify: bool, retry_count: int) -> List[Dict]:
-    alert_rules_url = f"{grafana_url}/api/v1/provisioning/alert-rules"
-    response = make_api_request("GET", alert_rules_url, headers, verify=verify, retry_count=retry_count)
-    return json.loads(response.text)
 
-def get_contact_points(grafana_url: str, headers: Dict[str, str], verify: bool, retry_count: int) -> List[Dict]:
-    contact_points_url = f"{grafana_url}/api/v1/provisioning/contact-points"
-    response = make_api_request("GET", contact_points_url, headers, verify=verify, retry_count=retry_count)
-    return json.loads(response.text)
+def get_dashboards(grafana_url, headers, verify, retry_count) -> List[Dict]:
+    return _get_json(grafana_url, "/api/search?type=dash-db", headers, verify, retry_count)
 
-def get_notification_policies(grafana_url: str, headers: Dict[str, str], verify: bool, retry_count: int) -> Dict:
-    notification_policies_url = f"{grafana_url}/api/v1/provisioning/policies"
-    response = make_api_request("GET", notification_policies_url, headers, verify=verify, retry_count=retry_count)
-    return json.loads(response.text)
 
-def get_folders(grafana_url: str, headers: Dict[str, str], verify: bool, retry_count: int) -> List[Dict]:
-    folders_url = f"{grafana_url}/api/folders"
-    response = make_api_request("GET", folders_url, headers, verify=verify, retry_count=retry_count)
-    return json.loads(response.text)
+def get_datasources(grafana_url, headers, verify, retry_count) -> List[Dict]:
+    return _get_json(grafana_url, "/api/datasources", headers, verify, retry_count)
 
-def get_mute_timings(grafana_url: str, headers: Dict[str, str], verify: bool, retry_count: int) -> List[Dict]:
-    mute_timings_url = f"{grafana_url}/api/v1/provisioning/mute-timings"
-    response = make_api_request("GET", mute_timings_url, headers, verify=verify, retry_count=retry_count)
-    return json.loads(response.text)
+
+def get_alert_rules(grafana_url, headers, verify, retry_count) -> List[Dict]:
+    return _get_json(grafana_url, "/api/v1/provisioning/alert-rules", headers, verify, retry_count)
+
+
+def get_contact_points(grafana_url, headers, verify, retry_count) -> List[Dict]:
+    data = _get_json(
+        grafana_url,
+        "/api/v1/provisioning/contact-points/export?decrypt=true&format=json",
+        headers, verify, retry_count,
+    )
+    items: List[Dict] = []
+    for cp in data.get("contactPoints", []):
+        for recv in cp.get("receivers", []):
+            items.append({
+                "uid": recv.get("uid"),
+                "name": cp.get("name"),
+                "type": recv.get("type"),
+                "settings": recv.get("settings", {}),
+                "disableResolveMessage": recv.get("disableResolveMessage", False),
+            })
+    return items
+
+
+def get_notification_policies(grafana_url, headers, verify, retry_count) -> Dict:
+    return _get_json(grafana_url, "/api/v1/provisioning/policies", headers, verify, retry_count)
+
+
+def get_folders(grafana_url, headers, verify, retry_count) -> List[Dict]:
+    return _get_json(grafana_url, "/api/folders", headers, verify, retry_count)
+
+
+def get_mute_timings(grafana_url, headers, verify, retry_count) -> List[Dict]:
+    return _get_json(grafana_url, "/api/v1/provisioning/mute-timings", headers, verify, retry_count)
+
+
+# --------------------------------------------------------------------------- #
+# Export
+# --------------------------------------------------------------------------- #
+def _safe(name: str) -> str:
+    return re.sub(r"[^A-Za-z0-9._-]", "_", (name or "unnamed"))
+
+
+def _name_uid(item_type: str, item_data: Dict):
+    if item_type == "dashboard":
+        d = item_data.get("dashboard", {})
+        return d.get("title", "unnamed"), d.get("uid")
+    if item_type == "datasource":
+        return item_data.get("name", "unnamed"), item_data.get("uid")
+    if item_type in ("folder", "alert_rule", "contact_point"):
+        return item_data.get("title", item_data.get("name", "unnamed")), item_data.get("uid")
+    if item_type == "mute_timing":
+        return item_data.get("name", "unnamed"), None
+    if item_type == "notification_policy":
+        return "root", None
+    raise ValueError(f"Unsupported item_type: {item_type}")
+
+
+_exported_stems: set = set()
+
 
 def export_item(item_type: str, item_data: Dict, export_dir: str):
     try:
-        if item_type == 'dashboard':
-            item_name = item_data['dashboard']['title']
-        elif item_type == 'datasource':
-            item_name = item_data['name']
-        elif item_type in ['alert_rule', 'folder', 'contact_point', 'notification_policy','mute-timings' ]:
-            item_name = item_data.get('title', item_data.get('name', 'unnamed'))
-        else:
-            raise ValueError(f"Unsupported item_type: {item_type}")
-
-        filename = os.path.join(export_dir, f"{item_type}_{item_name.replace(' ', '_')}.json")
-        with open(filename, 'w') as f:
+        name, uid = _name_uid(item_type, item_data)
+        stem = f"{item_type}_{_safe(name)}"
+        if stem in _exported_stems:
+            print(f"WARNING: duplicate name for {item_type} '{name}' (uid {uid}) — "
+                  f"overwriting {stem}.json; rename one of them in Grafana to keep both.")
+        _exported_stems.add(stem)
+        filename = os.path.join(export_dir, f"{stem}.json")
+        with open(filename, "w") as f:
             json.dump(item_data, f, indent=2)
-        print(f"Exported {item_type}: {item_name}")
+        print(f"Exported {item_type}: {name}")
     except Exception as e:
-        print(f"Error exporting item: {e}")
+        print(f"Error exporting {item_type}: {e}")
 
-def export_grafana_data(config: Dict[str, str]):
+
+def _warn_redacted(export_dir: str):
+    hits = []
+    for fn in os.listdir(export_dir):
+        if not fn.endswith(".json"):
+            continue
+        with open(os.path.join(export_dir, fn)) as f:
+            if "[REDACTED]" in f.read():
+                hits.append(fn)
+    if hits:
+        print()
+        print("WARNING: these exports still contain '[REDACTED]' secrets (the token may lack")
+        print("         alerting.provisioning.secrets:read, or the field is a datasource secret):")
+        for h in sorted(hits):
+            print(f"           - {h}")
+        print("         Restoring them will produce non-functional resources until secrets are supplied.")
+
+
+def export_grafana_data(config: Dict[str, str], verify: bool):
     headers = get_headers(config["GRAFANA_API_KEY"])
-    verify = not config["GRAFANA_URL"].startswith("https://")
     retry_count = int(config["RETRY_COUNT"])
+    url = config["GRAFANA_URL"]
 
     export_dir = config["EXPORT_DIR"]
     if config["EXPERIMENT_NAME"]:
         export_dir = os.path.join(export_dir, config["EXPERIMENT_NAME"])
     os.makedirs(export_dir, exist_ok=True)
 
-    datasources = get_datasources(config["GRAFANA_URL"], headers, verify, retry_count)
+    datasources = get_datasources(url, headers, verify, retry_count)
+    ds_secret_warn = []
     for datasource in datasources:
         export_item("datasource", datasource, export_dir)
+        if datasource.get("basicAuth") or datasource.get("secureJsonFields"):
+            ds_secret_warn.append(datasource.get("name"))
 
-    dashboards = get_dashboards(config["GRAFANA_URL"], headers, verify, retry_count)
+    dashboards = get_dashboards(url, headers, verify, retry_count)
     for dashboard in dashboards:
-        dashboard_url = f"{config['GRAFANA_URL']}/api/dashboards/uid/{dashboard['uid']}"
+        dashboard_url = f"{url}/api/dashboards/uid/{dashboard['uid']}"
         response = make_api_request("GET", dashboard_url, headers, verify=verify, retry_count=retry_count)
         export_item("dashboard", response.json(), export_dir)
 
-    folders = get_folders(config["GRAFANA_URL"], headers, verify, retry_count)
+    folders = get_folders(url, headers, verify, retry_count)
     for folder in folders:
         export_item("folder", folder, export_dir)
 
-    alert_rules = get_alert_rules(config["GRAFANA_URL"], headers, verify, retry_count)
+    alert_rules = get_alert_rules(url, headers, verify, retry_count)
     for alert_rule in alert_rules:
         export_item("alert_rule", alert_rule, export_dir)
 
-    contact_points = get_contact_points(config["GRAFANA_URL"], headers, verify, retry_count)
+    contact_points = get_contact_points(url, headers, verify, retry_count)
     for contact_point in contact_points:
         export_item("contact_point", contact_point, export_dir)
 
-    notification_policies = get_notification_policies(config["GRAFANA_URL"], headers, verify, retry_count)
+    notification_policies = get_notification_policies(url, headers, verify, retry_count)
     export_item("notification_policy", notification_policies, export_dir)
 
-    mute_timings = get_mute_timings(config["GRAFANA_URL"], headers, verify, retry_count)
+    mute_timings = get_mute_timings(url, headers, verify, retry_count)
     for mute_timing in mute_timings:
         export_item("mute_timing", mute_timing, export_dir)
 
     print("All items exported.")
 
-def delete_dashboard(grafana_url: str, headers: Dict[str, str], uid: str, verify: bool, retry_count: int):
-    delete_url = f"{grafana_url}/api/dashboards/uid/{uid}"
-    make_api_request("DELETE", delete_url, headers, verify=verify, retry_count=retry_count)
-    print(f"Deleted dashboard with UID: {uid}")
+    if ds_secret_warn:
+        print()
+        print("NOTE: Grafana cannot export datasource secrets. These datasources have")
+        print("      basicAuth/secure fields that will be EMPTY on restore — supply them")
+        print("      with `--secrets-file` on import:")
+        for n in ds_secret_warn:
+            print(f"        - {n}")
+    _warn_redacted(export_dir)
 
-def delete_datasource(grafana_url: str, headers: Dict[str, str], uid: str, verify: bool, retry_count: int):
-    delete_url = f"{grafana_url}/api/datasources/uid/{uid}"
-    make_api_request("DELETE", delete_url, headers, verify=verify, retry_count=retry_count)
-    print(f"Deleted datasource with UID: {uid}")
 
-def delete_alert_rule(grafana_url: str, headers: Dict[str, str], uid: str, verify: bool, retry_count: int):
-    delete_url = f"{grafana_url}/api/v1/provisioning/alert-rules/{uid}"
-    make_api_request("DELETE", delete_url, headers, verify=verify, retry_count=retry_count)
-    print(f"Deleted alert rule with UID: {uid}")
+# --------------------------------------------------------------------------- #
+# Delete helpers (for --wipe-existing-data)
+# --------------------------------------------------------------------------- #
+def _delete(grafana_url, headers, path, verify, retry_count):
+    make_api_request("DELETE", f"{grafana_url}{path}", headers, verify=verify, retry_count=retry_count)
 
-def delete_contact_point(grafana_url: str, headers: Dict[str, str], uid: str, verify: bool, retry_count: int):
-    delete_url = f"{grafana_url}/api/v1/provisioning/contact-points/{uid}"
-    make_api_request("DELETE", delete_url, headers, verify=verify, retry_count=retry_count)
-    print(f"Deleted contact point with UID: {uid}")
 
-def delete_notification_policies(grafana_url: str, headers: Dict[str, str], verify: bool, retry_count: int):
-    delete_url = f"{grafana_url}/api/v1/provisioning/policies"
-    make_api_request("DELETE", delete_url, headers, verify=verify, retry_count=retry_count)
-    print("Deleted all notification policies")
-
-def delete_folder(grafana_url: str, headers: Dict[str, str], uid: str, verify: bool, retry_count: int):
-    delete_url = f"{grafana_url}/api/folders/{uid}"
-    make_api_request("DELETE", delete_url, headers, verify=verify, retry_count=retry_count)
-    print(f"Deleted folder with UID: {uid}")
-
-def delete_mute_timing(grafana_url: str, headers: Dict[str, str], name: str, verify: bool, retry_count: int):
-    delete_url = f"{grafana_url}/api/v1/provisioning/mute-timings/{name}"
-    make_api_request("DELETE", delete_url, headers, verify=verify, retry_count=retry_count)
-    print(f"Deleted mute timing: {name}")
-
-def create_find_folder_uid(grafana_url: str, headers: Dict[str, str], name: str ,verify: bool, retry_count: int) -> str:
+def create_find_folder_uid(grafana_url, headers, name, verify, retry_count) -> str:
     try:
         folders = get_folders(grafana_url, headers, verify, retry_count)
-        general_folder = next((folder for folder in folders if folder['title'] == name), None)
-
+        general_folder = next((f for f in folders if f["title"] == name), None)
         if general_folder:
-            return general_folder['uid']
+            return general_folder["uid"]
     except Exception:
-
         pass
+    response = make_api_request("POST", f"{grafana_url}/api/folders", headers,
+                                json_data={"title": name}, verify=verify, retry_count=retry_count)
+    return json.loads(response.text)["uid"]
 
-    create_folder_url = f"{grafana_url}/api/folders"
 
-    folder_data = {
-        "title": name
-    }
-
-    response = make_api_request("POST", create_folder_url, headers, json_data=folder_data, verify=verify, retry_count=retry_count)
-    created_folder = json.loads(response.text)
-    return created_folder['uid']
-
-def import_grafana_data(config: Dict[str, str], force: bool):
-    headers = get_headers(config["GRAFANA_API_KEY"])
-    verify = not config["GRAFANA_URL"].startswith("https://")
+# --------------------------------------------------------------------------- #
+# Import
+# --------------------------------------------------------------------------- #
+def import_grafana_data(config: Dict[str, str], force: bool, verify: bool,
+                        secrets: Dict[str, Dict], dry_run: bool):
+    url = config["GRAFANA_URL"]
     retry_count = int(config["RETRY_COUNT"])
-    general_folder_name = 'Dashboards'
-
-    existing_dashboards = {d['title']: d['uid'] for d in get_dashboards(config["GRAFANA_URL"], headers, verify, retry_count) if d['uid'] and d['uid'] != ''}
-    existing_datasources = {d['name']: d['uid'] for d in get_datasources(config["GRAFANA_URL"], headers, verify, retry_count) if d['uid'] and d['uid'] != ''}
-    existing_alert_rules = {d['title']: d['uid'] for d in get_alert_rules(config["GRAFANA_URL"], headers, verify, retry_count) if d['uid'] and d['uid'] != ''}
-    existing_contact_points = {d['name']: d['uid'] for d in get_contact_points(config["GRAFANA_URL"], headers, verify, retry_count) if d['uid'] and d['uid'] != ''}
-    existing_folders = {d['title']: d['uid'] for d in get_folders(config["GRAFANA_URL"], headers, verify, retry_count) if d['uid'] and d['uid'] != ''}
-    existing_mute_timings = {d['name']: d['name'] for d in get_mute_timings(config["GRAFANA_URL"], headers, verify, retry_count)}
+    headers = get_headers(config["GRAFANA_API_KEY"])
+    prov_headers = get_headers(config["GRAFANA_API_KEY"], disable_provenance=True)
+    general_folder_name = "Dashboards"
 
     import_dir = config["EXPORT_DIR"]
     if config["EXPERIMENT_NAME"]:
         import_dir = os.path.join(import_dir, config["EXPERIMENT_NAME"])
+    if not os.path.isdir(import_dir):
+        print(f"Error: import directory not found: {import_dir}")
+        sys.exit(1)
 
     if force:
-        delete_order = [
-            ("dashboard", existing_dashboards),
-            ("alert_rule", existing_alert_rules),
-            ("notification_policy", None),
-            ("contact_point", existing_contact_points),
-            ("datasource", existing_datasources),
-            ("folder",existing_folders),
-            ("mute_timing", existing_mute_timings)
-        ]
+        _wipe(url, headers, prov_headers, verify, retry_count, dry_run)
 
-        for item_type, items in delete_order:
-            if item_type == "notification_policy":
-                try:
-                    delete_notification_policies(config["GRAFANA_URL"], headers, verify, retry_count)
-                except Exception as e:
-                    print(f"Failed to delete notification policies: {e}")
-            elif items:
-                for uid in items.values():
-                    try:
-                        if item_type == "dashboard":
-                            delete_dashboard(config["GRAFANA_URL"], headers, uid, verify, retry_count)
-                        elif item_type == "mute_timing":
-                            delete_mute_timing(config["GRAFANA_URL"], headers, uid, verify, retry_count)
-                        elif item_type == "contact_point":
-                            delete_contact_point(config["GRAFANA_URL"], headers, uid, verify, retry_count)
-                        elif item_type == "folder":
-                            delete_folder(config["GRAFANA_URL"], headers, uid, verify, retry_count)
-                        elif item_type == "alert_rule":
-                            delete_alert_rule(config["GRAFANA_URL"], headers, uid, verify, retry_count)
-                        elif item_type == "datasource":
-                            delete_datasource(config["GRAFANA_URL"], headers, uid, verify, retry_count)
-                    except Exception as e:
-                        print(f"Failed to delete {item_type} with UID {uid}: {e}")
-                        continue
+    import_order = ["datasource_", "folder_", "dashboard_", "mute_timing_",
+                    "contact_point_", "notification_policy_", "alert_rule_"]
 
-    import_order = [ "datasource_", "folder_", "dashboard_", "mute_timing_", "contact_point_", "notification_policy_", "alert_rule_" ]
+    general_folder_uid = None
+    folder_uids = None
+    existing_cps = None
+    failed = 0
 
-    general_folder_uid = create_find_folder_uid(config['GRAFANA_URL'], headers, general_folder_name , verify, retry_count)
-
+    files = sorted(os.listdir(import_dir))
     for prefix in import_order:
-        for filename in os.listdir(import_dir):
-            if filename.endswith(".json") and filename.startswith(prefix):
-                with open(os.path.join(import_dir, filename), 'r') as f:
-                    item_data = json.load(f)
+        for filename in files:
+            if not (filename.endswith(".json") and filename.startswith(prefix)):
+                continue
+            with open(os.path.join(import_dir, filename)) as f:
+                item_data = json.load(f)
 
-                method='POST'
-                if prefix == "datasource_":
-                    import_url = f"{config['GRAFANA_URL']}/api/datasources"
-                elif prefix == "folder_":
-                     if  item_data['title'] == general_folder_name:
-                         continue
-                     import_url = f"{config['GRAFANA_URL']}/api/folders"
-                     item_data['id'] = None
-                elif prefix == "dashboard_":
-                     import_url = f"{config['GRAFANA_URL']}/api/dashboards/db"
-                     item_data['dashboard']['id'] = None
-                     item_data['folderUid'] = general_folder_uid
-                elif prefix == "contact_point_":
-                    import_url = f"{config['GRAFANA_URL']}/api/v1/provisioning/contact-points"
-                elif prefix == "notification_policy_":
-                    import_url = f"{config['GRAFANA_URL']}/api/v1/provisioning/policies"
-                    method='PUT'
-                elif prefix == "alert_rule_":
-                    import_url = f"{config['GRAFANA_URL']}/api/v1/provisioning/alert-rules"
+            method = "POST"
+            req_headers = headers
+            upsert = None
+
+            if prefix == "datasource_":
+                import_url = f"{url}/api/datasources"
+                item_data["id"] = None
+                _inject_ds_secret(item_data, secrets)
+                if item_data.get("uid"):
+                    upsert = ("PUT", f"{url}/api/datasources/uid/{item_data['uid']}")
+
+            elif prefix == "folder_":
+                if item_data.get("title") == general_folder_name:
+                    continue
+                import_url = f"{url}/api/folders"
+                item_data["id"] = None
+                item_data["overwrite"] = True
+                if item_data.get("uid"):
+                    upsert = ("PUT", f"{url}/api/folders/{item_data['uid']}")
+
+            elif prefix == "dashboard_":
+                if folder_uids is None:
+                    folder_uids = {f["uid"] for f in get_folders(url, headers, verify, retry_count)}
+                import_url = f"{url}/api/dashboards/db"
+                orig_folder = (item_data.get("meta") or {}).get("folderUid", "") or ""
+                if orig_folder and orig_folder in folder_uids:
+                    target_folder = orig_folder
+                elif orig_folder == "":
+                    target_folder = ""
+                else:
+                    if general_folder_uid is None:
+                        general_folder_uid = create_find_folder_uid(url, headers, general_folder_name, verify, retry_count)
+                    target_folder = general_folder_uid
+                item_data["dashboard"]["id"] = None
+                item_data["folderUid"] = target_folder
+                item_data["overwrite"] = True
+                item_data.pop("meta", None)
+
+            elif prefix == "mute_timing_":
+                import_url = f"{url}/api/v1/provisioning/mute-timings"
+                req_headers = prov_headers
+                if item_data.get("name"):
+                    upsert = ("PUT", f"{url}/api/v1/provisioning/mute-timings/{item_data['name']}")
+
+            elif prefix == "contact_point_":
+                req_headers = prov_headers
+                import_url = f"{url}/api/v1/provisioning/contact-points"
+                if existing_cps is None:
+                    existing_cps = _get_json(url, "/api/v1/provisioning/contact-points",
+                                             headers, verify, retry_count)
+                cp_uid = item_data.get("uid") or ""
+                if cp_uid and any(c.get("uid") == cp_uid for c in existing_cps):
+                    method = "PUT"
+                    import_url = f"{url}/api/v1/provisioning/contact-points/{cp_uid}"
+                elif not cp_uid and any(c.get("name") == item_data.get("name")
+                                        and c.get("type") == item_data.get("type")
+                                        for c in existing_cps):
+                    print(f"Skipped (same name/type already exists, no uid to update): {filename}")
+                    continue
+
+            elif prefix == "notification_policy_":
+                import_url = f"{url}/api/v1/provisioning/policies"
+                method = "PUT"
+                req_headers = prov_headers
+
+            elif prefix == "alert_rule_":
+                import_url = f"{url}/api/v1/provisioning/alert-rules"
+                req_headers = prov_headers
+                if item_data.get("uid"):
+                    upsert = ("PUT", f"{url}/api/v1/provisioning/alert-rules/{item_data['uid']}")
+            else:
+                continue
+
+            if dry_run:
+                print(f"[dry-run] {method} {import_url}  <- {filename}")
+                continue
+            try:
+                make_api_request(method, import_url, req_headers, json_data=item_data,
+                                 verify=verify, retry_count=retry_count)
+                print(f"Imported: {filename}")
+            except requests.RequestException as e:
+                status = getattr(getattr(e, "response", None), "status_code", None)
+                if upsert and status in (409, 412):
+                    try:
+                        make_api_request(upsert[0], upsert[1], req_headers, json_data=item_data,
+                                         verify=verify, retry_count=retry_count)
+                        print(f"Imported (updated existing): {filename}")
+                        continue
+                    except requests.RequestException as e2:
+                        e = e2
+                failed += 1
+                print(f"Failed to import {filename}: {e}")
+
+    if dry_run:
+        print("Dry run complete (no changes made).")
+    elif failed:
+        print(f"Import finished with {failed} failure(s).")
+        sys.exit(1)
+    else:
+        print("All items imported.")
 
 
-                try:
-                    make_api_request(method, import_url, headers, json_data=item_data, verify=verify, retry_count=retry_count)
-                    print(f"Imported: {filename}")
-                except requests.RequestException as e:
-                    print(f"Failed to import {filename}: {e}")
+def _inject_ds_secret(item_data: Dict, secrets: Dict[str, Dict]):
+    if not secrets:
+        return
+    key = None
+    if item_data.get("name") in secrets:
+        key = item_data["name"]
+    elif item_data.get("uid") in secrets:
+        key = item_data["uid"]
+    if key:
+        merged = dict(item_data.get("secureJsonData") or {})
+        merged.update(secrets[key])
+        item_data["secureJsonData"] = merged
+        print(f"  injected secret(s) for datasource '{item_data.get('name')}'")
 
-    print("All items imported.")
+
+def _wipe(url, headers, prov_headers, verify, retry_count, dry_run):
+    def safe(fn, label):
+        try:
+            if dry_run:
+                print(f"[dry-run] would delete {label}")
+            else:
+                fn()
+        except Exception as e:
+            print(f"Failed to delete {label}: {e}")
+
+    for d in get_dashboards(url, headers, verify, retry_count):
+        if d.get("uid"):
+            safe(lambda d=d: _delete(url, headers, f"/api/dashboards/uid/{d['uid']}", verify, retry_count),
+                 f"dashboard {d['uid']}")
+    for r in get_alert_rules(url, headers, verify, retry_count):
+        if r.get("uid"):
+            safe(lambda r=r: _delete(url, prov_headers, f"/api/v1/provisioning/alert-rules/{r['uid']}", verify, retry_count),
+                 f"alert_rule {r['uid']}")
+    safe(lambda: _delete(url, prov_headers, "/api/v1/provisioning/policies", verify, retry_count),
+         "notification policy tree")
+    for c in get_contact_points(url, headers, verify, retry_count):
+        if c.get("uid"):
+            safe(lambda c=c: _delete(url, prov_headers, f"/api/v1/provisioning/contact-points/{c['uid']}", verify, retry_count),
+                 f"contact_point {c['uid']}")
+    for m in get_mute_timings(url, headers, verify, retry_count):
+        if m.get("name"):
+            safe(lambda m=m: _delete(url, prov_headers, f"/api/v1/provisioning/mute-timings/{m['name']}", verify, retry_count),
+                 f"mute_timing {m['name']}")
+    for ds in get_datasources(url, headers, verify, retry_count):
+        if ds.get("uid"):
+            safe(lambda ds=ds: _delete(url, headers, f"/api/datasources/uid/{ds['uid']}", verify, retry_count),
+                 f"datasource {ds['uid']}")
+    for fo in get_folders(url, headers, verify, retry_count):
+        if fo.get("uid"):
+            safe(lambda fo=fo: _delete(url, headers, f"/api/folders/{fo['uid']}", verify, retry_count),
+                 f"folder {fo['uid']}")
+
+
+# --------------------------------------------------------------------------- #
+# CLI
+# --------------------------------------------------------------------------- #
+def load_secrets(path: Optional[str]) -> Dict[str, Dict]:
+    if not path:
+        return {}
+    with open(path) as f:
+        data = json.load(f)
+    if not isinstance(data, dict):
+        raise ValueError("secrets file must be a JSON object keyed by datasource name/uid")
+    return data
+
 
 def usage():
-    print("Grafana Configuration Management Tool")
-    print("\nDescription:")
-    print("  This program allows you to export or import Grafana configurations including")
-    print("  dashboards, datasources, alert rules, contact points, notification policies,")
-    print("  folders, and mute timings.")
+    print("Grafana Configuration Management Tool (grafana-ninja)")
+    print("\nBackup/restore dashboards, datasources, folders, alert rules, contact points,")
+    print("notification policies, and mute timings.")
     print("\nUsage:")
-    print("  python3 grafana-ninja.py --config <config_file> --mode <export|import> [--wipe-existing-data]")
+    print("  python3 grafana-ninja.py --config <file> --mode <export|import> [options]")
     print("\nOptions:")
-    print("  --config <file>     Path to the configuration file (required)")
-    print("  --mode <mode>       Operation mode: 'export' or 'import' (required)")
-    print("  --wipe-existing-data  All existing configuration settings will be deleted")
-    print("  --token-instructions  Print instructions for creating a Grafana API token")
-    print("  -h, /?, --help      Show this help message and exit")
-    print("\nExamples:")
-    print("  Export:  python3 grafana-ninja.py --config config.env --mode export")
-    print("  Import:  python3 grafana-ninja.py --config config.env --mode import")
-    print("  Wipe and Import: python3 grafana-ninja.py --config config.env --mode import --wipe-existing-data")
-    print("  Token Instructions: python3 grafana-ninja.py --token-instructions")
+    print("  --config <file>        Path to the configuration file (required)")
+    print("  --mode <export|import> Operation mode (required)")
+    print("  --wipe-existing-data   Delete all existing configuration before import")
+    print("  --secrets-file <file>  JSON of datasource secrets to inject on import,")
+    print("                         keyed by datasource name/uid -> secureJsonData")
+    print("  --insecure             Skip TLS verification (self-signed endpoints);")
+    print("                         also settable via GRAFANA_INSECURE=true in the config")
+    print("  --dry-run              Show what import would do without changing anything")
+    print("  --token-instructions   Print how to create a Grafana API token")
+    print("  -h, --help             Show this help and exit")
+
 
 def print_token_creation_instructions():
-    instructions = """
+    print("""
+Create a Grafana service-account token for grafana-ninja:
 
-Below is a guide on creating a Grafana API Token for the grafana-ninja.py program and instructions for adding it to your configuration:
+1. Log in to Grafana as an admin.
+2. Administration -> Users and access -> Service accounts.
+3. "Add service account", role Admin, Create.
+4. "Add service account token", copy it (shown once).
+5. Put it in your config file:
+     GRAFANA_API_KEY=<token>
+     GRAFANA_URL=https://your-grafana:3000
+   For self-signed TLS, also set GRAFANA_INSECURE=true (or pass --insecure).
 
-1. Logging into Grafana web interface as admin user:
-   - Open your web browser and navigate to your Grafana instance URL.
-   - Enter your admin username and password on the login page.
-   - Click "Log In" to access the Grafana dashboard.
+Note: exporting decrypted alerting secrets requires the token to have the
+'alerting.provisioning.secrets:read' permission (Admin role has it).
+""")
 
-2. Expanding the home panel on the left:
-   - Look for the hamburger menu icon (≡) in the top-left corner of the interface.
-   - Click on it to expand the left-side navigation panel.
-
-3. Expanding the Administration, and then Users and access drop-down:
-   - In the expanded left panel, scroll down to find "Administration".
-   - Click on "Administration" to expand its sub-menu.
-   - Look for "Users and access" and click to expand its options.
-
-4. Clicking the "Service accounts" menu and adding a new API user account:
-   - In the "Users and access" sub-menu, click on "Service accounts".
-   - On the Service accounts page, click the "Add service account" button.
-   - Fill in the required details:
-     - Display name: Give your service account a descriptive name.
-     - Role: Select the appropriate role (e.g., Admin for full access).
-   - Click "Create" to create the service account.
-
-5. Clicking on the "Add Service account token" and creating a token:
-   - After creating the service account, you'll be redirected to its details page.
-   - Click on the "Add service account token" button.
-   - In the dialog that appears:
-     - Token name: Give your token a descriptive name.
-     - Expiration: Set an expiration date if desired, or leave it as "No expiration" for a permanent token.
-   - Click "Generate token" to create the API token.
-
-6. Copying the token and exiting the interface:
-   - The newly generated token will be displayed on the screen.
-   - IMPORTANT: Copy this token immediately and save it securely. It will only be shown once.
-   - After copying, click "Close" or navigate away from the page.
-
-Adding the token to config.env:
-
-1. Open your config.env file in a text editor.
-2. Add a new line or modify an existing line to include the GRAFANA_API_KEY:
-   GRAFANA_API_KEY=your_copied_token_her
-3. Save the file.
-
-Also, ensure that your config.env file includes the GRAFANA_URL variable, which should point to your Grafana server instance. It should look something like this:
-GRAFANA_URL=https://your-grafana-server:3000
-
-Replace "https://your-grafana-server:3000" with the actual URL of your Grafana instance.
-
-Remember to keep your config.env file secure, as it contains sensitive information. Never share your API token or include it in version control systems.
-    """
-    print(instructions)
 
 def main():
-    if len(sys.argv) == 1 or sys.argv[1] in ["-h", "/?", "--help"]:
+    if len(sys.argv) == 1 or sys.argv[1] in ["-h", "--help", "/?"]:
         usage()
         sys.exit(0)
-    if len(sys.argv) == 1 or sys.argv[1] in ["--token-instructions"]:
+    if sys.argv[1] == "--token-instructions":
         print_token_creation_instructions()
         sys.exit(0)
 
     parser = argparse.ArgumentParser(add_help=False)
-    parser.add_argument("--config", required=True, help="Path to configuration file")
-    parser.add_argument("--mode", choices=["export", "import"], required=True, help="Operation mode")
-    parser.add_argument("--wipe-existing-data", action="store_true", help="All existing configuration settings will be deleted")
+    parser.add_argument("--config", required=True)
+    parser.add_argument("--mode", choices=["export", "import"], required=True)
+    parser.add_argument("--wipe-existing-data", action="store_true")
+    parser.add_argument("--secrets-file")
+    parser.add_argument("--insecure", action="store_true")
+    parser.add_argument("--dry-run", action="store_true")
 
     try:
         args = parser.parse_args()
@@ -397,30 +511,29 @@ def main():
 
     config = load_config(args.config)
 
-    if config["GRAFANA_URL"].startswith("https://"):
+    insecure = args.insecure or config["GRAFANA_INSECURE"].strip().lower() in ("1", "true", "yes", "on")
+    verify = not insecure
+    if not verify:
         requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 
     try:
-        get_folders(config["GRAFANA_URL"], get_headers(config["GRAFANA_API_KEY"]), not config["GRAFANA_URL"].startswith("https://"), int(config["RETRY_COUNT"]))
+        get_folders(config["GRAFANA_URL"], get_headers(config["GRAFANA_API_KEY"]),
+                    verify, int(config["RETRY_COUNT"]))
     except Exception as e:
-        print()
-        print()
-        print(f"Error: Unable to connect to Grafana or authenticate.\n Details: {e}")
-        print("This could be due to an invalid GRAFANA_URL or GRAFANA_API_KEY in your configuration.")
-        print()
-        print(f"Please check the following in your config file '{args.config}':")
-        print("1. GRAFANA_URL is correct and Grafana is accessible from this machine.")
-        print("2. GRAFANA_API_KEY is valid and has the necessary permissions.")
-        print("3. Your network configuration allows this connection.")
-        print()
-        print("\nFor help creating a valid API token, run this program with the --token-instructions option.")
-        print("If the problem persists, check Grafana's logs for more information.")
+        print(f"\nError: Unable to connect to Grafana or authenticate.\n Details: {e}")
+        print(f"\nCheck GRAFANA_URL / GRAFANA_API_KEY in '{args.config}'.")
+        if verify and str(config["GRAFANA_URL"]).startswith("https://"):
+            print("If the endpoint uses a self-signed certificate, pass --insecure "
+                  "or set GRAFANA_INSECURE=true.")
+        print("Run with --token-instructions for help creating a valid API token.")
         sys.exit(1)
 
     if args.mode == "export":
-        export_grafana_data(config)
-    elif args.mode == "import":
-        import_grafana_data(config, args.wipe_existing_data)
+        export_grafana_data(config, verify)
+    else:
+        secrets = load_secrets(args.secrets_file)
+        import_grafana_data(config, args.wipe_existing_data, verify, secrets, args.dry_run)
+
 
 if __name__ == "__main__":
     main()
