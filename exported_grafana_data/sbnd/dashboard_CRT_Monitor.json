@@ -10,10 +10,10 @@
     "url": "/d/F_iqbmj7k/crt-monitor",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2026-07-14T21:26:31Z",
-    "updated": "2026-07-14T21:26:31Z",
-    "updatedBy": "Anonymous",
-    "createdBy": "Anonymous",
-    "version": 1,
+    "updated": "2026-08-26T20:10:18Z",
+    "updatedBy": "admin",
+    "createdBy": "grafana-ninja",
+    "version": 7,
     "hasAcl": false,
     "isFolder": false,
     "apiVersion": "v0alpha1",
@@ -37,7 +37,7 @@
         {
           "builtIn": 1,
           "datasource": {
-            "type": "datasource",
+            "type": "grafana",
             "uid": "grafana"
           },
           "enable": true,
@@ -59,7 +59,7 @@
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
     "id": 983296039997440,
-    "links": [],
+    "liveNow": false,
     "panels": [
       {
         "collapsed": false,
@@ -69,8 +69,7 @@
           "x": 0,
           "y": 0
         },
-        "id": 60,
-        "panels": [],
+        "id": 178,
         "title": "Rates",
         "type": "row"
       },
@@ -79,7 +78,6 @@
           "type": "graphite",
           "uid": "PED8062B0600A9C35"
         },
-        "description": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -111,8 +109,7 @@
               ]
             },
             "unit": "none"
-          },
-          "overrides": []
+          }
         },
         "gridPos": {
           "h": 6,
@@ -141,7 +138,7 @@
           "textMode": "auto",
           "wideLayout": true
         },
-        "pluginVersion": "12.1.1",
+        "pluginVersion": "13.1.0",
         "targets": [
           {
             "datasource": {
@@ -167,12 +164,7 @@
             "color": {
               "mode": "thresholds"
             },
-            "custom": {
-              "neutral": 0
-            },
             "displayName": "${__series.name}",
-            "links": [],
-            "mappings": [],
             "thresholds": {
               "mode": "absolute",
               "steps": [
@@ -186,8 +178,7 @@
                 }
               ]
             }
-          },
-          "overrides": []
+          }
         },
         "gridPos": {
           "h": 6,
@@ -198,6 +189,14 @@
         "id": 2,
         "maxDataPoints": 1000,
         "options": {
+          "barShape": "flat",
+          "barWidthFactor": 0.5,
+          "effects": {
+            "barGlow": false,
+            "centerGlow": false,
+            "gradient": false
+          },
+          "endpointMarker": "point",
           "minVizHeight": 75,
           "minVizWidth": 75,
           "orientation": "auto",
@@ -206,19 +205,23 @@
             "fields": "",
             "values": false
           },
+          "segmentCount": 1,
+          "segmentSpacing": 0.3,
+          "shape": "gauge",
           "showThresholdLabels": false,
           "showThresholdMarkers": true,
           "sizing": "auto",
-          "text": {}
+          "sparkline": false,
+          "text": {},
+          "textMode": "auto"
         },
-        "pluginVersion": "12.1.1",
+        "pluginVersion": "13.1.0",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "B",
             "target": "currentAbove(aliasByNode(movingAverage(sbnd.crt*.BoardReader.*.Fragment_Rate, 1), 1), 0)",
@@ -234,7 +237,6 @@
           "type": "graphite",
           "uid": "PED8062B0600A9C35"
         },
-        "description": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -246,10 +248,12 @@
                 "mode": "gradient",
                 "type": "color-background"
               },
+              "footer": {
+                "reducers": []
+              },
               "inspect": false,
               "minWidth": 60
             },
-            "mappings": [],
             "noValue": "N/A",
             "thresholds": {
               "mode": "absolute",
@@ -277,7 +281,8 @@
                   "value": "time: YYYY-MM-DD HH:mm:ss"
                 },
                 {
-                  "id": "custom.align"
+                  "id": "custom.align",
+                  "value": null
                 }
               ]
             },
@@ -296,7 +301,8 @@
                   "value": 2
                 },
                 {
-                  "id": "custom.align"
+                  "id": "custom.align",
+                  "value": null
                 }
               ]
             },
@@ -335,18 +341,10 @@
         "id": 10,
         "options": {
           "cellHeight": "sm",
-          "footer": {
-            "countRows": false,
-            "fields": "",
-            "reducer": [
-              "sum"
-            ],
-            "show": false
-          },
           "showHeader": true,
           "sortBy": []
         },
-        "pluginVersion": "12.1.1",
+        "pluginVersion": "13.1.0",
         "targets": [
           {
             "datasource": {
@@ -386,7 +384,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "A",
             "target": "alias(sumSeries(keepLastValue(sbnd.evb*.*.Events_Released_to_art_this_run, 10)), 'Events Released to art in EventBuilders')",
@@ -397,7 +394,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "B",
             "target": "alias(sumSeries(keepLastValue(sbnd.dl*.*.Events_Released_to_art_this_run, 10)), 'Events Released to art in DataLoggers')",
@@ -419,7 +415,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "E",
             "target": "currentAbove(alias(sbnd.evb04.EventBuilder4*.Events_Released_to_art_this_run, 'Events Released to art in EventBuilder4'), -1)",
@@ -430,7 +425,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "H",
             "target": "alias(sumSeries(currentAbove(keepLastValue(sbnd.crteast*.BoardReader.*.Fragment_Count, 10), -1)), 'Fragments Sent from East CRT')",
@@ -441,7 +435,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "J",
             "target": "alias(sumSeries(currentAbove(keepLastValue(sbnd.crtnorth*.BoardReader.*.Fragment_Count, 10), -1)), 'Fragments Sent from North CRT')",
@@ -452,7 +445,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "I",
             "target": "alias(sumSeries(currentAbove(keepLastValue(sbnd.crtflat*.BoardReader.*.Fragment_Count, 10), -1)), 'Fragments Sent from Bottom CRT')",
@@ -478,7 +470,6 @@
           "type": "graphite",
           "uid": "PED8062B0600A9C35"
         },
-        "description": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -490,11 +481,13 @@
                 "mode": "gradient",
                 "type": "color-background"
               },
+              "footer": {
+                "reducers": []
+              },
               "inspect": false
             },
             "decimals": 0,
             "displayName": "",
-            "mappings": [],
             "thresholds": {
               "mode": "absolute",
               "steps": [
@@ -522,7 +515,8 @@
                   "value": "time: YYYY-MM-DD HH:mm:ss"
                 },
                 {
-                  "id": "custom.align"
+                  "id": "custom.align",
+                  "value": null
                 }
               ]
             },
@@ -561,14 +555,6 @@
         "id": 12,
         "options": {
           "cellHeight": "sm",
-          "footer": {
-            "countRows": false,
-            "fields": "",
-            "reducer": [
-              "sum"
-            ],
-            "show": false
-          },
           "showHeader": true,
           "sortBy": [
             {
@@ -577,14 +563,13 @@
             }
           ]
         },
-        "pluginVersion": "12.1.1",
+        "pluginVersion": "13.1.0",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "B",
             "target": "aliasByNode(sumSeries(sbnd.evb04.*.EventsProcessed), 3)",
@@ -595,7 +580,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "C",
             "target": "aliasByNode(sumSeries(sbnd.evb04.*.EventsWithEmptyFragments), 3)",
@@ -606,7 +590,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "D",
             "target": "aliasByNode(sumSeries(sbnd.evb04.*.EventsWithMissingFragments), 3)",
@@ -617,7 +600,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "E",
             "target": "aliasByNode(sumSeries(sbnd.evb04.EventBuilder4*.Incomplete_Event_Rate), 3)",
@@ -643,7 +625,6 @@
           "type": "graphite",
           "uid": "PED8062B0600A9C35"
         },
-        "description": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -674,6 +655,7 @@
                 "type": "linear"
               },
               "showPoints": "auto",
+              "showValues": false,
               "spanNulls": false,
               "stacking": {
                 "group": "A",
@@ -683,7 +665,6 @@
                 "mode": "off"
               }
             },
-            "mappings": [],
             "min": 0,
             "thresholds": {
               "mode": "absolute",
@@ -699,8 +680,7 @@
               ]
             },
             "unit": "none"
-          },
-          "overrides": []
+          }
         },
         "gridPos": {
           "h": 8,
@@ -710,9 +690,15 @@
         },
         "id": 48,
         "options": {
+          "annotations": {
+            "clustering": -1,
+            "multiLane": false
+          },
           "legend": {
             "calcs": [],
             "displayMode": "list",
+            "enableFacetedFilter": false,
+            "overflow": "ellipsis",
             "placement": "bottom",
             "showLegend": false
           },
@@ -722,7 +708,7 @@
             "sort": "none"
           }
         },
-        "pluginVersion": "12.1.1",
+        "pluginVersion": "13.1.0",
         "targets": [
           {
             "datasource": {
@@ -743,7 +729,6 @@
           "type": "graphite",
           "uid": "PED8062B0600A9C35"
         },
-        "description": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -774,6 +759,7 @@
                 "type": "linear"
               },
               "showPoints": "auto",
+              "showValues": false,
               "spanNulls": false,
               "stacking": {
                 "group": "A",
@@ -783,7 +769,6 @@
                 "mode": "off"
               }
             },
-            "mappings": [],
             "min": 0,
             "thresholds": {
               "mode": "absolute",
@@ -799,8 +784,7 @@
               ]
             },
             "unit": "none"
-          },
-          "overrides": []
+          }
         },
         "gridPos": {
           "h": 8,
@@ -810,9 +794,15 @@
         },
         "id": 49,
         "options": {
+          "annotations": {
+            "clustering": -1,
+            "multiLane": false
+          },
           "legend": {
             "calcs": [],
             "displayMode": "list",
+            "enableFacetedFilter": false,
+            "overflow": "ellipsis",
             "placement": "bottom",
             "showLegend": false
           },
@@ -822,7 +812,7 @@
             "sort": "none"
           }
         },
-        "pluginVersion": "12.1.1",
+        "pluginVersion": "13.1.0",
         "targets": [
           {
             "datasource": {
@@ -872,6 +862,7 @@
                 "type": "linear"
               },
               "showPoints": "auto",
+              "showValues": false,
               "spanNulls": false,
               "stacking": {
                 "group": "A",
@@ -881,7 +872,6 @@
                 "mode": "off"
               }
             },
-            "mappings": [],
             "thresholds": {
               "mode": "absolute",
               "steps": [
@@ -895,8 +885,7 @@
                 }
               ]
             }
-          },
-          "overrides": []
+          }
         },
         "gridPos": {
           "h": 8,
@@ -906,9 +895,15 @@
         },
         "id": 124,
         "options": {
+          "annotations": {
+            "clustering": -1,
+            "multiLane": false
+          },
           "legend": {
             "calcs": [],
             "displayMode": "list",
+            "enableFacetedFilter": false,
+            "overflow": "ellipsis",
             "placement": "bottom",
             "showLegend": false
           },
@@ -918,7 +913,7 @@
             "sort": "none"
           }
         },
-        "pluginVersion": "12.1.1",
+        "pluginVersion": "13.1.0",
         "targets": [
           {
             "datasource": {
@@ -967,6 +962,7 @@
                 "type": "linear"
               },
               "showPoints": "auto",
+              "showValues": false,
               "spanNulls": false,
               "stacking": {
                 "group": "A",
@@ -976,7 +972,6 @@
                 "mode": "off"
               }
             },
-            "mappings": [],
             "thresholds": {
               "mode": "absolute",
               "steps": [
@@ -990,8 +985,7 @@
                 }
               ]
             }
-          },
-          "overrides": []
+          }
         },
         "gridPos": {
           "h": 8,
@@ -1001,9 +995,15 @@
         },
         "id": 125,
         "options": {
+          "annotations": {
+            "clustering": -1,
+            "multiLane": false
+          },
           "legend": {
             "calcs": [],
             "displayMode": "list",
+            "enableFacetedFilter": false,
+            "overflow": "ellipsis",
             "placement": "bottom",
             "showLegend": false
           },
@@ -1013,7 +1013,7 @@
             "sort": "none"
           }
         },
-        "pluginVersion": "12.1.1",
+        "pluginVersion": "13.1.0",
         "targets": [
           {
             "datasource": {
@@ -1068,8 +1068,7 @@
               ]
             },
             "unit": "percentunit"
-          },
-          "overrides": []
+          }
         },
         "gridPos": {
           "h": 5,
@@ -1079,6 +1078,14 @@
         },
         "id": 165,
         "options": {
+          "barShape": "flat",
+          "barWidthFactor": 0.5,
+          "effects": {
+            "barGlow": false,
+            "centerGlow": false,
+            "gradient": false
+          },
+          "endpointMarker": "point",
           "minVizHeight": 75,
           "minVizWidth": 75,
           "orientation": "vertical",
@@ -1089,12 +1096,17 @@
             "fields": "",
             "values": false
           },
+          "segmentCount": 1,
+          "segmentSpacing": 0.3,
+          "shape": "gauge",
           "showThresholdLabels": false,
-          "showThresholdMarkers": true,
+          "showThresholdMarkers": false,
           "sizing": "auto",
-          "text": {}
+          "sparkline": false,
+          "text": {},
+          "textMode": "auto"
         },
-        "pluginVersion": "12.1.1",
+        "pluginVersion": "13.1.0",
         "targets": [
           {
             "datasource": {
@@ -1168,14 +1180,13 @@
           "x": 0,
           "y": 20
         },
-        "id": 81,
+        "id": 179,
         "panels": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "description": "",
             "fieldConfig": {
               "defaults": {
                 "color": {
@@ -1258,7 +1269,8 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "transparent"
+                      "color": "transparent",
+                      "value": null
                     },
                     {
                       "color": "dark-red",
@@ -1278,8 +1290,7 @@
                     }
                   ]
                 }
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 6,
@@ -1321,7 +1332,6 @@
                   "type": "graphite",
                   "uid": "PED8062B0600A9C35"
                 },
-                "hide": false,
                 "refCount": 0,
                 "refId": "B",
                 "target": "sbnd.evb*.EventBuilder*.T1_resets_per_event",
@@ -1342,7 +1352,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "description": "",
             "fieldConfig": {
               "defaults": {
                 "color": {
@@ -1378,12 +1387,12 @@
                     "mode": "off"
                   }
                 },
-                "mappings": [],
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green"
+                      "color": "green",
+                      "value": null
                     },
                     {
                       "color": "red",
@@ -1391,8 +1400,7 @@
                     }
                   ]
                 }
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 6,
@@ -1420,7 +1428,6 @@
                   "type": "graphite",
                   "uid": "PED8062B0600A9C35"
                 },
-                "hide": false,
                 "refCount": 0,
                 "refId": "A",
                 "target": "groupByNode(currentAbove(alias(sbnd.*.*.CRT_hits_beam_plane_0, 'Bottom'), -1), 0, 'sum')",
@@ -1431,7 +1438,6 @@
                   "type": "graphite",
                   "uid": "PED8062B0600A9C35"
                 },
-                "hide": false,
                 "refCount": 0,
                 "refId": "B",
                 "target": "groupByNode(currentAbove(alias(aliasByNode(sbnd.*.*.CRT_hits_beam_plane_1, 3), 'South (upstream)'), -1), 0, 'sum')",
@@ -1442,7 +1448,6 @@
                   "type": "graphite",
                   "uid": "PED8062B0600A9C35"
                 },
-                "hide": false,
                 "refCount": 0,
                 "refId": "C",
                 "target": "groupByNode(currentAbove(alias(aliasByNode(sbnd.*.*.CRT_hits_beam_plane_2, 3), 'North (downstream)'), -1), 0, 'sum')",
@@ -1453,7 +1458,6 @@
                   "type": "graphite",
                   "uid": "PED8062B0600A9C35"
                 },
-                "hide": false,
                 "refCount": 0,
                 "refId": "D",
                 "target": "groupByNode(currentAbove(alias(aliasByNode(sbnd.*.*.CRT_hits_beam_plane_3, 3), 'West (left)'), -1), 0, 'sum')",
@@ -1464,7 +1468,6 @@
                   "type": "graphite",
                   "uid": "PED8062B0600A9C35"
                 },
-                "hide": false,
                 "refCount": 0,
                 "refId": "E",
                 "target": "groupByNode(currentAbove(alias(aliasByNode(sbnd.*.*.CRT_hits_beam_plane_4, 3), 'East (right)'), -1), 0, 'sum')",
@@ -1475,7 +1478,6 @@
                   "type": "graphite",
                   "uid": "PED8062B0600A9C35"
                 },
-                "hide": false,
                 "refCount": 0,
                 "refId": "F",
                 "target": "groupByNode(currentAbove(alias(aliasByNode(sbnd.*.*.CRT_hits_beam_plane_5, 3), 'Top Low'), -1), 0, 'sum')",
@@ -1486,7 +1488,6 @@
                   "type": "graphite",
                   "uid": "PED8062B0600A9C35"
                 },
-                "hide": false,
                 "refCount": 0,
                 "refId": "G",
                 "target": "groupByNode(currentAbove(alias(aliasByNode(sbnd.*.*.CRT_hits_beam_plane_6, 3), 'Top High'), -1), 0, 'sum')",
@@ -1521,12 +1522,12 @@
                   "fillOpacity": 70,
                   "lineWidth": 1
                 },
-                "mappings": [],
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "transparent"
+                      "color": "transparent",
+                      "value": null
                     },
                     {
                       "color": "green",
@@ -1546,8 +1547,7 @@
                     }
                   ]
                 }
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 37,
@@ -1608,12 +1608,12 @@
                   "fillOpacity": 70,
                   "lineWidth": 1
                 },
-                "mappings": [],
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "transparent"
+                      "color": "transparent",
+                      "value": null
                     },
                     {
                       "color": "green",
@@ -1633,8 +1633,7 @@
                     }
                   ]
                 }
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 37,
@@ -1657,6 +1656,7 @@
                 "sort": "none"
               }
             },
+            "pluginVersion": "",
             "targets": [
               {
                 "datasource": {
@@ -1692,7 +1692,7 @@
           "x": 0,
           "y": 21
         },
-        "id": 164,
+        "id": 180,
         "panels": [
           {
             "datasource": {
@@ -1734,12 +1734,12 @@
                     "mode": "off"
                   }
                 },
-                "mappings": [],
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green"
+                      "color": "green",
+                      "value": null
                     },
                     {
                       "color": "red",
@@ -1747,8 +1747,7 @@
                     }
                   ]
                 }
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 8,
@@ -1769,6 +1768,7 @@
                 "sort": "none"
               }
             },
+            "pluginVersion": "",
             "targets": [
               {
                 "datasource": {
@@ -1823,12 +1823,12 @@
                     "mode": "off"
                   }
                 },
-                "mappings": [],
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green"
+                      "color": "green",
+                      "value": null
                     },
                     {
                       "color": "red",
@@ -1836,8 +1836,7 @@
                     }
                   ]
                 }
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 8,
@@ -1858,6 +1857,7 @@
                 "sort": "none"
               }
             },
+            "pluginVersion": "",
             "targets": [
               {
                 "datasource": {
@@ -1911,12 +1911,12 @@
                     "mode": "off"
                   }
                 },
-                "mappings": [],
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green"
+                      "color": "green",
+                      "value": null
                     },
                     {
                       "color": "red",
@@ -1924,8 +1924,7 @@
                     }
                   ]
                 }
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 8,
@@ -1946,6 +1945,7 @@
                 "sort": "none"
               }
             },
+            "pluginVersion": "",
             "targets": [
               {
                 "datasource": {
@@ -1999,12 +1999,12 @@
                     "mode": "off"
                   }
                 },
-                "mappings": [],
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green"
+                      "color": "green",
+                      "value": null
                     },
                     {
                       "color": "red",
@@ -2012,8 +2012,7 @@
                     }
                   ]
                 }
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 8,
@@ -2034,6 +2033,7 @@
                 "sort": "none"
               }
             },
+            "pluginVersion": "",
             "targets": [
               {
                 "datasource": {
@@ -2087,12 +2087,12 @@
                     "mode": "off"
                   }
                 },
-                "mappings": [],
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green"
+                      "color": "green",
+                      "value": null
                     },
                     {
                       "color": "red",
@@ -2100,8 +2100,7 @@
                     }
                   ]
                 }
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 10,
@@ -2122,6 +2121,7 @@
                 "sort": "none"
               }
             },
+            "pluginVersion": "",
             "targets": [
               {
                 "datasource": {
@@ -2176,12 +2176,12 @@
                     "mode": "off"
                   }
                 },
-                "mappings": [],
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green"
+                      "color": "green",
+                      "value": null
                     },
                     {
                       "color": "red",
@@ -2189,8 +2189,7 @@
                     }
                   ]
                 }
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 10,
@@ -2211,6 +2210,7 @@
                 "sort": "none"
               }
             },
+            "pluginVersion": "",
             "targets": [
               {
                 "datasource": {
@@ -2265,12 +2265,12 @@
                     "mode": "off"
                   }
                 },
-                "mappings": [],
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green"
+                      "color": "green",
+                      "value": null
                     },
                     {
                       "color": "red",
@@ -2278,8 +2278,7 @@
                     }
                   ]
                 }
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 8,
@@ -2300,6 +2299,7 @@
                 "sort": "none"
               }
             },
+            "pluginVersion": "",
             "targets": [
               {
                 "datasource": {
@@ -2319,866 +2319,14 @@
         "type": "row"
       },
       {
-        "collapsed": false,
+        "collapsed": true,
         "gridPos": {
           "h": 1,
           "w": 24,
           "x": 0,
           "y": 22
         },
-        "id": 168,
-        "panels": [],
-        "title": "Individual Wall Rates",
-        "type": "row"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": 0
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 10,
-          "w": 12,
-          "x": 0,
-          "y": 23
-        },
-        "id": 167,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "hideZeros": false,
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "pluginVersion": "12.1.1",
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "currentAbove(aliasByNode(sbnd.crttophigh*.BoardReader.*.feb_hit_rate_Hz_*, 1, 4), -1)",
-            "textEditor": false
-          }
-        ],
-        "title": "Top High FEB Hit Rate (Hz)",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": 0
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 10,
-          "w": 12,
-          "x": 12,
-          "y": 23
-        },
-        "id": 169,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "hideZeros": false,
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "pluginVersion": "12.1.1",
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "currentAbove(aliasByNode(sbnd.crttoplow*.BoardReader.*.feb_hit_rate_Hz_*, 1, 4), -1)",
-            "textEditor": false
-          }
-        ],
-        "title": "Top Low FEB Hit Rate (Hz)",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": 0
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 10,
-          "w": 12,
-          "x": 0,
-          "y": 33
-        },
-        "id": 173,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "hideZeros": false,
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "pluginVersion": "12.1.1",
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "currentAbove(aliasByNode(sbnd.crtnorth*.BoardReader.*.feb_hit_rate_Hz_*, 1, 4), -1)",
-            "textEditor": false
-          }
-        ],
-        "title": "North FEB Hit Rate (Hz)",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": 0
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 10,
-          "w": 12,
-          "x": 12,
-          "y": 33
-        },
-        "id": 172,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "hideZeros": false,
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "pluginVersion": "12.1.1",
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "currentAbove(aliasByNode(sbnd.crtsouth*.BoardReader.*.feb_hit_rate_Hz_*, 1, 4), -1)",
-            "textEditor": false
-          }
-        ],
-        "title": "South FEB Hit Rate (Hz)",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": 0
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 10,
-          "w": 12,
-          "x": 0,
-          "y": 43
-        },
-        "id": 171,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "hideZeros": false,
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "pluginVersion": "12.1.1",
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "currentAbove(aliasByNode(sbnd.crtwest*.BoardReader.*.feb_hit_rate_Hz_*, 1, 4), -1)",
-            "textEditor": false
-          }
-        ],
-        "title": "West FEB Hit Rate (Hz)",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": 0
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 10,
-          "w": 12,
-          "x": 12,
-          "y": 43
-        },
-        "id": 170,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "hideZeros": false,
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "pluginVersion": "12.1.1",
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "currentAbove(aliasByNode(sbnd.crteast*.BoardReader.*.feb_hit_rate_Hz_*, 1, 4), -1)",
-            "textEditor": false
-          }
-        ],
-        "title": "East FEB Hit Rate (Hz)",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": 0
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 10,
-          "w": 12,
-          "x": 0,
-          "y": 53
-        },
-        "id": 174,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "hideZeros": false,
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "pluginVersion": "12.1.1",
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refCount": 0,
-            "refId": "A",
-            "target": "currentAbove(aliasByNode(sbnd.crtflat*.BoardReader.*.feb_hit_rate_Hz_*, 1, 4), -1)",
-            "textEditor": false
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "hide": false,
-            "refCount": 0,
-            "refId": "B",
-            "target": "currentAbove(aliasByNode(sbnd.crtminos*.BoardReader.*.feb_hit_rate_Hz_*, 1, 4), -1)"
-          }
-        ],
-        "title": "Flat FEB Hit Rate (Hz)",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "Each wall gives the averaged rate across all boards then averaged over 10mins",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": 0
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 10,
-          "w": 12,
-          "x": 12,
-          "y": 53
-        },
-        "id": 177,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": true
-          },
-          "tooltip": {
-            "hideZeros": false,
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "pluginVersion": "12.1.1",
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refCount": 0,
-            "refId": "A",
-            "target": "alias(movingAverage(averageSeries(currentAbove(sbnd.crttophigh*.BoardReader.*.feb_hit_rate_Hz_*, -1)), '10min'), 'Top High')",
-            "textEditor": false
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "hide": false,
-            "refCount": 0,
-            "refId": "B",
-            "target": "alias(movingAverage(averageSeries(currentAbove(sbnd.crttoplow*.BoardReader.*.feb_hit_rate_Hz_*, -1)), '10min'), 'Top Low')",
-            "textEditor": false
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "hide": false,
-            "refCount": 0,
-            "refId": "C",
-            "target": "alias(movingAverage(averageSeries(currentAbove(sbnd.crtwest*.BoardReader.*.feb_hit_rate_Hz_*, -1)), '10min'), 'West')",
-            "textEditor": false
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "hide": false,
-            "refCount": 0,
-            "refId": "D",
-            "target": "alias(movingAverage(averageSeries(currentAbove(sbnd.crteast*.BoardReader.*.feb_hit_rate_Hz_*, -1)), '10min'), 'East')",
-            "textEditor": false
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "hide": false,
-            "refCount": 0,
-            "refId": "E",
-            "target": "alias(movingAverage(averageSeries(currentAbove(sbnd.crtnorth*.BoardReader.*.feb_hit_rate_Hz_*, -1)), '10min'), 'North')",
-            "textEditor": false
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "hide": false,
-            "refCount": 0,
-            "refId": "F",
-            "target": "alias(movingAverage(averageSeries(currentAbove(sbnd.crtsouth*.BoardReader.*.feb_hit_rate_Hz_*, -1)), '10min'), 'South')",
-            "textEditor": false
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "hide": false,
-            "refCount": 0,
-            "refId": "G",
-            "target": "alias(movingAverage(averageSeries(currentAbove(sbnd.crtflat*.BoardReader.*.feb_hit_rate_Hz_*, -1)), '10min'), 'Flat')",
-            "textEditor": false
-          }
-        ],
-        "title": "Wall Rolling Average Rates (Hz)",
-        "type": "timeseries"
-      },
-      {
-        "collapsed": true,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 63
-        },
-        "id": 64,
+        "id": 181,
         "panels": [
           {
             "datasource": {
@@ -3191,11 +2339,13 @@
                   "mode": "palette-classic"
                 },
                 "custom": {
+                  "axisBorderShow": false,
                   "axisCenteredZero": false,
                   "axisColorMode": "text",
                   "axisLabel": "",
                   "axisPlacement": "auto",
                   "barAlignment": 0,
+                  "barWidthFactor": 0.6,
                   "drawStyle": "line",
                   "fillOpacity": 0,
                   "gradientMode": "none",
@@ -3204,6 +2354,7 @@
                     "tooltip": false,
                     "viz": false
                   },
+                  "insertNulls": false,
                   "lineInterpolation": "linear",
                   "lineWidth": 1,
                   "pointSize": 5,
@@ -3211,6 +2362,7 @@
                     "type": "linear"
                   },
                   "showPoints": "auto",
+                  "showValues": false,
                   "spanNulls": false,
                   "stacking": {
                     "group": "A",
@@ -3220,12 +2372,12 @@
                     "mode": "off"
                   }
                 },
-                "mappings": [],
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green"
+                      "color": "green",
+                      "value": 0
                     },
                     {
                       "color": "red",
@@ -3233,28 +2385,35 @@
                     }
                   ]
                 }
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
-              "h": 6,
+              "h": 10,
               "w": 12,
               "x": 0,
-              "y": 52
+              "y": 23
             },
-            "id": 110,
+            "id": 167,
             "options": {
+              "annotations": {
+                "clustering": -1,
+                "multiLane": false
+              },
               "legend": {
                 "calcs": [],
                 "displayMode": "list",
+                "enableFacetedFilter": false,
+                "overflow": "ellipsis",
                 "placement": "bottom",
                 "showLegend": false
               },
               "tooltip": {
+                "hideZeros": false,
                 "mode": "single",
                 "sort": "none"
               }
             },
+            "pluginVersion": "13.1.0",
             "targets": [
               {
                 "datasource": {
@@ -3262,10 +2421,897 @@
                   "uid": "PED8062B0600A9C35"
                 },
                 "refId": "A",
-                "target": "aliasByNode(sbnd.evb04.EventBuilder*.Event_Rate, 1)"
+                "target": "currentAbove(aliasByNode(sbnd.crttophigh*.BoardReader.*.feb_hit_rate_Hz_*, 1, 4), -1)",
+                "textEditor": false
               }
             ],
-            "title": "EVB04 Fragment Rate",
+            "title": "Top High FEB Hit Rate (Hz)",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "barWidthFactor": 0.6,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "showValues": false,
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": 0
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              }
+            },
+            "gridPos": {
+              "h": 10,
+              "w": 12,
+              "x": 12,
+              "y": 23
+            },
+            "id": 169,
+            "options": {
+              "annotations": {
+                "clustering": -1,
+                "multiLane": false
+              },
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "enableFacetedFilter": false,
+                "overflow": "ellipsis",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": {
+                "hideZeros": false,
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "pluginVersion": "13.1.0",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refId": "A",
+                "target": "currentAbove(aliasByNode(sbnd.crttoplow*.BoardReader.*.feb_hit_rate_Hz_*, 1, 4), -1)",
+                "textEditor": false
+              }
+            ],
+            "title": "Top Low FEB Hit Rate (Hz)",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "barWidthFactor": 0.6,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "showValues": false,
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": 0
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              }
+            },
+            "gridPos": {
+              "h": 10,
+              "w": 12,
+              "x": 0,
+              "y": 33
+            },
+            "id": 173,
+            "options": {
+              "annotations": {
+                "clustering": -1,
+                "multiLane": false
+              },
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "enableFacetedFilter": false,
+                "overflow": "ellipsis",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": {
+                "hideZeros": false,
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "pluginVersion": "13.1.0",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refId": "A",
+                "target": "currentAbove(aliasByNode(sbnd.crtnorth*.BoardReader.*.feb_hit_rate_Hz_*, 1, 4), -1)",
+                "textEditor": false
+              }
+            ],
+            "title": "North FEB Hit Rate (Hz)",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "barWidthFactor": 0.6,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "showValues": false,
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": 0
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              }
+            },
+            "gridPos": {
+              "h": 10,
+              "w": 12,
+              "x": 12,
+              "y": 33
+            },
+            "id": 172,
+            "options": {
+              "annotations": {
+                "clustering": -1,
+                "multiLane": false
+              },
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "enableFacetedFilter": false,
+                "overflow": "ellipsis",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": {
+                "hideZeros": false,
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "pluginVersion": "13.1.0",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refId": "A",
+                "target": "currentAbove(aliasByNode(sbnd.crtsouth*.BoardReader.*.feb_hit_rate_Hz_*, 1, 4), -1)",
+                "textEditor": false
+              }
+            ],
+            "title": "South FEB Hit Rate (Hz)",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "barWidthFactor": 0.6,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "showValues": false,
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": 0
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              }
+            },
+            "gridPos": {
+              "h": 10,
+              "w": 12,
+              "x": 0,
+              "y": 43
+            },
+            "id": 171,
+            "options": {
+              "annotations": {
+                "clustering": -1,
+                "multiLane": false
+              },
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "enableFacetedFilter": false,
+                "overflow": "ellipsis",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": {
+                "hideZeros": false,
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "pluginVersion": "13.1.0",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refId": "A",
+                "target": "currentAbove(aliasByNode(sbnd.crtwest*.BoardReader.*.feb_hit_rate_Hz_*, 1, 4), -1)",
+                "textEditor": false
+              }
+            ],
+            "title": "West FEB Hit Rate (Hz)",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "barWidthFactor": 0.6,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "showValues": false,
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": 0
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              }
+            },
+            "gridPos": {
+              "h": 10,
+              "w": 12,
+              "x": 12,
+              "y": 43
+            },
+            "id": 170,
+            "options": {
+              "annotations": {
+                "clustering": -1,
+                "multiLane": false
+              },
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "enableFacetedFilter": false,
+                "overflow": "ellipsis",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": {
+                "hideZeros": false,
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "pluginVersion": "13.1.0",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refId": "A",
+                "target": "currentAbove(aliasByNode(sbnd.crteast*.BoardReader.*.feb_hit_rate_Hz_*, 1, 4), -1)",
+                "textEditor": false
+              }
+            ],
+            "title": "East FEB Hit Rate (Hz)",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "barWidthFactor": 0.6,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "showValues": false,
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": 0
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              }
+            },
+            "gridPos": {
+              "h": 10,
+              "w": 12,
+              "x": 0,
+              "y": 53
+            },
+            "id": 174,
+            "options": {
+              "annotations": {
+                "clustering": -1,
+                "multiLane": false
+              },
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "enableFacetedFilter": false,
+                "overflow": "ellipsis",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": {
+                "hideZeros": false,
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "pluginVersion": "13.1.0",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "A",
+                "target": "currentAbove(aliasByNode(sbnd.crtflat*.BoardReader.*.feb_hit_rate_Hz_*, 1, 4), -1)",
+                "textEditor": false
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "B",
+                "target": "currentAbove(aliasByNode(sbnd.crtminos*.BoardReader.*.feb_hit_rate_Hz_*, 1, 4), -1)"
+              }
+            ],
+            "title": "Flat FEB Hit Rate (Hz)",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "description": "Each wall gives the averaged rate across all boards then averaged over 10mins",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "barWidthFactor": 0.6,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "showValues": false,
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": 0
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              }
+            },
+            "gridPos": {
+              "h": 10,
+              "w": 12,
+              "x": 12,
+              "y": 53
+            },
+            "id": 177,
+            "options": {
+              "annotations": {
+                "clustering": -1,
+                "multiLane": false
+              },
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "enableFacetedFilter": false,
+                "overflow": "ellipsis",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": {
+                "hideZeros": false,
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "pluginVersion": "13.1.0",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "A",
+                "target": "alias(movingAverage(averageSeries(currentAbove(sbnd.crttophigh*.BoardReader.*.feb_hit_rate_Hz_*, -1)), '10min'), 'Top High')",
+                "textEditor": false
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "B",
+                "target": "alias(movingAverage(averageSeries(currentAbove(sbnd.crttoplow*.BoardReader.*.feb_hit_rate_Hz_*, -1)), '10min'), 'Top Low')",
+                "textEditor": false
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "C",
+                "target": "alias(movingAverage(averageSeries(currentAbove(sbnd.crtwest*.BoardReader.*.feb_hit_rate_Hz_*, -1)), '10min'), 'West')",
+                "textEditor": false
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "D",
+                "target": "alias(movingAverage(averageSeries(currentAbove(sbnd.crteast*.BoardReader.*.feb_hit_rate_Hz_*, -1)), '10min'), 'East')",
+                "textEditor": false
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "E",
+                "target": "alias(movingAverage(averageSeries(currentAbove(sbnd.crtnorth*.BoardReader.*.feb_hit_rate_Hz_*, -1)), '10min'), 'North')",
+                "textEditor": false
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "F",
+                "target": "alias(movingAverage(averageSeries(currentAbove(sbnd.crtsouth*.BoardReader.*.feb_hit_rate_Hz_*, -1)), '10min'), 'South')",
+                "textEditor": false
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "G",
+                "target": "alias(movingAverage(averageSeries(currentAbove(sbnd.crtflat*.BoardReader.*.feb_hit_rate_Hz_*, -1)), '10min'), 'Flat')",
+                "textEditor": false
+              }
+            ],
+            "title": "Wall Rolling Average Rates (Hz)",
+            "type": "timeseries"
+          }
+        ],
+        "title": "Individual Wall Rates",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 23
+        },
+        "id": 182,
+        "panels": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "barWidthFactor": 0.6,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "showValues": false,
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": 0
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              }
+            },
+            "gridPos": {
+              "h": 6,
+              "w": 12,
+              "x": 0,
+              "y": 24
+            },
+            "id": 110,
+            "options": {
+              "annotations": {
+                "clustering": -1,
+                "multiLane": false
+              },
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "enableFacetedFilter": false,
+                "overflow": "ellipsis",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": {
+                "hideZeros": false,
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "pluginVersion": "13.1.0",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "A",
+                "target": "aliasByNode(sbnd.evb08.EventBuilder*.Event_Rate, 1)"
+              }
+            ],
+            "title": "EVB08 Fragment Rate",
             "type": "timeseries"
           },
           {
@@ -3279,16 +3325,23 @@
                   "mode": "thresholds"
                 },
                 "custom": {
+                  "axisPlacement": "auto",
                   "fillOpacity": 70,
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "insertNulls": false,
                   "lineWidth": 0,
                   "spanNulls": false
                 },
-                "mappings": [],
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "red"
+                      "color": "red",
+                      "value": 0
                     },
                     {
                       "color": "dark-blue",
@@ -3333,20 +3386,24 @@
                   ]
                 },
                 "unit": "s"
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 5,
               "w": 12,
               "x": 12,
-              "y": 52
+              "y": 24
             },
             "id": 103,
             "options": {
               "alignValue": "left",
+              "annotations": {
+                "clustering": -1,
+                "multiLane": false
+              },
               "legend": {
                 "displayMode": "list",
+                "overflow": "ellipsis",
                 "placement": "bottom",
                 "showLegend": false
               },
@@ -3354,10 +3411,12 @@
               "rowHeight": 0.9,
               "showValue": "never",
               "tooltip": {
+                "hideZeros": false,
                 "mode": "single",
                 "sort": "none"
               }
             },
+            "pluginVersion": "13.1.0",
             "targets": [
               {
                 "datasource": {
@@ -3378,23 +3437,29 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "description": "",
             "fieldConfig": {
               "defaults": {
                 "color": {
                   "mode": "thresholds"
                 },
                 "custom": {
+                  "axisPlacement": "auto",
                   "fillOpacity": 70,
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "insertNulls": false,
                   "lineWidth": 0,
                   "spanNulls": false
                 },
-                "mappings": [],
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "transparent"
+                      "color": "transparent",
+                      "value": 0
                     },
                     {
                       "color": "blue",
@@ -3431,20 +3496,24 @@
                   ]
                 },
                 "unit": "s"
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 4,
               "w": 12,
               "x": 12,
-              "y": 57
+              "y": 29
             },
             "id": 104,
             "options": {
               "alignValue": "left",
+              "annotations": {
+                "clustering": -1,
+                "multiLane": false
+              },
               "legend": {
                 "displayMode": "list",
+                "overflow": "ellipsis",
                 "placement": "bottom",
                 "showLegend": false
               },
@@ -3452,10 +3521,12 @@
               "rowHeight": 0.9,
               "showValue": "never",
               "tooltip": {
+                "hideZeros": false,
                 "mode": "single",
                 "sort": "none"
               }
             },
+            "pluginVersion": "13.1.0",
             "targets": [
               {
                 "datasource": {
@@ -3482,17 +3553,24 @@
                   "mode": "thresholds"
                 },
                 "custom": {
+                  "axisPlacement": "auto",
                   "fillOpacity": 70,
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "insertNulls": false,
                   "lineWidth": 0,
                   "spanNulls": false
                 },
                 "decimals": 0,
-                "mappings": [],
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "transparent"
+                      "color": "transparent",
+                      "value": 0
                     },
                     {
                       "color": "dark-green",
@@ -3525,20 +3603,24 @@
                   ]
                 },
                 "unit": "percent"
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 5,
               "w": 6,
               "x": 0,
-              "y": 58
+              "y": 30
             },
             "id": 96,
             "options": {
               "alignValue": "left",
+              "annotations": {
+                "clustering": -1,
+                "multiLane": false
+              },
               "legend": {
                 "displayMode": "list",
+                "overflow": "ellipsis",
                 "placement": "bottom",
                 "showLegend": false
               },
@@ -3546,23 +3628,25 @@
               "rowHeight": 0.9,
               "showValue": "never",
               "tooltip": {
+                "hideZeros": false,
                 "mode": "single",
                 "sort": "none"
               }
             },
-            "pluginVersion": "8.5.2",
+            "pluginVersion": "13.1.0",
             "targets": [
               {
                 "datasource": {
                   "type": "graphite",
                   "uid": "PED8062B0600A9C35"
                 },
+                "refCount": 0,
                 "refId": "A",
-                "target": "aliasSub(keepLastValue(sbnd.evb04.EventBuilder*.Shared_Memory_Full_%, 10), '.*Builder(\\d+).*', '\\1')",
+                "target": "aliasSub(keepLastValue(sbnd.evb08.EventBuilder*.Shared_Memory_Full_%, 10), '.*Builder(\\d+).*', '\\1')",
                 "textEditor": false
               }
             ],
-            "title": "EVB04 Memory Full %",
+            "title": "EVB08 Memory Full %",
             "type": "state-timeline"
           },
           {
@@ -3576,16 +3660,23 @@
                   "mode": "thresholds"
                 },
                 "custom": {
+                  "axisPlacement": "auto",
                   "fillOpacity": 70,
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "insertNulls": false,
                   "lineWidth": 0,
                   "spanNulls": false
                 },
-                "mappings": [],
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "transparent"
+                      "color": "transparent",
+                      "value": 0
                     },
                     {
                       "color": "green",
@@ -3605,20 +3696,24 @@
                     }
                   ]
                 }
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 5,
               "w": 6,
               "x": 6,
-              "y": 58
+              "y": 30
             },
             "id": 102,
             "options": {
               "alignValue": "left",
+              "annotations": {
+                "clustering": -1,
+                "multiLane": false
+              },
               "legend": {
                 "displayMode": "list",
+                "overflow": "ellipsis",
                 "placement": "bottom",
                 "showLegend": false
               },
@@ -3626,10 +3721,12 @@
               "rowHeight": 0.9,
               "showValue": "never",
               "tooltip": {
+                "hideZeros": false,
                 "mode": "single",
                 "sort": "none"
               }
             },
+            "pluginVersion": "13.1.0",
             "targets": [
               {
                 "datasource": {
@@ -3638,11 +3735,11 @@
                 },
                 "refCount": 0,
                 "refId": "A",
-                "target": "aliasSub(movingAverage(sbnd.evb04.EventBuilder*.Shared_Memory_Pending_Buffers, 1), '.*Builder(\\d+).*', '\\1')",
+                "target": "aliasSub(movingAverage(sbnd.evb08.EventBuilder*.Shared_Memory_Pending_Buffers, 1), '.*Builder(\\d+).*', '\\1')",
                 "textEditor": false
               }
             ],
-            "title": "EVB04  Pending Buffers",
+            "title": "EVB08  Pending Buffers",
             "type": "state-timeline"
           },
           {
@@ -3656,12 +3753,14 @@
                   "mode": "palette-classic"
                 },
                 "custom": {
+                  "axisBorderShow": false,
                   "axisCenteredZero": false,
                   "axisColorMode": "text",
                   "axisLabel": "",
                   "axisPlacement": "auto",
                   "axisSoftMin": 0,
                   "barAlignment": 0,
+                  "barWidthFactor": 0.6,
                   "drawStyle": "line",
                   "fillOpacity": 0,
                   "gradientMode": "none",
@@ -3670,6 +3769,7 @@
                     "tooltip": false,
                     "viz": false
                   },
+                  "insertNulls": false,
                   "lineInterpolation": "linear",
                   "lineWidth": 1,
                   "pointSize": 5,
@@ -3677,6 +3777,7 @@
                     "type": "linear"
                   },
                   "showPoints": "auto",
+                  "showValues": false,
                   "spanNulls": false,
                   "stacking": {
                     "group": "A",
@@ -3686,13 +3787,13 @@
                     "mode": "off"
                   }
                 },
-                "mappings": [],
                 "min": 0,
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green"
+                      "color": "green",
+                      "value": 0
                     },
                     {
                       "color": "red",
@@ -3700,28 +3801,35 @@
                     }
                   ]
                 }
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 5,
               "w": 12,
               "x": 0,
-              "y": 63
+              "y": 35
             },
             "id": 98,
             "options": {
+              "annotations": {
+                "clustering": -1,
+                "multiLane": false
+              },
               "legend": {
                 "calcs": [],
                 "displayMode": "list",
+                "enableFacetedFilter": false,
+                "overflow": "ellipsis",
                 "placement": "bottom",
                 "showLegend": false
               },
               "tooltip": {
+                "hideZeros": false,
                 "mode": "single",
                 "sort": "none"
               }
             },
+            "pluginVersion": "13.1.0",
             "targets": [
               {
                 "datasource": {
@@ -3730,14 +3838,565 @@
                 },
                 "refCount": 0,
                 "refId": "A",
-                "target": "aliasByNode(movingAverage(sbnd.evb04.EventBuilder*.Shared_Memory_Full_Buffers, 1), 2)"
+                "target": "aliasByNode(movingAverage(sbnd.evb08.EventBuilder*.Shared_Memory_Full_Buffers, 1), 2)"
               }
             ],
-            "title": "EVB04  Full Buffers",
+            "title": "EVB08  Full Buffers",
             "type": "timeseries"
           }
         ],
         "title": "Event Building",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 24
+        },
+        "id": 183,
+        "panels": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "description": "GNS selection rate (5 minute average)",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": 0
+                    },
+                    {
+                      "color": "green",
+                      "value": 0.0001
+                    }
+                  ]
+                }
+              }
+            },
+            "gridPos": {
+              "h": 6,
+              "w": 5,
+              "x": 0,
+              "y": 25
+            },
+            "id": 148,
+            "options": {
+              "barShape": "flat",
+              "barWidthFactor": 0.5,
+              "effects": {
+                "barGlow": false,
+                "centerGlow": false,
+                "gradient": false
+              },
+              "endpointMarker": "point",
+              "minVizHeight": 75,
+              "minVizWidth": 75,
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "segmentCount": 1,
+              "segmentSpacing": 0.3,
+              "shape": "gauge",
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true,
+              "sizing": "auto",
+              "sparkline": false,
+              "textMode": "auto"
+            },
+            "pluginVersion": "13.1.0",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refId": "A",
+                "target": "movingAverage(sumSeries(currentAbove(sbnd.evb*.EventBuilder*.Neutrino_Stream_Rate, -1)), '5min')",
+                "textEditor": false
+              }
+            ],
+            "title": "Golden Neutrino Stream Rate ",
+            "type": "gauge"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "barWidthFactor": 0.6,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "showValues": false,
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": 0
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              }
+            },
+            "gridPos": {
+              "h": 6,
+              "w": 7,
+              "x": 5,
+              "y": 25
+            },
+            "id": 149,
+            "options": {
+              "annotations": {
+                "clustering": -1,
+                "multiLane": false
+              },
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "enableFacetedFilter": false,
+                "overflow": "ellipsis",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": {
+                "hideZeros": false,
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "pluginVersion": "13.1.0",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refId": "A",
+                "target": "currentAbove(sbnd.evb*.EventBuilder*.PMT_SWTrig_nAboveThreshold, -1)",
+                "textEditor": true
+              }
+            ],
+            "title": "Software Trigger PMTs Above Threshold",
+            "transformations": [
+              {
+                "id": "merge",
+                "options": {}
+              }
+            ],
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "barWidthFactor": 0.6,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "showValues": false,
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": 0
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              }
+            },
+            "gridPos": {
+              "h": 6,
+              "w": 12,
+              "x": 12,
+              "y": 25
+            },
+            "id": 166,
+            "options": {
+              "annotations": {
+                "clustering": -1,
+                "multiLane": false
+              },
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "enableFacetedFilter": false,
+                "overflow": "ellipsis",
+                "placement": "right",
+                "showLegend": true
+              },
+              "tooltip": {
+                "hideZeros": false,
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "pluginVersion": "13.1.0",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "A",
+                "target": "groupByNode(currentAbove(alias(sbnd.*.*.CRT_hits_beam_plane_0, 'Bottom'), -1), 0, 'sum')",
+                "textEditor": false
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "B",
+                "target": "groupByNode(currentAbove(alias(aliasByNode(sbnd.*.*.CRT_hits_beam_plane_1, 3), 'South (upstream)'), -1), 0, 'sum')",
+                "textEditor": false
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "C",
+                "target": "groupByNode(currentAbove(alias(aliasByNode(sbnd.*.*.CRT_hits_beam_plane_2, 3), 'North (downstream)'), -1), 0, 'sum')",
+                "textEditor": false
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "D",
+                "target": "groupByNode(currentAbove(alias(aliasByNode(sbnd.*.*.CRT_hits_beam_plane_3, 3), 'West (left)'), -1), 0, 'sum')",
+                "textEditor": false
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "E",
+                "target": "groupByNode(currentAbove(alias(aliasByNode(sbnd.*.*.CRT_hits_beam_plane_4, 3), 'East (right)'), -1), 0, 'sum')",
+                "textEditor": false
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "F",
+                "target": "groupByNode(currentAbove(alias(aliasByNode(sbnd.*.*.CRT_hits_beam_plane_5, 3), 'Top Low'), -1), 0, 'sum')",
+                "textEditor": false
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "G",
+                "target": "groupByNode(currentAbove(alias(aliasByNode(sbnd.*.*.CRT_hits_beam_plane_6, 3), 'Top High'), -1), 0, 'sum')",
+                "textEditor": false
+              },
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "hide": true,
+                "refCount": 0,
+                "refId": "H",
+                "target": "groupByNode(aliasByNode(sbnd.*.*.CRT_hits_beam_plane_*, 3), 0, 'sum')",
+                "textEditor": false
+              }
+            ],
+            "title": "CRT Hits Per Plane During Beam Spill",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "description": "GNS selection rate",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "barWidthFactor": 0.6,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "showValues": false,
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": 0
+                    },
+                    {
+                      "color": "green",
+                      "value": 0.0001
+                    }
+                  ]
+                }
+              }
+            },
+            "gridPos": {
+              "h": 6,
+              "w": 12,
+              "x": 0,
+              "y": 31
+            },
+            "id": 176,
+            "options": {
+              "annotations": {
+                "clustering": -1,
+                "multiLane": false
+              },
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "enableFacetedFilter": false,
+                "overflow": "ellipsis",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": {
+                "hideZeros": false,
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "pluginVersion": "13.1.0",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refId": "A",
+                "target": "sumSeries(currentAbove(sbnd.evb*.EventBuilder*.Neutrino_Stream_Rate, -1))",
+                "textEditor": false
+              }
+            ],
+            "title": "Golden Neutrino Stream Rate ",
+            "type": "timeseries"
+          },
+          {
+            "cacheTimeout": "86400",
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                },
+                "custom": {
+                  "fillOpacity": 80,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "lineWidth": 1,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  }
+                },
+                "max": 1580000,
+                "min": 1530000,
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "transparent",
+                      "value": 0
+                    }
+                  ]
+                },
+                "unit": "ns"
+              }
+            },
+            "gridPos": {
+              "h": 10,
+              "w": 12,
+              "x": 12,
+              "y": 31
+            },
+            "id": 175,
+            "maxDataPoints": 100000000,
+            "options": {
+              "bucketOffset": 0,
+              "bucketSize": 1000,
+              "combine": true,
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "overflow": "ellipsis",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": {
+                "hideZeros": false,
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "pluginVersion": "13.1.0",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "graphite",
+                  "uid": "PED8062B0600A9C35"
+                },
+                "refCount": 0,
+                "refId": "A",
+                "target": "currentAbove(sbnd.evb*.*.CRT_T1_in_beam, -1)",
+                "textEditor": false
+              }
+            ],
+            "timeFrom": "24h",
+            "title": "CRT Hits During Beam Spill T1 Time",
+            "type": "histogram"
+          }
+        ],
+        "title": "Software Trigger Monitor",
         "type": "row"
       },
       {
@@ -3746,11 +4405,10 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 64
+          "y": 25
         },
-        "id": 146,
-        "panels": [],
-        "title": "Software Trigger Monitor",
+        "id": 184,
+        "title": "CRT pedestals",
         "type": "row"
       },
       {
@@ -3758,240 +4416,87 @@
           "type": "graphite",
           "uid": "PED8062B0600A9C35"
         },
-        "description": "GNS selection rate (5 minute average)",
+        "description": "The average pedestal (adc value on t0 or t1 reset) for channel 0 of each FEB",
         "fieldConfig": {
           "defaults": {
             "color": {
-              "mode": "thresholds"
+              "mode": "palette-classic"
             },
-            "mappings": [],
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "showValues": false,
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "area"
+              }
+            },
             "thresholds": {
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "red",
+                  "color": "light-orange",
                   "value": 0
                 },
                 {
-                  "color": "green",
-                  "value": 0.0001
+                  "color": "semi-dark-green",
+                  "value": 120
+                },
+                {
+                  "color": "light-yellow",
+                  "value": 300
+                },
+                {
+                  "color": "red",
+                  "value": 500
                 }
               ]
             }
-          },
-          "overrides": []
+          }
         },
         "gridPos": {
-          "h": 6,
-          "w": 5,
+          "h": 8,
+          "w": 6,
           "x": 0,
-          "y": 65
+          "y": 26
         },
-        "id": 148,
+        "id": 156,
         "options": {
-          "minVizHeight": 75,
-          "minVizWidth": 75,
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
+          "annotations": {
+            "clustering": -1,
+            "multiLane": false
           },
-          "showThresholdLabels": false,
-          "showThresholdMarkers": true,
-          "sizing": "auto"
-        },
-        "pluginVersion": "12.1.1",
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "movingAverage(sumSeries(currentAbove(sbnd.evb*.EventBuilder*.Neutrino_Stream_Rate, -1)), '5min')",
-            "textEditor": false
-          }
-        ],
-        "title": "Golden Neutrino Stream Rate ",
-        "type": "gauge"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": 0
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 6,
-          "w": 7,
-          "x": 5,
-          "y": 65
-        },
-        "id": 149,
-        "options": {
           "legend": {
             "calcs": [],
             "displayMode": "list",
+            "enableFacetedFilter": false,
+            "overflow": "ellipsis",
             "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "hideZeros": false,
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "pluginVersion": "12.1.1",
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "currentAbove(sbnd.evb*.EventBuilder*.PMT_SWTrig_nAboveThreshold, -1)",
-            "textEditor": true
-          }
-        ],
-        "title": "Software Trigger PMTs Above Threshold",
-        "transformations": [
-          {
-            "id": "merge",
-            "options": {}
-          }
-        ],
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": 0
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 6,
-          "w": 12,
-          "x": 12,
-          "y": 65
-        },
-        "id": 166,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "right",
             "showLegend": true
           },
           "tooltip": {
@@ -4000,98 +4505,38 @@
             "sort": "none"
           }
         },
-        "pluginVersion": "12.1.1",
+        "pluginVersion": "13.1.0",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "A",
-            "target": "groupByNode(currentAbove(alias(sbnd.*.*.CRT_hits_beam_plane_0, 'Bottom'), -1), 0, 'sum')",
-            "textEditor": false
+            "target": "sbnd.*.BoardReader.1.pedestal_adc_feb*_ch0",
+            "textEditor": true
           },
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "B",
-            "target": "groupByNode(currentAbove(alias(aliasByNode(sbnd.*.*.CRT_hits_beam_plane_1, 3), 'South (upstream)'), -1), 0, 'sum')",
-            "textEditor": false
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "hide": false,
-            "refCount": 0,
-            "refId": "C",
-            "target": "groupByNode(currentAbove(alias(aliasByNode(sbnd.*.*.CRT_hits_beam_plane_2, 3), 'North (downstream)'), -1), 0, 'sum')",
-            "textEditor": false
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "hide": false,
-            "refCount": 0,
-            "refId": "D",
-            "target": "groupByNode(currentAbove(alias(aliasByNode(sbnd.*.*.CRT_hits_beam_plane_3, 3), 'West (left)'), -1), 0, 'sum')",
-            "textEditor": false
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "hide": false,
-            "refCount": 0,
-            "refId": "E",
-            "target": "groupByNode(currentAbove(alias(aliasByNode(sbnd.*.*.CRT_hits_beam_plane_4, 3), 'East (right)'), -1), 0, 'sum')",
-            "textEditor": false
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "hide": false,
-            "refCount": 0,
-            "refId": "F",
-            "target": "groupByNode(currentAbove(alias(aliasByNode(sbnd.*.*.CRT_hits_beam_plane_5, 3), 'Top Low'), -1), 0, 'sum')",
-            "textEditor": false
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "hide": false,
-            "refCount": 0,
-            "refId": "G",
-            "target": "groupByNode(currentAbove(alias(aliasByNode(sbnd.*.*.CRT_hits_beam_plane_6, 3), 'Top High'), -1), 0, 'sum')",
-            "textEditor": false
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "hide": true,
-            "refCount": 0,
-            "refId": "H",
-            "target": "groupByNode(aliasByNode(sbnd.*.*.CRT_hits_beam_plane_*, 3), 0, 'sum')",
-            "textEditor": false
+            "target": "sbnd.*.BoardReader.*.pedestal"
           }
         ],
-        "title": "CRT Hits Per Plane During Beam Spill",
+        "title": "Average Pedestal by FEB #,  For Channel 0",
+        "transformations": [
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "sbnd.*.pedestal_adc_feb(.*)_ch(.*)",
+              "renamePattern": "FEB $1"
+            }
+          }
+        ],
         "type": "timeseries"
       },
       {
@@ -4099,7 +4544,7 @@
           "type": "graphite",
           "uid": "PED8062B0600A9C35"
         },
-        "description": "GNS selection rate",
+        "description": "Standard deviations in the FEB pedestals for Channel 0 of all FEBs",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -4123,158 +4568,302 @@
               },
               "insertNulls": false,
               "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": "solid"
+              },
               "lineWidth": 1,
               "pointSize": 5,
               "scaleDistribution": {
                 "type": "linear"
               },
-              "showPoints": "auto",
-              "spanNulls": false,
+              "showPoints": "never",
+              "showValues": false,
+              "spanNulls": true,
               "stacking": {
                 "group": "A",
                 "mode": "none"
               },
               "thresholdsStyle": {
-                "mode": "off"
+                "mode": "line+area"
               }
             },
-            "mappings": [],
             "thresholds": {
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "red",
+                  "color": "green",
                   "value": 0
                 },
                 {
-                  "color": "green",
-                  "value": 0.0001
+                  "color": "orange",
+                  "value": 20
                 }
               ]
-            }
-          },
-          "overrides": []
+            },
+            "unit": "short"
+          }
         },
         "gridPos": {
-          "h": 6,
-          "w": 12,
-          "x": 0,
-          "y": 71
+          "h": 8,
+          "w": 6,
+          "x": 6,
+          "y": 26
         },
-        "id": 176,
+        "id": 157,
         "options": {
+          "annotations": {
+            "clustering": -1,
+            "multiLane": false
+          },
           "legend": {
             "calcs": [],
             "displayMode": "list",
+            "enableFacetedFilter": false,
+            "overflow": "ellipsis",
             "placement": "bottom",
-            "showLegend": false
+            "showLegend": true
           },
           "tooltip": {
             "hideZeros": false,
-            "mode": "single",
+            "mode": "multi",
             "sort": "none"
           }
         },
-        "pluginVersion": "12.1.1",
+        "pluginVersion": "13.1.0",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
+            "refCount": 0,
             "refId": "A",
-            "target": "sumSeries(currentAbove(sbnd.evb*.EventBuilder*.Neutrino_Stream_Rate, -1))",
+            "target": "stdev(removeBelowValue(sbnd.*.BoardReader.1.pedestal_adc_feb*_ch0, 0.1), 20, 0.1)",
             "textEditor": false
           }
         ],
-        "title": "Golden Neutrino Stream Rate ",
+        "title": "CRT Pedestal Stddevs by FEB - Ch 0",
+        "transformations": [
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "sbnd.*.pedestal_adc_feb(.*)_ch(.*)",
+              "renamePattern": "FEB $1 Ch $2"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "stddev\\(removeBelowValue\\(FEB(.*) Ch(.*), 0\\),20\\)",
+              "renamePattern": "FEB $1 Ch $2"
+            }
+          }
+        ],
         "type": "timeseries"
       },
       {
-        "cacheTimeout": "86400",
         "datasource": {
           "type": "graphite",
           "uid": "PED8062B0600A9C35"
         },
-        "description": "",
+        "description": "Standard deviations in the pedestals for all channels of all FEBs",
         "fieldConfig": {
           "defaults": {
             "color": {
-              "fixedColor": "purple",
-              "mode": "fixed"
+              "mode": "palette-classic"
             },
             "custom": {
-              "fillOpacity": 80,
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
               "gradientMode": "none",
               "hideFrom": {
                 "legend": false,
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": "solid"
+              },
               "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "never",
+              "showValues": false,
+              "spanNulls": true,
               "stacking": {
                 "group": "A",
                 "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "line+area"
               }
             },
-            "mappings": [],
-            "max": 1580000,
-            "min": 1530000,
             "thresholds": {
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "transparent",
+                  "color": "green",
                   "value": 0
+                },
+                {
+                  "color": "orange",
+                  "value": 20
                 }
               ]
             },
-            "unit": "ns"
-          },
-          "overrides": []
+            "unit": "short"
+          }
         },
         "gridPos": {
-          "h": 10,
-          "w": 12,
+          "h": 8,
+          "w": 6,
           "x": 12,
-          "y": 71
+          "y": 26
         },
-        "hideTimeOverride": false,
-        "id": 175,
-        "maxDataPoints": 100000000,
+        "id": 158,
         "options": {
-          "bucketOffset": 0,
-          "bucketSize": 1000,
-          "combine": true,
+          "annotations": {
+            "clustering": -1,
+            "multiLane": false
+          },
           "legend": {
             "calcs": [],
             "displayMode": "list",
+            "enableFacetedFilter": false,
+            "overflow": "ellipsis",
             "placement": "bottom",
             "showLegend": false
           },
           "tooltip": {
             "hideZeros": false,
-            "mode": "single",
+            "mode": "multi",
             "sort": "none"
           }
         },
-        "pluginVersion": "12.1.1",
+        "pluginVersion": "13.1.0",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "A",
-            "target": "currentAbove(sbnd.evb*.*.CRT_T1_in_beam, -1)",
-            "textEditor": false
+            "target": "stdev(removeBelowValue(sbnd.*.BoardReader.1.pedestal_adc_feb*_ch*, 0.1), 20, 0.1)",
+            "textEditor": true
           }
         ],
-        "timeFrom": "24h",
-        "title": "CRT Hits During Beam Spill T1 Time",
-        "type": "histogram"
+        "title": "CRT Pedestal Stddevs  (All FEBs & Channels)",
+        "transformations": [
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "sbnd.*.pedestal_adc_feb(.*)_ch(.*)",
+              "renamePattern": "FEB $1 Ch $2"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "stddev\\(removeBelowValue\\(FEB(.*) Ch(.*), 0\\),20\\)",
+              "renamePattern": "FEB $1 Ch $2"
+            }
+          }
+        ],
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "orange",
+                  "value": 0
+                },
+                {
+                  "color": "green",
+                  "value": 120
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 300
+                },
+                {
+                  "color": "red",
+                  "value": 500
+                }
+              ]
+            }
+          }
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 18,
+          "y": 26
+        },
+        "id": 154,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "13.1.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": -1,
+            "refId": "A",
+            "target": "sbnd.*.BoardReader.1.pedestal_adc_feb155_ch*",
+            "textEditor": true
+          }
+        ],
+        "title": "Average FEB 155 Pedestals",
+        "transformations": [
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "sbnd.*.pedestal_adc_feb71_ch(.*)",
+              "renamePattern": "Ch $1"
+            }
+          }
+        ],
+        "type": "stat"
       },
       {
         "collapsed": true,
@@ -4282,446 +4871,15 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 81
+          "y": 34
         },
-        "id": 152,
+        "id": 185,
         "panels": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "description": "The average pedestal (adc value on t0 or t1 reset) for channel 0 of each FEB",
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
-                },
-                "custom": {
-                  "axisCenteredZero": false,
-                  "axisColorMode": "text",
-                  "axisLabel": "",
-                  "axisPlacement": "auto",
-                  "barAlignment": 0,
-                  "drawStyle": "line",
-                  "fillOpacity": 0,
-                  "gradientMode": "none",
-                  "hideFrom": {
-                    "legend": false,
-                    "tooltip": false,
-                    "viz": false
-                  },
-                  "lineInterpolation": "linear",
-                  "lineWidth": 1,
-                  "pointSize": 5,
-                  "scaleDistribution": {
-                    "type": "linear"
-                  },
-                  "showPoints": "auto",
-                  "spanNulls": false,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "none"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "area"
-                  }
-                },
-                "mappings": [],
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "light-orange"
-                    },
-                    {
-                      "color": "semi-dark-green",
-                      "value": 120
-                    },
-                    {
-                      "color": "light-yellow",
-                      "value": 300
-                    },
-                    {
-                      "color": "red",
-                      "value": 500
-                    }
-                  ]
-                }
-              },
-              "overrides": []
-            },
-            "gridPos": {
-              "h": 8,
-              "w": 6,
-              "x": 0,
-              "y": 69
-            },
-            "id": 156,
-            "options": {
-              "legend": {
-                "calcs": [],
-                "displayMode": "list",
-                "placement": "bottom",
-                "showLegend": true
-              },
-              "tooltip": {
-                "mode": "single",
-                "sort": "none"
-              }
-            },
-            "pluginVersion": "8.5.2",
-            "targets": [
-              {
-                "datasource": {
-                  "type": "graphite",
-                  "uid": "PED8062B0600A9C35"
-                },
-                "refCount": -1,
-                "refId": "A",
-                "target": "sbnd.*.BoardReader.1.pedestal_adc_feb*_ch0",
-                "textEditor": true
-              }
-            ],
-            "title": "Average Pedestal by FEB #,  For Channel 0",
-            "transformations": [
-              {
-                "id": "renameByRegex",
-                "options": {
-                  "regex": "sbnd.*.pedestal_adc_feb(.*)_ch(.*)",
-                  "renamePattern": "FEB $1"
-                }
-              }
-            ],
-            "type": "timeseries"
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "description": "Standard deviations in the FEB pedestals for Channel 0 of all FEBs",
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
-                },
-                "custom": {
-                  "axisCenteredZero": false,
-                  "axisColorMode": "text",
-                  "axisLabel": "",
-                  "axisPlacement": "auto",
-                  "barAlignment": 0,
-                  "drawStyle": "line",
-                  "fillOpacity": 0,
-                  "gradientMode": "none",
-                  "hideFrom": {
-                    "legend": false,
-                    "tooltip": false,
-                    "viz": false
-                  },
-                  "lineInterpolation": "linear",
-                  "lineStyle": {
-                    "fill": "solid"
-                  },
-                  "lineWidth": 1,
-                  "pointSize": 5,
-                  "scaleDistribution": {
-                    "type": "linear"
-                  },
-                  "showPoints": "never",
-                  "spanNulls": true,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "none"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "line+area"
-                  }
-                },
-                "mappings": [],
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green"
-                    },
-                    {
-                      "color": "orange",
-                      "value": 20
-                    }
-                  ]
-                },
-                "unit": "short"
-              },
-              "overrides": []
-            },
-            "gridPos": {
-              "h": 8,
-              "w": 6,
-              "x": 6,
-              "y": 69
-            },
-            "id": 157,
-            "options": {
-              "legend": {
-                "calcs": [],
-                "displayMode": "list",
-                "placement": "bottom",
-                "showLegend": true
-              },
-              "tooltip": {
-                "mode": "multi",
-                "sort": "none"
-              }
-            },
-            "pluginVersion": "8.5.2",
-            "targets": [
-              {
-                "datasource": {
-                  "type": "graphite",
-                  "uid": "PED8062B0600A9C35"
-                },
-                "hide": false,
-                "refCount": 0,
-                "refId": "A",
-                "target": "stdev(removeBelowValue(sbnd.*.BoardReader.1.pedestal_adc_feb*_ch0, 0.1), 20, 0.1)",
-                "textEditor": false
-              }
-            ],
-            "title": "CRT Pedestal Stddevs by FEB - Ch 0",
-            "transformations": [
-              {
-                "id": "renameByRegex",
-                "options": {
-                  "regex": "sbnd.*.pedestal_adc_feb(.*)_ch(.*)",
-                  "renamePattern": "FEB $1 Ch $2"
-                }
-              },
-              {
-                "id": "renameByRegex",
-                "options": {
-                  "regex": "stddev\\(removeBelowValue\\(FEB(.*) Ch(.*), 0\\),20\\)",
-                  "renamePattern": "FEB $1 Ch $2"
-                }
-              }
-            ],
-            "type": "timeseries"
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "description": "Standard deviations in the pedestals for all channels of all FEBs",
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
-                },
-                "custom": {
-                  "axisCenteredZero": false,
-                  "axisColorMode": "text",
-                  "axisLabel": "",
-                  "axisPlacement": "auto",
-                  "barAlignment": 0,
-                  "drawStyle": "line",
-                  "fillOpacity": 0,
-                  "gradientMode": "none",
-                  "hideFrom": {
-                    "legend": false,
-                    "tooltip": false,
-                    "viz": false
-                  },
-                  "lineInterpolation": "linear",
-                  "lineStyle": {
-                    "fill": "solid"
-                  },
-                  "lineWidth": 1,
-                  "pointSize": 5,
-                  "scaleDistribution": {
-                    "type": "linear"
-                  },
-                  "showPoints": "never",
-                  "spanNulls": true,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "none"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "line+area"
-                  }
-                },
-                "mappings": [],
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green"
-                    },
-                    {
-                      "color": "orange",
-                      "value": 20
-                    }
-                  ]
-                },
-                "unit": "short"
-              },
-              "overrides": []
-            },
-            "gridPos": {
-              "h": 8,
-              "w": 6,
-              "x": 12,
-              "y": 69
-            },
-            "id": 158,
-            "options": {
-              "legend": {
-                "calcs": [],
-                "displayMode": "list",
-                "placement": "bottom",
-                "showLegend": false
-              },
-              "tooltip": {
-                "mode": "multi",
-                "sort": "none"
-              }
-            },
-            "pluginVersion": "8.5.2",
-            "targets": [
-              {
-                "datasource": {
-                  "type": "graphite",
-                  "uid": "PED8062B0600A9C35"
-                },
-                "hide": false,
-                "refCount": 0,
-                "refId": "A",
-                "target": "stdev(removeBelowValue(sbnd.*.BoardReader.1.pedestal_adc_feb*_ch*, 0.1), 20, 0.1)",
-                "textEditor": true
-              }
-            ],
-            "title": "CRT Pedestal Stddevs  (All FEBs & Channels)",
-            "transformations": [
-              {
-                "id": "renameByRegex",
-                "options": {
-                  "regex": "sbnd.*.pedestal_adc_feb(.*)_ch(.*)",
-                  "renamePattern": "FEB $1 Ch $2"
-                }
-              },
-              {
-                "id": "renameByRegex",
-                "options": {
-                  "regex": "stddev\\(removeBelowValue\\(FEB(.*) Ch(.*), 0\\),20\\)",
-                  "renamePattern": "FEB $1 Ch $2"
-                }
-              }
-            ],
-            "type": "timeseries"
-          },
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "description": "",
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "thresholds"
-                },
-                "mappings": [],
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "orange"
-                    },
-                    {
-                      "color": "green",
-                      "value": 120
-                    },
-                    {
-                      "color": "#EAB839",
-                      "value": 300
-                    },
-                    {
-                      "color": "red",
-                      "value": 500
-                    }
-                  ]
-                }
-              },
-              "overrides": []
-            },
-            "gridPos": {
-              "h": 8,
-              "w": 6,
-              "x": 18,
-              "y": 69
-            },
-            "id": 154,
-            "options": {
-              "colorMode": "value",
-              "graphMode": "area",
-              "justifyMode": "auto",
-              "orientation": "auto",
-              "reduceOptions": {
-                "calcs": [
-                  "mean"
-                ],
-                "fields": "",
-                "values": false
-              },
-              "textMode": "auto"
-            },
-            "pluginVersion": "10.0.3",
-            "targets": [
-              {
-                "datasource": {
-                  "type": "graphite",
-                  "uid": "PED8062B0600A9C35"
-                },
-                "refCount": -1,
-                "refId": "A",
-                "target": "sbnd.*.BoardReader.1.pedestal_adc_feb155_ch*",
-                "textEditor": true
-              }
-            ],
-            "title": "Average FEB 155 Pedestals",
-            "transformations": [
-              {
-                "id": "renameByRegex",
-                "options": {
-                  "regex": "sbnd.*.pedestal_adc_feb71_ch(.*)",
-                  "renamePattern": "Ch $1"
-                }
-              }
-            ],
-            "type": "stat"
-          }
-        ],
-        "title": "CRT pedestals",
-        "type": "row"
-      },
-      {
-        "collapsed": true,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 82
-        },
-        "id": 67,
-        "panels": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "description": "",
             "fieldConfig": {
               "defaults": {
                 "color": {
@@ -4757,12 +4915,12 @@
                     "mode": "off"
                   }
                 },
-                "mappings": [],
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green"
+                      "color": "green",
+                      "value": null
                     },
                     {
                       "color": "red",
@@ -4771,14 +4929,13 @@
                   ]
                 },
                 "unit": "s"
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 8,
               "w": 12,
               "x": 0,
-              "y": 55
+              "y": 35
             },
             "id": 53,
             "options": {
@@ -4793,6 +4950,7 @@
                 "sort": "none"
               }
             },
+            "pluginVersion": "",
             "targets": [
               {
                 "datasource": {
@@ -4812,18 +4970,17 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "description": "",
             "fieldConfig": {
               "defaults": {
                 "color": {
                   "mode": "thresholds"
                 },
-                "mappings": [],
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green"
+                      "color": "green",
+                      "value": null
                     },
                     {
                       "color": "red",
@@ -4832,14 +4989,13 @@
                   ]
                 },
                 "unit": "percent"
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 8,
               "w": 12,
               "x": 12,
-              "y": 55
+              "y": 35
             },
             "id": 51,
             "options": {
@@ -4875,7 +5031,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "description": "",
             "fieldConfig": {
               "defaults": {
                 "color": {
@@ -4911,12 +5066,12 @@
                     "mode": "off"
                   }
                 },
-                "mappings": [],
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green"
+                      "color": "green",
+                      "value": null
                     },
                     {
                       "color": "red",
@@ -4925,14 +5080,13 @@
                   ]
                 },
                 "unit": "s"
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 8,
               "w": 12,
               "x": 0,
-              "y": 63
+              "y": 43
             },
             "id": 54,
             "options": {
@@ -4947,6 +5101,7 @@
                 "sort": "none"
               }
             },
+            "pluginVersion": "",
             "targets": [
               {
                 "datasource": {
@@ -4967,7 +5122,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "description": "",
             "fieldConfig": {
               "defaults": {
                 "color": {
@@ -5003,12 +5157,12 @@
                     "mode": "off"
                   }
                 },
-                "mappings": [],
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green"
+                      "color": "green",
+                      "value": null
                     },
                     {
                       "color": "red",
@@ -5017,14 +5171,13 @@
                   ]
                 },
                 "unit": "none"
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 8,
               "w": 12,
               "x": 12,
-              "y": 63
+              "y": 43
             },
             "id": 52,
             "options": {
@@ -5039,6 +5192,7 @@
                 "sort": "none"
               }
             },
+            "pluginVersion": "",
             "targets": [
               {
                 "datasource": {
@@ -5059,7 +5213,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "description": "",
             "fieldConfig": {
               "defaults": {
                 "color": {
@@ -5095,12 +5248,12 @@
                     "mode": "off"
                   }
                 },
-                "mappings": [],
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green"
+                      "color": "green",
+                      "value": null
                     },
                     {
                       "color": "red",
@@ -5109,14 +5262,13 @@
                   ]
                 },
                 "unit": "s"
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 8,
               "w": 12,
               "x": 0,
-              "y": 71
+              "y": 51
             },
             "id": 50,
             "options": {
@@ -5131,6 +5283,7 @@
                 "sort": "none"
               }
             },
+            "pluginVersion": "",
             "targets": [
               {
                 "datasource": {
@@ -5156,9 +5309,9 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 83
+          "y": 35
         },
-        "id": 69,
+        "id": 186,
         "panels": [
           {
             "datasource": {
@@ -5186,7 +5339,8 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green"
+                      "color": "green",
+                      "value": 0
                     },
                     {
                       "color": "orange",
@@ -5199,17 +5353,26 @@
                   ]
                 },
                 "unit": "percentunit"
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 6,
               "w": 12,
               "x": 0,
-              "y": 56
+              "y": 36
             },
             "id": 18,
             "options": {
+              "barShape": "flat",
+              "barWidthFactor": 0.5,
+              "effects": {
+                "barGlow": false,
+                "centerGlow": false,
+                "gradient": false
+              },
+              "endpointMarker": "point",
+              "minVizHeight": 75,
+              "minVizWidth": 75,
               "orientation": "vertical",
               "reduceOptions": {
                 "calcs": [
@@ -5218,11 +5381,17 @@
                 "fields": "",
                 "values": false
               },
+              "segmentCount": 1,
+              "segmentSpacing": 0.3,
+              "shape": "gauge",
               "showThresholdLabels": false,
-              "showThresholdMarkers": true,
-              "text": {}
+              "showThresholdMarkers": false,
+              "sizing": "auto",
+              "sparkline": false,
+              "text": {},
+              "textMode": "auto"
             },
-            "pluginVersion": "10.0.3",
+            "pluginVersion": "13.1.0",
             "targets": [
               {
                 "datasource": {
@@ -5294,12 +5463,14 @@
                   "mode": "palette-classic"
                 },
                 "custom": {
+                  "axisBorderShow": false,
                   "axisCenteredZero": false,
                   "axisColorMode": "text",
                   "axisLabel": "",
                   "axisPlacement": "auto",
                   "axisSoftMin": 0,
                   "barAlignment": 0,
+                  "barWidthFactor": 0.6,
                   "drawStyle": "line",
                   "fillOpacity": 0,
                   "gradientMode": "none",
@@ -5308,6 +5479,7 @@
                     "tooltip": false,
                     "viz": false
                   },
+                  "insertNulls": false,
                   "lineInterpolation": "linear",
                   "lineWidth": 1,
                   "pointSize": 5,
@@ -5315,6 +5487,7 @@
                     "type": "linear"
                   },
                   "showPoints": "auto",
+                  "showValues": false,
                   "spanNulls": false,
                   "stacking": {
                     "group": "A",
@@ -5324,13 +5497,13 @@
                     "mode": "off"
                   }
                 },
-                "mappings": [],
                 "min": 0,
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green"
+                      "color": "green",
+                      "value": 0
                     },
                     {
                       "color": "red",
@@ -5339,29 +5512,35 @@
                   ]
                 },
                 "unit": "none"
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 6,
               "w": 12,
               "x": 12,
-              "y": 56
+              "y": 36
             },
             "id": 71,
             "options": {
+              "annotations": {
+                "clustering": -1,
+                "multiLane": false
+              },
               "legend": {
                 "calcs": [],
                 "displayMode": "list",
+                "enableFacetedFilter": false,
+                "overflow": "ellipsis",
                 "placement": "bottom",
                 "showLegend": false
               },
               "tooltip": {
+                "hideZeros": false,
                 "mode": "single",
                 "sort": "none"
               }
             },
-            "pluginVersion": "8.5.2",
+            "pluginVersion": "13.1.0",
             "targets": [
               {
                 "datasource": {
@@ -5387,11 +5566,13 @@
                   "mode": "palette-classic"
                 },
                 "custom": {
+                  "axisBorderShow": false,
                   "axisCenteredZero": false,
                   "axisColorMode": "text",
                   "axisLabel": "",
                   "axisPlacement": "auto",
                   "barAlignment": 0,
+                  "barWidthFactor": 0.6,
                   "drawStyle": "line",
                   "fillOpacity": 0,
                   "gradientMode": "none",
@@ -5400,6 +5581,7 @@
                     "tooltip": false,
                     "viz": false
                   },
+                  "insertNulls": false,
                   "lineInterpolation": "linear",
                   "lineWidth": 1,
                   "pointSize": 5,
@@ -5407,6 +5589,7 @@
                     "type": "linear"
                   },
                   "showPoints": "auto",
+                  "showValues": false,
                   "spanNulls": false,
                   "stacking": {
                     "group": "A",
@@ -5416,12 +5599,12 @@
                     "mode": "off"
                   }
                 },
-                "mappings": [],
                 "thresholds": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green"
+                      "color": "green",
+                      "value": 0
                     },
                     {
                       "color": "red",
@@ -5430,28 +5613,35 @@
                   ]
                 },
                 "unit": "decbytes"
-              },
-              "overrides": []
+              }
             },
             "gridPos": {
               "h": 6,
               "w": 12,
               "x": 12,
-              "y": 62
+              "y": 42
             },
             "id": 73,
             "options": {
+              "annotations": {
+                "clustering": -1,
+                "multiLane": false
+              },
               "legend": {
                 "calcs": [],
                 "displayMode": "list",
+                "enableFacetedFilter": false,
+                "overflow": "ellipsis",
                 "placement": "bottom",
                 "showLegend": false
               },
               "tooltip": {
+                "hideZeros": false,
                 "mode": "single",
                 "sort": "none"
               }
             },
+            "pluginVersion": "13.1.0",
             "targets": [
               {
                 "datasource": {
@@ -5472,19 +5662,28 @@
     ],
     "preload": false,
     "refresh": "10s",
-    "schemaVersion": 41,
-    "tags": [],
-    "templating": {
-      "list": []
-    },
+    "schemaVersion": 42,
     "time": {
       "from": "now-6h",
       "to": "now"
     },
-    "timepicker": {},
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ]
+    },
     "timezone": "America/Chicago",
     "title": "CRT Monitor",
     "uid": "F_iqbmj7k",
-    "version": 1
+    "version": 7
   }
 }

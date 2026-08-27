@@ -13,7 +13,8 @@
   "basicAuth": true,
   "isDefault": true,
   "jsonData": {
-    "graphiteVersion": "0.9x"
+    "graphiteVersion": "0.9x",
+    "pdcInjected": false
   },
   "readOnly": false
 }

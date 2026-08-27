@@ -10,10 +10,10 @@
     "url": "/d/supernova_DAQ/supernova-daq-status",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2026-07-14T21:26:38Z",
-    "updated": "2026-07-14T21:26:38Z",
-    "updatedBy": "Anonymous",
-    "createdBy": "Anonymous",
-    "version": 1,
+    "updated": "2026-08-27T13:27:41Z",
+    "updatedBy": "admin",
+    "createdBy": "grafana-ninja",
+    "version": 9,
     "hasAcl": false,
     "isFolder": false,
     "apiVersion": "v0alpha1",
@@ -37,7 +37,7 @@
         {
           "builtIn": 1,
           "datasource": {
-            "type": "datasource",
+            "type": "grafana",
             "uid": "grafana"
           },
           "enable": true,
@@ -59,7 +59,7 @@
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
     "id": 983324871643136,
-    "links": [],
+    "liveNow": false,
     "panels": [
       {
         "cacheTimeout": "240",
@@ -72,14 +72,13 @@
             "color": {
               "mode": "thresholds"
             },
-            "mappings": [],
             "noValue": "RUN IS STOPPED OR GRAFANA DISCONNECTED",
             "thresholds": {
               "mode": "absolute",
               "steps": [
                 {
                   "color": "red",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "green",
@@ -87,8 +86,7 @@
                 }
               ]
             }
-          },
-          "overrides": []
+          }
         },
         "gridPos": {
           "h": 5,
@@ -115,7 +113,7 @@
           "textMode": "auto",
           "wideLayout": true
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "13.1.0",
         "targets": [
           {
             "datasource": {
@@ -139,8 +137,7 @@
           "x": 0,
           "y": 5
         },
-        "id": 69,
-        "panels": [],
+        "id": 83,
         "title": "Summary",
         "type": "row"
       },
@@ -170,7 +167,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -179,8 +176,7 @@
               ]
             },
             "unit": "none"
-          },
-          "overrides": []
+          }
         },
         "gridPos": {
           "h": 5,
@@ -208,7 +204,7 @@
           "textMode": "auto",
           "wideLayout": true
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "13.1.0",
         "targets": [
           {
             "datasource": {
@@ -258,6 +254,7 @@
                 "type": "linear"
               },
               "showPoints": "auto",
+              "showValues": false,
               "spanNulls": false,
               "stacking": {
                 "group": "A",
@@ -267,13 +264,12 @@
                 "mode": "off"
               }
             },
-            "mappings": [],
             "thresholds": {
               "mode": "absolute",
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -281,8 +277,7 @@
                 }
               ]
             }
-          },
-          "overrides": []
+          }
         },
         "gridPos": {
           "h": 10,
@@ -292,20 +287,31 @@
         },
         "id": 77,
         "options": {
+          "annotations": {
+            "clustering": -1,
+            "multiLane": false
+          },
           "legend": {
             "calcs": [],
             "displayMode": "list",
+            "enableFacetedFilter": false,
+            "overflow": "ellipsis",
             "placement": "bottom",
             "showLegend": true
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "13.1.0",
         "targets": [
           {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
             "refCount": 0,
             "refId": "A",
             "target": "alias(sbnd.tpc01.BoardReader.*.SN_WritetoDisk_Count, 'tpc01')"
@@ -315,7 +321,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "B",
             "target": "alias(sbnd.tpc02.BoardReader.*.SN_WritetoDisk_Count, 'tpc02')"
@@ -325,7 +330,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "C",
             "target": "alias(sbnd.tpc03.BoardReader.*.SN_WritetoDisk_Count, 'tpc03')"
@@ -335,7 +339,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "D",
             "target": "alias(sbnd.tpc04.BoardReader.*.SN_WritetoDisk_Count, 'tpc04')"
@@ -345,7 +348,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "E",
             "target": "alias(sbnd.tpc05.BoardReader.*.SN_WritetoDisk_Count, 'tpc05')"
@@ -355,7 +357,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "F",
             "target": "alias(sbnd.tpc06.BoardReader.*.SN_WritetoDisk_Count, 'tpc06')"
@@ -365,7 +366,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "G",
             "target": "alias(sbnd.tpc07.BoardReader.*.SN_WritetoDisk_Count, 'tpc07')"
@@ -375,7 +375,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "H",
             "target": "alias(sbnd.tpc08.BoardReader.*.SN_WritetoDisk_Count, 'tpc08')"
@@ -385,7 +384,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "I",
             "target": "alias(sbnd.tpc09.BoardReader.*.SN_WritetoDisk_Count, 'tpc09')"
@@ -395,7 +393,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "J",
             "target": "alias(sbnd.tpc10.BoardReader.*.SN_WritetoDisk_Count, 'tpc10')"
@@ -405,7 +402,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "K",
             "target": "alias(sbnd.tpc11.BoardReader.*.SN_WritetoDisk_Count, 'tpc11')"
@@ -448,6 +444,7 @@
                 "type": "linear"
               },
               "showPoints": "auto",
+              "showValues": false,
               "spanNulls": false,
               "stacking": {
                 "group": "A",
@@ -457,13 +454,12 @@
                 "mode": "off"
               }
             },
-            "mappings": [],
             "thresholds": {
               "mode": "absolute",
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "red",
@@ -471,8 +467,7 @@
                 }
               ]
             }
-          },
-          "overrides": []
+          }
         },
         "gridPos": {
           "h": 10,
@@ -482,20 +477,31 @@
         },
         "id": 78,
         "options": {
+          "annotations": {
+            "clustering": -1,
+            "multiLane": false
+          },
           "legend": {
             "calcs": [],
             "displayMode": "list",
+            "enableFacetedFilter": false,
+            "overflow": "ellipsis",
             "placement": "bottom",
             "showLegend": true
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "13.1.0",
         "targets": [
           {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
             "refCount": 0,
             "refId": "A",
             "target": "alias(sbnd.tpc01.BoardReader.*.SN_WritetoDisk_Count, 'tpc01')"
@@ -505,7 +511,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "B",
             "target": "alias(sbnd.tpc02.BoardReader.*.SN_WritetoDisk_Count, 'tpc02')"
@@ -515,7 +520,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "C",
             "target": "alias(sbnd.tpc03.BoardReader.*.SN_WritetoDisk_Count, 'tpc03')"
@@ -525,7 +529,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "D",
             "target": "alias(sbnd.tpc04.BoardReader.*.SN_WritetoDisk_Count, 'tpc04')"
@@ -535,7 +538,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "E",
             "target": "alias(sbnd.tpc05.BoardReader.*.SN_WritetoDisk_Count, 'tpc05')"
@@ -545,7 +547,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "F",
             "target": "alias(sbnd.tpc06.BoardReader.*.SN_WritetoDisk_Count, 'tpc06')"
@@ -555,7 +556,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "G",
             "target": "alias(sbnd.tpc07.BoardReader.*.SN_WritetoDisk_Count, 'tpc07')"
@@ -565,7 +565,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "H",
             "target": "alias(sbnd.tpc08.BoardReader.*.SN_WritetoDisk_Count, 'tpc08')"
@@ -575,7 +574,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "I",
             "target": "alias(sbnd.tpc09.BoardReader.*.SN_WritetoDisk_Count, 'tpc09')"
@@ -585,7 +583,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "J",
             "target": "alias(sbnd.tpc10.BoardReader.*.SN_WritetoDisk_Count, 'tpc10')"
@@ -595,7 +592,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "K",
             "target": "alias(sbnd.tpc11.BoardReader.*.SN_WritetoDisk_Count, 'tpc11')"
@@ -615,19 +611,17 @@
             "color": {
               "mode": "thresholds"
             },
-            "mappings": [],
             "thresholds": {
               "mode": "absolute",
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 }
               ]
             },
             "unit": "Bps"
-          },
-          "overrides": []
+          }
         },
         "gridPos": {
           "h": 5,
@@ -637,6 +631,14 @@
         },
         "id": 47,
         "options": {
+          "barShape": "flat",
+          "barWidthFactor": 0.5,
+          "effects": {
+            "barGlow": false,
+            "centerGlow": false,
+            "gradient": false
+          },
+          "endpointMarker": "point",
           "minVizHeight": 75,
           "minVizWidth": 75,
           "orientation": "auto",
@@ -647,11 +649,16 @@
             "fields": "",
             "values": false
           },
+          "segmentCount": 1,
+          "segmentSpacing": 0.3,
+          "shape": "gauge",
           "showThresholdLabels": false,
           "showThresholdMarkers": true,
-          "sizing": "auto"
+          "sizing": "auto",
+          "sparkline": false,
+          "textMode": "auto"
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "13.1.0",
         "targets": [
           {
             "datasource": {
@@ -694,7 +701,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "orange",
@@ -707,8 +714,7 @@
               ]
             },
             "unit": "percentunit"
-          },
-          "overrides": []
+          }
         },
         "gridPos": {
           "h": 6,
@@ -718,6 +724,14 @@
         },
         "id": 18,
         "options": {
+          "barShape": "flat",
+          "barWidthFactor": 0.5,
+          "effects": {
+            "barGlow": false,
+            "centerGlow": false,
+            "gradient": false
+          },
+          "endpointMarker": "point",
           "minVizHeight": 75,
           "minVizWidth": 75,
           "orientation": "vertical",
@@ -728,12 +742,17 @@
             "fields": "",
             "values": false
           },
+          "segmentCount": 1,
+          "segmentSpacing": 0.3,
+          "shape": "gauge",
           "showThresholdLabels": false,
-          "showThresholdMarkers": true,
+          "showThresholdMarkers": false,
           "sizing": "auto",
-          "text": {}
+          "sparkline": false,
+          "text": {},
+          "textMode": "auto"
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "13.1.0",
         "targets": [
           {
             "datasource": {
@@ -811,7 +830,6 @@
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "refCount": 0,
             "refId": "H",
             "target": "alias(sbnd.sbnd-evb01.daq_log.Percent_Used, 'daq_log')",
@@ -849,7 +867,7 @@
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 },
                 {
                   "color": "orange",
@@ -862,8 +880,7 @@
               ]
             },
             "unit": "percentunit"
-          },
-          "overrides": []
+          }
         },
         "gridPos": {
           "h": 6,
@@ -873,6 +890,14 @@
         },
         "id": 76,
         "options": {
+          "barShape": "flat",
+          "barWidthFactor": 0.5,
+          "effects": {
+            "barGlow": false,
+            "centerGlow": false,
+            "gradient": false
+          },
+          "endpointMarker": "point",
           "minVizHeight": 75,
           "minVizWidth": 75,
           "orientation": "vertical",
@@ -883,12 +908,17 @@
             "fields": "",
             "values": false
           },
+          "segmentCount": 1,
+          "segmentSpacing": 0.3,
+          "shape": "gauge",
           "showThresholdLabels": false,
-          "showThresholdMarkers": true,
+          "showThresholdMarkers": false,
           "sizing": "auto",
-          "text": {}
+          "sparkline": false,
+          "text": {},
+          "textMode": "auto"
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "13.1.0",
         "targets": [
           {
             "datasource": {
@@ -985,8 +1015,7 @@
           "x": 0,
           "y": 28
         },
-        "id": 27,
-        "panels": [],
+        "id": 84,
         "title": "Rates",
         "type": "row"
       },
@@ -1025,6 +1054,7 @@
                 "type": "linear"
               },
               "showPoints": "auto",
+              "showValues": false,
               "spanNulls": false,
               "stacking": {
                 "group": "A",
@@ -1034,13 +1064,12 @@
                 "mode": "off"
               }
             },
-            "mappings": [],
             "thresholds": {
               "mode": "absolute",
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 }
               ]
             },
@@ -1065,7 +1094,7 @@
                   "id": "custom.hideFrom",
                   "value": {
                     "legend": false,
-                    "tooltip": false,
+                    "tooltip": true,
                     "viz": true
                   }
                 }
@@ -1081,25 +1110,31 @@
         },
         "id": 48,
         "options": {
+          "annotations": {
+            "clustering": -1,
+            "multiLane": false
+          },
           "legend": {
             "calcs": [],
             "displayMode": "list",
+            "enableFacetedFilter": false,
+            "overflow": "ellipsis",
             "placement": "bottom",
             "showLegend": true
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "13.1.0",
         "targets": [
           {
             "datasource": {
               "type": "graphite",
               "uid": "PED8062B0600A9C35"
             },
-            "hide": false,
             "key": "Q-cb29ca76-8120-49a5-97a8-cc049bd721cc-0",
             "refCount": 0,
             "refId": "D",
@@ -1144,6 +1179,7 @@
                 "type": "linear"
               },
               "showPoints": "auto",
+              "showValues": false,
               "spanNulls": false,
               "stacking": {
                 "group": "A",
@@ -1153,19 +1189,17 @@
                 "mode": "off"
               }
             },
-            "mappings": [],
             "thresholds": {
               "mode": "absolute",
               "steps": [
                 {
                   "color": "green",
-                  "value": null
+                  "value": 0
                 }
               ]
             },
             "unit": "Bps"
-          },
-          "overrides": []
+          }
         },
         "gridPos": {
           "h": 8,
@@ -1175,18 +1209,25 @@
         },
         "id": 66,
         "options": {
+          "annotations": {
+            "clustering": -1,
+            "multiLane": false
+          },
           "legend": {
             "calcs": [],
             "displayMode": "list",
+            "enableFacetedFilter": false,
+            "overflow": "ellipsis",
             "placement": "bottom",
             "showLegend": false
           },
           "tooltip": {
+            "hideZeros": false,
             "mode": "single",
             "sort": "none"
           }
         },
-        "pluginVersion": "11.3.0",
+        "pluginVersion": "13.1.0",
         "targets": [
           {
             "datasource": {
@@ -1201,24 +1242,492 @@
         ],
         "title": "Event Builder Data Rate ",
         "type": "timeseries"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 37
+        },
+        "id": 85,
+        "title": "Network",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic",
+              "seriesBy": "max"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.9,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 1,
+              "pointSize": 1,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "always",
+              "showValues": false,
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          }
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 8,
+          "x": 0,
+          "y": 38
+        },
+        "id": 79,
+        "options": {
+          "annotations": {
+            "clustering": -1,
+            "multiLane": false
+          },
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "enableFacetedFilter": false,
+            "overflow": "ellipsis",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "13.1.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "sbnd.ntb.*.*.*_Network_Receive_Rate"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "B",
+            "target": "sbnd.tpc*.*.*.*_Network_Receive_Rate"
+          }
+        ],
+        "title": "Receive Rate",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic",
+              "seriesBy": "max"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.9,
+              "drawStyle": "line",
+              "fillOpacity": 50,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 2,
+              "pointSize": 1,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "always",
+              "showValues": false,
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "normal"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          }
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 8,
+          "x": 8,
+          "y": 38
+        },
+        "id": 81,
+        "options": {
+          "annotations": {
+            "clustering": -1,
+            "multiLane": false
+          },
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "enableFacetedFilter": false,
+            "overflow": "ellipsis",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "13.1.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "sbnd.ntb.*.*.*_Network_Receive_Errors"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "B",
+            "target": "sbnd.tpc*.*.*.*_Network_Receive_Errors"
+          }
+        ],
+        "title": "Receive Errors",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic",
+              "seriesBy": "max"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.9,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 1,
+              "pointSize": 1,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "always",
+              "showValues": false,
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          }
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 8,
+          "x": 16,
+          "y": 38
+        },
+        "id": 80,
+        "options": {
+          "annotations": {
+            "clustering": -1,
+            "multiLane": false
+          },
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "enableFacetedFilter": false,
+            "overflow": "ellipsis",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "13.1.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "sbnd.ntb.*.*.*_Network_Send_Rate"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "B",
+            "target": "sbnd.tpc*.*.*.*_Network_Send_Rate"
+          }
+        ],
+        "title": "Send Rate",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 25,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "showValues": false,
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "normal"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          }
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 8,
+          "x": 0,
+          "y": 47
+        },
+        "id": 82,
+        "options": {
+          "annotations": {
+            "clustering": -1,
+            "multiLane": false
+          },
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "enableFacetedFilter": false,
+            "overflow": "ellipsis",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "13.1.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "A",
+            "target": "sbnd.ntb.*.*.*_Network_Send_Errors"
+          },
+          {
+            "datasource": {
+              "type": "graphite",
+              "uid": "PED8062B0600A9C35"
+            },
+            "refCount": 0,
+            "refId": "B",
+            "target": "sbnd.tpc*.*.*.*_Network_Send_Errors"
+          }
+        ],
+        "title": "Send Errors",
+        "type": "timeseries"
       }
     ],
     "preload": false,
     "refresh": "10s",
-    "schemaVersion": 40,
-    "tags": [],
-    "templating": {
-      "list": []
-    },
+    "schemaVersion": 42,
     "time": {
       "from": "now-6h",
       "to": "now"
     },
-    "timepicker": {},
-    "timezone": "",
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ]
+    },
+    "timezone": "browser",
     "title": "SuperNova DAQ Status",
     "uid": "supernova_DAQ",
-    "version": 1,
-    "weekStart": ""
+    "version": 9
   }
 }

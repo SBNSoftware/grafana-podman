@@ -6,7 +6,7 @@
     "icon_emoji": "hal9000",
     "text": "The DAQ is no longer running! ",
     "title": "RUN HAS STOPPED",
-    "url": "[REDACTED]",
+    "url": ["REDACTED"],
     "username": "SBND DAQ Monitoring"
   },
   "disableResolveMessage": false
