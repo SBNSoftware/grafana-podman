@@ -1,0 +1,86 @@
+{
+  "id": 9,
+  "uid": "a63d767c-dda2-40ed-9244-50b3cdd873dc",
+  "orgID": 1,
+  "folderUID": "fffc36fa-f756-4904-885b-60cd4436c9ff",
+  "ruleGroup": "Missing PMT Fragments alert",
+  "title": "Missing PMT Fragments alert",
+  "condition": "B",
+  "data": [
+    {
+      "refId": "Missing fragments",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 300,
+        "to": 0
+      },
+      "datasourceUid": "PED8062B0600A9C35",
+      "model": {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "intervalMs": 1000,
+        "maxDataPoints": 43200,
+        "refId": "Missing fragments",
+        "target": "sumSeries(transformNull(keepLastValue(removeBelowValue(icarus.evb*.EventBuilder*_art*.EventsWithEmptyFragmentsOnPMT,1), 10),0))"
+      }
+    },
+    {
+      "refId": "B",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 0,
+        "to": 0
+      },
+      "datasourceUid": "__expr__",
+      "model": {
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                100
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "Missing fragments"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "last"
+            }
+          }
+        ],
+        "intervalMs": 1000,
+        "maxDataPoints": 43200,
+        "refId": "B",
+        "type": "classic_conditions"
+      }
+    }
+  ],
+  "updated": "2026-07-28T17:53:54Z",
+  "noDataState": "NoData",
+  "execErrState": "Error",
+  "for": "1m",
+  "keep_firing_for": "0s",
+  "annotations": {
+    "__alertId__": "6",
+    "__dashboardUid__": "b3ZIF6Znz",
+    "__panelId__": "15",
+    "description": "PMT Missing fragments reported above 100...",
+    "summary": "> PMT Missing fragments are >100 :caen_digtizer_small:\nAlerting <!subteam^S01CW873WHZ> now!"
+  },
+  "labels": {
+    "__contacts__": "\"PMT Expert channel\"",
+    "rule_uid": "a63d767c-dda2-40ed-9244-50b3cdd873dc"
+  },
+  "isPaused": false,
+  "notification_settings": null,
+  "record": null
+}

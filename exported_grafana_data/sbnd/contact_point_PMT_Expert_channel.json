@@ -1,0 +1,16 @@
+{
+  "uid": "xbA0jSO7k",
+  "name": "PMT Expert channel",
+  "type": "slack",
+  "settings": {
+    "autoResolve": true,
+    "httpMethod": "POST",
+    "severity": "critical",
+    "text": "{{ template \"icarus.slack.text.tag.daq\" . }}",
+    "token": "[REDUCTED]",
+    "uploadImage": false,
+    "url": "[REDUCTED]",
+    "username": "grafana alert"
+  },
+  "disableResolveMessage": false
+}

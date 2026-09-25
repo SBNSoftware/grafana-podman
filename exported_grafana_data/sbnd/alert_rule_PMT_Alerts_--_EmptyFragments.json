@@ -1,0 +1,123 @@
+{
+  "id": 61,
+  "uid": "ffxqyl19un94wa",
+  "orgID": 1,
+  "folderUID": "dfxpjbnjouyv4e",
+  "ruleGroup": "PMT/CRT/TPC (by host.boardreader) evaluation",
+  "title": "PMT Alerts -- EmptyFragments",
+  "condition": "C",
+  "data": [
+    {
+      "refId": "A",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 600,
+        "to": 0
+      },
+      "datasourceUid": "PED8062B0600A9C35",
+      "model": {
+        "intervalMs": 1000,
+        "maxDataPoints": 43200,
+        "refId": "A",
+        "target": "groupByNode(aliasSub(icarus.evb*.EventBuilder*_art*.PMT.*.*.EmptyFragments, '^icarus\\.[^.]+\\.[^.]+\\.PMT\\.([^.]+)\\.([^.]+)\\.EmptyFragments$', '\\1/\\2'), 0, 'sumSeries')"
+      }
+    },
+    {
+      "refId": "B",
+      "queryType": "expression",
+      "relativeTimeRange": {
+        "from": 0,
+        "to": 0
+      },
+      "datasourceUid": "__expr__",
+      "model": {
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": []
+            },
+            "reducer": {
+              "params": [],
+              "type": "last"
+            },
+            "type": "query"
+          }
+        ],
+        "datasource": {
+          "type": "__expr__",
+          "uid": "__expr__"
+        },
+        "expression": "A",
+        "intervalMs": 1000,
+        "maxDataPoints": 43200,
+        "reducer": "last",
+        "refId": "B",
+        "type": "reduce"
+      }
+    },
+    {
+      "refId": "C",
+      "queryType": "expression",
+      "relativeTimeRange": {
+        "from": 0,
+        "to": 0
+      },
+      "datasourceUid": "__expr__",
+      "model": {
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                0
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "C"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "last"
+            },
+            "type": "query"
+          }
+        ],
+        "datasource": {
+          "type": "__expr__",
+          "uid": "__expr__"
+        },
+        "expression": "B",
+        "intervalMs": 1000,
+        "maxDataPoints": 43200,
+        "refId": "C",
+        "type": "threshold"
+      }
+    }
+  ],
+  "updated": "2026-09-10T07:53:32Z",
+  "noDataState": "OK",
+  "execErrState": "Error",
+  "for": "1m",
+  "keep_firing_for": "0s",
+  "annotations": {
+    "description": "empty frag.",
+    "summary": "empty frag."
+  },
+  "isPaused": false,
+  "notification_settings": {
+    "receiver": "#test_grafana_alerts Detailed View"
+  },
+  "record": null
+}

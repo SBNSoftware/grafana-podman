@@ -1,0 +1,10 @@
+{
+  "uid": "ffxt5fep8i0owc",
+  "name": "#test_grafana_alerts Detailed View",
+  "type": "slack",
+  "settings": {
+    "text": "{{ template \"icarus.daq.slack.expert.all\" . }}",
+    "url": ""
+  },
+  "disableResolveMessage": true
+}

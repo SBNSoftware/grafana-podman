@@ -6,14 +6,14 @@
     "canAdmin": true,
     "canStar": true,
     "canDelete": true,
-    "slug": "daq-performance-monitor",
-    "url": "/d/e595a447-0ae2-4b7c-9117-4ee93ce9ca93/daq-performance-monitor",
+    "slug": "gennadiy-s-pmt-dashboard",
+    "url": "/d/prB21EgVz/gennadiy-s-pmt-dashboard",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2024-02-16T20:12:31Z",
-    "updated": "2024-02-16T21:09:51Z",
+    "created": "2022-07-22T20:22:13Z",
+    "updated": "2022-08-26T17:49:34Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 18,
+    "version": 55,
     "hasAcl": false,
     "isFolder": false,
     "apiVersion": "v0alpha1",
@@ -36,40 +36,36 @@
       "list": [
         {
           "builtIn": 1,
-          "datasource": {
-            "type": "grafana",
-            "uid": "-- Grafana --"
-          },
+          "datasource": "-- Grafana --",
           "enable": true,
           "hide": true,
           "iconColor": "rgba(0, 211, 255, 1)",
           "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
           "type": "dashboard"
         }
       ]
     },
-    "description": "https://github.com/art-daq/artdaq/wiki/Artdaq-built-in-metric-catalog",
+    "description": "",
     "editable": true,
-    "fiscalYearStartMonth": 0,
+    "gnetId": null,
     "graphTooltip": 0,
-    "id": 45,
+    "id": 26,
     "links": [],
-    "liveNow": false,
     "panels": [
       {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "icarus.trigger.BoardReader.*.Fragment_Rate",
+        "datasource": null,
         "fieldConfig": {
           "defaults": {
             "color": {
               "mode": "palette-classic"
             },
             "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
@@ -98,8 +94,164 @@
               }
             },
             "mappings": [],
-            "max": 10,
-            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "id": 24,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "hidden",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "multi"
+          }
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.Fragment_Rate, 1)",
+            "textEditor": false
+          }
+        ],
+        "title": "Fragment Rate",
+        "type": "timeseries"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 10,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        },
+        "id": 10,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "hidden",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "multi"
+          }
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.Request_Response_Time, 1)",
+            "textEditor": false
+          }
+        ],
+        "title": "Request Response Time",
+        "type": "timeseries"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
             "thresholds": {
               "mode": "absolute",
               "steps": [
@@ -113,7 +265,7 @@
                 }
               ]
             },
-            "unit": "rothz"
+            "unit": "Bps"
           },
           "overrides": []
         },
@@ -121,48 +273,117 @@
           "h": 8,
           "w": 12,
           "x": 0,
-          "y": 0
+          "y": 8
         },
-        "id": 3,
+        "id": 16,
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
+            "displayMode": "hidden",
+            "placement": "bottom"
           },
           "tooltip": {
-            "mode": "multi",
-            "sort": "none"
+            "mode": "multi"
           }
         },
         "targets": [
           {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
             "refId": "A",
-            "target": "icarus.trigger.BoardReader.*.Fragment_Rate"
+            "target": "icarus.icaruspmt*.BoardReader.*.Data_Rate",
+            "textEditor": true
           }
         ],
-        "title": "icarus.trigger.BoardReader.*.Fragment_Rate",
+        "title": "Data Rate",
         "type": "timeseries"
       },
       {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "EventBuilder*.Average_Event_Size",
+        "datasource": null,
         "fieldConfig": {
           "defaults": {
             "color": {
               "mode": "palette-classic"
             },
             "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "decimals": 0,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 10
+        },
+        "id": 12,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "hidden",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "multi"
+          }
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.Laggy_Fragments, 1)",
+            "textEditor": false
+          }
+        ],
+        "title": "Laggy Fragments",
+        "type": "timeseries"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
@@ -209,289 +430,7 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 12,
-          "y": 0
-        },
-        "id": 6,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "icarus.evb01.EventBuilder1.Average_Event_Size"
-          }
-        ],
-        "title": "EventBuilder*.Average_Event_Size",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "icarus.*.BoardReader.*.Fragment_Buffer_Full_%",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "log": 10,
-                "type": "log"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "max": 100,
-            "min": 1,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            },
-            "unit": "percent"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 0,
-          "y": 8
-        },
-        "id": 1,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "icarus.*.BoardReader.*.Fragment_Buffer_Full_%",
-            "textEditor": true
-          }
-        ],
-        "title": "BoardReader.*.Fragment_Buffer_Full_%",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "icarus.*.EventBuilder*.Shared_Memory_Full_%",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "log": 10,
-                "type": "log"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "max": 100,
-            "min": 1,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            },
-            "unit": "percent"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 12,
-          "y": 8
-        },
-        "id": 5,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "icarus.*.EventBuilder*.Shared_Memory_Full_%"
-          }
-        ],
-        "title": "EventBuilder*.Shared_Memory_Full_%",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "BoardReader.*.Avg_Request_Response_Wait_Time",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "log": 10,
-                "type": "log"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "min": 0.1,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            },
-            "unit": "s"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
+          "h": 9,
           "w": 12,
           "x": 0,
           "y": 16
@@ -500,42 +439,31 @@
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
+            "displayMode": "hidden",
+            "placement": "bottom"
           },
           "tooltip": {
-            "mode": "single",
-            "sort": "none"
+            "mode": "multi"
           }
         },
         "targets": [
           {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
             "refId": "A",
-            "target": "icarus.*.BoardReader.*.Avg_Request_Response_Wait_Time"
+            "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.Average_Fragment_Size, 1)",
+            "textEditor": false
           }
         ],
-        "title": "BoardReader*.Avg_Request_Response_Wait_Time",
+        "title": "PMT Fragment Size",
         "type": "timeseries"
       },
       {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "icarus.*.EventBuilder*.Average_Event_Building_Time",
+        "datasource": null,
         "fieldConfig": {
           "defaults": {
             "color": {
               "mode": "palette-classic"
             },
             "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
@@ -565,7 +493,6 @@
               }
             },
             "mappings": [],
-            "min": 0.1,
             "thresholds": {
               "mode": "absolute",
               "steps": [
@@ -584,51 +511,40 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 8,
+          "h": 10,
           "w": 12,
           "x": 12,
-          "y": 16
+          "y": 18
         },
-        "id": 4,
+        "id": 6,
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
+            "displayMode": "hidden",
+            "placement": "bottom"
           },
           "tooltip": {
-            "mode": "single",
-            "sort": "none"
+            "mode": "multi"
           }
         },
         "targets": [
           {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
             "refId": "A",
-            "target": "icarus.*.EventBuilder*.Average_Event_Building_Time"
+            "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.Avg_Request_Response_Wait_Time, 1)",
+            "textEditor": false
           }
         ],
-        "title": "EventBuilder*.Average_Event_Building_Time",
+        "title": "Request Response Wait Time",
         "type": "timeseries"
       },
       {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "icarus.evb0*.EventBuilder*.Back-pressure_wait_time",
+        "datasource": null,
         "fieldConfig": {
           "defaults": {
             "color": {
               "mode": "palette-classic"
             },
             "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
@@ -677,44 +593,63 @@
           "h": 8,
           "w": 12,
           "x": 0,
-          "y": 24
+          "y": 25
         },
-        "id": 7,
+        "id": 22,
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
+            "displayMode": "hidden",
+            "placement": "bottom"
           },
           "tooltip": {
-            "mode": "multi",
-            "sort": "none"
+            "mode": "multi"
           }
         },
         "targets": [
           {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
             "refId": "A",
-            "target": "icarus.evb0*.EventBuilder*.Back-pressure_wait_time"
+            "target": "aliasByNode(icarus.icaruspm*.BoardReader.*.Avg_Frags_Per_Read, 1)",
+            "textEditor": false
           }
         ],
-        "title": "EventBuilder*.Back-pressure_wait_time",
+        "title": "Avg Frags Per Read",
         "type": "timeseries"
       },
       {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "icarus.evb*.EventBuilder*_art*.EventsProcessed",
+        "datasource": null,
         "fieldConfig": {
           "defaults": {
             "color": {
-              "mode": "thresholds"
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
             },
             "mappings": [],
             "thresholds": {
@@ -723,6 +658,91 @@
                 {
                   "color": "green",
                   "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "ns"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 28
+        },
+        "id": 20,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "hidden",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "multi"
+          }
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "target": "aliasByNode(icarus.icaruspmt*.*.*.FragmentCreationGapAvg, 1)",
+            "textEditor": false
+          }
+        ],
+        "title": "Fragment Creation Gap",
+        "type": "timeseries"
+      },
+      {
+        "datasource": null,
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
                 }
               ]
             }
@@ -732,331 +752,38 @@
         "gridPos": {
           "h": 8,
           "w": 12,
-          "x": 12,
-          "y": 24
-        },
-        "id": 13,
-        "options": {
-          "colorMode": "value",
-          "graphMode": "area",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "textMode": "value"
-        },
-        "pluginVersion": "10.0.3",
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "icarus.evb*.EventBuilder*_art*.EventsProcessed",
-            "textEditor": true
-          }
-        ],
-        "title": "EventBuilder*_art*.EventsProcessed",
-        "type": "stat"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "icarus.evb*.EventBuilder**_art*.Avg_Processing_Time",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "log": 10,
-                "type": "log"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "min": 1,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            },
-            "unit": "ms"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 12,
           "x": 0,
-          "y": 32
-        },
-        "id": 8,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "icarus.evb*.EventBuilder**_art*.Avg_Processing_Time"
-          }
-        ],
-        "title": "EventBuilder**_art*.Avg_Processing_Time",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "icarus.evb*.EventBuilder*.Avg_Fragment_Wait_Time_From_Rank_*",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "log": 10,
-                "type": "log"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            },
-            "unit": "ms"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 12,
-          "y": 32
-        },
-        "id": 9,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
-            "refId": "A",
-            "target": "icarus.evb*.EventBuilder*.Avg_Fragment_Wait_Time_From_Rank_*"
-          }
-        ],
-        "title": "EventBuilder*.Avg_Fragment_Wait_Time_From_Rank_*",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "icarus.evb*.EventBuilder*.Total_Shared_Memory_Wait_Time_From_Rank_*",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "log": 10,
-                "type": "log"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "min": 0.001,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            },
-            "unit": "s"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 0,
-          "y": 40
+          "y": 33
         },
         "id": 14,
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
+            "displayMode": "hidden",
+            "placement": "bottom"
           },
           "tooltip": {
-            "mode": "single",
-            "sort": "none"
+            "mode": "multi"
           }
         },
         "targets": [
           {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
             "refId": "A",
-            "target": "icarus.evb*.EventBuilder*.Total_Shared_Memory_Wait_Time_From_Rank_*"
+            "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.Avg_Output_Wait_Time, 1)",
+            "textEditor": false
           }
         ],
-        "title": "EventBuilder*.Total_Shared_Memory_Wait_Time_From_Rank_*",
+        "title": "Avg Output Wait Time",
         "type": "timeseries"
       },
       {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "icarus.*.EventBuilder*.Avg_Fragment_Wait_Time_From_Rank_*",
+        "datasource": null,
         "fieldConfig": {
           "defaults": {
             "color": {
               "mode": "palette-classic"
             },
             "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
@@ -1072,8 +799,7 @@
               "lineWidth": 1,
               "pointSize": 5,
               "scaleDistribution": {
-                "log": 10,
-                "type": "log"
+                "type": "linear"
               },
               "showPoints": "auto",
               "spanNulls": false,
@@ -1086,7 +812,6 @@
               }
             },
             "mappings": [],
-            "min": 0.001,
             "thresholds": {
               "mode": "absolute",
               "steps": [
@@ -1099,8 +824,7 @@
                   "value": 80
                 }
               ]
-            },
-            "unit": "s"
+            }
           },
           "overrides": []
         },
@@ -1108,48 +832,37 @@
           "h": 8,
           "w": 12,
           "x": 12,
-          "y": 40
+          "y": 36
         },
-        "id": 10,
+        "id": 18,
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
+            "displayMode": "hidden",
+            "placement": "bottom"
           },
           "tooltip": {
-            "mode": "single",
-            "sort": "none"
+            "mode": "multi"
           }
         },
         "targets": [
           {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
             "refId": "A",
-            "target": "icarus.*.EventBuilder*.Avg_Fragment_Wait_Time_From_Rank_*"
+            "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.Missing_Fragments, 1)",
+            "textEditor": false
           }
         ],
-        "title": "EventBuilder*.Avg_Fragment_Wait_Time_From_Rank_*",
+        "title": "Missing Fragments",
         "type": "timeseries"
       },
       {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "icarus.evb*.EventBuilder*_art*.EventsWithMissingFragments",
+        "datasource": null,
         "fieldConfig": {
           "defaults": {
             "color": {
               "mode": "palette-classic"
             },
             "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
@@ -1179,7 +892,6 @@
               }
             },
             "mappings": [],
-            "min": 1,
             "thresholds": {
               "mode": "absolute",
               "steps": [
@@ -1197,51 +909,40 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 8,
+          "h": 9,
           "w": 12,
           "x": 0,
-          "y": 48
+          "y": 41
         },
-        "id": 11,
+        "id": 4,
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
+            "displayMode": "hidden",
+            "placement": "bottom"
           },
           "tooltip": {
-            "mode": "single",
-            "sort": "none"
+            "mode": "multi"
           }
         },
         "targets": [
           {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
             "refId": "A",
-            "target": "icarus.evb*.EventBuilder*_art*.EventsWithMissingFragments"
+            "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.Buffer_Depth_Fragments, 1)",
+            "textEditor": false
           }
         ],
-        "title": "EventBuilder*_art*.EventsWithMissingFragments",
+        "title": "PMT Buffer Depth",
         "type": "timeseries"
       },
       {
-        "datasource": {
-          "type": "graphite",
-          "uid": "PED8062B0600A9C35"
-        },
-        "description": "icarus.evb*.EventBuilder*_art*.EventsWithEmptyFragments",
+        "datasource": null,
         "fieldConfig": {
           "defaults": {
             "color": {
               "mode": "palette-classic"
             },
             "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
@@ -1257,8 +958,7 @@
               "lineWidth": 1,
               "pointSize": 5,
               "scaleDistribution": {
-                "log": 2,
-                "type": "log"
+                "type": "linear"
               },
               "showPoints": "auto",
               "spanNulls": false,
@@ -1271,7 +971,6 @@
               }
             },
             "mappings": [],
-            "min": 1,
             "thresholds": {
               "mode": "absolute",
               "steps": [
@@ -1292,51 +991,124 @@
           "h": 8,
           "w": 12,
           "x": 12,
-          "y": 48
+          "y": 44
         },
-        "id": 12,
+        "id": 8,
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
+            "displayMode": "hidden",
+            "placement": "bottom"
           },
           "tooltip": {
-            "mode": "multi",
-            "sort": "none"
+            "mode": "multi"
           }
         },
         "targets": [
           {
-            "datasource": {
-              "type": "graphite",
-              "uid": "PED8062B0600A9C35"
-            },
             "refId": "A",
-            "target": "icarus.evb*.EventBuilder*_art*.EventsWithEmptyFragments"
+            "target": "aliasByNode(icarus.icaruspmt*.BoardReader.*.Laggy_getNext, 1)",
+            "textEditor": false
           }
         ],
-        "title": "EventBuilder*_art*.EventsWithEmptyFragments",
+        "title": "Laggy getNext",
+        "type": "timeseries"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 50
+        },
+        "id": 25,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "hidden",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "multi"
+          }
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "target": "icarus.icaruspmt*.BoardReader.*.Fragment_Buffer_Full_%",
+            "textEditor": true
+          }
+        ],
+        "title": "PMT Buffer Full %",
         "type": "timeseries"
       }
     ],
     "refresh": "5s",
-    "schemaVersion": 38,
+    "schemaVersion": 30,
     "style": "dark",
     "tags": [],
     "templating": {
       "list": []
     },
     "time": {
-      "from": "now-30m",
+      "from": "now-6h",
       "to": "now"
     },
     "timepicker": {},
     "timezone": "",
-    "title": "DAQ Performance Monitor",
-    "uid": "e595a447-0ae2-4b7c-9117-4ee93ce9ca93",
-    "version": 18,
-    "weekStart": ""
+    "title": "Gennadiy's PMT Dashboard",
+    "uid": "prB21EgVz",
+    "version": 55
   }
 }

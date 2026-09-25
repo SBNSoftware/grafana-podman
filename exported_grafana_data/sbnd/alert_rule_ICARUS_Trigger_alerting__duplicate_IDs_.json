@@ -1,0 +1,128 @@
+{
+  "id": 63,
+  "uid": "afyxqfcf5z75sb",
+  "orgID": 1,
+  "folderUID": "bfyxq6obg7b40e",
+  "ruleGroup": "Trigger",
+  "title": "ICARUS Trigger alerting (duplicate IDs)",
+  "condition": "B",
+  "data": [
+    {
+      "refId": "A",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 600,
+        "to": 0
+      },
+      "datasourceUid": "PED8062B0600A9C35",
+      "model": {
+        "intervalMs": 1000,
+        "maxDataPoints": 43200,
+        "refId": "A",
+        "target": "icarus.trigger.BoardReader.*.NumberOfDuplicateIDs"
+      }
+    },
+    {
+      "refId": "D",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 600,
+        "to": 0
+      },
+      "datasourceUid": "PED8062B0600A9C35",
+      "model": {
+        "datasource": {
+          "type": "graphite",
+          "uid": "PED8062B0600A9C35"
+        },
+        "intervalMs": 1000,
+        "maxDataPoints": 43200,
+        "refId": "D",
+        "target": "removeBelowValue(derivative(icarus.trigger.BoardReader.*.NumberOfDuplicateIDs), 0)"
+      }
+    },
+    {
+      "refId": "B",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 0,
+        "to": 0
+      },
+      "datasourceUid": "__expr__",
+      "model": {
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                0,
+                0
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "last"
+            },
+            "type": "query"
+          },
+          {
+            "evaluator": {
+              "params": [
+                0,
+                0
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "D"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "last"
+            },
+            "type": "query"
+          }
+        ],
+        "datasource": {
+          "name": "Expression",
+          "type": "__expr__",
+          "uid": "__expr__"
+        },
+        "expression": "",
+        "intervalMs": 1000,
+        "maxDataPoints": 43200,
+        "refId": "B",
+        "type": "classic_conditions"
+      }
+    }
+  ],
+  "updated": "2026-09-23T13:32:37Z",
+  "noDataState": "OK",
+  "execErrState": "Error",
+  "for": "1m",
+  "keep_firing_for": "1m",
+  "annotations": {
+    "__dashboardUid__": "d87f3772-c2f4-45f9-aee3-d61395668bc2",
+    "__panelId__": "53",
+    "description": "Trigger had duplicate events\nThis run was be stopped :blob-ok:",
+    "summary": "Trigger has duplicate events\nAlerting <!subteam^S02HAS8UK7W> now!\nThis run should be stopped :octagonal_sign:"
+  },
+  "isPaused": false,
+  "notification_settings": {
+    "receiver": "ICARUS Trigger alerting (duplicate IDs)"
+  },
+  "record": null
+}

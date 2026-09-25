@@ -1,0 +1,10 @@
+{
+  "uid": "bfywu6ij8wzk0e",
+  "name": "ICARUS Trigger alerting (duplicate IDs)",
+  "type": "slack",
+  "settings": {
+    "text": "{{ template \"icarus.slack.text.tag.daq\" . }}",
+    "url": "[REDUCTED]"
+  },
+  "disableResolveMessage": true
+}
